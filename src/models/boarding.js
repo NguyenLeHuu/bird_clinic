@@ -1,0 +1,25 @@
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class Boarding extends Model {
+    static associate(models) {}
+  }
+  Boarding.init(
+    {
+      boarding_id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+      },
+      booking_id: DataTypes.STRING,
+      arrival_date: DataTypes.STRING,
+      room_type: DataTypes.STRING,
+      bird_id: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Boarding",
+      timestamps: false,
+    }
+  );
+  return Boarding;
+};
