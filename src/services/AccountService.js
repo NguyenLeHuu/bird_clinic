@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Customer.findAll();
+      let data = await db.Account.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -16,10 +16,10 @@ let getAll = () => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.Customer.findByPk(id);
-      let data = await db.Customer.findOne({
+      // let data = await db.Account.findByPk(id);
+      let data = await db.Account.findOne({
         where: {
-          customer_id: id,
+          account_id: id,
         },
       });
       resolve(data);
@@ -29,23 +29,18 @@ let getOne = (id) => {
   });
 };
 
-let createCustomer = (data, url) => {
-  // let createCustomer = (data, image) => {
-
+let createAccount = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.Customer.create({
-        customer_id: id,
-        account_id: data.account_id,
+      const result = await db.Account.create({
+        account_id: id,
         email: data.email,
-        address: data.address,
-        name: data.name,
-        status: 1,
+        password: data.password,
         phone: data.phone,
-        image: url,
+        role: data.role,
+        status: 1,
       });
-
       resolve(result);
     } catch (e) {
       reject(e);
@@ -53,10 +48,10 @@ let createCustomer = (data, url) => {
   });
 };
 
-let updateCustomer = (id, name, quantity, price, mainimg, detail) => {
+let updateAccount = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Customer.update(
+      let data = await db.Account.update(
         {
           name: name,
           quantity: quantity,
@@ -65,7 +60,7 @@ let updateCustomer = (id, name, quantity, price, mainimg, detail) => {
         },
         {
           where: {
-            productid: id,
+            account_id: id,
           },
         }
       );
@@ -76,16 +71,16 @@ let updateCustomer = (id, name, quantity, price, mainimg, detail) => {
   });
 };
 
-let deleteCustomer = (id) => {
+let deleteAccount = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Customer.update(
+      let data = await db.Account.update(
         {
           status: 0,
         },
         {
           where: {
-            productid: id,
+            account_id: id,
           },
         }
       );
@@ -97,9 +92,9 @@ let deleteCustomer = (id) => {
 };
 
 module.exports = {
-  getOne: getOne,
   getAll: getAll,
-  createCustomer: createCustomer,
-  updateCustomer: updateCustomer,
-  deleteCustomer: deleteCustomer,
+  getOne: getOne,
+  createAccount: createAccount,
+  updateAccount: updateAccount,
+  deleteAccount: deleteAccount,
 };

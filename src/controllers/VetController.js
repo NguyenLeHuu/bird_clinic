@@ -2,35 +2,14 @@ const VetService = require("../services/VetService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
-  // async index(req, res) {
-  //   /*
-  //       #swagger.tags = ['Vet']
-  //        #swagger.description = "Filter Vet, required idcollection"
-  //       */
-  //   try {
-  //     // const { limit, page, name, catename, status, min, max } = req.query;
-  //     const { limit, page, name, catename, status, min, max } = req.query;
-  //     // console.log("_____", catename);
-  //     let Vets = await VetService.getAll(req.query);
-
-  //     return res.status(200).json({
-  //       status: 200,
-  //       message: "Get list Vets successful!",
-  //       data: Vets,
-  //     });
-  //   } catch (error) {
-  //     console.log("____Cannot get all Vets");
-  //   }
-  // },
-
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Vet']
          #swagger.description = "Get all Vet"
         */
     try {
-      const id = req.params.id;
-      let data = await VetService.getAll(id);
+      // const id = req.params.id;
+      let data = await VetService.getAll();
 
       if (data != null) {
         return res.status(200).json({
