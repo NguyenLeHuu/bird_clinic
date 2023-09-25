@@ -130,44 +130,21 @@ let getOne = (id) => {
   });
 };
 
-let createCustomer = (data, listImage) => {
+let createCustomer = (data, url) => {
   // let createCustomer = (data, image) => {
 
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.Customer.create({
-        productid: id,
+        customer_id: id,
+        account_id: data.account_id,
+        email: data.email,
+        address: data.address,
         name: data.name,
-        quantity: data.quantity,
-        price: data.price,
         status: 1,
-        cateid: data.cateid,
-        detail: data.detail,
-        mainimg:
-          "https://cdn.shopify.com/s/files/1/0034/8759/6579/files/Black_large_logo.png?height=628&pad_color=fff&v=1614328540&width=1200&fbclid=IwAR2mUhBNanKugkGMIUThYS_9gCYlHaSyayw8Mc6KKKBQKox_CbOQlaoX7BM ",
-      });
-
-      await db.Customer.update(
-        {
-          mainimg: listImage[0],
-        },
-        {
-          where: {
-            productid: id,
-          },
-        }
-      );
-
-      listImage.shift();
-
-      listImage.forEach(async (element) => {
-        // const idimage = crypto.randomBytes(15).toString("hex");
-        await db.Image.create({
-          // idimage: idimage,
-          image: element,
-          productid: id,
-        });
+        phone: data.phone,
+        image: url,
       });
 
       resolve(result);

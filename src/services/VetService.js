@@ -109,20 +109,6 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Veterinarian.findByPk(id);
-      //   let data = await db.Veterinarian.findAll({
-      //     where: {
-      //       productid: id,
-      //     },
-      //     include: {
-      //       model: db.Image,
-      //       // attributes: [
-      //       //   "image",
-      //       // ],
-      //       group: "productid",
-      //     },
-      //     raw: false,
-      //     nest: true,
-      //   });
       resolve(data);
     } catch (e) {
       reject(e);
@@ -130,44 +116,19 @@ let getOne = (id) => {
   });
 };
 
-let createVeterinarian = (data, listImage) => {
+let createVeterinarian = (data, url) => {
   // let createVeterinarian = (data, image) => {
 
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.Veterinarian.create({
-        productid: id,
+        veterinarian_id: id,
+        account_id: data.account_id,
+        specialized: data.specialized,
         name: data.name,
-        quantity: data.quantity,
-        price: data.price,
         status: 1,
-        cateid: data.cateid,
-        detail: data.detail,
-        mainimg:
-          "https://cdn.shopify.com/s/files/1/0034/8759/6579/files/Black_large_logo.png?height=628&pad_color=fff&v=1614328540&width=1200&fbclid=IwAR2mUhBNanKugkGMIUThYS_9gCYlHaSyayw8Mc6KKKBQKox_CbOQlaoX7BM ",
-      });
-
-      await db.Veterinarian.update(
-        {
-          mainimg: listImage[0],
-        },
-        {
-          where: {
-            productid: id,
-          },
-        }
-      );
-
-      listImage.shift();
-
-      listImage.forEach(async (element) => {
-        // const idimage = crypto.randomBytes(15).toString("hex");
-        await db.Image.create({
-          // idimage: idimage,
-          image: element,
-          productid: id,
-        });
+        image: url,
       });
 
       resolve(result);
