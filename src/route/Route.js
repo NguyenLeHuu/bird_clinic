@@ -3,7 +3,7 @@ const express = require("express");
 let router = express();
 
 // const signupRoute = require("./SignUpRoute");
-// const loginRoute = require("./LoginRoute");
+const loginRoute = require("./LoginRoute");
 // const categoryRoute = require("./CategoryRoute");
 // const productRoute = require("./ProductRoute");
 // const orderRoute = require("./OrderRoute");
@@ -15,7 +15,7 @@ let router = express();
 // const salerRoute = require("./SalerRoute");
 
 // router.use("/signup", signupRoute);
-// router.use("/login", loginRoute);
+router.use("/login", loginRoute);
 // router.use("/category", categoryRoute);
 // router.use("/product", productRoute);
 // router.use("/saler", salerRoute);

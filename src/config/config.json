@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "070900",
-    "database": "tastetrekker",
+    "database": "bcs_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": true,
