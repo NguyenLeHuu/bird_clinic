@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       size: DataTypes.STRING,
-      breed: DataTypes.STRING,
+      breeds: DataTypes.STRING,
     },
     {
       sequelize,

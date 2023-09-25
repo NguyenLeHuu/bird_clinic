@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         primaryKey: true,
       },
+      account_id: DataTypes.STRING,
       email: DataTypes.STRING,
       address: DataTypes.STRING,
       name: DataTypes.STRING,

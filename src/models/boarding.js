@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       booking_id: DataTypes.STRING,
       arrival_date: DataTypes.STRING,
+      departure_date: DataTypes.STRING,
       room_type: DataTypes.STRING,
       bird_id: DataTypes.STRING,
     },

@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       account_id: DataTypes.STRING,
-      service_type_id: DataTypes.STRING,
       specialized: DataTypes.STRING,
       name: DataTypes.STRING,
       status: DataTypes.STRING,
