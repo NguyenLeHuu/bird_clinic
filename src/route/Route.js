@@ -9,6 +9,7 @@ const vetRoute = require("./VetRoute");
 const birdRoute = require("./BirdRoute");
 const serviceRoute = require("./ServiceRoute");
 const servicePackageRoute = require("./ServicePackageRoute");
+const mediaRoute = require("./MediaRoute");
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
@@ -16,6 +17,7 @@ router.use("/customer", customerRoute);
 router.use("/vet", vetRoute);
 router.use("/bird", birdRoute);
 router.use("/service", serviceRoute);
-router.use("/service", servicePackageRoute);
+router.use("/servicePackage", servicePackageRoute);
+router.use("/media", mediaRoute);
 
 module.exports = router;
