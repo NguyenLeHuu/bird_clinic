@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       is_before: DataTypes.STRING,
       is_after: DataTypes.STRING,
       type_service: DataTypes.STRING,
+      status: DataTypes.STRING,
     },
     {
       sequelize,
