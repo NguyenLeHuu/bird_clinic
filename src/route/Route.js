@@ -18,6 +18,7 @@ const service_FormRoute = require("./Service_FormRoute");
 const service_Form_detailRoute = require("./Service_Form_detailRoute");
 const medicalRecordRoute = require("./MedicalRecordRoute");
 const billRoute = require("./BillRoute");
+const billDetailRoute = require("./BillDetailRoute");
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
@@ -35,5 +36,6 @@ router.use("/service_Form", service_FormRoute);
 router.use("/service_Form_detail", service_Form_detailRoute);
 router.use("/medicalRecord", medicalRecordRoute);
 router.use("/bill", billRoute);
+router.use("/billDetail", billDetailRoute);
 
 module.exports = router;
