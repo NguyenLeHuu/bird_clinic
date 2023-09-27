@@ -19,6 +19,9 @@ const service_Form_detailRoute = require("./Service_Form_detailRoute");
 const medicalRecordRoute = require("./MedicalRecordRoute");
 const billRoute = require("./BillRoute");
 const billDetailRoute = require("./BillDetailRoute");
+const boardingRoute = require("./BoardingRoute");
+const boardingRecordRoute = require("./BoardingRecordRoute");
+const cageRoute = require("./CageRoute");
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
@@ -37,5 +40,8 @@ router.use("/service_Form_detail", service_Form_detailRoute);
 router.use("/medicalRecord", medicalRecordRoute);
 router.use("/bill", billRoute);
 router.use("/billDetail", billDetailRoute);
+router.use("/boarding", boardingRoute);
+router.use("/boardingRecord", boardingRecordRoute);
+router.use("/cage", cageRoute);
 
 module.exports = router;
