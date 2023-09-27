@@ -13,6 +13,7 @@ const mediaRoute = require("./MediaRoute");
 const bookingRoute = require("./BookingRoute");
 const prescriptionRoute = require("./PrescriptionRoute");
 const prescriptionDetailRoute = require("./PrescriptionDetailRoute");
+const veterinarianSlotDetailRoute = require("./VeterinarianSlotDetailRoute");
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
@@ -25,5 +26,6 @@ router.use("/media", mediaRoute);
 router.use("/booking", bookingRoute);
 router.use("/prescription", prescriptionRoute);
 router.use("/prescriptionDetail", prescriptionDetailRoute);
+router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
 
 module.exports = router;
