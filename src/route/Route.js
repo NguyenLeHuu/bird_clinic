@@ -15,6 +15,7 @@ const prescriptionRoute = require("./PrescriptionRoute");
 const prescriptionDetailRoute = require("./PrescriptionDetailRoute");
 const veterinarianSlotDetailRoute = require("./VeterinarianSlotDetailRoute");
 const service_FormRoute = require("./Service_FormRoute");
+const service_Form_detailRoute = require("./Service_Form_detailRoute");
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
@@ -29,5 +30,6 @@ router.use("/prescription", prescriptionRoute);
 router.use("/prescriptionDetail", prescriptionDetailRoute);
 router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
 router.use("/service_Form", service_FormRoute);
+router.use("/service_Form_detail", service_Form_detailRoute);
 
 module.exports = router;
