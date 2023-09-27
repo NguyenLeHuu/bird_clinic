@@ -12,6 +12,7 @@ const servicePackageRoute = require("./ServicePackageRoute");
 const mediaRoute = require("./MediaRoute");
 const bookingRoute = require("./BookingRoute");
 const prescriptionRoute = require("./PrescriptionRoute");
+const prescriptionDetailRoute = require("./PrescriptionDetailRoute");
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
@@ -23,5 +24,6 @@ router.use("/servicePackage", servicePackageRoute);
 router.use("/media", mediaRoute);
 router.use("/booking", bookingRoute);
 router.use("/prescription", prescriptionRoute);
+router.use("/prescriptionDetail", prescriptionDetailRoute);
 
 module.exports = router;

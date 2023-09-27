@@ -1,0 +1,100 @@
+const { Op } = require("sequelize");
+const db = require("../models/index");
+const crypto = require("crypto");
+
+let getAll = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.PrescriptionDetail.findAll();
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let getOne = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // let data = await db.PrescriptionDetail.findByPk(id);
+      let data = await db.PrescriptionDetail.findOne({
+        where: {
+          prescription_detail_id: id,
+        },
+      });
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let createPrescriptionDetail = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const id = crypto.randomBytes(15).toString("hex");
+      const result = await db.PrescriptionDetail.create({
+        prescription_id: id,
+        booking_id: data.booking_id,
+        time_created: data.time_created,
+        note: data.note,
+        usage: data.usage,
+        status: data.status,
+      });
+      resolve(result);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let updatePrescriptionDetail = (id, name, quantity, price, mainimg, detail) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.PrescriptionDetail.update(
+        {
+          name: name,
+          quantity: quantity,
+          price: price,
+          detail: detail,
+        },
+        {
+          where: {
+            prescription_id: id,
+          },
+        }
+      );
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let deletePrescriptionDetail = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.PrescriptionDetail.update(
+        {
+          status: 0,
+        },
+        {
+          where: {
+            prescription_id: id,
+          },
+        }
+      );
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+module.exports = {
+  getAll: getAll,
+  getOne: getOne,
+  createPrescriptionDetail: createPrescriptionDetail,
+  updatePrescriptionDetail: updatePrescriptionDetail,
+  deletePrescriptionDetail: deletePrescriptionDetail,
+};
