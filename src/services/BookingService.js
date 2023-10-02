@@ -1,6 +1,7 @@
 const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
+const utils = require("./Utils");
 
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
@@ -33,19 +34,21 @@ let createBooking = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
+      const date = utils.getCurDay();
+
       const result = await db.Booking.create({
         booking_id: id,
-        account_id: data.email,
-        time_id: data.password,
-        bird_id: data.phone,
-        veterinarian_id: data.role,
+        account_id: data.account_id,
+        time_id: data.time_id,
+        bird_id: data.bird_id,
+        veterinarian_id: data.veterinarian_id,
         symptom: data.symptom,
         status: data.status,
         diagnosis: data.diagnosis,
         recommendations: data.recommendations,
         temperature: data.temperature,
         weight: data.weight,
-        date: data.date,
+        date: date,
         estimate_time: data.estimate_time,
         money_has_paid: data.money_has_paid,
         checkin_time: data.checkin_time,
@@ -61,15 +64,28 @@ let createBooking = (data) => {
   });
 };
 
-let updateBooking = (id, name, quantity, price, mainimg, detail) => {
+let updateBooking = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Booking.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          // account_id,
+          time_id: body_data.time_id,
+          // bird_id,
+          veterinarian_id: body_data.veterinarian_id,
+          symptom: body_data.symptom,
+          status: body_data.status,
+          diagnosis: body_data.diagnosis,
+          recommendations: body_data.recommendations,
+          temperature: body_data.temperature,
+          weight: body_data.weight,
+          date: body_data.date,
+          estimate_time: body_data.estimate_time,
+          money_has_paid: body_data.money_has_paid,
+          // checkin_time,
+          // customer_name,
+          note: body_data.note,
+          // service_type,
         },
         {
           where: {
@@ -79,6 +95,7 @@ let updateBooking = (id, name, quantity, price, mainimg, detail) => {
       );
       resolve(data);
     } catch (e) {
+      console.log(e);
       reject(e);
     }
   });

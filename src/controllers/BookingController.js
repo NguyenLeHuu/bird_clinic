@@ -58,13 +58,7 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Booking']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
       const {
         account_id,
@@ -86,8 +80,6 @@ module.exports = {
         service_type,
       } = req.body;
 
-      // const url = await Firebase.uploadImage(file);
-      // let data = await BookingService.createBooking(req.body, url);
       let data = await BookingService.createBooking(req.body);
 
       console.log("____Create Booking Successful");
@@ -109,24 +101,32 @@ module.exports = {
   async update(req, res) {
     /* 
         #swagger.tags = ['Booking']
-         #swagger.description = "Update a Booking (give veterinarian_id)"
+         #swagger.description = "Update a Booking (give booking_id)"
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
 
-      let data = await BookingService.updateBooking(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      const {
+        // account_id,
+        time_id,
+        // bird_id,
+        veterinarian_id,
+        symptom,
+        status,
+        diagnosis,
+        recommendations,
+        temperature,
+        weight,
+        date,
+        estimate_time,
+        money_has_paid,
+        // checkin_time,
+        // customer_name,
+        note,
+        // service_type,
+      } = req.body;
+
+      let data = await BookingService.updateBooking(id, req.body);
       console.log("____Update Booking Successful");
 
       return res.status(200).json({
@@ -146,7 +146,7 @@ module.exports = {
   async delete(req, res) {
     /* 
         #swagger.tags = ['Booking']
-         #swagger.description = "Delete Booking (give veterinarian_id)"
+         #swagger.description = "Delete Booking (give booking_id)"
         */
     try {
       const id = req.params["id"];
