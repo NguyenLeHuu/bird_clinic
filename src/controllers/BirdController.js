@@ -2,27 +2,6 @@ const BirdService = require("../services/BirdService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
-  // async index(req, res) {
-  //   /*
-  //       #swagger.tags = ['Bird']
-  //        #swagger.description = "Filter bird, required idcollection"
-  //       */
-  //   try {
-  //     // const { limit, page, name, catename, status, min, max } = req.query;
-  //     const { limit, page, name, catename, status, min, max } = req.query;
-  //     // console.log("_____", catename);
-  //     let birds = await BirdService.getAll(req.query);
-
-  //     return res.status(200).json({
-  //       status: 200,
-  //       message: "Get list birds successful!",
-  //       data: birds,
-  //     });
-  //   } catch (error) {
-  //     console.log("____Cannot get all birds");
-  //   }
-  // },
-
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Bird']
@@ -42,7 +21,6 @@ module.exports = {
         return res.status(400).json({
           status: 400,
           message: "Not Found!",
-          data: data,
         });
       }
     } catch (error) {
@@ -82,7 +60,7 @@ module.exports = {
     // #swagger.tags = ['Bird']
     /*
          #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
+          #swagger.parameters['image'] = {
               in: 'formData',
               type: 'file',
               required: 'true',
@@ -98,12 +76,15 @@ module.exports = {
         color,
         breed,
         status,
-        image,
         size,
       } = req.body;
-
-      const url = await Firebase.uploadImage(file);
-      let data = await BirdService.createBird(req.body, url);
+      let image =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy_QPLISHeW6nHqBiEzRi7iMSlDv35C8cj1Q&usqp=CAU";
+      if (req.file) {
+        image = await Firebase.uploadImage(req.file);
+      }
+      console.log(image);
+      let data = await BirdService.createBird(req.body, image);
 
       console.log("____Create Bird Successful");
 
@@ -128,19 +109,31 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
+      const customer_id = req.body.customer_id;
       const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const gender = req.body.gender;
+      const hatching_date = req.body.hatching_date;
+      const ISO_microchip = req.body.ISO_microchip;
+      const weight = req.body.weight;
+      const color = req.body.color;
+      const breed = req.body.breed;
+      const status = req.body.status;
+      // const image = req.body.image;
+      const size = req.body.size;
 
       let data = await BirdService.updateBird(
         id,
+        customer_id,
         name,
-        quantity,
-        price,
-        mainimg,
-        detail
+        gender,
+        hatching_date,
+        ISO_microchip,
+        weight,
+        color,
+        breed,
+        status,
+        // image,
+        size
       );
       console.log("____Update Bird Successful");
 

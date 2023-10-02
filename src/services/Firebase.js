@@ -3,12 +3,12 @@ const { v4: uuidv4 } = require("uuid");
 
 const FCM = require("fcm-node");
 var serverKey =
-  "AAAASYftc24:APA91bERQp_4swNKNN7NGsgkcSwB52_Wi7VNYJ5WIhVTPsKExcqTCPZ3KXIRyNtERpwUsYnGaPGFa-Yg46guoTIzUGTMpnd_FqiyOW00n-Ckr9XsCgUvUc0PtqDnaTCn-UUSEkFzo06C";
+  "AAAA8JPK4Do:APA91bGkM_iAGjUQRQNsOez0GScPQ2trWwe6hGxRMoulcHeN2sGG95P8am0upUbmaGst9cyjaAg19z05rpIWwSy_D_N6mBBgrx2gTtRgIw11J0oRDv7havimtyHEi5kx6fL-gpaTv8my";
 var fcm = new FCM(serverKey);
 
 const serviceAccount = require("../config/firebase-sdk.json");
 
-const BUCKET = "exe-tastetrekker.appspot.com";
+const BUCKET = "bsc-symtem.appspot.com";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -36,7 +36,6 @@ const uploadImage = (image) => {
       stream.on("finish", async () => {
         await file.makePublic();
       });
-
       stream.end(image.buffer);
       resolve(
         `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${filename}?alt=media`

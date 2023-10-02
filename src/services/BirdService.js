@@ -2,7 +2,7 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Bird.findAll({
@@ -58,15 +58,35 @@ let createBird = (data, url) => {
   });
 };
 
-let updateBird = (id, name, quantity, price, mainimg, detail) => {
+let updateBird = (
+  id,
+  customer_id,
+  name,
+  gender,
+  hatching_date,
+  ISO_microchip,
+  weight,
+  color,
+  breed,
+  status,
+  // image,
+  size
+) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Bird.update(
         {
+          customer_id: customer_id,
+          gender: gender,
           name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          hatching_date: hatching_date,
+          ISO_microchip: ISO_microchip,
+          weight: weight,
+          color: color,
+          breed: breed,
+          status: status,
+          // image: image,
+          size: size,
         },
         {
           where: {
