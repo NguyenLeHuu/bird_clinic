@@ -33,7 +33,7 @@ module.exports = {
   async getOne(req, res) {
     /* 
         #swagger.tags = ['Service_FormService']
-         #swagger.description = "Get one Service_FormService (give service_package_id)"
+         #swagger.description = "Get one Service_FormService (give service_form_id)"
         */
     try {
       const id = req.params.id;
@@ -63,17 +63,20 @@ module.exports = {
 
     try {
       const {
-        bird_size_id,
-        service_id,
-        price,
-        description,
-        package_name,
+        bird_id,
+        booking_id,
+        reason_referral,
         status,
+        date,
+        veterinarian_referral,
+        total_price,
+        is_paid,
+        qr_code,
       } = req.body;
 
       //   const url = await Firebase.uploadImage(file);
       //   let data = await Service_FormService.createService_FormService(req.body, url);
-      let data = await Service_FormService.createService_FormService(req.body);
+      let data = await Service_FormService.createService_Form(req.body);
 
       console.log("____Create Service_FormService Successful");
 
@@ -98,20 +101,21 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
 
-      let data = await Service_FormService.updateService_FormService(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      const {
+        bird_id,
+        booking_id,
+        reason_referral,
+        status,
+        date,
+        veterinarian_referral,
+        total_price,
+        is_paid,
+        qr_code,
+      } = req.body;
+
+      let data = await Service_FormService.updateService_Form(id, req.body);
+
       console.log("____Update Service_FormService Successful");
 
       return res.status(200).json({
@@ -136,7 +140,7 @@ module.exports = {
     try {
       const id = req.params["id"];
 
-      let data = await Service_FormService.deleteService_FormService(id);
+      let data = await Service_FormService.deleteService_Form(id);
       console.log("____Delete Service_FormService Successful");
 
       return res.status(200).json({
