@@ -4,18 +4,22 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Service_Form_detail']
-         #swagger.description = "Get all Service_Form_detail of service"
+        #swagger.tags = ['Service_Form_detailService']
+         #swagger.description = "Get all Service_Form_detailService of service"
         */
     try {
-      const bird_size_id = req.query.size_id;
-      const service_id = req.query.service_id;
-      let data = await Service_Form_detail.getAll(bird_size_id, service_id);
+      // const bird_size_id = req.query.size_id;
+      // const service_id = req.query.service_id;
+      let data = await Service_Form_detailService
+        .getAll
+        // bird_size_id,
+        // service_id
+        ();
 
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get Service_Form_detail successful!",
+          message: "Get Service_Form_detailService successful!",
           data: data,
         });
       } else {
@@ -26,64 +30,67 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Service_Form_detail");
+      console.log("____Cannot get Service_Form_detailService");
     }
   },
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Service_Form_detail']
-         #swagger.description = "Get one Service_Form_detail (give service_package_id)"
+        #swagger.tags = ['Service_Form_detailService']
+         #swagger.description = "Get one Service_Form_detailService (give service_package_id)"
         */
     try {
       const id = req.params.id;
-      let data = await Service_Form_detail.getOne(id);
+      let data = await Service_Form_detailService.getOne(id);
 
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get Service_Form_detail successful!",
+          message: "Get Service_Form_detailService successful!",
           data: data,
         });
       } else {
         return res.status(400).json({
           status: 400,
-          message: "Service_Form_detail not exist!",
+          message: "Service_Form_detailService not exist!",
           data: data,
         });
       }
     } catch (error) {
-      console.log("____Cannot get Service_Form_detail");
+      console.log("____Cannot get Service_Form_detailService");
       throw error;
     }
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Service_Form_detail']
+    // #swagger.tags = ['Service_Form_detailService']
 
     try {
       const {
-        bird_size_id,
-        service_id,
-        price,
-        description,
-        package_name,
+        service_package_id,
+        service_form_id,
+        note,
         status,
+        veterinarian_id,
+        price,
+        quantity,
       } = req.body;
 
       //   const url = await Firebase.uploadImage(file);
-      //   let data = await Service_Form_detail.createService_Form_detail(req.body, url);
-      let data = await Service_Form_detail.createService_Form_detail(req.body);
+      //   let data = await Service_Form_detailService.createService_Form_detailService(req.body, url);
+      let data = await Service_Form_detailService.createService_Form_detail(
+        req.body
+      );
 
-      console.log("____Create Service_Form_detail Successful");
+      console.log("____Create Service_Form_detailService Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Create Service_Form_detail Successful!",
+        message: "Create Service_Form_detailService Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Create Service_Form_detail Failed");
+      console.log("____Create Service_Form_detailService Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -93,34 +100,34 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['Service_Form_detail']
-         #swagger.description = "Update a Service_Form_detail (give veterinarian_id)"
+        #swagger.tags = ['Service_Form_detailService']
+         #swagger.description = "Update a Service_Form_detailService (give veterinarian_id)"
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
-
-      let data = await Service_Form_detail.updateService_Form_detail(
-        id,
-        name,
-        quantity,
+      const {
+        service_package_id,
+        service_form_id,
+        note,
+        status,
+        veterinarian_id,
         price,
-        mainimg,
-        detail
+        quantity,
+      } = req.body;
+
+      let data = await Service_Form_detailService.updateService_Form_detail(
+        id,
+        req.body
       );
-      console.log("____Update Service_Form_detail Successful");
+      console.log("____Update Service_Form_detailService Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Update Service_Form_detail Successful!",
+        message: "Update Service_Form_detailService Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Update Service_Form_detail Failed");
+      console.log("____Update Service_Form_detailService Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -130,22 +137,22 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Service_Form_detail']
-         #swagger.description = "Delete Service_Form_detail (give veterinarian_id)"
+        #swagger.tags = ['Service_Form_detailService']
+         #swagger.description = "Delete Service_Form_detailService (give veterinarian_id)"
         */
     try {
       const id = req.params["id"];
 
-      let data = await Service_Form_detail.deleteService_Form_detail(id);
-      console.log("____Delete Service_Form_detail Successful");
+      let data = await Service_Form_detailService.deleteService_Form_detail(id);
+      console.log("____Delete Service_Form_detailService Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Delete Service_Form_detail Successful!",
+        message: "Delete Service_Form_detailService Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Delete Service_Form_detail Failed");
+      console.log("____Delete Service_Form_detailService Failed");
       return res.status(400).json({
         status: 400,
         message: err,

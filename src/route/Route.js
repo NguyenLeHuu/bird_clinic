@@ -26,6 +26,7 @@ const cageRoute = require("./CageRoute");
 router.use("/bird", birdRoute);
 router.use("/booking", bookingRoute);
 router.use("/service_Form", service_FormRoute);
+router.use("/service_Form_detail", service_Form_detailRoute);
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
 router.use("/customer", customerRoute);
@@ -36,7 +37,7 @@ router.use("/media", mediaRoute);
 router.use("/prescription", prescriptionRoute);
 router.use("/prescriptionDetail", prescriptionDetailRoute);
 router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
-router.use("/service_Form_detail", service_Form_detailRoute);
+
 router.use("/medicalRecord", medicalRecordRoute);
 router.use("/bill", billRoute);
 router.use("/billDetail", billDetailRoute);

@@ -6,12 +6,12 @@ let getAll = (bird_size_id, service_form_detail_id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Service_Form_detail.findAll({
-        where: {
-          [Op.or]: [
-            { bird_size_id: bird_size_id },
-            { service_form_detail_id: service_form_detail_id },
-          ],
-        },
+        // where: {
+        //   [Op.or]: [
+        //     { bird_size_id: bird_size_id },
+        //     { service_form_detail_id: service_form_detail_id },
+        //   ],
+        // },
       });
       resolve(data);
     } catch (e) {
@@ -27,7 +27,7 @@ let getOne = (id) => {
       let data = await db.Service_Form_detail.findOne({
         where: {
           service_form_detail_id: id,
-          include: [{ model: Service_Form_detailType, attributes: ["name"] }],
+          // include: [{ model: Service_Form_detailType, attributes: ["name"] }],
         },
       });
       resolve(data);
@@ -37,18 +37,19 @@ let getOne = (id) => {
   });
 };
 
-let createService_Form_detail = (data, url) => {
+let createService_Form_detail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.Service_Form_detail.create({
-        service_package_id: id,
-        bird_size_id: data.bird_size_id,
-        service_form_detail_id: data.service_form_detail_id,
-        price: data.price,
-        description: data.description,
-        package_name: data.package_name,
+        service_form_detail_id: id,
+        service_package_id: data.service_package_id,
+        service_form_id: data.service_form_id,
+        note: data.note,
         status: 1,
+        veterinarian_id: data.veterinarian_id,
+        price: data.price,
+        quantity: data.quantity,
       });
       resolve(result);
     } catch (e) {
@@ -57,26 +58,23 @@ let createService_Form_detail = (data, url) => {
   });
 };
 
-let updateService_Form_detail = (
-  id,
-  name,
-  quantity,
-  price,
-  mainimg,
-  detail
-) => {
+let updateService_Form_detail = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Service_Form_detail.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          service_form_detail_id: id,
+          service_package_id: body_data.service_package_id,
+          service_form_id: body_data.service_form_id,
+          note: body_data.note,
+          status: body_data.status,
+          veterinarian_id: body_data.veterinarian_id,
+          price: body_data.price,
+          quantity: body_data.quantity,
         },
         {
           where: {
-            account_id: id,
+            service_form_detail_id: id,
           },
         }
       );
