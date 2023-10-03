@@ -2,40 +2,20 @@ const BillService = require("../services/BillService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
-  // async index(req, res) {
-  //   /*
-  //       #swagger.tags = ['Bill']
-  //        #swagger.description = "Filter bird, required idcollection"
-  //       */
-  //   try {
-  //     // const { limit, page, name, catename, status, min, max } = req.query;
-  //     const { limit, page, name, catename, status, min, max } = req.query;
-  //     // console.log("_____", catename);
-  //     let birds = await BillService.getAll(req.query);
-
-  //     return res.status(200).json({
-  //       status: 200,
-  //       message: "Get list birds successful!",
-  //       data: birds,
-  //     });
-  //   } catch (error) {
-  //     console.log("____Cannot get all birds");
-  //   }
-  // },
-
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Bill']
-         #swagger.description = "Get all Bill of 1 customer (give customerid)"
+         #swagger.description = "Get all Bill"
         */
     try {
-      const id = req.params.id;
-      let data = await BillService.getAll(id);
+      // const id = req.params.id;
+      // let data = await BillService.getAll(id);
+      let data = await BillService.getAll();
 
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get bird successful!",
+          message: "Get bill successful!",
           data: data,
         });
       } else {
@@ -46,14 +26,14 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get bird");
+      console.log("____Cannot get bill");
     }
   },
 
   async getOne(req, res) {
     /* 
         #swagger.tags = ['Bill']
-         #swagger.description = "Get one Bill (give bird_id)"
+         #swagger.description = "Get one Bill (give bill_id)"
         */
     try {
       const id = req.params.id;
@@ -62,48 +42,37 @@ module.exports = {
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get bird successful!",
+          message: "Get bill successful!",
           data: data,
         });
       } else {
         return res.status(400).json({
           status: 400,
           message: "Bill not exist!",
-          data: data,
         });
       }
     } catch (error) {
-      console.log("____Cannot get bird");
+      console.log("____Cannot get bill");
       throw error;
     }
   },
 
   async store(req, res) {
     // #swagger.tags = ['Bill']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
       const {
-        customer_id,
-        name,
-        gender,
-        hatching_date,
-        ISO_microchip,
-        weight,
-        color,
-        breed,
+        title,
+        total_price,
+        service_form_id,
+        booking_id,
+        payment_method,
+        paypal_transaction_id,
         status,
-        image,
-        size,
+        // time,
       } = req.body;
 
-      const url = await Firebase.uploadImage(file);
-      let data = await BillService.createBill(req.body, url);
+      let data = await BillService.createBill(req.body);
 
       console.log("____Create Bill Successful");
 
@@ -124,24 +93,23 @@ module.exports = {
   async update(req, res) {
     /* 
         #swagger.tags = ['Bill']
-         #swagger.description = "Update a bird (give bird_id)"
+         #swagger.description = "Update a bill (give bill_id)"
         */
     try {
-      const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const id = req.params.id;
 
-      let data = await BillService.updateBill(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      const {
+        title,
+        total_price,
+        service_form_id,
+        booking_id,
+        payment_method,
+        paypal_transaction_id,
+        status,
+        // time_create,
+      } = req.body;
+
+      let data = await BillService.updateBill(id, req.body);
       console.log("____Update Bill Successful");
 
       return res.status(200).json({
@@ -161,7 +129,7 @@ module.exports = {
   async delete(req, res) {
     /* 
         #swagger.tags = ['Bill']
-         #swagger.description = "Delete bird (give bird_id)"
+         #swagger.description = "Delete bill (give bill_id)"
         */
     try {
       const id = req.params["id"];

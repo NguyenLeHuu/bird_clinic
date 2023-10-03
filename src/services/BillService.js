@@ -6,12 +6,13 @@ let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Bill.findAll({
-        where: {
-          bill_id: id,
-        },
+        // where: {
+        //   bill_id: id,
+        // },
       });
       resolve(data);
     } catch (e) {
+      console.log(e);
       reject(e);
     }
   });
@@ -33,23 +34,20 @@ let getOne = (id) => {
   });
 };
 
-let createBill = (data, url) => {
+let createBill = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.Bill.create({
         bill_id: id,
-        bill_id: data.bill_id,
-        name: data.name,
-        gender: data.gender,
-        hatching_date: data.hatching_date,
-        ISO_microchip: data.ISO_microchip,
-        weight: data.weight,
-        color: data.color,
-        breed: data.breed,
+        title: data.title,
+        total_price: data.total_price,
+        service_form_id: data.service_form_id,
+        booking_id: data.booking_id,
+        payment_method: data.payment_method,
+        paypal_transaction_id: data.paypal_transaction_id,
         status: 1,
-        image: url,
-        size: data.size,
+        // time_create: data.time_create,
       });
       resolve(result);
     } catch (e) {
@@ -58,15 +56,19 @@ let createBill = (data, url) => {
   });
 };
 
-let updateBill = (id, name, quantity, price, mainimg, detail) => {
+let updateBill = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Bill.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          title: body_data.title,
+          total_price: body_data.total_price,
+          service_form_id: body_data.service_form_id,
+          booking_id: body_data.booking_id,
+          payment_method: body_data.payment_method,
+          paypal_transaction_id: body_data.paypal_transaction_id,
+          status: body_data.status,
+          // time_create: body_data.time_create,
         },
         {
           where: {
@@ -76,6 +78,7 @@ let updateBill = (id, name, quantity, price, mainimg, detail) => {
       );
       resolve(data);
     } catch (e) {
+      console.log(e);
       reject(e);
     }
   });

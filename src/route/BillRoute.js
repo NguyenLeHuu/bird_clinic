@@ -10,7 +10,11 @@ route.get("/all", BillController.getAll);
 route.get("/:id", BillController.getOne);
 
 // route.post("/", multer.Multer.array("image"), BillController.store);
-route.post("/create", multer.Multer.single("image"), BillController.store);
+route.post(
+  "/create",
+  //  multer.Multer.single("image"),
+  BillController.store
+);
 
 route.put("/:id", BillController.update);
 

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       payment_method: DataTypes.STRING,
       paypal_transaction_id: DataTypes.STRING,
       status: DataTypes.STRING,
-      time: DataTypes.STRING,
+      time_create: DataTypes.STRING,
     },
     {
       sequelize,
