@@ -28,8 +28,9 @@ const doc = {
       description: "local server",
     },
     {
-      url: `https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com`,
-      description: "Server in AWS",
+      // url: `https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com`,
+      url: `https://clinicsystem.io.vn/`,
+      description: "Server in hosting",
     },
   ],
   components: {

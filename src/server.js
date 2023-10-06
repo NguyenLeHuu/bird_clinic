@@ -65,7 +65,8 @@ if (useHttps === "true") {
   );
   listen(port, () => {
     console.log(
-      `Server start port https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com:${port}`
+      // `Server start port https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com:${port}`
+      `Server start port https://clinicsystem.io.vn:${port}`
     );
   });
 } else {
