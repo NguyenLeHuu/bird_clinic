@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/swagger.js > output.log 2>&1 &",
+    "start": "nodemon --exec babel-node src/swagger.js ",
     "start-gendoc": "node src/swagger.js"
   },
   "nodemonConfig": {
