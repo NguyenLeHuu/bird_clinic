@@ -52,25 +52,29 @@ const useHttps = process.env.HTTPS || false;
 
 let certPath = process.env.CERT_PATH;
 
-if (useHttps === "true") {
-  https.createServer(
-    // Provide the private and public key to the server by reading each
-    // file's content with the readFileSync() method.
-    {
-      key: fs.readFileSync(`${certPath}/private.key`),
-      cert: fs.readFileSync(`${certPath}/certificate.crt`),
-      ca: fs.readFileSync(`${certPath}/ca_bundle.crt`),
-    },
-    app
-  );
-  listen(port, () => {
-    console.log(
-      // `Server start port https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com:${port}`
-      `Server start port https://clinicsystem.io.vn:${port}`
+try {
+  if (useHttps === "true") {
+    https.createServer(
+      // Provide the private and public key to the server by reading each
+      // file's content with the readFileSync() method.
+      {
+        key: fs.readFileSync(`${certPath}/private.key`),
+        cert: fs.readFileSync(`${certPath}/certificate.crt`),
+        ca: fs.readFileSync(`${certPath}/ca_bundle.crt`),
+      },
+      app
     );
-  });
-} else {
-  app.listen(port, () => {
-    console.log(`Server start port http://localhost:${port}`);
-  });
+    listen(port, () => {
+      console.log(
+        // `Server start port https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com:${port}`
+        `Server start port https://clinicsystem.io.vn:${port}`
+      );
+    });
+  } else {
+    app.listen(port, () => {
+      console.log(`Server start port http://localhost:${port}`);
+    });
+  }
+} catch (error) {
+  console.log("err start server");
 }
