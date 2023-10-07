@@ -58,13 +58,9 @@ if (useHttps === "true") {
       // Provide the private and public key to the server by reading each
       // file's content with the readFileSync() method.
       {
-        key: fs.readFileSync(
-          `${certPath}/keys/9753c_d9b15_c41ff7660dfec293417e803826510000.key`
-        ),
-        cert: fs.readFileSync(
-          `${certPath}/certs/clinicsystem_io_vn_9753c_d9b15_1704280113_390a42a6aef1b34b9e1f846d8908ab1e.crt.cache`
-        ),
-        // ca: fs.readFileSync(`${certPath}/ca_bundle.crt`),
+        key: fs.readFileSync("./config/clinicsystem.io.vn.key"),
+        cert: fs.readFileSync("./config/clinicsystem.io.vn.crt"),
+        ca: fs.readFileSync("./config/clinicsystem.io.vn.ca_bundle.crt"),
       },
       app
     )
