@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const useHttps = process.env.HTTPS || true;
+const useHttps = process.env.HTTPS || false;
 
 let certPath = process.env.CERT_PATH;
 
