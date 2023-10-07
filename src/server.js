@@ -36,7 +36,7 @@ paypal.configure({
 
 app.use("/", route);
 
-let port = process.env.PORT || 8080; // use process.env to get value from .env
+let port = process.env.PORT || 3000; // use process.env to get value from .env
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
