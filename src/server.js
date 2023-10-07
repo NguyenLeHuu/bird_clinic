@@ -33,10 +33,13 @@ paypal.configure({
   client_secret:
     "EB5yajw5uYXV53u27wrY_wg3DFSSSfAmRj1we1ZElIjZO8z1Dt1jRFpzQq0iFGZA3bquSHKf_QyDwove",
 });
-
+app.get("/", function (req, res) {
+  res.set("Content-Type", "text/html; charset=utf-8");
+  res.send("<h1>CMMMMMMM</h1>");
+});
 app.use("/", route);
 
-let port = process.env.PORT || 4001; // use process.env to get value from .env
+let port = process.env.PORT || 4005; // use process.env to get value from .env
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
