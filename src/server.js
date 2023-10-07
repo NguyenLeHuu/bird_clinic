@@ -52,7 +52,7 @@ const useHttps = process.env.HTTPS || false;
 
 let certPath = process.env.CERT_PATH;
 
-if (useHttps === "true") {
+if (useHttps === "false") {
   https.createServer(
     // Provide the private and public key to the server by reading each
     // file's content with the readFileSync() method.
