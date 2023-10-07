@@ -6,7 +6,7 @@ const utils = require("./Utils");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Booking.findAll();
+      let data = await db.booking.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -18,7 +18,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Booking.findByPk(id);
-      let data = await db.Booking.findOne({
+      let data = await db.booking.findOne({
         where: {
           booking_id: id,
         },
@@ -36,7 +36,7 @@ let createBooking = (data) => {
       const id = crypto.randomBytes(15).toString("hex");
       const date = utils.getCurDay();
 
-      const result = await db.Booking.create({
+      const result = await db.booking.create({
         booking_id: id,
         account_id: data.account_id,
         time_id: data.time_id,
@@ -67,7 +67,7 @@ let createBooking = (data) => {
 let updateBooking = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Booking.update(
+      let data = await db.booking.update(
         {
           // account_id,
           time_id: body_data.time_id,
@@ -104,7 +104,7 @@ let updateBooking = (id, body_data) => {
 let deleteBooking = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Booking.update(
+      let data = await db.booking.update(
         {
           status: 0,
         },
