@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js ",
-    "dev": "nodemon --exec babel-node server.js "
+    "start": "node swagger.js ",
+    "dev": "nodemon --exec babel-node swagger.js "
   },
   "nodemonConfig": {
     "ignore": [
