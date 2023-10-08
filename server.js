@@ -33,27 +33,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   client_secret:
 //     "EB5yajw5uYXV53u27wrY_wg3DFSSSfAmRj1we1ZElIjZO8z1Dt1jRFpzQq0iFGZA3bquSHKf_QyDwove",
 // });
-
+app.get("/", function (req, res) {
+  res.set("Content-Type", "text/html; charset=utf-8");
+  res.send("<h1>CMMMMMMM</h1>");
+});
 app.use("/", route);
 
 let port = process.env.PORT || 5000; // use process.env to get value from .env
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).send({
-//     statusCode: 500,
-//     message: err.message,
-//   });
-// });
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({
+    statusCode: 500,
+    message: err.message,
+  });
+});
 
 // const useHttps = process.env.HTTPS || false;
 var server = http.createServer(app);
-app.get("/", function (req, res) {
-  res.set("Content-Type", "text/html; charset=utf-8");
-  res.send("<h1>CMMMMMMM</h1>");
-});
+
 server.listen();
 //     console.log(`Server start port http://localhost:${port}`);
 //           `Server start port https://clinicsystem.io.vn:${port}`
