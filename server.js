@@ -40,13 +40,13 @@ let port = process.env.PORT || 5000; // use process.env to get value from .env
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send({
-    statusCode: 500,
-    message: err.message,
-  });
-});
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).send({
+//     statusCode: 500,
+//     message: err.message,
+//   });
+// });
 
 // const useHttps = process.env.HTTPS || false;
 var server = http.createServer(app);
