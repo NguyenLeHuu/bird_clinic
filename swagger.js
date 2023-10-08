@@ -67,5 +67,5 @@ const doc = {
 };
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {
-  await import("./server.js"); // Your project's root file
+  require("./server.js"); // Your project's root file
 });
