@@ -56,7 +56,7 @@ const useHttps = process.env.HTTPS || false;
 // let certPath = process.env.CERT_PATH;
 let keyPath = require("./config/clinicsystem.io.vn.key");
 
-if (useHttps === "false") {
+if (useHttps === "true") {
   try {
     https
       .createServer
