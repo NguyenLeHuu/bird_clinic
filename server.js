@@ -1,4 +1,4 @@
-const https = require("https");
+const http = require("http");
 
 const fs = require("fs");
 
@@ -51,37 +51,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-const useHttps = process.env.HTTPS || false;
-
-// let certPath = process.env.CERT_PATH;
-// let keyPath = require("./config/clinicsystem.io.vn.key");
-
-if (useHttps === "true") {
-  try {
-    https
-      .createServer
-      // Provide the private and public key to the server by reading each
-      // file's content with the readFileSync() method.
-      // {
-      //   key: fs.readFileSync(require("./config/key.txt")),
-      //   cert: fs.readFileSync(require("./config/clinicsystem.io.vn.crt")),
-      //   ca: fs.readFileSync(
-      //     require("./config/clinicsystem.io.vn.ca_bundle.crt")
-      //   ),
-      // },
-      // app
-      ()
-      .listen(port, () => {
-        console.log(
-          // `Server start port https://ec2-54-169-148-196.ap-southeast-1.compute.amazonaws.com:${port}`
-          `Server start port https://clinicsystem.io.vn:${port}`
-        );
-      });
-  } catch (error) {
-    console.log(error);
-  }
-} else {
-  app.listen(port, () => {
-    console.log(`Server start port http://localhost:${port}`);
-  });
-}
+// const useHttps = process.env.HTTPS || false;
+var server = http.createServer(app);
+server.listen();
+//     console.log(`Server start port http://localhost:${port}`);
+//           `Server start port https://clinicsystem.io.vn:${port}`

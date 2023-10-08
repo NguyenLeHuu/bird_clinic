@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "070900",
-    "database": "bcs_db",
-    "host": "127.0.0.1",
+    "username": "clinicsy_root",
+    "password": "nguyenlehuu070900",
+    "database": "clinicsy_bcs_db",
+    "host": "host80.vietnix.vn",
     "dialect": "mysql",
     "logging": true,
     "query": {
@@ -21,9 +21,9 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "clinicsy_production_new",
+    "username": "clinicsy_root",
     "password": "nguyenlehuu070900",
-    "database": "clinicsy_production_new",
+    "database": "clinicsy_bcs_db",
     "host": "host80.vietnix.vn",
     "dialect": "mysql",
     "logging": true,
