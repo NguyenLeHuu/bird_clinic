@@ -39,7 +39,7 @@ app.get("/", function (req, res) {
 });
 app.use("/", route);
 
-let port = process.env.PORT || 4005; // use process.env to get value from .env
+let port = process.env.PORT || 4001; // use process.env to get value from .env
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
@@ -56,7 +56,7 @@ const useHttps = process.env.HTTPS || false;
 // let certPath = process.env.CERT_PATH;
 let keyPath = require("./config/clinicsystem.io.vn.key");
 
-if (useHttps === "true") {
+if (useHttps === "false") {
   try {
     https
       .createServer
