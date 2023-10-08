@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node src/swagger.js ",
-    "dev": "nodemon --exec babel-node src/swagger.js "
+    "start": "node swagger.js ",
+    "dev": "nodemon --exec babel-node swagger.js "
   },
   "nodemonConfig": {
     "ignore": [
-      "src/swagger_output.json"
+      "swagger_output.json"
     ]
   },
   "author": "",

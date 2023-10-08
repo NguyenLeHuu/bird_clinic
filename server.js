@@ -6,7 +6,7 @@ const express = require("express");
 
 const bodyParser = require("body-parser");
 
-const route = require("./route/Route");
+const route = require("./src/route/Route");
 
 const cors = require("cors");
 
@@ -54,9 +54,9 @@ app.use((err, req, res, next) => {
 const useHttps = process.env.HTTPS || false;
 
 // let certPath = process.env.CERT_PATH;
-let keyPath = require("./config/clinicsystem.io.vn.key");
+// let keyPath = require("./config/clinicsystem.io.vn.key");
 
-if (useHttps === "false") {
+if (useHttps === "true") {
   try {
     https
       .createServer
