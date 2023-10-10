@@ -51,9 +51,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// const useHttps = process.env.HTTPS || false;
 var server = http.createServer(app);
 
-server.listen();
-//     console.log(`Server start port http://localhost:${port}`);
-//           `Server start port https://clinicsystem.io.vn:${port}`
+server.listen(port, () => {
+  console.log(`Server start port http://localhost:${port}`);
+});
