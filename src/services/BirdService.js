@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Bird.findAll({
+      let data = await db.bird.findAll({
         where: {
           customer_id: id,
         },
@@ -21,7 +21,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Bird.findByPk(id);
-      let data = await db.Bird.findOne({
+      let data = await db.bird.findOne({
         where: {
           bird_id: id,
         },
@@ -37,7 +37,7 @@ let createBird = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.Bird.create({
+      const result = await db.bird.create({
         bird_id: id,
         customer_id: data.customer_id,
         name: data.name,
@@ -74,7 +74,7 @@ let updateBird = (
 ) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Bird.update(
+      let data = await db.bird.update(
         {
           customer_id: customer_id,
           gender: gender,
@@ -104,7 +104,7 @@ let updateBird = (
 let deleteBird = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Bird.update(
+      let data = await db.bird.update(
         {
           status: 0,
         },

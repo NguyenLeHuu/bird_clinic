@@ -5,10 +5,11 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['VeterinarianSlotDetail']
-         #swagger.description = "Get all VeterinarianSlotDetail"
+         #swagger.description = "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)"
         */
     try {
-      let data = await VeterinarianSlotDetailService.getAll();
+      const { status } = req.query;
+      let data = await VeterinarianSlotDetailService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
@@ -31,7 +32,7 @@ module.exports = {
   async getOne(req, res) {
     /* 
         #swagger.tags = ['VeterinarianSlotDetail']
-         #swagger.description = "Get one VeterinarianSlotDetail (give prescription_id)"
+         #swagger.description = "Get one VeterinarianSlotDetail"
         */
     try {
       const id = req.params.id;
@@ -58,15 +59,9 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['VeterinarianSlotDetail']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
-      const { email, password, phone, role, status } = req.body;
+      const { time_slot_id, veterinarian_id, status } = req.body;
 
       // const url = await Firebase.uploadImage(file);
       // let data = await VeterinarianSlotDetailService.createVeterinarianSlotDetail(req.body, url);
@@ -98,20 +93,12 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const { time_slot_id, veterinarian_id, status } = req.body;
 
       let data =
         await VeterinarianSlotDetailService.updateVeterinarianSlotDetail(
           id,
-          name,
-          quantity,
-          price,
-          mainimg,
-          detail
+          req.body
         );
       console.log("____Update VeterinarianSlotDetail Successful");
 

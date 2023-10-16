@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "MedicalRecord",
+      modelName: "medical_record",
       timestamps: false,
     }
   );

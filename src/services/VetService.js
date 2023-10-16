@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Veterinarian.findAll();
+      let data = await db.veterinarian.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Veterinarian.findByPk(id);
-      let data = await db.Veterinarian.findOne({
+      let data = await db.veterinarian.findOne({
         where: {
           veterinarian_id: id,
         },
@@ -35,7 +35,7 @@ let createVeterinarian = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.Veterinarian.create({
+      const result = await db.veterinarian.create({
         veterinarian_id: id,
         account_id: data.account_id,
         specialized: data.specialized,
@@ -51,19 +51,17 @@ let createVeterinarian = (data, url) => {
   });
 };
 
-let updateVeterinarian = (id, name, quantity, price, mainimg, detail) => {
+let updateVeterinarian = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Veterinarian.update(
+      let data = await db.veterinarian.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          specialized: body_data.specializedme,
+          status: body_data.status,
         },
         {
           where: {
-            productid: id,
+            veterinarian_id: id,
           },
         }
       );
@@ -77,13 +75,13 @@ let updateVeterinarian = (id, name, quantity, price, mainimg, detail) => {
 let deleteVeterinarian = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Veterinarian.update(
+      let data = await db.veterinarian.update(
         {
           status: 0,
         },
         {
           where: {
-            productid: id,
+            veterinarian_id: id,
           },
         }
       );

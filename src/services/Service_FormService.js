@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = (bird_size_id, service_form_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Service_Form.findAll({
+      let data = await db.service_Form.findAll({
         // where: {
         //   [Op.or]: [
         //     { bird_size_id: bird_size_id },
@@ -24,7 +24,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Service_Form.findByPk(id);
-      let data = await db.Service_Form.findOne({
+      let data = await db.service_Form.findOne({
         where: {
           service_form_id: id,
           // include: [{ model: Service_FormType, attributes: ["name"] }],
@@ -41,7 +41,7 @@ let createService_Form = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.Service_Form.create({
+      const result = await db.service_Form.create({
         service_form_id: id,
         bird_id: data.bird_id,
         booking_id: data.booking_id,
@@ -63,7 +63,7 @@ let createService_Form = (data) => {
 let updateService_Form = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Service_Form.update(
+      let data = await db.service_Form.update(
         {
           bird_id: body_data.bird_id,
           booking_id: body_data.booking_id,
@@ -91,7 +91,7 @@ let updateService_Form = (id, body_data) => {
 let deleteService_Form = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Service_Form.update(
+      let data = await db.service_Form.update(
         {
           status: 0,
         },

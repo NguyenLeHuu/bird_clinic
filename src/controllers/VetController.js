@@ -5,7 +5,7 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Vet']
-         #swagger.description = "Get all Vet"
+         #swagger.description = "Get all Vet (neu truyen service_id thi lay ra nhung bac si cua service do)"
         */
     try {
       // const id = req.params.id;
@@ -70,7 +70,7 @@ module.exports = {
       const { account_id, specialized, name, status, image } = req.body;
 
       const url = await Firebase.uploadImage(file);
-      let data = await VetService.createVet(req.body, url);
+      let data = await VetService.createVeterinarian(req.body, url);
 
       console.log("____Create Vet Successful");
 
@@ -95,20 +95,10 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
 
-      let data = await VetService.updateVet(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      const { specialized, status } = req.body;
+
+      let data = await VetService.updateVeterinarian(id, req.body);
       console.log("____Update Vet Successful");
 
       return res.status(200).json({
@@ -133,7 +123,7 @@ module.exports = {
     try {
       const id = req.params["id"];
 
-      let data = await VetService.deleteVet(id);
+      let data = await VetService.deleteVeterinarian(id);
       console.log("____Delete Vet Successful");
 
       return res.status(200).json({

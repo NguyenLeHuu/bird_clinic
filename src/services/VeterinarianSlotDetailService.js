@@ -2,10 +2,20 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.VeterinarianSlotDetail.findAll();
+      let data = [];
+      if (!req.status) {
+        data = await db.veterinarian_slot_details.findAll();
+      } else {
+        data = await db.veterinarian_slot_details.findAll({
+          where: {
+            status: req.status,
+          },
+        });
+      }
+
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +27,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.VeterinarianSlotDetail.findByPk(id);
-      let data = await db.VeterinarianSlotDetail.findOne({
+      let data = await db.veterinarian_slot_details.findOne({
         where: {
           veterinarian_slot_detail_id: id,
         },
@@ -33,7 +43,7 @@ let createVeterinarianSlotDetail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.VeterinarianSlotDetail.create({
+      const result = await db.veterinarian_slot_details.create({
         veterinarian_slot_detail_id: id,
         booking_id: data.booking_id,
         time_created: data.time_created,
@@ -48,22 +58,14 @@ let createVeterinarianSlotDetail = (data) => {
   });
 };
 
-let updateVeterinarianSlotDetail = (
-  id,
-  name,
-  quantity,
-  price,
-  mainimg,
-  detail
-) => {
+let updateVeterinarianSlotDetail = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.VeterinarianSlotDetail.update(
+      let data = await db.veterinarian_slot_details.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          time_slot_id: body_data.time_slot_id,
+          veterinarian_id: body_data.veterinarian_id,
+          status: body_data.status,
         },
         {
           where: {
@@ -81,9 +83,9 @@ let updateVeterinarianSlotDetail = (
 let deleteVeterinarianSlotDetail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.VeterinarianSlotDetail.update(
+      let data = await db.veterinarian_slot_details.update(
         {
-          status: 0,
+          status: "is_delete",
         },
         {
           where: {

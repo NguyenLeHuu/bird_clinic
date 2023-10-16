@@ -5,7 +5,7 @@ const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/all", VetController.getAll);
+route.get("/", VetController.getAll);
 
 route.get("/:id", VetController.getOne);
 

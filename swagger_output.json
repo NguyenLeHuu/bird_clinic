@@ -1429,12 +1429,12 @@
         }
       }
     },
-    "/vet/all": {
+    "/vet/": {
       "get": {
         "tags": [
           "Vet"
         ],
-        "description": "Get all Vet",
+        "description": "Get all Vet (neu truyen service_id thi lay ra nhung bac si cua service do)",
         "responses": {
           "200": {
             "description": "OK"
@@ -1499,19 +1499,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "specialized": {
                     "example": "any"
                   },
-                  "quantity": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "status": {
                     "example": "any"
                   }
                 }
@@ -1597,12 +1588,22 @@
         }
       }
     },
-    "/service/all": {
+    "/service/all/{id}": {
       "get": {
         "tags": [
           "Service"
         ],
         "description": "Get all Service of service type",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2465,12 +2466,21 @@
         }
       }
     },
-    "/veterinarianSlotDetail/all": {
+    "/veterinarianSlotDetail/": {
       "get": {
         "tags": [
           "VeterinarianSlotDetail"
         ],
-        "description": "Get all VeterinarianSlotDetail",
+        "description": "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2486,7 +2496,7 @@
         "tags": [
           "VeterinarianSlotDetail"
         ],
-        "description": "Get one VeterinarianSlotDetail (give prescription_id)",
+        "description": "Get one VeterinarianSlotDetail",
         "parameters": [
           {
             "name": "id",
@@ -2535,19 +2545,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "time_slot_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "veterinarian_id": {
                     "example": "any"
                   },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "status": {
                     "example": "any"
                   }
                 }
@@ -2587,16 +2591,6 @@
           "VeterinarianSlotDetail"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2611,16 +2605,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": {
+                  "time_slot_id": {
                     "example": "any"
                   },
-                  "password": {
-                    "example": "any"
-                  },
-                  "phone": {
-                    "example": "any"
-                  },
-                  "role": {
+                  "veterinarian_id": {
                     "example": "any"
                   },
                   "status": {

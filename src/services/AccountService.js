@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Account.findAll();
+      let data = await db.account.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Account.findByPk(id);
-      let data = await db.Account.findOne({
+      let data = await db.account.findOne({
         where: {
           account_id: id,
         },
@@ -33,7 +33,7 @@ let createAccount = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.Account.create({
+      const result = await db.account.create({
         account_id: id,
         email: data.email,
         password: data.password,
@@ -51,7 +51,7 @@ let createAccount = (data) => {
 let updateAccount = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Account.update(
+      let data = await db.account.update(
         {
           name: name,
           quantity: quantity,
@@ -74,7 +74,7 @@ let updateAccount = (id, name, quantity, price, mainimg, detail) => {
 let deleteAccount = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Account.update(
+      let data = await db.account.update(
         {
           status: 0,
         },

@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = (bird_size_id, cage_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Cage.findAll({
+      let data = await db.cage.findAll({
         where: {
           [Op.or]: [{ bird_size_id: bird_size_id }, { cage_id: cage_id }],
         },
@@ -21,7 +21,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Cage.findByPk(id);
-      let data = await db.Cage.findOne({
+      let data = await db.cage.findOne({
         where: {
           cage_id: id,
           include: [{ model: CageType, attributes: ["name"] }],
@@ -38,7 +38,7 @@ let createCage = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.Cage.create({
+      const result = await db.cage.create({
         service_package_id: id,
         bird_size_id: data.bird_size_id,
         cage_id: data.cage_id,
@@ -57,7 +57,7 @@ let createCage = (data, url) => {
 let updateCage = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Cage.update(
+      let data = await db.cage.update(
         {
           name: name,
           quantity: quantity,
@@ -80,7 +80,7 @@ let updateCage = (id, name, quantity, price, mainimg, detail) => {
 let deleteCage = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Cage.update(
+      let data = await db.cage.update(
         {
           status: 0,
         },
