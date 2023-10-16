@@ -2,10 +2,34 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.veterinarian.findAll();
+      let data = [];
+      if (req.service_id) {
+        data = await db.veterinarian.findAll({
+          where: {
+            service_id: req.service_id,
+          },
+        });
+      } else if (req.service_type_id) {
+        data = await db.veterinarian.findAll({
+          include: [
+            {
+              model: db.service,
+              attributes: ["service_type_id"],
+              where: {
+                service_type_id: req.service_type_id,
+              },
+            },
+          ],
+          raw: true,
+          nest: true,
+        });
+      } else {
+        data = await db.veterinarian.findAll();
+      }
+
       resolve(data);
     } catch (e) {
       reject(e);

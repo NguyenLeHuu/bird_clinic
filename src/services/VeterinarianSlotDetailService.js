@@ -6,15 +6,44 @@ let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = [];
-      if (!req.status) {
-        data = await db.veterinarian_slot_details.findAll();
-      } else {
-        data = await db.veterinarian_slot_details.findAll({
-          where: {
-            status: req.status,
-          },
-        });
+      let whereClause = {};
+
+      if (req.veterinarian_id && !req.time_slot_id) {
+        if (req.status) {
+          whereClause["veterinarian_id"] = req.veterinarian_id;
+          whereClause["status"] = req.status;
+        } else {
+          whereClause["veterinarian_id"] = req.veterinarian_id;
+        }
       }
+      if (req.time_slot_id && !req.veterinarian_id) {
+        if (req.status) {
+          whereClause["time_slot_id"] = req.time_slot_id;
+          whereClause["status"] = req.status;
+        } else {
+          whereClause["time_slot_id"] = req.time_slot_id;
+        }
+      }
+
+      if (!req.veterinarian_id && !req.time_slot_id) {
+        if (req.status) {
+          whereClause["status"] = req.status;
+        }
+      }
+      if (req.veterinarian_id && req.time_slot_id) {
+        if (req.status) {
+          whereClause["veterinarian_id"] = req.veterinarian_id;
+          whereClause["time_slot_id"] = req.time_slot_id;
+          whereClause["status"] = req.status;
+        } else {
+          whereClause["veterinarian_id"] = req.veterinarian_id;
+          whereClause["time_slot_id"] = req.time_slot_id;
+        }
+      }
+
+      data = await db.veterinarian_slot_details.findAll({
+        where: whereClause,
+      });
 
       resolve(data);
     } catch (e) {
@@ -85,7 +114,7 @@ let deleteVeterinarianSlotDetail = (id) => {
     try {
       let data = await db.veterinarian_slot_details.update(
         {
-          status: "is_delete",
+          status: "0",
         },
         {
           where: {

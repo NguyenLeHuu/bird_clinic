@@ -8,7 +8,7 @@ module.exports = {
          #swagger.description = "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)"
         */
     try {
-      const { status } = req.query;
+      const { time_slot_id, veterinarian_id, status } = req.query;
       let data = await VeterinarianSlotDetailService.getAll(req.query);
 
       if (data != null) {

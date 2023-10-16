@@ -1434,7 +1434,23 @@
         "tags": [
           "Vet"
         ],
-        "description": "Get all Vet (neu truyen service_id thi lay ra nhung bac si cua service do)",
+        "description": "Get all Vet",
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service_type_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2473,6 +2489,20 @@
         ],
         "description": "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)",
         "parameters": [
+          {
+            "name": "time_slot_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "veterinarian_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "status",
             "in": "query",
