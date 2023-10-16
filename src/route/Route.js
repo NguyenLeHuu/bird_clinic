@@ -2,6 +2,7 @@ const express = require("express");
 
 let router = express();
 
+const reservationRoute = require("./Reservation");
 const loginRoute = require("./LoginRoute");
 const accountRoute = require("./AccountRoute");
 const customerRoute = require("./CustomerRoute");
@@ -23,6 +24,7 @@ const boardingRoute = require("./BoardingRoute");
 const boardingRecordRoute = require("./BoardingRecordRoute");
 const cageRoute = require("./CageRoute");
 
+router.use("/reservation", reservationRoute);
 router.use("/bird", birdRoute);
 router.use("/booking", bookingRoute);
 router.use("/service_Form", service_FormRoute);

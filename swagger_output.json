@@ -16,6 +16,84 @@
     }
   ],
   "paths": {
+    "/reservation/create": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "example": "any"
+                  },
+                  "time_id": {
+                    "example": "any"
+                  },
+                  "bird_id": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "symptom": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "diagnosis": {
+                    "example": "any"
+                  },
+                  "recommendations": {
+                    "example": "any"
+                  },
+                  "temperature": {
+                    "example": "any"
+                  },
+                  "weight": {
+                    "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
+                  },
+                  "estimate_time": {
+                    "example": "any"
+                  },
+                  "money_has_paid": {
+                    "example": "any"
+                  },
+                  "checkin_time": {
+                    "example": "any"
+                  },
+                  "customer_name": {
+                    "example": "any"
+                  },
+                  "note": {
+                    "example": "any"
+                  },
+                  "service_type": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/bird/all/{id}": {
       "get": {
         "tags": [
