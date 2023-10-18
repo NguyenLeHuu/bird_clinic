@@ -70,15 +70,15 @@ module.exports = {
         status,
         diagnosis,
         recommendations,
-        temperature,
-        weight,
-        date,
+
+        booking_date,
         estimate_time,
         money_has_paid,
         checkin_time,
         customer_name,
         note,
         service_type,
+        arrival_date,
       } = req.body;
 
       let data = await BookingService.createBooking(req.body);
@@ -116,15 +116,15 @@ module.exports = {
         status,
         diagnosis,
         recommendations,
-        temperature,
-        weight,
-        date,
+
+        booking_date,
         estimate_time,
         money_has_paid,
         // checkin_time,
         // customer_name,
         note,
         // service_type,
+        arrival_date,
       } = req.body;
 
       let data = await BookingService.updateBooking(id, req.body);

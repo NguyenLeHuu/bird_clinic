@@ -2,12 +2,12 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "EXE_SERVER",
-    "description": "tastetrekker"
+    "title": "Bird Clinic System",
+    "description": "Hệ thống phòng khám chim"
   },
   "servers": [
     {
-      "url": "http://localhost:5000",
+      "url": "http://localhost:3000",
       "description": "local server"
     },
     {
@@ -390,13 +390,7 @@
                   "recommendations": {
                     "example": "any"
                   },
-                  "temperature": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "date": {
+                  "booking_date": {
                     "example": "any"
                   },
                   "estimate_time": {
@@ -406,6 +400,9 @@
                     "example": "any"
                   },
                   "note": {
+                    "example": "any"
+                  },
+                  "arrival_date": {
                     "example": "any"
                   }
                 }
@@ -483,13 +480,7 @@
                   "recommendations": {
                     "example": "any"
                   },
-                  "temperature": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "date": {
+                  "booking_date": {
                     "example": "any"
                   },
                   "estimate_time": {
@@ -508,6 +499,9 @@
                     "example": "any"
                   },
                   "service_type": {
+                    "example": "any"
+                  },
+                  "arrival_date": {
                     "example": "any"
                   }
                 }

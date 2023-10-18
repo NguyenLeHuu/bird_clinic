@@ -20,8 +20,8 @@ let port = process.env.PORT || 3000; // use process.env to get value from .env
 const doc = {
   info: {
     version: "1.0.0", // by default: '1.0.0'
-    title: "EXE_SERVER", // by default: 'REST API'
-    description: "tastetrekker", // by default: ''
+    title: "Bird Clinic System", // by default: 'REST API'
+    description: "Hệ thống phòng khám chim", // by default: ''
   },
   basePath: "/", // by default: '/'
   servers: [

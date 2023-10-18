@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       date: DataTypes.STRING,
       veterinarian_referral: DataTypes.STRING,
       total_price: DataTypes.STRING,
-      is_paid: DataTypes.STRING,
       qr_code: DataTypes.STRING,
+      num_ser_must_do: DataTypes.STRING,
+      num_ser_has_done: DataTypes.STRING,
     },
     {
       sequelize,

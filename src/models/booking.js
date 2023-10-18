@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       recommendations: DataTypes.STRING,
       temperature: DataTypes.STRING,
       weight: DataTypes.STRING,
-      date: DataTypes.STRING,
+      booking_date: DataTypes.STRING,
       estimate_time: DataTypes.STRING,
       money_has_paid: DataTypes.STRING,
       checkin_time: DataTypes.STRING,
@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       qr_code: DataTypes.STRING,
       note: DataTypes.STRING,
       service_type: DataTypes.STRING,
+      arrival_date: DataTypes.STRING,
     },
     {
       sequelize,

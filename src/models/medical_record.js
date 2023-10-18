@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         primaryKey: true,
       },
-      description: DataTypes.STRING,
+      symptom: DataTypes.STRING,
       diagnose: DataTypes.STRING,
       recommendations: DataTypes.STRING,
       service_form_detail_id: DataTypes.STRING,
