@@ -15,7 +15,7 @@ const path = require("path");
 const outputFile = `swagger_output.json`;
 const endpointsFiles = [`${__dirname}/src/route/Route.js`];
 
-let port = process.env.PORT || 5000; // use process.env to get value from .env
+let port = process.env.PORT || 3000; // use process.env to get value from .env
 
 const doc = {
   info: {
