@@ -43,6 +43,25 @@ let getAll = (req) => {
 
       data = await db.veterinarian_slot_details.findAll({
         where: whereClause,
+        include: [
+          {
+            model: db.veterinarian,
+            attributes: ["name"],
+          },
+          {
+            model: db.time_slot_clinic,
+            attributes: ["date"],
+            // include: [
+            //   {
+            //     model: db.slot_clinics,
+            //     attributes: ["time"],
+            //   },
+            // ],
+          },
+        ],
+
+        raw: true,
+        nest: true,
       });
 
       resolve(data);
@@ -60,7 +79,43 @@ let getOne = (id) => {
         where: {
           veterinarian_slot_detail_id: id,
         },
+        include: [
+          {
+            model: db.time_slot_clinic,
+            attributes: ["date"],
+            include: [
+              {
+                model: db.slot_clinics,
+                attributes: ["time"],
+              },
+            ],
+          },
+        ],
+
+        raw: true,
+        nest: true,
       });
+      // let data = await db.veterinarian_slot_details.findAll({
+      //   where: {
+      //     veterinarian_id: id,
+      //   },
+      //   include: [{ model: db.veterinarian }],
+      //   include: [
+      //     {
+      //       model: db.time_slot_clinic,
+      //       attributes: ["date"],
+      //       include: [
+      //         {
+      //           model: db.slot_clinics,
+      //           attributes: ["time"],
+      //         },
+      //       ],
+      //     },
+      //   ],
+
+      //   raw: true,
+      //   nest: true,
+      // });
       resolve(data);
     } catch (e) {
       reject(e);

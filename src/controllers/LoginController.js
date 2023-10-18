@@ -14,7 +14,7 @@ module.exports = {
       const { phone, password } = req.query;
       //   const password = req.params["password"];
       console.log("__checkUserInDB");
-      let account = await db.Account.findOne({
+      let account = await db.account.findOne({
         where: {
           phone: phone,
           password: password,

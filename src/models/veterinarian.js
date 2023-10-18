@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Veterinarian.belongsTo(models.service, { foreignKey: "service_id" });
       Veterinarian.belongsTo(models.account, { foreignKey: "account_id" });
+      Veterinarian.belongsTo(models.veterinarian_slot_details, {
+        foreignKey: "veterinarian_id",
+      });
     }
   }
   Veterinarian.init(

@@ -2,7 +2,14 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class TimeSlotClinic extends Model {
-    static associate(models) {}
+    static associate(models) {
+      TimeSlotClinic.hasMany(models.veterinarian_slot_details, {
+        foreignKey: "time_slot_id",
+      });
+      TimeSlotClinic.belongsTo(models.slot_clinics, {
+        foreignKey: "slot_clinic_id",
+      });
+    }
   }
   TimeSlotClinic.init(
     {

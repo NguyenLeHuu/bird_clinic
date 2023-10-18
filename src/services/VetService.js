@@ -17,7 +17,7 @@ let getAll = (req) => {
           include: [
             {
               model: db.service,
-              attributes: ["service_type_id"],
+              attributes: [],
               where: {
                 service_type_id: req.service_type_id,
               },
