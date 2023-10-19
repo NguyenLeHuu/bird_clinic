@@ -16,7 +16,7 @@
     }
   ],
   "paths": {
-    "/medicine/all": {
+    "/medicine/": {
       "get": {
         "tags": [
           "Medicine"
@@ -28,6 +28,46 @@
           },
           "400": {
             "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Medicine"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "unit": {
+                    "example": "any"
+                  },
+                  "usage": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "sideEffects": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -132,12 +172,36 @@
         }
       }
     },
-    "/medicine/": {
+    "/medicalRecord/": {
+      "get": {
+        "tags": [
+          "MedicalRecord"
+        ],
+        "description": "Get all MedicalRecord ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Medicine"
+          "MedicalRecord"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -152,40 +216,33 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "symptom": {
                     "example": "any"
                   },
-                  "unit": {
+                  "diagnose": {
                     "example": "any"
                   },
-                  "usage": {
+                  "recommendations": {
                     "example": "any"
                   },
-                  "description": {
+                  "type": {
                     "example": "any"
                   },
-                  "sideEffects": {
+                  "type_id": {
+                    "example": "any"
+                  },
+                  "is_before": {
+                    "example": "any"
+                  },
+                  "is_after": {
+                    "example": "any"
+                  },
+                  "type_service": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/medicalRecord/all": {
-      "get": {
-        "tags": [
-          "MedicalRecord"
-        ],
-        "description": "Get all MedicalRecord ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -268,67 +325,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/medicalRecord/": {
-      "post": {
-        "tags": [
-          "MedicalRecord"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "symptom": {
-                    "example": "any"
-                  },
-                  "diagnose": {
-                    "example": "any"
-                  },
-                  "recommendations": {
-                    "example": "any"
-                  },
-                  "type": {
-                    "example": "any"
-                  },
-                  "type_id": {
-                    "example": "any"
-                  },
-                  "is_before": {
-                    "example": "any"
-                  },
-                  "is_after": {
-                    "example": "any"
-                  },
-                  "type_service": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -499,7 +495,7 @@
         }
       }
     },
-    "/prescription/all": {
+    "/prescription/": {
       "get": {
         "tags": [
           "Prescription"
@@ -612,16 +608,6 @@
           "Prescription"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -652,12 +638,12 @@
         }
       }
     },
-    "/prescriptionDetail/all": {
+    "/prescriptionDetail/": {
       "get": {
         "tags": [
           "Prescription Detail"
         ],
-        "description": "Get all Prescription",
+        "description": "Get all PrescriptionDetail",
         "responses": {
           "200": {
             "description": "OK"
@@ -673,7 +659,7 @@
         "tags": [
           "Prescription Detail"
         ],
-        "description": "Get one Prescription (give prescription_id)",
+        "description": "Get one PrescriptionDetail",
         "parameters": [
           {
             "name": "id",
@@ -697,7 +683,7 @@
         "tags": [
           "Prescription Detail"
         ],
-        "description": "Update a Prescription (give veterinarian_id)",
+        "description": "Update a PrescriptionDetail",
         "parameters": [
           {
             "name": "id",
@@ -722,19 +708,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "medicine_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "usage": {
                     "example": "any"
                   },
-                  "price": {
+                  "total_dose": {
                     "example": "any"
                   },
-                  "mainimg": {
+                  "dose": {
                     "example": "any"
                   },
-                  "detail": {
+                  "day": {
                     "example": "any"
                   }
                 }
@@ -774,16 +760,6 @@
           "Prescription Detail"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -798,19 +774,22 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": {
+                  "prescription_id": {
                     "example": "any"
                   },
-                  "password": {
+                  "medicine_id": {
                     "example": "any"
                   },
-                  "phone": {
+                  "usage": {
                     "example": "any"
                   },
-                  "role": {
+                  "total_dose": {
                     "example": "any"
                   },
-                  "status": {
+                  "dose": {
+                    "example": "any"
+                  },
+                  "day": {
                     "example": "any"
                   }
                 }
@@ -820,7 +799,7 @@
         }
       }
     },
-    "/boarding/all": {
+    "/boarding/": {
       "get": {
         "tags": [
           "Boarding"
@@ -1010,7 +989,7 @@
         }
       }
     },
-    "/boardingRecord/all": {
+    "/boardingRecord/": {
       "get": {
         "tags": [
           "BoardingRecord"
@@ -1200,7 +1179,7 @@
         }
       }
     },
-    "/cage/all": {
+    "/cage/": {
       "get": {
         "tags": [
           "Cage"
@@ -1565,7 +1544,7 @@
         }
       }
     },
-    "/servicePackage/all": {
+    "/servicePackage/": {
       "get": {
         "tags": [
           "ServicePackageService"
@@ -1982,7 +1961,7 @@
         }
       }
     },
-    "/account/all": {
+    "/account/": {
       "get": {
         "tags": [
           "Account"
@@ -2150,7 +2129,7 @@
         }
       }
     },
-    "/customer/all": {
+    "/customer/": {
       "get": {
         "tags": [
           "Customer"
@@ -2746,7 +2725,7 @@
         }
       }
     },
-    "/booking/all": {
+    "/booking/": {
       "get": {
         "tags": [
           "Booking"
@@ -2968,7 +2947,7 @@
         }
       }
     },
-    "/service_Form/all": {
+    "/service_Form/": {
       "get": {
         "tags": [
           "Service_FormService"
@@ -3141,7 +3120,7 @@
         }
       }
     },
-    "/service_Form_detail/all": {
+    "/service_Form_detail/": {
       "get": {
         "tags": [
           "Service_Form_detailService"
@@ -3299,7 +3278,7 @@
         }
       }
     },
-    "/bill/all": {
+    "/bill/": {
       "get": {
         "tags": [
           "Bill"
@@ -3457,7 +3436,7 @@
         }
       }
     },
-    "/billDetail/all": {
+    "/billDetail/": {
       "get": {
         "tags": [
           "BillDetail"

@@ -16,7 +16,7 @@ let getAll = () => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.MedicalRecord.findByPk(id);
+      // let data = await db.Medicine.findByPk(id);
       let data = await db.medicine.findOne({
         where: {
           medicine_id: id,
@@ -29,7 +29,7 @@ let getOne = (id) => {
   });
 };
 
-let createMedicalRecord = (data) => {
+let createMedicine = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
@@ -49,7 +49,7 @@ let createMedicalRecord = (data) => {
   });
 };
 
-let updateMedicalRecord = (id, data_body) => {
+let updateMedicine = (id, data_body) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.medicine.update(
@@ -73,7 +73,7 @@ let updateMedicalRecord = (id, data_body) => {
   });
 };
 
-let deleteMedicalRecord = (id) => {
+let deleteMedicine = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.medicine.update(
@@ -96,7 +96,7 @@ let deleteMedicalRecord = (id) => {
 module.exports = {
   getAll: getAll,
   getOne: getOne,
-  createMedicalRecord: createMedicalRecord,
-  updateMedicalRecord: updateMedicalRecord,
-  deleteMedicalRecord: deleteMedicalRecord,
+  createMedicine: createMedicine,
+  updateMedicine: updateMedicine,
+  deleteMedicine: deleteMedicine,
 };

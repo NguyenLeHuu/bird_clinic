@@ -5,7 +5,7 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Prescription Detail']
-         #swagger.description = "Get all Prescription"
+         #swagger.description = "Get all PrescriptionDetail"
         */
     try {
       let data = await PrescriptionDetailService.getAll();
@@ -13,7 +13,7 @@ module.exports = {
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get Prescription successful!",
+          message: "Get PrescriptionDetail successful!",
           data: data,
         });
       } else {
@@ -24,14 +24,14 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Prescription");
+      console.log("____Cannot get PrescriptionDetail");
     }
   },
 
   async getOne(req, res) {
     /* 
         #swagger.tags = ['Prescription Detail']
-         #swagger.description = "Get one Prescription (give prescription_id)"
+         #swagger.description = "Get one PrescriptionDetail
         */
     try {
       const id = req.params.id;
@@ -40,13 +40,13 @@ module.exports = {
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get Prescription successful!",
+          message: "Get PrescriptionDetail successful!",
           data: data,
         });
       } else {
         return res.status(400).json({
           status: 400,
-          message: "Prescription not exist!",
+          message: "PrescriptionDetail not exist!",
           data: data,
         });
       }
@@ -58,29 +58,24 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Prescription Detail']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
-      const { email, password, phone, role, status } = req.body;
+      const { prescription_id, medicine_id, usage, total_dose, dose, day } =
+        req.body;
 
-      // const url = await Firebase.uploadImage(file);
-      // let data = await PrescriptionDetailService.createPrescription(req.body, url);
-      let data = await PrescriptionDetailService.createPrescription(req.body);
+      let data = await PrescriptionDetailService.createPrescriptionDetail(
+        req.body
+      );
 
-      console.log("____Create Prescription Successful");
+      console.log("____Create PrescriptionDetail Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Create Prescription Successful!",
+        message: "Create PrescriptionDetail Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Create Prescription Failed");
+      console.log("____Create PrescriptionDetail Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -91,33 +86,25 @@ module.exports = {
   async update(req, res) {
     /* 
         #swagger.tags = ['Prescription Detail']
-         #swagger.description = "Update a Prescription (give veterinarian_id)"
+         #swagger.description = "Update a PrescriptionDetail"
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const { medicine_id, usage, total_dose, dose, day } = req.body;
 
-      let data = await PrescriptionDetailService.updatePrescription(
+      let data = await PrescriptionDetailService.updatePrescriptionDetail(
         id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
+        req.body
       );
-      console.log("____Update Prescription Successful");
+      console.log("____Update PrescriptionDetail Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Update Prescription Successful!",
+        message: "Update PrescriptionDetail Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Update Prescription Failed");
+      console.log("____Update PrescriptionDetail Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -133,16 +120,16 @@ module.exports = {
     try {
       const id = req.params["id"];
 
-      let data = await PrescriptionDetailService.deletePrescription(id);
-      console.log("____Delete Prescription Successful");
+      let data = await PrescriptionDetailService.deletePrescriptionDetail(id);
+      console.log("____Delete PrescriptionDetail Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Delete Prescription Successful!",
+        message: "Delete PrescriptionDetail Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Delete Prescription Failed");
+      console.log("____Delete PrescriptionDetail Failed");
       return res.status(400).json({
         status: 400,
         message: err,

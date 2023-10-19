@@ -58,13 +58,7 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Prescription']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
       const { booking_id, note, usage } = req.body;
 

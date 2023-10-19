@@ -81,7 +81,7 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Create Medicine Failed");
+      console.log("____Create Medicine Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,

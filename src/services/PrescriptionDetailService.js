@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescriptionDetail.findAll();
+      let data = await db.prescription_detail.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.PrescriptionDetail.findByPk(id);
-      let data = await db.prescriptionDetail.findOne({
+      let data = await db.prescription_detail.findOne({
         where: {
           prescription_detail_id: id,
         },
@@ -33,13 +33,15 @@ let createPrescriptionDetail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.prescriptionDetail.create({
-        prescription_id: id,
-        booking_id: data.booking_id,
-        time_created: data.time_created,
-        note: data.note,
+      const result = await db.prescription_detail.create({
+        prescription_detail_id: id,
+        prescription_id: data.prescription_id,
+        medicine_id: data.medicine_id,
         usage: data.usage,
-        status: data.status,
+        total_dose: data.total_dose,
+        dose: data.dose,
+        day: data.day,
+        status: 1,
       });
       resolve(result);
     } catch (e) {
@@ -48,19 +50,20 @@ let createPrescriptionDetail = (data) => {
   });
 };
 
-let updatePrescriptionDetail = (id, name, quantity, price, mainimg, detail) => {
+let updatePrescriptionDetail = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescriptionDetail.update(
+      let data = await db.prescription_detail.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          medicine_id: body_data.medicine_id,
+          usage: body_data.usage,
+          total_dose: body_data.total_dose,
+          dose: body_data.dose,
+          day: body_data.day,
         },
         {
           where: {
-            prescription_id: id,
+            prescription_detail_id: id,
           },
         }
       );
@@ -74,13 +77,13 @@ let updatePrescriptionDetail = (id, name, quantity, price, mainimg, detail) => {
 let deletePrescriptionDetail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescriptionDetail.update(
+      let data = await db.prescription_detail.update(
         {
           status: 0,
         },
         {
           where: {
-            prescription_id: id,
+            prescription_detail_id: id,
           },
         }
       );
