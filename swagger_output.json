@@ -2478,7 +2478,7 @@
         }
       }
     },
-    "/reservation/create": {
+    "/reservation/": {
       "post": {
         "tags": [
           "Reservation"
@@ -2520,12 +2520,6 @@
                     "example": "any"
                   },
                   "recommendations": {
-                    "example": "any"
-                  },
-                  "temperature": {
-                    "example": "any"
-                  },
-                  "weight": {
                     "example": "any"
                   },
                   "date": {

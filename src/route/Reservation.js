@@ -10,7 +10,7 @@ let route = promiseRouter();
 // route.get("/:id", ReservationController.getOne);
 
 // route.post("/", multer.Multer.array("image"), ReservationController.store);
-route.post("/create", ReservationController.store);
+route.post("/", ReservationController.store);
 
 // route.put("/:id", ReservationController.update);
 

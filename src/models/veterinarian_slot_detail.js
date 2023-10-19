@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class VeterinarianSlotDetail extends Model {
     static associate(models) {
       VeterinarianSlotDetail.belongsTo(models.time_slot_clinic, {
-        foreignKey: "time_slot_id",
+        foreignKey: "time_slot_clinic_id",
       });
       VeterinarianSlotDetail.belongsTo(models.veterinarian, {
         foreignKey: "veterinarian_id",
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         primaryKey: true,
       },
-      time_slot_id: DataTypes.STRING,
+      time_slot_clinic_id: DataTypes.STRING,
       veterinarian_id: DataTypes.STRING,
       status: DataTypes.STRING,
     },

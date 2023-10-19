@@ -2,6 +2,8 @@ const ReservationService = require("../services/ReservationService");
 const Booking = require("../services/BookingService");
 const Service_Form = require("../services/Service_FormService");
 const Service_Form_detail = require("../services/Service_Form_detailService");
+const BillService = require("../services/BillService");
+const BillDetailService = require("../services/BillDetailService");
 const Firebase = require("../services/Firebase");
 const db = require("../models/index");
 
@@ -74,8 +76,6 @@ module.exports = {
         status,
         diagnosis,
         recommendations,
-        temperature,
-        weight,
         date,
         estimate_time,
         money_has_paid,
@@ -90,12 +90,14 @@ module.exports = {
       db.sequelize
         .transaction(async (t) => {
           try {
-            let create_booking = await Booking.createBooking(req.body);
-            let create_service_form = await Service_Form.createService_Form(
+            let booking = await Booking.createBooking(req.body);
+            let service_form = await Service_Form.createService_Form(req.body);
+            let service_form_detail =
+              await Service_Form_detail.createService_Form_detail(req.body);
+            let bill = await BillService.createBill(req.body);
+            let bill_detail = await BillDetailService.createBillDetail(
               req.body
             );
-            let create_service_form_detail =
-              await Service_Form_detail.createService_Form_detail(req.body);
 
             await t.commit();
 
@@ -103,7 +105,7 @@ module.exports = {
           } catch (error) {
             // Nếu có lỗi, hủy transaction và xử lý lỗi
             await t.rollback();
-            console.error("Transaction failed:", error.message);
+            console.error("Transaction failed:", error);
           }
         })
         .then(() => {
