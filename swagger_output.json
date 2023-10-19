@@ -717,22 +717,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
-                    "example": "any"
-                  },
-                  "total_price": {
-                    "example": "any"
-                  },
-                  "service_form_id": {
-                    "example": "any"
-                  },
-                  "booking_id": {
-                    "example": "any"
-                  },
                   "payment_method": {
                     "example": "any"
                   },
-                  "paypal_transaction_id": {
+                  "transaction_id": {
                     "example": "any"
                   },
                   "status": {
@@ -822,7 +810,7 @@
         "tags": [
           "BillDetail"
         ],
-        "description": "Get all BillDetail of 1 customer (give customerid)",
+        "description": "Get all BillDetail ",
         "responses": {
           "200": {
             "description": "OK"
@@ -838,7 +826,7 @@
         "tags": [
           "BillDetail"
         ],
-        "description": "Get one BillDetail (give bird_id)",
+        "description": "Get one BillDetail (give bill_detail_id)",
         "parameters": [
           {
             "name": "id",
@@ -862,7 +850,7 @@
         "tags": [
           "BillDetail"
         ],
-        "description": "Update a bird (give bird_id)",
+        "description": "Update a bill_detail (give bill_detail_id)",
         "parameters": [
           {
             "name": "id",
@@ -887,19 +875,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "bill_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "service_package_id": {
                     "example": "any"
                   },
                   "price": {
                     "example": "any"
                   },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "quantity": {
                     "example": "any"
                   }
                 }
@@ -912,7 +897,7 @@
         "tags": [
           "BillDetail"
         ],
-        "description": "Delete bird (give bird_id)",
+        "description": "Delete bill_detail (give bill_detail_id)",
         "parameters": [
           {
             "name": "id",
@@ -939,16 +924,6 @@
           "BillDetail"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -963,37 +938,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "customer_id": {
+                  "bill_id": {
                     "example": "any"
                   },
-                  "name": {
+                  "service_package_id": {
                     "example": "any"
                   },
-                  "gender": {
+                  "price": {
                     "example": "any"
                   },
-                  "hatching_date": {
-                    "example": "any"
-                  },
-                  "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "color": {
-                    "example": "any"
-                  },
-                  "breed": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "image": {
-                    "example": "any"
-                  },
-                  "size": {
+                  "quantity": {
                     "example": "any"
                   }
                 }

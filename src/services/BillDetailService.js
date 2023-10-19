@@ -5,11 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.billDetail.findAll({
-        where: {
-          bill_detail_id: id,
-        },
-      });
+      let data = await db.bill_detail.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -21,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.BillDetail.findByPk(id);
-      let data = await db.billDetail.findOne({
+      let data = await db.bill_detail.findOne({
         where: {
           bill_detail_id: id,
         },
@@ -33,23 +29,16 @@ let getOne = (id) => {
   });
 };
 
-let createBillDetail = (data, url) => {
+let createBillDetail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.billDetail.create({
+      const result = await db.bill_detail.create({
         bill_detail_id: id,
-        bill_detail_id: data.bill_detail_id,
-        name: data.name,
-        gender: data.gender,
-        hatching_date: data.hatching_date,
-        ISO_microchip: data.ISO_microchip,
-        weight: data.weight,
-        color: data.color,
-        breed: data.breed,
-        status: 1,
-        image: url,
-        size: data.size,
+        bill_id: data.bill_id,
+        service_package_id: data.service_package_id,
+        price: data.price,
+        quantity: data.quantity,
       });
       resolve(result);
     } catch (e) {
@@ -58,15 +47,15 @@ let createBillDetail = (data, url) => {
   });
 };
 
-let updateBillDetail = (id, name, quantity, price, mainimg, detail) => {
+let updateBillDetail = (id, data_body) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.billDetail.update(
+      let data = await db.bill_detail.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          // bill_id: data_body.bill_id,
+          // service_package_id: data_body.service_package_id,
+          // price: data_body.price,
+          // detail: data_body.detail,
         },
         {
           where: {
@@ -84,7 +73,7 @@ let updateBillDetail = (id, name, quantity, price, mainimg, detail) => {
 let deleteBillDetail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.billDetail.update(
+      let data = await db.bill_detail.update(
         {
           status: 0,
         },

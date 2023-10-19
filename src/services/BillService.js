@@ -45,8 +45,8 @@ let createBill = (data) => {
         service_form_id: data.service_form_id,
         booking_id: data.booking_id,
         payment_method: data.payment_method,
-        paypal_transaction_id: data.paypal_transaction_id,
-        status: 1,
+        transaction_id: data.transaction_id,
+        status: data.status,
         // time_create: data.time_create,
       });
       resolve(result);
@@ -61,12 +61,8 @@ let updateBill = (id, body_data) => {
     try {
       let data = await db.bill.update(
         {
-          title: body_data.title,
-          total_price: body_data.total_price,
-          service_form_id: body_data.service_form_id,
-          booking_id: body_data.booking_id,
           payment_method: body_data.payment_method,
-          paypal_transaction_id: body_data.paypal_transaction_id,
+          transaction_id: body_data.transaction_id,
           status: body_data.status,
           // time_create: body_data.time_create,
         },

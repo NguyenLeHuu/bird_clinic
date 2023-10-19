@@ -99,12 +99,8 @@ module.exports = {
       const id = req.params.id;
 
       const {
-        title,
-        total_price,
-        service_form_id,
-        booking_id,
         payment_method,
-        paypal_transaction_id,
+        transaction_id,
         status,
         // time_create,
       } = req.body;
