@@ -41,7 +41,7 @@ let createMedia = (data, url) => {
         media_id: id,
         type: data.type,
         type_id: data.type_id,
-        link: data.link,
+        link: url,
         is_before: data.is_before,
         is_after: data.is_after,
         type_service: data.type_service,
@@ -54,15 +54,12 @@ let createMedia = (data, url) => {
   });
 };
 
-let updateMedia = (id, name, quantity, price, mainimg, detail) => {
+let updateMedia = (id, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.media.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          link: url,
         },
         {
           where: {

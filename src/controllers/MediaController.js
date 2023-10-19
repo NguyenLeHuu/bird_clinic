@@ -5,7 +5,7 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Media']
-         #swagger.description = "Get all Media  "
+        
         */
     try {
       const type = req.query.type;
@@ -68,8 +68,7 @@ module.exports = {
               required: 'true',
         } */
     try {
-      const { type, type_id, link, is_before, is_after, type_service, status } =
-        req.body;
+      const { type, type_id, is_before, is_after, type_service } = req.body;
 
       const url = await Firebase.uploadImage(file);
       let data = await MediaService.createMedia(req.body, url);
@@ -91,26 +90,19 @@ module.exports = {
   },
 
   async update(req, res) {
-    /* 
-        #swagger.tags = ['Media']
-         #swagger.description = "Update a Media (give Media_id)"
-        */
+    // #swagger.tags = ['Media']
+    /*
+         #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['singleFile'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+        } */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const url = await Firebase.uploadImage(file);
 
-      let data = await MediaService.updateMedia(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      let data = await MediaService.updateMedia(id, url);
       console.log("____Update Media Successful");
 
       return res.status(200).json({

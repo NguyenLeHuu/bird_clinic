@@ -1,4 +1,5 @@
 const MedicalRecordService = require("../services/MedicalRecordService");
+const MediaService = require("../services/MediaService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
@@ -8,9 +9,7 @@ module.exports = {
          #swagger.description = "Get all MedicalRecord  "
         */
     try {
-      const type = req.query.type;
-      const type_id = req.query.type_id;
-      let data = await MedicalRecordService.getAll(type, type_id);
+      let data = await MedicalRecordService.getAll();
 
       if (data != null) {
         return res.status(200).json({
@@ -68,11 +67,26 @@ module.exports = {
               required: 'true',
         } */
     try {
-      const { type, type_id, link, is_before, is_after, type_service, status } =
-        req.body;
+      const {
+        symptom,
+        diagnose,
+        recommendations,
+        type,
+        type_id,
+        is_before,
+        is_after,
+        type_service,
+      } = req.body;
 
-      const url = await Firebase.uploadImage(file);
-      let data = await MedicalRecordService.createMedicalRecord(req.body, url);
+      // const url = await Firebase.uploadImage(file);
+      // let listImage = [];
+
+      req.files.forEach(async (file) => {
+        const url = await Firebase.uploadImage(file);
+        await MediaService.createMedia(req.body, url);
+        // listImage.push(url);
+      });
+      let data = await MedicalRecordService.createMedicalRecord(req.body);
 
       console.log("____Create MedicalRecord Successful");
 
@@ -91,26 +105,19 @@ module.exports = {
   },
 
   async update(req, res) {
-    /* 
-        #swagger.tags = ['MedicalRecord']
-         #swagger.description = "Update a MedicalRecord (give MedicalRecord_id)"
-        */
+    //   #swagger.tags = ['MedicalRecord']
+    /*
+         #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['singleFile'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+        } */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const url = await Firebase.uploadImage(file);
 
-      let data = await MedicalRecordService.updateMedicalRecord(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      let data = await MedicalRecordService.updateMedicalRecord(id, url);
       console.log("____Update MedicalRecord Successful");
 
       return res.status(200).json({

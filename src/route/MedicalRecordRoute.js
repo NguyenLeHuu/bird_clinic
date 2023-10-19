@@ -9,12 +9,12 @@ route.get("/all", MedicalRecordController.getAll);
 
 route.get("/:id", MedicalRecordController.getOne);
 
-// route.post("/", multer.Multer.array("image"), MedicalRecordController.store);
-route.post(
-  "/create",
-  multer.Multer.single("image"),
-  MedicalRecordController.store
-);
+route.post("/", multer.Multer.array("image"), MedicalRecordController.store);
+// route.post(
+//   "/create",
+//   multer.Multer.single("image"),
+//   MedicalRecordController.store
+// );
 
 route.put("/:id", MedicalRecordController.update);
 

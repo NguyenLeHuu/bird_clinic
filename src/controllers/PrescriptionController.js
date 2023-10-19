@@ -66,7 +66,7 @@ module.exports = {
               required: 'true',
         } */
     try {
-      const { email, password, phone, role, status } = req.body;
+      const { booking_id, note, usage } = req.body;
 
       // const url = await Firebase.uploadImage(file);
       // let data = await PrescriptionService.createPrescription(req.body, url);
@@ -95,20 +95,9 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const { note, usage } = req.body;
 
-      let data = await PrescriptionService.updatePrescription(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      let data = await PrescriptionService.updatePrescription(id, req.body);
       console.log("____Update Prescription Successful");
 
       return res.status(200).json({

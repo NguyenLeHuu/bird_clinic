@@ -2,14 +2,10 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (type, type_id) => {
+let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medicalRecord.findAll({
-        where: {
-          [Op.and]: [{ type: type }, { type_id: type_id }],
-        },
-      });
+      let data = await db.medical_record.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -21,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.MedicalRecord.findByPk(id);
-      let data = await db.medicalRecord.findOne({
+      let data = await db.medical_record.findOne({
         where: {
           medical_record_id: id,
         },
@@ -33,19 +29,15 @@ let getOne = (id) => {
   });
 };
 
-let createMedicalRecord = (data, url) => {
+let createMedicalRecord = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.medicalRecord.create({
+      const result = await db.medical_record.create({
         medical_record_id: id,
-        type: data.type,
-        type_id: data.type_id,
-        link: data.link,
-        is_before: data.is_before,
-        is_after: data.is_after,
-        type_service: data.type_service,
-        status: 1,
+        symptom: data.symptom,
+        diagnose: data.diagnose,
+        recommendations: data.recommendations,
       });
       resolve(result);
     } catch (e) {
@@ -54,15 +46,14 @@ let createMedicalRecord = (data, url) => {
   });
 };
 
-let updateMedicalRecord = (id, name, quantity, price, mainimg, detail) => {
+let updateMedicalRecord = (id, data_body) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medicalRecord.update(
+      let data = await db.medical_record.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          symptom: data_body.symptom,
+          diagnose: data_body.diagnose,
+          recommendations: data_body.recommendations,
         },
         {
           where: {
@@ -80,7 +71,7 @@ let updateMedicalRecord = (id, name, quantity, price, mainimg, detail) => {
 let deleteMedicalRecord = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medicalRecord.update(
+      let data = await db.medical_record.update(
         {
           status: 0,
         },

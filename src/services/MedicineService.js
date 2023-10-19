@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription.findAll();
+      let data = await db.medicine.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -16,10 +16,10 @@ let getAll = () => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.Prescription.findByPk(id);
-      let data = await db.prescription.findOne({
+      // let data = await db.MedicalRecord.findByPk(id);
+      let data = await db.medicine.findOne({
         where: {
-          prescription_id: id,
+          medicine_id: id,
         },
       });
       resolve(data);
@@ -29,17 +29,18 @@ let getOne = (id) => {
   });
 };
 
-let createPrescription = (data) => {
+let createMedicalRecord = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.prescription.create({
-        prescription_id: id,
-        booking_id: data.booking_id,
-        // time_created: data.time_created,
-        note: data.note,
+      const result = await db.medicine.create({
+        medicine_id: id,
+        name: data.name,
+        unit: data.unit,
         usage: data.usage,
-        status: "1",
+        description: data.description,
+        sideEffects: data.sideEffects,
+        status: 1,
       });
       resolve(result);
     } catch (e) {
@@ -48,17 +49,20 @@ let createPrescription = (data) => {
   });
 };
 
-let updatePrescription = (id, data_body) => {
+let updateMedicalRecord = (id, data_body) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription.update(
+      let data = await db.medicine.update(
         {
-          note: data_body.note,
+          name: data_body.name,
+          unit: data_body.unit,
           usage: data_body.usage,
+          description: data_body.description,
+          sideEffects: data_body.sideEffects,
         },
         {
           where: {
-            prescription_id: id,
+            medicine_id: id,
           },
         }
       );
@@ -69,16 +73,16 @@ let updatePrescription = (id, data_body) => {
   });
 };
 
-let deletePrescription = (id) => {
+let deleteMedicalRecord = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription.update(
+      let data = await db.medicine.update(
         {
           status: 0,
         },
         {
           where: {
-            prescription_id: id,
+            medicine_id: id,
           },
         }
       );
@@ -92,7 +96,7 @@ let deletePrescription = (id) => {
 module.exports = {
   getAll: getAll,
   getOne: getOne,
-  createPrescription: createPrescription,
-  updatePrescription: updatePrescription,
-  deletePrescription: deletePrescription,
+  createMedicalRecord: createMedicalRecord,
+  updateMedicalRecord: updateMedicalRecord,
+  deleteMedicalRecord: deleteMedicalRecord,
 };
