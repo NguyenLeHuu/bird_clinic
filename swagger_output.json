@@ -322,22 +322,6 @@
           "Service_FormService"
         ],
         "description": "Get all Service_FormService of service",
-        "parameters": [
-          {
-            "name": "size_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "service_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -377,7 +361,7 @@
         "tags": [
           "Service_FormService"
         ],
-        "description": "Update a Service_FormService (give veterinarian_id)",
+        "description": "Update a Service_FormService",
         "parameters": [
           {
             "name": "id",
@@ -402,31 +386,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "bird_id": {
-                    "example": "any"
-                  },
-                  "booking_id": {
-                    "example": "any"
-                  },
-                  "reason_referral": {
-                    "example": "any"
-                  },
                   "status": {
                     "example": "any"
                   },
                   "date": {
                     "example": "any"
                   },
-                  "veterinarian_referral": {
-                    "example": "any"
-                  },
-                  "total_price": {
-                    "example": "any"
-                  },
-                  "is_paid": {
-                    "example": "any"
-                  },
                   "qr_code": {
+                    "example": "any"
+                  },
+                  "num_ser_must_do": {
+                    "example": "any"
+                  },
+                  "num_ser_has_done": {
                     "example": "any"
                   }
                 }
@@ -501,10 +473,13 @@
                   "total_price": {
                     "example": "any"
                   },
-                  "is_paid": {
+                  "qr_code": {
                     "example": "any"
                   },
-                  "qr_code": {
+                  "num_ser_must_do": {
+                    "example": "any"
+                  },
+                  "num_ser_has_done": {
                     "example": "any"
                   }
                 }
@@ -584,25 +559,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "service_form_id": {
-                    "example": "any"
-                  },
-                  "note": {
-                    "example": "any"
-                  },
                   "status": {
                     "example": "any"
                   },
                   "veterinarian_id": {
                     "example": "any"
                   },
-                  "price": {
-                    "example": "any"
-                  },
-                  "quantity": {
+                  "process_at": {
                     "example": "any"
                   }
                 }
@@ -671,10 +634,10 @@
                   "veterinarian_id": {
                     "example": "any"
                   },
-                  "price": {
+                  "booking_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "process_at": {
                     "example": "any"
                   }
                 }

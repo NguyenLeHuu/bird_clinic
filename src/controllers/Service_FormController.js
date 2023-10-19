@@ -8,9 +8,7 @@ module.exports = {
          #swagger.description = "Get all Service_FormService of service"
         */
     try {
-      const bird_size_id = req.query.size_id;
-      const service_id = req.query.service_id;
-      let data = await Service_FormService.getAll(bird_size_id, service_id);
+      let data = await Service_FormService.getAll();
 
       if (data != null) {
         return res.status(200).json({
@@ -70,8 +68,9 @@ module.exports = {
         date,
         veterinarian_referral,
         total_price,
-        is_paid,
         qr_code,
+        num_ser_must_do,
+        num_ser_has_done,
       } = req.body;
 
       //   const url = await Firebase.uploadImage(file);
@@ -97,22 +96,13 @@ module.exports = {
   async update(req, res) {
     /* 
         #swagger.tags = ['Service_FormService']
-         #swagger.description = "Update a Service_FormService (give veterinarian_id)"
+         #swagger.description = "Update a Service_FormService"
         */
     try {
       const id = req.params["id"];
 
-      const {
-        bird_id,
-        booking_id,
-        reason_referral,
-        status,
-        date,
-        veterinarian_referral,
-        total_price,
-        is_paid,
-        qr_code,
-      } = req.body;
+      const { status, date, qr_code, num_ser_must_do, num_ser_has_done } =
+        req.body;
 
       let data = await Service_FormService.updateService_Form(id, req.body);
 

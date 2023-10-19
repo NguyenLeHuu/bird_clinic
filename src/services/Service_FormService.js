@@ -2,17 +2,10 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, service_form_id) => {
+let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_Form.findAll({
-        // where: {
-        //   [Op.or]: [
-        //     { bird_size_id: bird_size_id },
-        //     { service_form_id: service_form_id },
-        //   ],
-        // },
-      });
+      let data = await db.service_form.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -23,11 +16,9 @@ let getAll = (bird_size_id, service_form_id) => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.Service_Form.findByPk(id);
-      let data = await db.service_Form.findOne({
+      let data = await db.service_form.findOne({
         where: {
           service_form_id: id,
-          // include: [{ model: Service_FormType, attributes: ["name"] }],
         },
       });
       resolve(data);
@@ -41,17 +32,19 @@ let createService_Form = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service_Form.create({
+      const result = await db.service_form.create({
         service_form_id: id,
         bird_id: data.bird_id,
         booking_id: data.booking_id,
         reason_referral: data.reason_referral,
-        status: 1,
+        status: data.status,
         date: data.date,
         veterinarian_referral: data.veterinarian_referral,
         total_price: data.total_price,
-        is_paid: data.is_paid,
+        // is_paid: data.is_paid,
         qr_code: data.qr_code,
+        num_ser_must_do: data.num_ser_must_do,
+        num_ser_has_done: data.num_ser_has_done,
       });
       resolve(result);
     } catch (e) {
@@ -63,17 +56,13 @@ let createService_Form = (data) => {
 let updateService_Form = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_Form.update(
+      let data = await db.service_form.update(
         {
-          bird_id: body_data.bird_id,
-          booking_id: body_data.booking_id,
-          reason_referral: body_data.reason_referral,
           status: body_data.status,
           date: body_data.date,
-          veterinarian_referral: body_data.veterinarian_referral,
-          total_price: body_data.total_price,
-          is_paid: body_data.is_paid,
           qr_code: body_data.qr_code,
+          num_ser_must_do: body_data.num_ser_must_do,
+          num_ser_has_done: body_data.num_ser_has_done,
         },
         {
           where: {
@@ -91,7 +80,7 @@ let updateService_Form = (id, body_data) => {
 let deleteService_Form = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_Form.update(
+      let data = await db.service_form.update(
         {
           status: 0,
         },

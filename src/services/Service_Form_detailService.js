@@ -5,14 +5,7 @@ const crypto = require("crypto");
 let getAll = (bird_size_id, service_form_detail_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_Form_detail.findAll({
-        // where: {
-        //   [Op.or]: [
-        //     { bird_size_id: bird_size_id },
-        //     { service_form_detail_id: service_form_detail_id },
-        //   ],
-        // },
-      });
+      let data = await db.service_form_detail.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -24,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Service_Form_detail.findByPk(id);
-      let data = await db.service_Form_detail.findOne({
+      let data = await db.service_form_detail.findOne({
         where: {
           service_form_detail_id: id,
           // include: [{ model: Service_Form_detailType, attributes: ["name"] }],
@@ -41,15 +34,15 @@ let createService_Form_detail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service_Form_detail.create({
+      const result = await db.service_form_detail.create({
         service_form_detail_id: id,
         service_package_id: data.service_package_id,
         service_form_id: data.service_form_id,
         note: data.note,
-        status: 1,
+        status: data.status,
         veterinarian_id: data.veterinarian_id,
-        price: data.price,
-        quantity: data.quantity,
+        booking_id: data.booking_id,
+        process_at: data.process_at,
       });
       resolve(result);
     } catch (e) {
@@ -61,16 +54,11 @@ let createService_Form_detail = (data) => {
 let updateService_Form_detail = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_Form_detail.update(
+      let data = await db.service_form_detail.update(
         {
-          service_form_detail_id: id,
-          service_package_id: body_data.service_package_id,
-          service_form_id: body_data.service_form_id,
-          note: body_data.note,
           status: body_data.status,
           veterinarian_id: body_data.veterinarian_id,
-          price: body_data.price,
-          quantity: body_data.quantity,
+          process_at: body_data.process_at,
         },
         {
           where: {
@@ -88,7 +76,7 @@ let updateService_Form_detail = (id, body_data) => {
 let deleteService_Form_detail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_Form_detail.update(
+      let data = await db.service_form_detail.update(
         {
           status: 0,
         },
