@@ -94,220 +94,28 @@
         }
       }
     },
-    "/bird/all/{id}": {
-      "get": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Get all Bird of 1 customer (give customerid)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/bird/{id}": {
-      "get": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Get one Bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Update a bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "customer_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "gender": {
-                    "example": "any"
-                  },
-                  "hatching_date": {
-                    "example": "any"
-                  },
-                  "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "color": {
-                    "example": "any"
-                  },
-                  "breed": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "size": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Delete bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/bird/create": {
-      "post": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "image",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "customer_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "gender": {
-                    "example": "any"
-                  },
-                  "hatching_date": {
-                    "example": "any"
-                  },
-                  "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "color": {
-                    "example": "any"
-                  },
-                  "breed": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "size": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/booking/all": {
       "get": {
         "tags": [
           "Booking"
         ],
         "description": "Get all Booking",
+        "parameters": [
+          {
+            "name": "arrival_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -478,9 +286,6 @@
                     "example": "any"
                   },
                   "recommendations": {
-                    "example": "any"
-                  },
-                  "booking_date": {
                     "example": "any"
                   },
                   "estimate_time": {
@@ -709,6 +514,176 @@
         }
       }
     },
+    "/service_Form_detail/all": {
+      "get": {
+        "tags": [
+          "Service_Form_detailService"
+        ],
+        "description": "Get all Service_Form_detailService of service",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form_detail/{id}": {
+      "get": {
+        "tags": [
+          "Service_Form_detailService"
+        ],
+        "description": "Get one Service_Form_detailService (give service_package_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Service_Form_detailService"
+        ],
+        "description": "Update a Service_Form_detailService (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_package_id": {
+                    "example": "any"
+                  },
+                  "service_form_id": {
+                    "example": "any"
+                  },
+                  "note": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "quantity": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Service_Form_detailService"
+        ],
+        "description": "Delete Service_Form_detailService (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form_detail/create": {
+      "post": {
+        "tags": [
+          "Service_Form_detailService"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_package_id": {
+                    "example": "any"
+                  },
+                  "service_form_id": {
+                    "example": "any"
+                  },
+                  "note": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "quantity": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/bill/all": {
       "get": {
         "tags": [
@@ -879,12 +854,12 @@
         }
       }
     },
-    "/service_Form_detail/all": {
+    "/billDetail/all": {
       "get": {
         "tags": [
-          "Service_Form_detailService"
+          "BillDetail"
         ],
-        "description": "Get all Service_Form_detailService of service",
+        "description": "Get all BillDetail of 1 customer (give customerid)",
         "responses": {
           "200": {
             "description": "OK"
@@ -895,12 +870,12 @@
         }
       }
     },
-    "/service_Form_detail/{id}": {
+    "/billDetail/{id}": {
       "get": {
         "tags": [
-          "Service_Form_detailService"
+          "BillDetail"
         ],
-        "description": "Get one Service_Form_detailService (give service_package_id)",
+        "description": "Get one BillDetail (give bird_id)",
         "parameters": [
           {
             "name": "id",
@@ -922,9 +897,9 @@
       },
       "put": {
         "tags": [
-          "Service_Form_detailService"
+          "BillDetail"
         ],
-        "description": "Update a Service_Form_detailService (give veterinarian_id)",
+        "description": "Update a bird (give bird_id)",
         "parameters": [
           {
             "name": "id",
@@ -949,25 +924,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "service_package_id": {
+                  "name": {
                     "example": "any"
                   },
-                  "service_form_id": {
-                    "example": "any"
-                  },
-                  "note": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
+                  "quantity": {
                     "example": "any"
                   },
                   "price": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "mainimg": {
+                    "example": "any"
+                  },
+                  "detail": {
                     "example": "any"
                   }
                 }
@@ -978,9 +947,9 @@
       },
       "delete": {
         "tags": [
-          "Service_Form_detailService"
+          "BillDetail"
         ],
-        "description": "Delete Service_Form_detailService (give veterinarian_id)",
+        "description": "Delete bird (give bird_id)",
         "parameters": [
           {
             "name": "id",
@@ -1001,12 +970,22 @@
         }
       }
     },
-    "/service_Form_detail/create": {
+    "/billDetail/create": {
       "post": {
         "tags": [
-          "Service_Form_detailService"
+          "BillDetail"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1021,25 +1000,245 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "service_package_id": {
+                  "customer_id": {
                     "example": "any"
                   },
-                  "service_form_id": {
+                  "name": {
                     "example": "any"
                   },
-                  "note": {
+                  "gender": {
+                    "example": "any"
+                  },
+                  "hatching_date": {
+                    "example": "any"
+                  },
+                  "ISO_microchip": {
+                    "example": "any"
+                  },
+                  "weight": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "breed": {
                     "example": "any"
                   },
                   "status": {
                     "example": "any"
                   },
-                  "veterinarian_id": {
+                  "image": {
                     "example": "any"
                   },
-                  "price": {
+                  "size": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bird/all/{id}": {
+      "get": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Get all Bird of 1 customer (give customerid)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/bird/{id}": {
+      "get": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Get one Bird (give bird_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Update a bird (give bird_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "gender": {
+                    "example": "any"
+                  },
+                  "hatching_date": {
+                    "example": "any"
+                  },
+                  "ISO_microchip": {
+                    "example": "any"
+                  },
+                  "weight": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "breed": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "size": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Delete bird (give bird_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/bird/create": {
+      "post": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "gender": {
+                    "example": "any"
+                  },
+                  "hatching_date": {
+                    "example": "any"
+                  },
+                  "ISO_microchip": {
+                    "example": "any"
+                  },
+                  "weight": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "breed": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "size": {
                     "example": "any"
                   }
                 }
@@ -2826,192 +3025,6 @@
                     "example": "any"
                   },
                   "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/billDetail/all": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get all BillDetail of 1 customer (give customerid)",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/billDetail/{id}": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get one BillDetail (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Update a bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Delete bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/billDetail/create": {
-      "post": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "customer_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "gender": {
-                    "example": "any"
-                  },
-                  "hatching_date": {
-                    "example": "any"
-                  },
-                  "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "color": {
-                    "example": "any"
-                  },
-                  "breed": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "image": {
-                    "example": "any"
-                  },
-                  "size": {
                     "example": "any"
                   }
                 }

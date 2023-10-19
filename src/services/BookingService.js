@@ -3,10 +3,22 @@ const db = require("../models/index");
 const crypto = require("crypto");
 const utils = require("./Utils");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.booking.findAll();
+      let data = [];
+      let whereClause = {};
+      if (req.arrival_date && req.status) {
+        whereClause["arrival_date"] = req.arrival_date;
+        whereClause["status"] = req.status;
+      } else {
+        if (req.arrival_date) {
+          whereClause["arrival_date"] = req.arrival_date;
+        } else if (req.status) {
+          whereClause["status"] = req.status;
+        }
+      }
+      data = await db.booking.findAll({ where: whereClause });
       resolve(data);
     } catch (e) {
       reject(e);
@@ -46,9 +58,7 @@ let createBooking = (data) => {
         status: data.status,
         diagnosis: data.diagnosis,
         recommendations: data.recommendations,
-        temperature: data.temperature,
-        weight: data.weight,
-        date: date,
+        booking_date: date,
         estimate_time: data.estimate_time,
         money_has_paid: data.money_has_paid,
         checkin_time: data.checkin_time,
@@ -56,6 +66,7 @@ let createBooking = (data) => {
         qr_code: data.qr_code,
         note: data.note,
         service_type: data.service_type,
+        arrival_date: data.arrival_date,
       });
       resolve(result);
     } catch (e) {
@@ -77,15 +88,15 @@ let updateBooking = (id, body_data) => {
           status: body_data.status,
           diagnosis: body_data.diagnosis,
           recommendations: body_data.recommendations,
-          temperature: body_data.temperature,
-          weight: body_data.weight,
-          date: body_data.date,
+
+          booking_date: body_data.date,
           estimate_time: body_data.estimate_time,
           money_has_paid: body_data.money_has_paid,
           // checkin_time,
           // customer_name,
           note: body_data.note,
           // service_type,
+          arrival_date: body_data.arrival_date,
         },
         {
           where: {

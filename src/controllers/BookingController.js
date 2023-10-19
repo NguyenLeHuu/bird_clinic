@@ -8,7 +8,8 @@ module.exports = {
          #swagger.description = "Get all Booking"
         */
     try {
-      let data = await BookingService.getAll();
+      const { arrival_date, status } = req.query;
+      let data = await BookingService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
@@ -71,7 +72,7 @@ module.exports = {
         diagnosis,
         recommendations,
 
-        booking_date,
+        // booking_date,
         estimate_time,
         money_has_paid,
         checkin_time,

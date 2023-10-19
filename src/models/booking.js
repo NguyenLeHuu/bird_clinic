@@ -18,8 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.STRING,
       diagnosis: DataTypes.STRING,
       recommendations: DataTypes.STRING,
-      temperature: DataTypes.STRING,
-      weight: DataTypes.STRING,
+
       booking_date: DataTypes.STRING,
       estimate_time: DataTypes.STRING,
       money_has_paid: DataTypes.STRING,
