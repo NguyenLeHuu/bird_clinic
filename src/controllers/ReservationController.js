@@ -64,8 +64,10 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Reservation']
-
+    /* 
+        #swagger.tags = ['Reservation']
+         #swagger.description = "khong truyền booking,service_form,Service_Form_detail,bill"
+        */
     try {
       const {
         account_id,
@@ -74,15 +76,19 @@ module.exports = {
         veterinarian_id,
         symptom,
         status,
-        diagnosis,
-        recommendations,
-        date,
         estimate_time,
         money_has_paid,
         checkin_time,
         customer_name,
         note,
         service_type,
+        arrival_date,
+
+        service_package_id,
+
+        payment_method,
+        transaction_id,
+        total_price,
       } = req.body;
 
       // let data = await ReservationService.createReservation(req.body);
@@ -90,34 +96,80 @@ module.exports = {
       db.sequelize
         .transaction(async (t) => {
           try {
-            let booking = await Booking.createBooking(req.body);
-            let service_form = await Service_Form.createService_Form(req.body);
-            let service_form_detail =
-              await Service_Form_detail.createService_Form_detail(req.body);
-            let bill = await BillService.createBill(req.body);
-            let bill_detail = await BillDetailService.createBillDetail(
-              req.body
-            );
+            let booking = await Booking.createBooking(req.body, {
+              transaction: t,
+            });
 
-            await t.commit();
+            booking = {
+              ...booking.dataValues,
+              reason_referral: "null",
+              status: "test",
+              date: arrival_date,
+              veterinarian_referral: "auto",
+              total_price: total_price,
+              qr_code: "null",
+              num_ser_must_do: 1,
+              num_ser_has_done: 0,
+            };
+
+            let service_form = await Service_Form.createService_Form(booking, {
+              transaction: t,
+            });
+
+            service_form = {
+              ...service_form.dataValues,
+              service_package_id: service_package_id,
+              // note: "null",
+              status: "test",
+              veterinarian_id: veterinarian_id,
+              total_price: total_price,
+              process_at: 1,
+            };
+            let service_form_detail =
+              await Service_Form_detail.createService_Form_detail(
+                service_form,
+                {
+                  transaction: t,
+                }
+              );
+
+            service_form = {
+              ...service_form,
+              title: "Hóa đơn thanh toán",
+              booking_id: booking.booking_id,
+              payment_method,
+              transaction_id,
+              status: "test",
+            };
+            let bill = await BillService.createBill(service_form, {
+              transaction: t,
+            });
+
+            bill = {
+              ...bill.dataValues,
+              service_package_id,
+              price: bill.total_price,
+              quantity: 1,
+            };
+            let bill_detail = await BillDetailService.createBillDetail(bill, {
+              transaction: t,
+            });
 
             console.log("Transaction completed successfully.");
           } catch (error) {
             // Nếu có lỗi, hủy transaction và xử lý lỗi
-            await t.rollback();
-            console.error("Transaction failed:", error);
+            console.error("Transaction failed:");
           }
         })
         .then(() => {
           // Sau khi transaction kết thúc, bạn có thể thực hiện các tác vụ tiếp theo
+          return res.status(200).json({
+            status: 200,
+            message: "Create Reservation Successful!",
+          });
         });
-      return res.status(200).json({
-        status: 200,
-        message: "Create Reservation Successful!",
-        data: data,
-      });
     } catch (err) {
-      console.log("____", err);
+      console.log("____");
       return res.status(400).json({
         status: 400,
         message: err,

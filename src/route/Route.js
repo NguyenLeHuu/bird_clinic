@@ -25,6 +25,8 @@ const boardingRoute = require("./BoardingRoute");
 const boardingRecordRoute = require("./BoardingRecordRoute");
 const cageRoute = require("./CageRoute");
 
+router.use("/reservation", reservationRoute);
+
 router.use("/medicine", medicineRoute);
 router.use("/medicalRecord", medicalRecordRoute);
 router.use("/media", mediaRoute);
@@ -43,7 +45,6 @@ router.use("/account", accountRoute);
 router.use("/customer", customerRoute);
 router.use("/vet", vetRoute);
 
-router.use("/reservation", reservationRoute);
 router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
 router.use("/booking", bookingRoute);
 router.use("/service_Form", service_FormRoute);

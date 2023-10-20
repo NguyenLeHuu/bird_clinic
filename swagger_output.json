@@ -16,6 +16,84 @@
     }
   ],
   "paths": {
+    "/reservation/": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "description": "khong truyền booking,service_form,Service_Form_detail,bill",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "example": "any"
+                  },
+                  "time_id": {
+                    "example": "any"
+                  },
+                  "bird_id": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "symptom": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "estimate_time": {
+                    "example": "any"
+                  },
+                  "money_has_paid": {
+                    "example": "any"
+                  },
+                  "checkin_time": {
+                    "example": "any"
+                  },
+                  "customer_name": {
+                    "example": "any"
+                  },
+                  "note": {
+                    "example": "any"
+                  },
+                  "service_type": {
+                    "example": "any"
+                  },
+                  "arrival_date": {
+                    "example": "any"
+                  },
+                  "service_package_id": {
+                    "example": "any"
+                  },
+                  "payment_method": {
+                    "example": "any"
+                  },
+                  "transaction_id": {
+                    "example": "any"
+                  },
+                  "total_price": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/medicine/": {
       "get": {
         "tags": [
@@ -2469,78 +2547,6 @@
                     "example": "any"
                   },
                   "image": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/reservation/": {
-      "post": {
-        "tags": [
-          "Reservation"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "example": "any"
-                  },
-                  "time_id": {
-                    "example": "any"
-                  },
-                  "bird_id": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
-                  "symptom": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "diagnosis": {
-                    "example": "any"
-                  },
-                  "recommendations": {
-                    "example": "any"
-                  },
-                  "date": {
-                    "example": "any"
-                  },
-                  "estimate_time": {
-                    "example": "any"
-                  },
-                  "money_has_paid": {
-                    "example": "any"
-                  },
-                  "checkin_time": {
-                    "example": "any"
-                  },
-                  "customer_name": {
-                    "example": "any"
-                  },
-                  "note": {
-                    "example": "any"
-                  },
-                  "service_type": {
                     "example": "any"
                   }
                 }

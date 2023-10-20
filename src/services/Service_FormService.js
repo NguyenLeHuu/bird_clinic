@@ -41,7 +41,6 @@ let createService_Form = (data) => {
         date: data.date,
         veterinarian_referral: data.veterinarian_referral,
         total_price: data.total_price,
-        // is_paid: data.is_paid,
         qr_code: data.qr_code,
         num_ser_must_do: data.num_ser_must_do,
         num_ser_has_done: data.num_ser_has_done,
