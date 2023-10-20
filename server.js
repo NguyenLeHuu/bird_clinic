@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 app.get("/", function (req, res) {
   res.set("Content-Type", "text/html; charset=utf-8");
-  res.send("<h1>Làm bài chăm chỉ lên mấy thằng nhóc</h1>");
+  res.send("<h1>SRC moi</h1>");
 });
 app.use("/", route);
 
