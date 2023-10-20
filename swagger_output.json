@@ -1067,12 +1067,12 @@
         }
       }
     },
-    "/boardingRecord/": {
+    "/chat/": {
       "get": {
         "tags": [
-          "BoardingRecord"
+          "Chat"
         ],
-        "description": "Get all BoardingRecord ",
+        "description": "Get all Chat ",
         "parameters": [
           {
             "name": "type",
@@ -1099,12 +1099,12 @@
         }
       }
     },
-    "/boardingRecord/{id}": {
+    "/chat/{id}": {
       "get": {
         "tags": [
-          "BoardingRecord"
+          "Chat"
         ],
-        "description": "Get one BoardingRecord (give BoardingRecord_id)",
+        "description": "Get one Chat (give Chat_id)",
         "parameters": [
           {
             "name": "id",
@@ -1126,9 +1126,9 @@
       },
       "put": {
         "tags": [
-          "BoardingRecord"
+          "Chat"
         ],
-        "description": "Update a BoardingRecord (give BoardingRecord_id)",
+        "description": "Update a Chat (give Chat_id)",
         "parameters": [
           {
             "name": "id",
@@ -1176,9 +1176,9 @@
       },
       "delete": {
         "tags": [
-          "BoardingRecord"
+          "Chat"
         ],
-        "description": "Delete BoardingRecord (give BoardingRecord_id)",
+        "description": "Delete Chat (give Chat_id)",
         "parameters": [
           {
             "name": "id",
@@ -1199,10 +1199,200 @@
         }
       }
     },
-    "/boardingRecord/create": {
+    "/chat/create": {
       "post": {
         "tags": [
-          "BoardingRecord"
+          "Chat"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "example": "any"
+                  },
+                  "type_id": {
+                    "example": "any"
+                  },
+                  "link": {
+                    "example": "any"
+                  },
+                  "is_before": {
+                    "example": "any"
+                  },
+                  "is_after": {
+                    "example": "any"
+                  },
+                  "type_service": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/content_chat/": {
+      "get": {
+        "tags": [
+          "ContentChat"
+        ],
+        "description": "Get all ContentChat ",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/content_chat/{id}": {
+      "get": {
+        "tags": [
+          "ContentChat"
+        ],
+        "description": "Get one ContentChat (give ContentChat_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ContentChat"
+        ],
+        "description": "Update a ContentChat (give ContentChat_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "quantity": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "mainimg": {
+                    "example": "any"
+                  },
+                  "detail": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ContentChat"
+        ],
+        "description": "Delete ContentChat (give ContentChat_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/content_chat/create": {
+      "post": {
+        "tags": [
+          "ContentChat"
         ],
         "description": "",
         "parameters": [

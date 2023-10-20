@@ -1,21 +1,21 @@
-const BoardingRecordService = require("../services/BoardingRecordService");
+const ContentChatService = require("../services/ContentChatService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['BoardingRecord']
-         #swagger.description = "Get all BoardingRecord  "
+        #swagger.tags = ['ContentChat']
+         #swagger.description = "Get all ContentChat  "
         */
     try {
       const type = req.query.type;
       const type_id = req.query.type_id;
-      let data = await BoardingRecordService.getAll(type, type_id);
+      let data = await ContentChatService.getAll(type, type_id);
 
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get BoardingRecord successful!",
+          message: "Get ContentChat successful!",
           data: data,
         });
       } else {
@@ -26,40 +26,40 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get BoardingRecord");
+      console.log("____Cannot get ContentChat");
     }
   },
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['BoardingRecord']
-         #swagger.description = "Get one BoardingRecord (give BoardingRecord_id)"
+        #swagger.tags = ['ContentChat']
+         #swagger.description = "Get one ContentChat (give ContentChat_id)"
         */
     try {
       const id = req.params.id;
-      let data = await BoardingRecordService.getOne(id);
+      let data = await ContentChatService.getOne(id);
 
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get BoardingRecord successful!",
+          message: "Get ContentChat successful!",
           data: data,
         });
       } else {
         return res.status(400).json({
           status: 400,
-          message: "BoardingRecord not exist!",
+          message: "ContentChat not exist!",
           data: data,
         });
       }
     } catch (error) {
-      console.log("____Cannot get BoardingRecord");
+      console.log("____Cannot get ContentChat");
       throw error;
     }
   },
 
   async store(req, res) {
-    // #swagger.tags = ['BoardingRecord']
+    // #swagger.tags = ['ContentChat']
     /*
          #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['singleFile'] = {
@@ -72,20 +72,17 @@ module.exports = {
         req.body;
 
       const url = await Firebase.uploadImage(file);
-      let data = await BoardingRecordService.createBoardingRecord(
-        req.body,
-        url
-      );
+      let data = await ContentChatService.createContentChat(req.body, url);
 
-      console.log("____Create BoardingRecord Successful");
+      console.log("____Create ContentChat Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Create BoardingRecord Successful!",
+        message: "Create ContentChat Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Create BoardingRecord Failed");
+      console.log("____Create ContentChat Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -95,8 +92,8 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['BoardingRecord']
-         #swagger.description = "Update a BoardingRecord (give BoardingRecord_id)"
+        #swagger.tags = ['ContentChat']
+         #swagger.description = "Update a ContentChat (give ContentChat_id)"
         */
     try {
       const id = req.params["id"];
@@ -106,7 +103,7 @@ module.exports = {
       const mainimg = req.body.mainimg;
       const detail = req.body.detail;
 
-      let data = await BoardingRecordService.updateBoardingRecord(
+      let data = await ContentChatService.updateContentChat(
         id,
         name,
         quantity,
@@ -114,15 +111,15 @@ module.exports = {
         mainimg,
         detail
       );
-      console.log("____Update BoardingRecord Successful");
+      console.log("____Update ContentChat Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Update BoardingRecord Successful!",
+        message: "Update ContentChat Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Update BoardingRecord Failed");
+      console.log("____Update ContentChat Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -132,22 +129,22 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['BoardingRecord']
-         #swagger.description = "Delete BoardingRecord (give BoardingRecord_id)"
+        #swagger.tags = ['ContentChat']
+         #swagger.description = "Delete ContentChat (give ContentChat_id)"
         */
     try {
       const id = req.params["id"];
 
-      let data = await BoardingRecordService.deleteBoardingRecord(id);
-      console.log("____Delete BoardingRecord Successful");
+      let data = await ContentChatService.deleteContentChat(id);
+      console.log("____Delete ContentChat Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Delete BoardingRecord Successful!",
+        message: "Delete ContentChat Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Delete BoardingRecord Failed");
+      console.log("____Delete ContentChat Failed");
       return res.status(400).json({
         status: 400,
         message: err,

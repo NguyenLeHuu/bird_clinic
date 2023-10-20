@@ -2,14 +2,14 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, boarding_record_id) => {
+let getAll = (bird_size_id, content_chat_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boardingRecord.findAll({
+      let data = await db.content_chat.findAll({
         where: {
           [Op.or]: [
             { bird_size_id: bird_size_id },
-            { boarding_record_id: boarding_record_id },
+            { content_chat_id: content_chat_id },
           ],
         },
       });
@@ -23,11 +23,11 @@ let getAll = (bird_size_id, boarding_record_id) => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.BoardingRecord.findByPk(id);
-      let data = await db.boardingRecord.findOne({
+      // let data = await db.ContentChat.findByPk(id);
+      let data = await db.content_chat.findOne({
         where: {
-          boarding_record_id: id,
-          include: [{ model: BoardingRecordType, attributes: ["name"] }],
+          content_chat_id: id,
+          include: [{ model: ContentChatType, attributes: ["name"] }],
         },
       });
       resolve(data);
@@ -37,14 +37,14 @@ let getOne = (id) => {
   });
 };
 
-let createBoardingRecord = (data, url) => {
+let createContentChat = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.boardingRecord.create({
+      const result = await db.content_chat.create({
         service_package_id: id,
         bird_size_id: data.bird_size_id,
-        boarding_record_id: data.boarding_record_id,
+        content_chat_id: data.content_chat_id,
         price: data.price,
         description: data.description,
         package_name: data.package_name,
@@ -57,10 +57,10 @@ let createBoardingRecord = (data, url) => {
   });
 };
 
-let updateBoardingRecord = (id, name, quantity, price, mainimg, detail) => {
+let updateContentChat = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boardingRecord.update(
+      let data = await db.content_chat.update(
         {
           name: name,
           quantity: quantity,
@@ -80,16 +80,16 @@ let updateBoardingRecord = (id, name, quantity, price, mainimg, detail) => {
   });
 };
 
-let deleteBoardingRecord = (id) => {
+let deleteContentChat = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boardingRecord.update(
+      let data = await db.content_chat.update(
         {
           status: 0,
         },
         {
           where: {
-            boarding_record_id: id,
+            content_chat_id: id,
           },
         }
       );
@@ -103,7 +103,7 @@ let deleteBoardingRecord = (id) => {
 module.exports = {
   getAll: getAll,
   getOne: getOne,
-  createBoardingRecord: createBoardingRecord,
-  updateBoardingRecord: updateBoardingRecord,
-  deleteBoardingRecord: deleteBoardingRecord,
+  createContentChat: createContentChat,
+  updateContentChat: updateContentChat,
+  deleteContentChat: deleteContentChat,
 };

@@ -22,7 +22,8 @@ const medicineRoute = require("./MedicineRoute");
 const billRoute = require("./BillRoute");
 const billDetailRoute = require("./BillDetailRoute");
 const boardingRoute = require("./BoardingRoute");
-const boardingRecordRoute = require("./BoardingRecordRoute");
+const chatRoute = require("./ChatRoute");
+const content_chatRoute = require("./ContentChatRoute");
 const cageRoute = require("./CageRoute");
 
 router.use("/reservation", reservationRoute);
@@ -34,7 +35,8 @@ router.use("/prescription", prescriptionRoute);
 router.use("/prescriptionDetail", prescriptionDetailRoute);
 
 router.use("/boarding", boardingRoute);
-router.use("/boardingRecord", boardingRecordRoute);
+router.use("/chat", chatRoute);
+router.use("/content_chat", content_chatRoute);
 router.use("/cage", cageRoute);
 
 router.use("/service", serviceRoute);
