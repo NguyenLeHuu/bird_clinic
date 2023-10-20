@@ -103,7 +103,7 @@ module.exports = {
             booking = {
               ...booking.dataValues,
               reason_referral: "null",
-              status: "test",
+              status: "paid",
               date: arrival_date,
               veterinarian_referral: "auto",
               total_price: total_price,
@@ -120,7 +120,7 @@ module.exports = {
               ...service_form.dataValues,
               service_package_id: service_package_id,
               // note: "null",
-              status: "test",
+              status: "pending",
               veterinarian_id: veterinarian_id,
               total_price: total_price,
               process_at: 1,
@@ -139,7 +139,7 @@ module.exports = {
               booking_id: booking.booking_id,
               payment_method,
               transaction_id,
-              status: "test",
+              status: 1,
             };
             let bill = await BillService.createBill(service_form, {
               transaction: t,

@@ -2913,19 +2913,10 @@
                   "status": {
                     "example": "any"
                   },
-                  "diagnosis": {
-                    "example": "any"
-                  },
-                  "recommendations": {
-                    "example": "any"
-                  },
                   "estimate_time": {
                     "example": "any"
                   },
                   "money_has_paid": {
-                    "example": "any"
-                  },
-                  "checkin_time": {
                     "example": "any"
                   },
                   "customer_name": {
