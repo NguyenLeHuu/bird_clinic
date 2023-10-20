@@ -8,9 +8,9 @@ module.exports = {
          #swagger.description = "Get all ContentChat  "
         */
     try {
-      const type = req.query.type;
-      const type_id = req.query.type_id;
-      let data = await ContentChatService.getAll(type, type_id);
+      // const type = req.query.type;
+      // const type_id = req.query.type_id;
+      let data = await ContentChatService.getAll();
 
       if (data != null) {
         return res.status(200).json({
@@ -60,19 +60,12 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['ContentChat']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
-    try {
-      const { type, type_id, link, is_before, is_after, type_service, status } =
-        req.body;
 
-      const url = await Firebase.uploadImage(file);
-      let data = await ContentChatService.createContentChat(req.body, url);
+    try {
+      const { user1, user2, message, type, chat_id } = req.body;
+
+      // const url = await Firebase.uploadImage(file);
+      let data = await ContentChatService.createContentChat(req.body);
 
       console.log("____Create ContentChat Successful");
 
@@ -97,20 +90,9 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const { status } = req.body;
 
-      let data = await ContentChatService.updateContentChat(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      let data = await ContentChatService.updateContentChat(id, req.body);
       console.log("____Update ContentChat Successful");
 
       return res.status(200).json({

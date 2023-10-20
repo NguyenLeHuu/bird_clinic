@@ -8,9 +8,9 @@ module.exports = {
          #swagger.description = "Get all Boarding  "
         */
     try {
-      const type = req.query.type;
-      const type_id = req.query.type_id;
-      let data = await BoardingService.getAll(type, type_id);
+      // const type = req.query.type;
+      // const type_id = req.query.type_id;
+      let data = await BoardingService.getAll();
 
       if (data != null) {
         return res.status(200).json({
@@ -60,19 +60,20 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Boarding']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
-    try {
-      const { type, type_id, link, is_before, is_after, type_service, status } =
-        req.body;
 
-      const url = await Firebase.uploadImage(file);
-      let data = await BoardingService.createBoarding(req.body, url);
+    try {
+      const {
+        booking_id,
+        arrival_date,
+        departure_date,
+        room_type,
+        bird_id,
+        act_arrival_date,
+        act_departure_date,
+      } = req.body;
+
+      // const url = await Firebase.uploadImage(file);
+      let data = await BoardingService.createBoarding(req.body);
 
       console.log("____Create Boarding Successful");
 
@@ -82,7 +83,7 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Create Boarding Failed");
+      console.log("____Create Boarding Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,
@@ -97,20 +98,15 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const {
+        arrival_date,
+        departure_date,
+        room_type,
+        act_arrival_date,
+        act_departure_date,
+      } = req.body;
 
-      let data = await BoardingService.updateBoarding(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      let data = await BoardingService.updateBoarding(id, req.body);
       console.log("____Update Boarding Successful");
 
       return res.status(200).json({

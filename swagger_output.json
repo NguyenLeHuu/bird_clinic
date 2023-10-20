@@ -883,22 +883,6 @@
           "Boarding"
         ],
         "description": "Get all Boarding ",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -963,19 +947,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "arrival_date": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "departure_date": {
                     "example": "any"
                   },
-                  "price": {
+                  "room_type": {
                     "example": "any"
                   },
-                  "mainimg": {
+                  "act_arrival_date": {
                     "example": "any"
                   },
-                  "detail": {
+                  "act_departure_date": {
                     "example": "any"
                   }
                 }
@@ -1015,16 +999,6 @@
           "Boarding"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1039,25 +1013,25 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "type": {
+                  "booking_id": {
                     "example": "any"
                   },
-                  "type_id": {
+                  "arrival_date": {
                     "example": "any"
                   },
-                  "link": {
+                  "departure_date": {
                     "example": "any"
                   },
-                  "is_before": {
+                  "room_type": {
                     "example": "any"
                   },
-                  "is_after": {
+                  "bird_id": {
                     "example": "any"
                   },
-                  "type_service": {
+                  "act_arrival_date": {
                     "example": "any"
                   },
-                  "status": {
+                  "act_departure_date": {
                     "example": "any"
                   }
                 }
@@ -1073,22 +1047,6 @@
           "Chat"
         ],
         "description": "Get all Chat ",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1153,19 +1111,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "status": {
                     "example": "any"
                   }
                 }
@@ -1205,16 +1151,6 @@
           "Chat"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1229,25 +1165,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "type": {
+                  "boarding_id": {
                     "example": "any"
                   },
-                  "type_id": {
+                  "bird_id": {
                     "example": "any"
                   },
-                  "link": {
-                    "example": "any"
-                  },
-                  "is_before": {
-                    "example": "any"
-                  },
-                  "is_after": {
-                    "example": "any"
-                  },
-                  "type_service": {
-                    "example": "any"
-                  },
-                  "status": {
+                  "customer_id": {
                     "example": "any"
                   }
                 }
@@ -1263,22 +1187,6 @@
           "ContentChat"
         ],
         "description": "Get all ContentChat ",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1343,19 +1251,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "status": {
                     "example": "any"
                   }
                 }
@@ -1395,16 +1291,6 @@
           "ContentChat"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1419,25 +1305,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "user1": {
+                    "example": "any"
+                  },
+                  "user2": {
+                    "example": "any"
+                  },
+                  "message": {
+                    "example": "any"
+                  },
                   "type": {
                     "example": "any"
                   },
-                  "type_id": {
-                    "example": "any"
-                  },
-                  "link": {
-                    "example": "any"
-                  },
-                  "is_before": {
-                    "example": "any"
-                  },
-                  "is_after": {
-                    "example": "any"
-                  },
-                  "type_service": {
-                    "example": "any"
-                  },
-                  "status": {
+                  "chat_id": {
                     "example": "any"
                   }
                 }
@@ -1453,22 +1333,6 @@
           "Cage"
         ],
         "description": "Get all Cage ",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "type_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1533,19 +1397,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "boarding_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "bird_id": {
                     "example": "any"
                   },
-                  "price": {
+                  "status": {
                     "example": "any"
                   },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "size": {
                     "example": "any"
                   }
                 }
@@ -1585,16 +1446,6 @@
           "Cage"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1609,25 +1460,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "type": {
+                  "boarding_id": {
                     "example": "any"
                   },
-                  "type_id": {
+                  "bird_id": {
                     "example": "any"
                   },
-                  "link": {
-                    "example": "any"
-                  },
-                  "is_before": {
-                    "example": "any"
-                  },
-                  "is_after": {
-                    "example": "any"
-                  },
-                  "type_service": {
-                    "example": "any"
-                  },
-                  "status": {
+                  "size": {
                     "example": "any"
                   }
                 }

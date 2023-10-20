@@ -8,9 +8,9 @@ module.exports = {
          #swagger.description = "Get all Cage  "
         */
     try {
-      const type = req.query.type;
-      const type_id = req.query.type_id;
-      let data = await CageService.getAll(type, type_id);
+      // const type = req.query.type;
+      // const type_id = req.query.type_id;
+      let data = await CageService.getAll();
 
       if (data != null) {
         return res.status(200).json({
@@ -60,19 +60,12 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Cage']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
-    try {
-      const { type, type_id, link, is_before, is_after, type_service, status } =
-        req.body;
 
-      const url = await Firebase.uploadImage(file);
-      let data = await CageService.createCage(req.body, url);
+    try {
+      const { boarding_id, bird_id, size } = req.body;
+
+      // const url = await Firebase.uploadImage(file);
+      let data = await CageService.createCage(req.body);
 
       console.log("____Create Cage Successful");
 
@@ -97,20 +90,9 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const { boarding_id, bird_id, status, size } = req.body;
 
-      let data = await CageService.updateCage(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      let data = await CageService.updateCage(id, req.body);
       console.log("____Update Cage Successful");
 
       return res.status(200).json({

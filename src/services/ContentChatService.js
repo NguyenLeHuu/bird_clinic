@@ -2,16 +2,16 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, content_chat_id) => {
+let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.content_chat.findAll({
-        where: {
-          [Op.or]: [
-            { bird_size_id: bird_size_id },
-            { content_chat_id: content_chat_id },
-          ],
-        },
+        // where: {
+        //   [Op.or]: [
+        //     { bird_size_id: bird_size_id },
+        //     { content_chat_id: content_chat_id },
+        //   ],
+        // },
       });
       resolve(data);
     } catch (e) {
@@ -27,7 +27,7 @@ let getOne = (id) => {
       let data = await db.content_chat.findOne({
         where: {
           content_chat_id: id,
-          include: [{ model: ContentChatType, attributes: ["name"] }],
+          // include: [{ model: ContentChatType, attributes: ["name"] }],
         },
       });
       resolve(data);
@@ -37,17 +37,17 @@ let getOne = (id) => {
   });
 };
 
-let createContentChat = (data, url) => {
+let createContentChat = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
+      // const id = crypto.randomBytes(15).toString("hex");
       const result = await db.content_chat.create({
-        service_package_id: id,
-        bird_size_id: data.bird_size_id,
-        content_chat_id: data.content_chat_id,
-        price: data.price,
-        description: data.description,
-        package_name: data.package_name,
+        // content_chat_id: id,
+        user1: data.user1,
+        user2: data.user2,
+        message: data.message,
+        type: data.type,
+        chat_id: data.chat_id,
         status: 1,
       });
       resolve(result);
@@ -57,23 +57,20 @@ let createContentChat = (data, url) => {
   });
 };
 
-let updateContentChat = (id, name, quantity, price, mainimg, detail) => {
+let updateContentChat = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.content_chat.update(
+      let result = await db.content_chat.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          status: data.status,
         },
         {
           where: {
-            account_id: id,
+            content_chat_id: id,
           },
         }
       );
-      resolve(data);
+      resolve(result);
     } catch (e) {
       reject(e);
     }

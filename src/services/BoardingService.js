@@ -2,16 +2,16 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, boarding_id) => {
+let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.boarding.findAll({
-        where: {
-          [Op.or]: [
-            { bird_size_id: bird_size_id },
-            { boarding_id: boarding_id },
-          ],
-        },
+        // where: {
+        //   [Op.or]: [
+        //     { bird_size_id: bird_size_id },
+        //     { boarding_id: boarding_id },
+        //   ],
+        // },
       });
       resolve(data);
     } catch (e) {
@@ -27,7 +27,7 @@ let getOne = (id) => {
       let data = await db.boarding.findOne({
         where: {
           boarding_id: id,
-          include: [{ model: BoardingType, attributes: ["name"] }],
+          // include: [{ model: BoardingType, attributes: ["name"] }],
         },
       });
       resolve(data);
@@ -37,18 +37,19 @@ let getOne = (id) => {
   });
 };
 
-let createBoarding = (data, url) => {
+let createBoarding = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.boarding.create({
-        service_package_id: id,
-        bird_size_id: data.bird_size_id,
-        boarding_id: data.boarding_id,
-        price: data.price,
-        description: data.description,
-        package_name: data.package_name,
-        status: 1,
+        boarding_id: id,
+        booking_id: data.booking_id,
+        arrival_date: data.arrival_date,
+        departure_date: data.departure_date,
+        room_type: data.room_type,
+        bird_id: data.booking_id,
+        act_arrival_date: data.act_arrival_date,
+        act_departure_date: data.act_departure_date,
       });
       resolve(result);
     } catch (e) {
@@ -57,23 +58,24 @@ let createBoarding = (data, url) => {
   });
 };
 
-let updateBoarding = (id, name, quantity, price, mainimg, detail) => {
+let updateBoarding = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boarding.update(
+      let result = await db.boarding.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          arrival_date: data.arrival_date,
+          departure_date: data.departure_date,
+          room_type: data.room_type,
+          act_arrival_date: data.act_arrival_date,
+          act_departure_date: data.act_departure_date,
         },
         {
           where: {
-            account_id: id,
+            boarding_id: id,
           },
         }
       );
-      resolve(data);
+      resolve(result);
     } catch (e) {
       reject(e);
     }

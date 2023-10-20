@@ -2,13 +2,13 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, cage_id) => {
+let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.cage.findAll({
-        where: {
-          [Op.or]: [{ bird_size_id: bird_size_id }, { cage_id: cage_id }],
-        },
+        // where: {
+        //   [Op.or]: [{ bird_size_id: bird_size_id }, { cage_id: cage_id }],
+        // },
       });
       resolve(data);
     } catch (e) {
@@ -24,7 +24,7 @@ let getOne = (id) => {
       let data = await db.cage.findOne({
         where: {
           cage_id: id,
-          include: [{ model: CageType, attributes: ["name"] }],
+          // include: [{ model: CageType, attributes: ["name"] }],
         },
       });
       resolve(data);
@@ -34,18 +34,15 @@ let getOne = (id) => {
   });
 };
 
-let createCage = (data, url) => {
+let createCage = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
+      // const id = crypto.randomBytes(15).toString("hex");
       const result = await db.cage.create({
-        service_package_id: id,
-        bird_size_id: data.bird_size_id,
-        cage_id: data.cage_id,
-        price: data.price,
-        description: data.description,
-        package_name: data.package_name,
-        status: 1,
+        boarding_id: data.boarding_id,
+        bird_id: data.bird_id,
+        status: "available",
+        size: data.size,
       });
       resolve(result);
     } catch (e) {
@@ -54,23 +51,22 @@ let createCage = (data, url) => {
   });
 };
 
-let updateCage = (id, name, quantity, price, mainimg, detail) => {
+let updateCage = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.cage.update(
+      let result = await db.cage.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          boarding_id: data.boarding_id,
+          bird_id: data.bird_id,
+          status: data.status,
         },
         {
           where: {
-            account_id: id,
+            cage_id: id,
           },
         }
       );
-      resolve(data);
+      resolve(result);
     } catch (e) {
       reject(e);
     }
