@@ -11,6 +11,7 @@ let route = promiseRouter();
 
 // route.post("/", multer.Multer.array("image"), ReservationController.store);
 route.post("/", ReservationController.store);
+route.post("/boarding", ReservationController.store_boarding);
 
 // route.put("/:id", ReservationController.update);
 

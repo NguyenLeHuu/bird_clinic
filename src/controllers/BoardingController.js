@@ -62,15 +62,8 @@ module.exports = {
     // #swagger.tags = ['Boarding']
 
     try {
-      const {
-        booking_id,
-        arrival_date,
-        departure_date,
-        room_type,
-        bird_id,
-        act_arrival_date,
-        act_departure_date,
-      } = req.body;
+      const { booking_id, arrival_date, departure_date, room_type, bird_id } =
+        req.body;
 
       // const url = await Firebase.uploadImage(file);
       let data = await BoardingService.createBoarding(req.body);

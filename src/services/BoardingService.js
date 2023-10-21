@@ -48,8 +48,6 @@ let createBoarding = (data) => {
         departure_date: data.departure_date,
         room_type: data.room_type,
         bird_id: data.booking_id,
-        act_arrival_date: data.act_arrival_date,
-        act_departure_date: data.act_departure_date,
       });
       resolve(result);
     } catch (e) {
