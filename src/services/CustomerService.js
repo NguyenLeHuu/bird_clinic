@@ -65,10 +65,54 @@ let updateCustomer = (id, name, quantity, price, mainimg, detail) => {
         },
         {
           where: {
-            productid: id,
+            customer_id: id,
           },
         }
       );
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let updateTotalSpent = (id, total_spent) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let cus = await getOne(id);
+
+      let data = await db.customer.update(
+        {
+          total_spent: parseFloat(cus.total_spent) + parseFloat(total_spent),
+        },
+        {
+          where: {
+            customer_id: id,
+          },
+        }
+      );
+
+      let rank = "";
+      if (total_spent <= 1000000) {
+        rank = "Un_rank";
+      } else if (total_spent <= 10000000) {
+        rank = "Bạc";
+      } else if (total_spent <= 50000000) {
+        rank = "Vàng";
+      } else {
+        rank = "Kim cương";
+      }
+      await db.customer.update(
+        {
+          membership: rank,
+        },
+        {
+          where: {
+            customer_id: id,
+          },
+        }
+      );
+
       resolve(data);
     } catch (e) {
       reject(e);
@@ -85,7 +129,7 @@ let deleteCustomer = (id) => {
         },
         {
           where: {
-            productid: id,
+            customer_id: id,
           },
         }
       );
@@ -101,5 +145,6 @@ module.exports = {
   getAll: getAll,
   createCustomer: createCustomer,
   updateCustomer: updateCustomer,
+  updateTotalSpent,
   deleteCustomer: deleteCustomer,
 };

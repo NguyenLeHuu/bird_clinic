@@ -4,6 +4,7 @@ const Service_Form = require("../services/Service_FormService");
 const Service_Form_detail = require("../services/Service_Form_detailService");
 const BillService = require("../services/BillService");
 const BillDetailService = require("../services/BillDetailService");
+const CustomerService = require("../services/CustomerService");
 const Firebase = require("../services/Firebase");
 const db = require("../models/index");
 
@@ -87,6 +88,8 @@ module.exports = {
             let bill = await BillService.createBill(service_form, {
               transaction: t,
             });
+
+            await CustomerService.updateTotalSpent(account_id, total_price);
 
             bill = {
               ...bill.dataValues,
@@ -172,7 +175,7 @@ module.exports = {
               room_type,
             };
 
-            let boarding = await Boarding.createService_Form(booking, {
+            let boarding = await Boarding.createBoarding(booking, {
               transaction: t,
             });
 
@@ -209,6 +212,8 @@ module.exports = {
               transaction: t,
             });
 
+            await CustomerService.updateTotalSpent(account_id, total_price);
+
             bill = {
               ...bill.dataValues,
               service_package_id,
@@ -222,7 +227,7 @@ module.exports = {
             console.log("Transaction completed successfully.");
           } catch (error) {
             // Nếu có lỗi, hủy transaction và xử lý lỗi
-            console.error("Transaction failed:");
+            console.error("Transaction failed:", error);
           }
         })
         .then(() => {
