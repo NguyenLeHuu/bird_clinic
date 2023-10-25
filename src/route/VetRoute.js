@@ -10,7 +10,7 @@ route.get("/", VetController.getAll);
 route.get("/:id", VetController.getOne);
 
 // route.post("/", multer.Multer.array("image"), VetController.store);
-route.post("/create", multer.Multer.single("image"), VetController.store);
+route.post("/", multer.Multer.single("image"), VetController.store);
 
 route.put("/:id", VetController.update);
 

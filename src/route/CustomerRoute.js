@@ -10,7 +10,7 @@ route.get("/", CustomerController.getAll);
 route.get("/:id", CustomerController.getOne);
 
 // route.post("/", multer.Multer.array("image"), CustomerController.store);
-route.post("/create", multer.Multer.single("image"), CustomerController.store);
+route.post("/", multer.Multer.single("image"), CustomerController.store);
 
 route.put("/:id", CustomerController.update);
 

@@ -11,7 +11,7 @@ route.get("/:id", Service_FormController.getOne);
 
 // route.post("/", multer.Multer.array("image"), Service_FormController.store);
 route.post(
-  "/create",
+  "/",
   // multer.Multer.single("image"),
   Service_FormController.store
 );

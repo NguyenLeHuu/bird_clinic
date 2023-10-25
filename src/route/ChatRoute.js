@@ -10,7 +10,7 @@ route.get("/", ChatController.getAll);
 route.get("/:id", ChatController.getOne);
 
 // route.post("/", multer.Multer.array("image"), ChatController.store);
-route.post("/create", ChatController.store);
+route.post("/", ChatController.store);
 
 route.put("/:id", ChatController.update);
 

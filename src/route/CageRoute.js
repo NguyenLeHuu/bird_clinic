@@ -10,7 +10,7 @@ route.get("/", CageController.getAll);
 route.get("/:id", CageController.getOne);
 
 // route.post("/", multer.Multer.array("image"), CageController.store);
-route.post("/create", CageController.store);
+route.post("/", CageController.store);
 
 route.put("/:id", CageController.update);
 

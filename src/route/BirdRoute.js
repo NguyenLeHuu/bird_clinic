@@ -10,7 +10,7 @@ route.get("/all/:id", BirdController.getAll);
 route.get("/:id", BirdController.getOne);
 
 // route.post("/", multer.Multer.array("image"), BirdController.store);
-route.post("/create", multer.Multer.single("image"), BirdController.store);
+route.post("/", multer.Multer.single("image"), BirdController.store);
 
 route.put("/:id", BirdController.update);
 

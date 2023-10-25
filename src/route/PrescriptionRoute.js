@@ -10,7 +10,7 @@ route.get("/", PrescriptionController.getAll);
 route.get("/:id", PrescriptionController.getOne);
 
 // route.post("/", multer.Multer.array("image"), PrescriptionController.store);
-route.post("/create", PrescriptionController.store);
+route.post("/", PrescriptionController.store);
 
 route.put("/:id", PrescriptionController.update);
 

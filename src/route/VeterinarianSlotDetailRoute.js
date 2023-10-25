@@ -10,7 +10,7 @@ route.get("/", VeterinarianSlotDetailController.getAll);
 route.get("/:id", VeterinarianSlotDetailController.getOne);
 
 // route.post("/", multer.Multer.array("image"), VeterinarianSlotDetailController.store);
-route.post("/create", VeterinarianSlotDetailController.store);
+route.post("/", VeterinarianSlotDetailController.store);
 
 route.put("/:id", VeterinarianSlotDetailController.update);
 

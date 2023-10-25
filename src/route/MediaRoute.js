@@ -10,7 +10,7 @@ route.get("/", MediaController.getAll);
 route.get("/:id", MediaController.getOne);
 
 // route.post("/", multer.Multer.array("image"), MediaController.store);
-route.post("/create", multer.Multer.single("image"), MediaController.store);
+route.post("/", multer.Multer.single("image"), MediaController.store);
 
 route.put("/:id", MediaController.update);
 

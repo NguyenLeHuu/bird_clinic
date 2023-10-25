@@ -10,7 +10,7 @@ route.get("/", BoardingController.getAll);
 route.get("/:id", BoardingController.getOne);
 
 // route.post("/", multer.Multer.array("image"), BoardingController.store);
-route.post("/create", BoardingController.store);
+route.post("/", BoardingController.store);
 
 route.put("/:id", BoardingController.update);
 

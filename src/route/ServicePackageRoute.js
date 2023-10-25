@@ -10,11 +10,7 @@ route.get("/", ServicePackageController.getAll);
 route.get("/:id", ServicePackageController.getOne);
 
 // route.post("/", multer.Multer.array("image"), ServicePackageController.store);
-route.post(
-  "/create",
-  multer.Multer.single("image"),
-  ServicePackageController.store
-);
+route.post("/", multer.Multer.single("image"), ServicePackageController.store);
 
 route.put("/:id", ServicePackageController.update);
 

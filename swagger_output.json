@@ -241,6 +241,61 @@
             "description": "Bad Request"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bird_id": {
+                    "example": "any"
+                  },
+                  "booking_id": {
+                    "example": "any"
+                  },
+                  "reason_referral": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
+                  },
+                  "veterinarian_referral": {
+                    "example": "any"
+                  },
+                  "total_price": {
+                    "example": "any"
+                  },
+                  "qr_code": {
+                    "example": "any"
+                  },
+                  "num_ser_must_do": {
+                    "example": "any"
+                  },
+                  "num_ser_has_done": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/service_Form/{id}": {
@@ -343,10 +398,24 @@
         }
       }
     },
-    "/service_Form/create": {
+    "/service_Form_detail/": {
+      "get": {
+        "tags": [
+          "Service_Form_detail"
+        ],
+        "description": "Get all Service_Form_detailService of service",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Service_Form"
+          "Service_Form_detail"
         ],
         "description": "",
         "responses": {
@@ -363,55 +432,30 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "bird_id": {
+                  "service_package_id": {
                     "example": "any"
                   },
-                  "booking_id": {
+                  "service_form_id": {
                     "example": "any"
                   },
-                  "reason_referral": {
+                  "note": {
                     "example": "any"
                   },
                   "status": {
                     "example": "any"
                   },
-                  "date": {
+                  "veterinarian_id": {
                     "example": "any"
                   },
-                  "veterinarian_referral": {
+                  "booking_id": {
                     "example": "any"
                   },
-                  "total_price": {
-                    "example": "any"
-                  },
-                  "qr_code": {
-                    "example": "any"
-                  },
-                  "num_ser_must_do": {
-                    "example": "any"
-                  },
-                  "num_ser_has_done": {
+                  "process_at": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/service_Form_detail/": {
-      "get": {
-        "tags": [
-          "Service_Form_detail"
-        ],
-        "description": "Get all Service_Form_detailService of service",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -510,10 +554,24 @@
         }
       }
     },
-    "/service_Form_detail/create": {
+    "/bill/": {
+      "get": {
+        "tags": [
+          "Bill"
+        ],
+        "description": "Get all Bill",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Service_Form_detail"
+          "Bill"
         ],
         "description": "",
         "responses": {
@@ -530,46 +588,30 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "service_package_id": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "total_price": {
                     "example": "any"
                   },
                   "service_form_id": {
                     "example": "any"
                   },
-                  "note": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
                   "booking_id": {
                     "example": "any"
                   },
-                  "process_at": {
+                  "payment_method": {
+                    "example": "any"
+                  },
+                  "paypal_transaction_id": {
+                    "example": "any"
+                  },
+                  "status": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/bill/": {
-      "get": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "Get all Bill",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -668,10 +710,24 @@
         }
       }
     },
-    "/bill/create": {
+    "/billDetail/": {
+      "get": {
+        "tags": [
+          "BillDetail"
+        ],
+        "description": "Get all BillDetail ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Bill"
+          "BillDetail"
         ],
         "description": "",
         "responses": {
@@ -688,46 +744,21 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
+                  "bill_id": {
                     "example": "any"
                   },
-                  "total_price": {
+                  "service_package_id": {
                     "example": "any"
                   },
-                  "service_form_id": {
+                  "price": {
                     "example": "any"
                   },
-                  "booking_id": {
-                    "example": "any"
-                  },
-                  "payment_method": {
-                    "example": "any"
-                  },
-                  "paypal_transaction_id": {
-                    "example": "any"
-                  },
-                  "status": {
+                  "quantity": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/billDetail/": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get all BillDetail ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -825,45 +856,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/billDetail/create": {
-      "post": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bill_id": {
-                    "example": "any"
-                  },
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -1211,6 +1203,56 @@
             "description": "Bad Request"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Media"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "example": "any"
+                  },
+                  "type_id": {
+                    "example": "any"
+                  },
+                  "is_before": {
+                    "example": "any"
+                  },
+                  "is_after": {
+                    "example": "any"
+                  },
+                  "type_service": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/media/{id}": {
@@ -1295,22 +1337,26 @@
         }
       }
     },
-    "/media/create": {
+    "/prescription/": {
+      "get": {
+        "tags": [
+          "Prescription"
+        ],
+        "description": "Get all Prescription",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Media"
+          "Prescription"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1325,40 +1371,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "type": {
+                  "booking_id": {
                     "example": "any"
                   },
-                  "type_id": {
+                  "note": {
                     "example": "any"
                   },
-                  "is_before": {
-                    "example": "any"
-                  },
-                  "is_after": {
-                    "example": "any"
-                  },
-                  "type_service": {
+                  "usage": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/prescription/": {
-      "get": {
-        "tags": [
-          "Prescription"
-        ],
-        "description": "Get all Prescription",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -1454,10 +1478,24 @@
         }
       }
     },
-    "/prescription/create": {
+    "/prescriptionDetail/": {
+      "get": {
+        "tags": [
+          "Prescription Detail"
+        ],
+        "description": "Get all PrescriptionDetail",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Prescription"
+          "Prescription Detail"
         ],
         "description": "",
         "responses": {
@@ -1474,34 +1512,27 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "booking_id": {
+                  "prescription_id": {
                     "example": "any"
                   },
-                  "note": {
+                  "medicine_id": {
                     "example": "any"
                   },
                   "usage": {
+                    "example": "any"
+                  },
+                  "total_dose": {
+                    "example": "any"
+                  },
+                  "dose": {
+                    "example": "any"
+                  },
+                  "day": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/prescriptionDetail/": {
-      "get": {
-        "tags": [
-          "Prescription Detail"
-        ],
-        "description": "Get all PrescriptionDetail",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -1606,10 +1637,24 @@
         }
       }
     },
-    "/prescriptionDetail/create": {
+    "/boarding/": {
+      "get": {
+        "tags": [
+          "Boarding"
+        ],
+        "description": "Get all Boarding ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Prescription Detail"
+          "Boarding"
         ],
         "description": "",
         "responses": {
@@ -1626,43 +1671,24 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "prescription_id": {
+                  "booking_id": {
                     "example": "any"
                   },
-                  "medicine_id": {
+                  "arrival_date": {
                     "example": "any"
                   },
-                  "usage": {
+                  "departure_date": {
                     "example": "any"
                   },
-                  "total_dose": {
+                  "room_type": {
                     "example": "any"
                   },
-                  "dose": {
-                    "example": "any"
-                  },
-                  "day": {
+                  "bird_id": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/boarding/": {
-      "get": {
-        "tags": [
-          "Boarding"
-        ],
-        "description": "Get all Boarding ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -1767,10 +1793,24 @@
         }
       }
     },
-    "/boarding/create": {
+    "/chat/": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "description": "Get all Chat ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Boarding"
+          "Chat"
         ],
         "description": "",
         "responses": {
@@ -1787,40 +1827,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "booking_id": {
-                    "example": "any"
-                  },
-                  "arrival_date": {
-                    "example": "any"
-                  },
-                  "departure_date": {
-                    "example": "any"
-                  },
-                  "room_type": {
+                  "boarding_id": {
                     "example": "any"
                   },
                   "bird_id": {
+                    "example": "any"
+                  },
+                  "customer_id": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/chat/": {
-      "get": {
-        "tags": [
-          "Chat"
-        ],
-        "description": "Get all Chat ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -1913,10 +1931,24 @@
         }
       }
     },
-    "/chat/create": {
+    "/content_chat/": {
+      "get": {
+        "tags": [
+          "ContentChat"
+        ],
+        "description": "Get all ContentChat ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Chat"
+          "ContentChat"
         ],
         "description": "",
         "responses": {
@@ -1933,34 +1965,24 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "boarding_id": {
+                  "user1": {
                     "example": "any"
                   },
-                  "bird_id": {
+                  "user2": {
                     "example": "any"
                   },
-                  "customer_id": {
+                  "message": {
+                    "example": "any"
+                  },
+                  "type": {
+                    "example": "any"
+                  },
+                  "chat_id": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/content_chat/": {
-      "get": {
-        "tags": [
-          "ContentChat"
-        ],
-        "description": "Get all ContentChat ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -2053,10 +2075,24 @@
         }
       }
     },
-    "/content_chat/create": {
+    "/cage/": {
+      "get": {
+        "tags": [
+          "Cage"
+        ],
+        "description": "Get all Cage ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "ContentChat"
+          "Cage"
         ],
         "description": "",
         "responses": {
@@ -2073,40 +2109,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "user1": {
+                  "boarding_id": {
                     "example": "any"
                   },
-                  "user2": {
+                  "bird_id": {
                     "example": "any"
                   },
-                  "message": {
-                    "example": "any"
-                  },
-                  "type": {
-                    "example": "any"
-                  },
-                  "chat_id": {
+                  "size": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/cage/": {
-      "get": {
-        "tags": [
-          "Cage"
-        ],
-        "description": "Get all Cage ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -2204,42 +2218,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/cage/create": {
-      "post": {
-        "tags": [
-          "Cage"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "boarding_id": {
-                    "example": "any"
-                  },
-                  "bird_id": {
-                    "example": "any"
-                  },
-                  "size": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -2370,7 +2348,7 @@
         }
       }
     },
-    "/service/create": {
+    "/service/": {
       "post": {
         "tags": [
           "Service"
@@ -2447,6 +2425,49 @@
           },
           "400": {
             "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ServicePackageService"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bird_size_id": {
+                    "example": "any"
+                  },
+                  "service_id": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "package_name": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -2551,51 +2572,6 @@
         }
       }
     },
-    "/servicePackage/create": {
-      "post": {
-        "tags": [
-          "ServicePackageService"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bird_size_id": {
-                    "example": "any"
-                  },
-                  "service_id": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "description": {
-                    "example": "any"
-                  },
-                  "package_name": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/login/": {
       "post": {
         "tags": [
@@ -2640,6 +2616,56 @@
           },
           "400": {
             "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "phone": {
+                    "example": "any"
+                  },
+                  "role": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -2744,10 +2770,24 @@
         }
       }
     },
-    "/account/create": {
+    "/customer/": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "description": "Get all Customer of 1 customer (give customerid)",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Account"
+          "Customer"
         ],
         "description": "",
         "parameters": [
@@ -2774,40 +2814,30 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "account_id": {
+                    "example": "any"
+                  },
                   "email": {
                     "example": "any"
                   },
-                  "password": {
+                  "address": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "status": {
                     "example": "any"
                   },
                   "phone": {
                     "example": "any"
                   },
-                  "role": {
-                    "example": "any"
-                  },
-                  "status": {
+                  "image": {
                     "example": "any"
                   }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/customer/": {
-      "get": {
-        "tags": [
-          "Customer"
-        ],
-        "description": "Get all Customer of 1 customer (give customerid)",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
@@ -2908,64 +2938,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/customer/create": {
-      "post": {
-        "tags": [
-          "Customer"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "address": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "phone": {
-                    "example": "any"
-                  },
-                  "image": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -3111,7 +3083,7 @@
         }
       }
     },
-    "/bird/create": {
+    "/bird/": {
       "post": {
         "tags": [
           "Bird"
@@ -3208,6 +3180,56 @@
             "description": "Bad Request"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Vet"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "example": "any"
+                  },
+                  "specialized": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "image": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/vet/{id}": {
@@ -3301,58 +3323,6 @@
         }
       }
     },
-    "/vet/create": {
-      "post": {
-        "tags": [
-          "Vet"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "example": "any"
-                  },
-                  "specialized": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "image": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/veterinarianSlotDetail/": {
       "get": {
         "tags": [
@@ -3388,6 +3358,40 @@
           },
           "400": {
             "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "VeterinarianSlotDetail"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "time_slot_id": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -3482,42 +3486,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/veterinarianSlotDetail/create": {
-      "post": {
-        "tags": [
-          "VeterinarianSlotDetail"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "time_slot_id": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       }

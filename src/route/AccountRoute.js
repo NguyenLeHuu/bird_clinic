@@ -10,7 +10,7 @@ route.get("/", AccountController.getAll);
 route.get("/:id", AccountController.getOne);
 
 // route.post("/", multer.Multer.array("image"), AccountController.store);
-route.post("/create", multer.Multer.single("image"), AccountController.store);
+route.post("/", multer.Multer.single("image"), AccountController.store);
 
 route.put("/:id", AccountController.update);
 
