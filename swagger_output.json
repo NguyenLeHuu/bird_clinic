@@ -16,10 +16,40 @@
     }
   ],
   "paths": {
-    "/reservation/": {
+    "/booking/": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "description": "Get all Booking",
+        "parameters": [
+          {
+            "name": "arrival_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "Reservation"
+          "Booking"
         ],
         "description": "",
         "responses": {
@@ -60,9 +90,6 @@
                   "money_has_paid": {
                     "example": "any"
                   },
-                  "checkin_time": {
-                    "example": "any"
-                  },
                   "customer_name": {
                     "example": "any"
                   },
@@ -74,18 +101,6 @@
                   },
                   "arrival_date": {
                     "example": "any"
-                  },
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "payment_method": {
-                    "example": "any"
-                  },
-                  "transaction_id": {
-                    "example": "any"
-                  },
-                  "total_price": {
-                    "example": "any"
                   }
                 }
               }
@@ -94,12 +109,46 @@
         }
       }
     },
-    "/reservation/boarding": {
-      "post": {
+    "/booking/{id}": {
+      "get": {
         "tags": [
-          "Reservation"
+          "Booking"
         ],
-        "description": "Reservation boarding",
+        "description": "Get one Booking (give booking_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "description": "Update a Booking (give booking_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -114,13 +163,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "account_id": {
-                    "example": "any"
-                  },
                   "time_id": {
-                    "example": "any"
-                  },
-                  "bird_id": {
                     "example": "any"
                   },
                   "veterinarian_id": {
@@ -132,43 +175,690 @@
                   "status": {
                     "example": "any"
                   },
+                  "diagnosis": {
+                    "example": "any"
+                  },
+                  "recommendations": {
+                    "example": "any"
+                  },
+                  "booking_date": {
+                    "example": "any"
+                  },
                   "estimate_time": {
                     "example": "any"
                   },
                   "money_has_paid": {
                     "example": "any"
                   },
-                  "checkin_time": {
+                  "note": {
                     "example": "any"
                   },
-                  "customer_name": {
+                  "arrival_date": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Booking"
+        ],
+        "description": "Delete Booking (give booking_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form/": {
+      "get": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "Get all Service_Form of service",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form/{id}": {
+      "get": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "Get one Service_Form (give service_form_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "Update a Service_Form",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
+                  },
+                  "qr_code": {
+                    "example": "any"
+                  },
+                  "num_ser_must_do": {
+                    "example": "any"
+                  },
+                  "num_ser_has_done": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "Delete Service_Form (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form/create": {
+      "post": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bird_id": {
+                    "example": "any"
+                  },
+                  "booking_id": {
+                    "example": "any"
+                  },
+                  "reason_referral": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
+                  },
+                  "veterinarian_referral": {
+                    "example": "any"
+                  },
+                  "total_price": {
+                    "example": "any"
+                  },
+                  "qr_code": {
+                    "example": "any"
+                  },
+                  "num_ser_must_do": {
+                    "example": "any"
+                  },
+                  "num_ser_has_done": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/service_Form_detail/": {
+      "get": {
+        "tags": [
+          "Service_Form_detail"
+        ],
+        "description": "Get all Service_Form_detailService of service",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form_detail/{id}": {
+      "get": {
+        "tags": [
+          "Service_Form_detail"
+        ],
+        "description": "Get one Service_Form_detailService (give service_package_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Service_Form_detail"
+        ],
+        "description": "Update a Service_Form_detailService (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "process_at": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Service_Form_detail"
+        ],
+        "description": "Delete Service_Form_detailService (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/service_Form_detail/create": {
+      "post": {
+        "tags": [
+          "Service_Form_detail"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_package_id": {
+                    "example": "any"
+                  },
+                  "service_form_id": {
                     "example": "any"
                   },
                   "note": {
                     "example": "any"
                   },
-                  "service_type": {
+                  "status": {
                     "example": "any"
                   },
-                  "arrival_date": {
+                  "veterinarian_id": {
                     "example": "any"
                   },
-                  "service_package_id": {
+                  "booking_id": {
                     "example": "any"
                   },
+                  "process_at": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bill/": {
+      "get": {
+        "tags": [
+          "Bill"
+        ],
+        "description": "Get all Bill",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/bill/{id}": {
+      "get": {
+        "tags": [
+          "Bill"
+        ],
+        "description": "Get one Bill (give bill_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Bill"
+        ],
+        "description": "Update a bill (give bill_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
                   "payment_method": {
                     "example": "any"
                   },
                   "transaction_id": {
                     "example": "any"
                   },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bill"
+        ],
+        "description": "Delete bill (give bill_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/bill/create": {
+      "post": {
+        "tags": [
+          "Bill"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
                   "total_price": {
                     "example": "any"
                   },
-                  "departure_date": {
+                  "service_form_id": {
                     "example": "any"
                   },
-                  "room_type": {
+                  "booking_id": {
+                    "example": "any"
+                  },
+                  "payment_method": {
+                    "example": "any"
+                  },
+                  "paypal_transaction_id": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billDetail/": {
+      "get": {
+        "tags": [
+          "BillDetail"
+        ],
+        "description": "Get all BillDetail ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/billDetail/{id}": {
+      "get": {
+        "tags": [
+          "BillDetail"
+        ],
+        "description": "Get one BillDetail (give bill_detail_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BillDetail"
+        ],
+        "description": "Update a bill_detail (give bill_detail_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bill_id": {
+                    "example": "any"
+                  },
+                  "service_package_id": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "quantity": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "BillDetail"
+        ],
+        "description": "Delete bill_detail (give bill_detail_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/billDetail/create": {
+      "post": {
+        "tags": [
+          "BillDetail"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bill_id": {
+                    "example": "any"
+                  },
+                  "service_package_id": {
+                    "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
+                  },
+                  "quantity": {
                     "example": "any"
                   }
                 }
@@ -1906,214 +2596,6 @@
         }
       }
     },
-    "/bird/all/{id}": {
-      "get": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Get all Bird of 1 customer (give customerid)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/bird/{id}": {
-      "get": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Get one Bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Update a bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "customer_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "gender": {
-                    "example": "any"
-                  },
-                  "hatching_date": {
-                    "example": "any"
-                  },
-                  "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "color": {
-                    "example": "any"
-                  },
-                  "breed": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "size": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "Delete bird (give bird_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/bird/create": {
-      "post": {
-        "tags": [
-          "Bird"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "image",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "customer_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "gender": {
-                    "example": "any"
-                  },
-                  "hatching_date": {
-                    "example": "any"
-                  },
-                  "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
-                    "example": "any"
-                  },
-                  "color": {
-                    "example": "any"
-                  },
-                  "breed": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "size": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/login/": {
       "post": {
         "tags": [
@@ -2488,6 +2970,214 @@
         }
       }
     },
+    "/bird/all/{id}": {
+      "get": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Get all Bird of 1 customer (give customerid)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/bird/{id}": {
+      "get": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Get one Bird (give bird_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Update a bird (give bird_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "gender": {
+                    "example": "any"
+                  },
+                  "hatching_date": {
+                    "example": "any"
+                  },
+                  "ISO_microchip": {
+                    "example": "any"
+                  },
+                  "weight": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "breed": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "size": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "Delete bird (give bird_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/bird/create": {
+      "post": {
+        "tags": [
+          "Bird"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "gender": {
+                    "example": "any"
+                  },
+                  "hatching_date": {
+                    "example": "any"
+                  },
+                  "ISO_microchip": {
+                    "example": "any"
+                  },
+                  "weight": {
+                    "example": "any"
+                  },
+                  "color": {
+                    "example": "any"
+                  },
+                  "breed": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "size": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/vet/": {
       "get": {
         "tags": [
@@ -2823,860 +3513,6 @@
                     "example": "any"
                   },
                   "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/booking/": {
-      "get": {
-        "tags": [
-          "Booking"
-        ],
-        "description": "Get all Booking",
-        "parameters": [
-          {
-            "name": "arrival_date",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/booking/{id}": {
-      "get": {
-        "tags": [
-          "Booking"
-        ],
-        "description": "Get one Booking (give booking_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Booking"
-        ],
-        "description": "Update a Booking (give booking_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "time_id": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
-                  "symptom": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "diagnosis": {
-                    "example": "any"
-                  },
-                  "recommendations": {
-                    "example": "any"
-                  },
-                  "booking_date": {
-                    "example": "any"
-                  },
-                  "estimate_time": {
-                    "example": "any"
-                  },
-                  "money_has_paid": {
-                    "example": "any"
-                  },
-                  "note": {
-                    "example": "any"
-                  },
-                  "arrival_date": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Booking"
-        ],
-        "description": "Delete Booking (give booking_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/booking/create": {
-      "post": {
-        "tags": [
-          "Booking"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "account_id": {
-                    "example": "any"
-                  },
-                  "time_id": {
-                    "example": "any"
-                  },
-                  "bird_id": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
-                  "symptom": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "estimate_time": {
-                    "example": "any"
-                  },
-                  "money_has_paid": {
-                    "example": "any"
-                  },
-                  "customer_name": {
-                    "example": "any"
-                  },
-                  "note": {
-                    "example": "any"
-                  },
-                  "service_type": {
-                    "example": "any"
-                  },
-                  "arrival_date": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/service_Form/": {
-      "get": {
-        "tags": [
-          "Service_FormService"
-        ],
-        "description": "Get all Service_FormService of service",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/service_Form/{id}": {
-      "get": {
-        "tags": [
-          "Service_FormService"
-        ],
-        "description": "Get one Service_FormService (give service_form_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Service_FormService"
-        ],
-        "description": "Update a Service_FormService",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "example": "any"
-                  },
-                  "date": {
-                    "example": "any"
-                  },
-                  "qr_code": {
-                    "example": "any"
-                  },
-                  "num_ser_must_do": {
-                    "example": "any"
-                  },
-                  "num_ser_has_done": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Service_FormService"
-        ],
-        "description": "Delete Service_FormService (give veterinarian_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/service_Form/create": {
-      "post": {
-        "tags": [
-          "Service_FormService"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bird_id": {
-                    "example": "any"
-                  },
-                  "booking_id": {
-                    "example": "any"
-                  },
-                  "reason_referral": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "date": {
-                    "example": "any"
-                  },
-                  "veterinarian_referral": {
-                    "example": "any"
-                  },
-                  "total_price": {
-                    "example": "any"
-                  },
-                  "qr_code": {
-                    "example": "any"
-                  },
-                  "num_ser_must_do": {
-                    "example": "any"
-                  },
-                  "num_ser_has_done": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/service_Form_detail/": {
-      "get": {
-        "tags": [
-          "Service_Form_detailService"
-        ],
-        "description": "Get all Service_Form_detailService of service",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/service_Form_detail/{id}": {
-      "get": {
-        "tags": [
-          "Service_Form_detailService"
-        ],
-        "description": "Get one Service_Form_detailService (give service_package_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Service_Form_detailService"
-        ],
-        "description": "Update a Service_Form_detailService (give veterinarian_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
-                  "process_at": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Service_Form_detailService"
-        ],
-        "description": "Delete Service_Form_detailService (give veterinarian_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/service_Form_detail/create": {
-      "post": {
-        "tags": [
-          "Service_Form_detailService"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "service_form_id": {
-                    "example": "any"
-                  },
-                  "note": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  },
-                  "veterinarian_id": {
-                    "example": "any"
-                  },
-                  "booking_id": {
-                    "example": "any"
-                  },
-                  "process_at": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/bill/": {
-      "get": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "Get all Bill",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/bill/{id}": {
-      "get": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "Get one Bill (give bill_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "Update a bill (give bill_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "payment_method": {
-                    "example": "any"
-                  },
-                  "transaction_id": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "Delete bill (give bill_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/bill/create": {
-      "post": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "title": {
-                    "example": "any"
-                  },
-                  "total_price": {
-                    "example": "any"
-                  },
-                  "service_form_id": {
-                    "example": "any"
-                  },
-                  "booking_id": {
-                    "example": "any"
-                  },
-                  "payment_method": {
-                    "example": "any"
-                  },
-                  "paypal_transaction_id": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/billDetail/": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get all BillDetail ",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/billDetail/{id}": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get one BillDetail (give bill_detail_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Update a bill_detail (give bill_detail_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bill_id": {
-                    "example": "any"
-                  },
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Delete bill_detail (give bill_detail_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/billDetail/create": {
-      "post": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bill_id": {
-                    "example": "any"
-                  },
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "quantity": {
                     "example": "any"
                   }
                 }

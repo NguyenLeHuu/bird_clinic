@@ -9,10 +9,10 @@ route.get("/", BookingController.getAll);
 
 route.get("/:id", BookingController.getOne);
 
-// route.post("/", multer.Multer.array("image"), BookingController.store);
-route.post("/create", BookingController.store);
-
 route.put("/:id", BookingController.update);
 
 route.delete("/:id", BookingController.delete);
+
+// route.post("/", multer.Multer.array("image"), BookingController.store);
+route.post("/", BookingController.store);
 module.exports = route;

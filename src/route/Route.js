@@ -2,7 +2,7 @@ const express = require("express");
 
 let router = express();
 
-const reservationRoute = require("./Reservation");
+// const reservationRoute = require("./Reservation");
 const loginRoute = require("./LoginRoute");
 const accountRoute = require("./AccountRoute");
 const customerRoute = require("./CustomerRoute");
@@ -26,7 +26,12 @@ const chatRoute = require("./ChatRoute");
 const content_chatRoute = require("./ContentChatRoute");
 const cageRoute = require("./CageRoute");
 
-router.use("/reservation", reservationRoute);
+// router.use("/reservation", reservationRoute);
+router.use("/booking", bookingRoute);
+router.use("/service_Form", service_FormRoute);
+router.use("/service_Form_detail", service_Form_detailRoute);
+router.use("/bill", billRoute);
+router.use("/billDetail", billDetailRoute);
 
 router.use("/medicine", medicineRoute);
 router.use("/medicalRecord", medicalRecordRoute);
@@ -41,16 +46,12 @@ router.use("/cage", cageRoute);
 
 router.use("/service", serviceRoute);
 router.use("/servicePackage", servicePackageRoute);
-router.use("/bird", birdRoute);
+
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
 router.use("/customer", customerRoute);
+router.use("/bird", birdRoute);
 router.use("/vet", vetRoute);
-
 router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
-router.use("/booking", bookingRoute);
-router.use("/service_Form", service_FormRoute);
-router.use("/service_Form_detail", service_Form_detailRoute);
-router.use("/bill", billRoute);
-router.use("/billDetail", billDetailRoute);
+
 module.exports = router;

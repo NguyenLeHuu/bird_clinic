@@ -4,8 +4,8 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Service_FormService']
-         #swagger.description = "Get all Service_FormService of service"
+        #swagger.tags = ['Service_Form']
+         #swagger.description = "Get all Service_Form of service"
         */
     try {
       let data = await Service_FormService.getAll();
@@ -13,7 +13,7 @@ module.exports = {
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get Service_FormService successful!",
+          message: "Get Service_Form successful!",
           data: data,
         });
       } else {
@@ -24,14 +24,14 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Service_FormService");
+      console.log("____Cannot get Service_Form");
     }
   },
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Service_FormService']
-         #swagger.description = "Get one Service_FormService (give service_form_id)"
+        #swagger.tags = ['Service_Form']
+         #swagger.description = "Get one Service_Form (give service_form_id)"
         */
     try {
       const id = req.params.id;
@@ -40,24 +40,24 @@ module.exports = {
       if (data != null) {
         return res.status(200).json({
           status: 200,
-          message: "Get Service_FormService successful!",
+          message: "Get Service_Form successful!",
           data: data,
         });
       } else {
         return res.status(400).json({
           status: 400,
-          message: "Service_FormService not exist!",
+          message: "Service_Form not exist!",
           data: data,
         });
       }
     } catch (error) {
-      console.log("____Cannot get Service_FormService");
+      console.log("____Cannot get Service_Form");
       throw error;
     }
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Service_FormService']
+    // #swagger.tags = ['Service_Form']
 
     try {
       const {
@@ -77,15 +77,15 @@ module.exports = {
       //   let data = await Service_FormService.createService_FormService(req.body, url);
       let data = await Service_FormService.createService_Form(req.body);
 
-      console.log("____Create Service_FormService Successful");
+      console.log("____Create Service_Form Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Create Service_FormService Successful!",
+        message: "Create Service_Form Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Create Service_FormService Failed");
+      console.log("____Create Service_Form Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -95,8 +95,8 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['Service_FormService']
-         #swagger.description = "Update a Service_FormService"
+        #swagger.tags = ['Service_Form']
+         #swagger.description = "Update a Service_Form"
         */
     try {
       const id = req.params["id"];
@@ -106,15 +106,15 @@ module.exports = {
 
       let data = await Service_FormService.updateService_Form(id, req.body);
 
-      console.log("____Update Service_FormService Successful");
+      console.log("____Update Service_Form Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Update Service_FormService Successful!",
+        message: "Update Service_Form Successful!",
         data: data,
       });
     } catch (err) {
-      console.log("____Update Service_FormService Failed");
+      console.log("____Update Service_Form Failed");
       return res.status(400).json({
         status: 400,
         message: err,
@@ -124,18 +124,18 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Service_FormService']
-         #swagger.description = "Delete Service_FormService (give veterinarian_id)"
+        #swagger.tags = ['Service_Form']
+         #swagger.description = "Delete Service_Form (give veterinarian_id)"
         */
     try {
       const id = req.params["id"];
 
       let data = await Service_FormService.deleteService_Form(id);
-      console.log("____Delete Service_FormService Successful");
+      console.log("____Delete Service_Form Successful");
 
       return res.status(200).json({
         status: 200,
-        message: "Delete Service_FormService Successful!",
+        message: "Delete Service_Form Successful!",
         data: data,
       });
     } catch (err) {
