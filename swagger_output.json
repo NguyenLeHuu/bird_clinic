@@ -3334,7 +3334,7 @@
         "description": "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)",
         "parameters": [
           {
-            "name": "time_slot_id",
+            "name": "time_slot_clinic_id",
             "in": "query",
             "schema": {
               "type": "string"
@@ -3383,7 +3383,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "time_slot_id": {
+                  "time_slot_clinic_id": {
                     "example": "any"
                   },
                   "veterinarian_id": {
@@ -3453,7 +3453,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "time_slot_id": {
+                  "time_slot_clinic_id": {
                     "example": "any"
                   },
                   "veterinarian_id": {

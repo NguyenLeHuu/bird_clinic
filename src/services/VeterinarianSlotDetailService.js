@@ -8,7 +8,7 @@ let getAll = (req) => {
       let data = [];
       let whereClause = {};
 
-      if (req.veterinarian_id && !req.time_slot_id) {
+      if (req.veterinarian_id && !req.time_slot_clinic_id) {
         if (req.status) {
           whereClause["veterinarian_id"] = req.veterinarian_id;
           whereClause["status"] = req.status;
@@ -16,33 +16,39 @@ let getAll = (req) => {
           whereClause["veterinarian_id"] = req.veterinarian_id;
         }
       }
-      if (req.time_slot_id && !req.veterinarian_id) {
+      if (req.time_slot_clinic_id && !req.veterinarian_id) {
         if (req.status) {
-          whereClause["time_slot_id"] = req.time_slot_id;
+          whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
           whereClause["status"] = req.status;
         } else {
-          whereClause["time_slot_id"] = req.time_slot_id;
+          whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
         }
       }
 
-      if (!req.veterinarian_id && !req.time_slot_id) {
+      if (!req.veterinarian_id && !req.time_slot_clinic_id) {
         if (req.status) {
           whereClause["status"] = req.status;
         }
       }
-      if (req.veterinarian_id && req.time_slot_id) {
+      if (req.veterinarian_id && req.time_slot_clinic_id) {
         if (req.status) {
           whereClause["veterinarian_id"] = req.veterinarian_id;
-          whereClause["time_slot_id"] = req.time_slot_id;
+          whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
           whereClause["status"] = req.status;
         } else {
           whereClause["veterinarian_id"] = req.veterinarian_id;
-          whereClause["time_slot_id"] = req.time_slot_id;
+          whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
         }
       }
 
       data = await db.veterinarian_slot_details.findAll({
         where: whereClause,
+        attributes: [
+          "veterinarian_slot_detail_id",
+          "time_slot_clinic_id",
+          "veterinarian_id",
+          "status",
+        ],
         include: [
           {
             model: db.veterinarian,
@@ -51,12 +57,12 @@ let getAll = (req) => {
           {
             model: db.time_slot_clinic,
             attributes: ["date"],
-            // include: [
-            //   {
-            //     model: db.slot_clinics,
-            //     attributes: ["time"],
-            //   },
-            // ],
+            include: [
+              {
+                model: db.slot_clinics,
+                attributes: ["time"],
+              },
+            ],
           },
         ],
 
@@ -79,6 +85,12 @@ let getOne = (id) => {
         where: {
           veterinarian_slot_detail_id: id,
         },
+        attributes: [
+          "veterinarian_slot_detail_id",
+          "time_slot_clinic_id",
+          "veterinarian_id",
+          "status",
+        ],
         include: [
           {
             model: db.time_slot_clinic,
@@ -147,7 +159,7 @@ let updateVeterinarianSlotDetail = (id, body_data) => {
     try {
       let data = await db.veterinarian_slot_details.update(
         {
-          time_slot_id: body_data.time_slot_id,
+          time_slot_clinic_id: body_data.time_slot_clinic_id,
           veterinarian_id: body_data.veterinarian_id,
           status: body_data.status,
         },

@@ -52,7 +52,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get bird");
-      throw error;
+      // throw error;
     }
   },
 

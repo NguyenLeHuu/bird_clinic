@@ -52,7 +52,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get bill_detail");
-      throw error;
+      // throw error;
     }
   },
 

@@ -53,7 +53,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get Medicine");
-      throw error;
+      // throw error;
     }
   },
 

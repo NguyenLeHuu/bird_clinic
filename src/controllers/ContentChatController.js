@@ -54,7 +54,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get ContentChat");
-      throw error;
+      // throw error;
     }
   },
 

@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op, col } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
@@ -41,10 +41,29 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Veterinarian.findByPk(id);
-      let data = await db.veterinarian.findOne({
+      const data = await db.veterinarian.findAll({
         where: {
           veterinarian_id: id,
         },
+        attributes: [
+          "veterinarian_id",
+          "account_id",
+          "specialized",
+          "name",
+          "status",
+          "image",
+          "service_id",
+          "service_name",
+        ],
+        include: [
+          {
+            model: db.veterinarian_slot_details,
+            attributes: ["date", "time_slot_clinic_id"],
+          },
+        ],
+        group: "date",
+        raw: false,
+        nest: true,
       });
       resolve(data);
     } catch (e) {

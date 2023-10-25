@@ -52,7 +52,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get Service_Form_detailService");
-      throw error;
+      // throw error;
     }
   },
 

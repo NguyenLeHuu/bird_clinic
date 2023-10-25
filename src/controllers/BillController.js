@@ -53,7 +53,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get bill");
-      throw error;
+      // throw error;
     }
   },
 

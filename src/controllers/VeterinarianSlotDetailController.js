@@ -8,7 +8,7 @@ module.exports = {
          #swagger.description = "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)"
         */
     try {
-      const { time_slot_id, veterinarian_id, status } = req.query;
+      const { time_slot_clinic_id, veterinarian_id, status } = req.query;
       let data = await VeterinarianSlotDetailService.getAll(req.query);
 
       if (data != null) {
@@ -53,7 +53,6 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get VeterinarianSlotDetail");
-      throw error;
     }
   },
 
@@ -61,7 +60,7 @@ module.exports = {
     // #swagger.tags = ['VeterinarianSlotDetail']
 
     try {
-      const { time_slot_id, veterinarian_id, status } = req.body;
+      const { time_slot_clinic_id, veterinarian_id, status } = req.body;
 
       // const url = await Firebase.uploadImage(file);
       // let data = await VeterinarianSlotDetailService.createVeterinarianSlotDetail(req.body, url);
@@ -93,7 +92,7 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const { time_slot_id, veterinarian_id, status } = req.body;
+      const { time_slot_clinic_id, veterinarian_id, status } = req.body;
 
       let data =
         await VeterinarianSlotDetailService.updateVeterinarianSlotDetail(

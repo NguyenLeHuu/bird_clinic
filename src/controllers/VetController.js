@@ -52,8 +52,8 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Vet");
-      throw error;
+      console.log("____Cannot get Vet", error);
+      // throw error;
     }
   },
 

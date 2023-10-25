@@ -52,7 +52,7 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get Account");
-      throw error;
+      // throw error;
     }
   },
 

@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       time_slot_clinic_id: DataTypes.STRING,
       veterinarian_id: DataTypes.STRING,
       status: DataTypes.STRING,
+      date: DataTypes.STRING,
     },
     {
       sequelize,
