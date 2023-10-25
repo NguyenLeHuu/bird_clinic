@@ -246,7 +246,7 @@
         "tags": [
           "Service_Form"
         ],
-        "description": "",
+        "description": "arr_service_pack optional truyền mảng",
         "responses": {
           "200": {
             "description": "OK"
@@ -289,6 +289,9 @@
                     "example": "any"
                   },
                   "num_ser_has_done": {
+                    "example": "any"
+                  },
+                  "arr_service_pack": {
                     "example": "any"
                   }
                 }

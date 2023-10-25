@@ -1,5 +1,6 @@
 const Service_FormService = require("../services/Service_FormService");
 const Firebase = require("../services/Firebase");
+const Service_Form_detail = require("../services/Service_Form_detailService");
 
 module.exports = {
   async getAll(req, res) {
@@ -57,7 +58,10 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Service_Form']
+    /* 
+        #swagger.tags = ['Service_Form']
+         #swagger.description = "arr_service_pack optional truyền mảng"
+        */
 
     try {
       const {
@@ -71,13 +75,30 @@ module.exports = {
         qr_code,
         num_ser_must_do,
         num_ser_has_done,
+
+        arr_service_pack,
       } = req.body;
 
-      //   const url = await Firebase.uploadImage(file);
-      //   let data = await Service_FormService.createService_FormService(req.body, url);
       let data = await Service_FormService.createService_Form(req.body);
-
-      console.log("____Create Service_Form Successful");
+      let temp = {};
+      if (Array.isArray(arr_service_pack)) {
+        arr_service_pack.forEach(async (item, index) => {
+          // Thực hiện các thao tác với item ở đây
+          temp = {
+            ...data.dataValues,
+            service_package_id: item.service_package_id,
+            veterinarian_id: item.veterinarian_id,
+            note: item.note,
+            status: "pending",
+            booking_id,
+            process_at: 1,
+          };
+          // console.log(`Phần tử ${index}:`);
+          // console.log(temp);
+          // console.log("----------------------");
+          await Service_Form_detail.createService_Form_detail(temp);
+        });
+      }
 
       return res.status(200).json({
         status: 200,
@@ -85,7 +106,7 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Create Service_Form Failed");
+      console.log("____Create Service_Form Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,
