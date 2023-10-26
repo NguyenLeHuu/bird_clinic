@@ -8,6 +8,10 @@ let route = promiseRouter();
 route.get("/", VeterinarianSlotDetailController.getAll);
 
 route.get("/:id", VeterinarianSlotDetailController.getOne);
+route.get(
+  "/available/:time_slot_clinic_id",
+  VeterinarianSlotDetailController.is_booking_available
+);
 
 // route.post("/", multer.Multer.array("image"), VeterinarianSlotDetailController.store);
 route.post("/", VeterinarianSlotDetailController.store);

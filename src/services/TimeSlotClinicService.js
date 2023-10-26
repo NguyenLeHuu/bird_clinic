@@ -17,7 +17,7 @@ let getAll = (req) => {
               attributes: ["time"],
             },
           ],
-
+          // group:"date",
           raw: true,
           nest: true,
         });

@@ -13,6 +13,10 @@ let getAll = (req) => {
         whereClause["date"] = req.date;
         whereClause["status"] = req.status;
       }
+      if (req.time_slot_clinic_id && req.status) {
+        whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
+        whereClause["status"] = req.status;
+      }
 
       data = await db.veterinarian_slot_details.findAll({
         where: whereClause,
@@ -241,10 +245,48 @@ let deleteVeterinarianSlotDetail = (id) => {
   });
 };
 
+let isAvailable = (time_slot_clinic_id, service_type_id) => {
+  //check xem slot ..ngày.. ()còn bác sĩ (bac sĩ gì) làm không
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data1 = await db.veterinarian.findAll({
+        //lấy ra tất cả vet thuộc service_type
+        where: {
+          service_type_id: service_type_id,
+          status: "1",
+        },
+        attributes: ["veterinarian_id"],
+      });
+
+      let data2 = await db.veterinarian_slot_details.findAll({
+        // lấy ra các vet hoạt động trong ngày...giờ...
+        where: {
+          time_slot_clinic_id: time_slot_clinic_id,
+          status: "available",
+        },
+        attributes: ["veterinarian_id"],
+      });
+
+      const intersection = getIntersection(data1, data2);
+      resolve(intersection);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+function getIntersection(arr1, arr2) {
+  const intersection = arr1.filter((item1) =>
+    arr2.some((item2) => item1.veterinarian_id === item2.veterinarian_id)
+  );
+  return intersection;
+}
+
 module.exports = {
   getAll: getAll,
   getOne: getOne,
   createVeterinarianSlotDetail: createVeterinarianSlotDetail,
   updateVeterinarianSlotDetail: updateVeterinarianSlotDetail,
   deleteVeterinarianSlotDetail: deleteVeterinarianSlotDetail,
+  isAvailable,
 };

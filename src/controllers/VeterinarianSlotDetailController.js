@@ -5,10 +5,10 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['VeterinarianSlotDetail']
-         #swagger.description = "Get all VeterinarianSlotDetail (truyen cả 3 hoặc không truyền)"
+         #swagger.description = "Get all VeterinarianSlotDetail (truyen cả 3 cái sau, truyền cái đầu với cái cuối)"
         */
     try {
-      const { veterinarian_id, date, status } = req.query;
+      const { time_slot_clinic_id, veterinarian_id, date, status } = req.query;
       let data = await VeterinarianSlotDetailService.getAll(req.query);
 
       if (data != null) {
@@ -134,6 +134,34 @@ module.exports = {
       });
     } catch (err) {
       console.log("____Delete VeterinarianSlotDetail Failed");
+      return res.status(400).json({
+        status: 400,
+        message: err,
+      });
+    }
+  },
+
+  async is_booking_available(req, res) {
+    /* 
+        #swagger.tags = ['VeterinarianSlotDetail']
+         #swagger.description = "check xem đặt có khả dụng k"
+        */
+    try {
+      const time_slot_clinic_id = req.params["time_slot_clinic_id"];
+
+      const { service_type_id } = req.query;
+      let data = await VeterinarianSlotDetailService.isAvailable(
+        time_slot_clinic_id,
+        service_type_id
+      );
+
+      return res.status(200).json({
+        status: 200,
+        message: "check Successful!",
+        data: data,
+      });
+    } catch (err) {
+      console.log("____check Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,

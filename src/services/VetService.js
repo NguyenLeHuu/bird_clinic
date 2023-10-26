@@ -41,7 +41,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Veterinarian.findByPk(id);
-      const data = await db.veterinarian.findAll({
+      const data = await db.veterinarian.findOne({
         where: {
           veterinarian_id: id,
         },

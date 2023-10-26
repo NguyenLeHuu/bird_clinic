@@ -3331,8 +3331,15 @@
         "tags": [
           "VeterinarianSlotDetail"
         ],
-        "description": "Get all VeterinarianSlotDetail (truyen cả 3 hoặc không truyền)",
+        "description": "Get all VeterinarianSlotDetail (truyen cả 3 cái sau, truyền cái đầu với cái cuối)",
         "parameters": [
+          {
+            "name": "time_slot_clinic_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "veterinarian_id",
             "in": "query",
@@ -3478,6 +3485,39 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/veterinarianSlotDetail/available/{time_slot_clinic_id}": {
+      "get": {
+        "tags": [
+          "VeterinarianSlotDetail"
+        ],
+        "description": "check xem đặt có khả dụng k",
+        "parameters": [
+          {
+            "name": "time_slot_clinic_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service_type_id",
+            "in": "query",
             "schema": {
               "type": "string"
             }
