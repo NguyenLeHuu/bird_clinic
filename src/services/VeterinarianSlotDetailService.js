@@ -246,7 +246,7 @@ let deleteVeterinarianSlotDetail = (id) => {
 };
 
 let isAvailable = (time_slot_clinic_id, service_type_id) => {
-  //check xem slot ..ngày.. ()còn bác sĩ (bac sĩ gì) làm không
+  //check xem slot ..ngày.. ()còn bác sĩ (bac sĩ gì) làm không, tức ktr xem phòng khám còn slot để booking cho boaring, grooming
   return new Promise(async (resolve, reject) => {
     try {
       let data1 = await db.veterinarian.findAll({
@@ -274,6 +274,56 @@ let isAvailable = (time_slot_clinic_id, service_type_id) => {
     }
   });
 };
+let isAvailableHC = (time_slot_clinic_id, service_type_id) => {
+  //check xem slot ..ngày.. ()còn bác sĩ (bac sĩ gì) làm không, tức ktr xem phòng khám còn slot để booking HC
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data1 = await db.veterinarian.findAll({
+        //lấy ra tất cả vet thuộc service_type
+        where: {
+          service_type_id: service_type_id,
+          status: "1",
+          service_id: "S001",
+        },
+        attributes: ["veterinarian_id"],
+      });
+
+      let data2 = await db.veterinarian_slot_details.findAll({
+        // lấy ra các vet hoạt động trong ngày...giờ...
+        where: {
+          time_slot_clinic_id: time_slot_clinic_id,
+          status: "available",
+        },
+        attributes: ["veterinarian_id"],
+      });
+
+      const intersection = getIntersection(data1, data2);
+      resolve(intersection);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let isAvailableVet = (time_slot_clinic_id, veterinarian_id) => {
+  //check xem Bác sĩ có available tại cái slot...ngày... đó không
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.veterinarian_slot_details.findOne({
+        //lấy ra tất cả vet thuộc service_type
+        where: {
+          time_slot_clinic_id: time_slot_clinic_id,
+          veterinarian_id: veterinarian_id,
+          status: "available",
+        },
+        attributes: ["veterinarian_slot_detail_id", "status"],
+      });
+
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 function getIntersection(arr1, arr2) {
   const intersection = arr1.filter((item1) =>
@@ -289,4 +339,6 @@ module.exports = {
   updateVeterinarianSlotDetail: updateVeterinarianSlotDetail,
   deleteVeterinarianSlotDetail: deleteVeterinarianSlotDetail,
   isAvailable,
+  isAvailableVet,
+  isAvailableHC,
 };

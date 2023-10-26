@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       note: DataTypes.STRING,
       service_type: DataTypes.STRING,
       arrival_date: DataTypes.STRING,
+      tracking: DataTypes.STRING,
     },
     {
       sequelize,

@@ -1,4 +1,5 @@
 const BookingService = require("../services/BookingService");
+const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
@@ -60,7 +61,7 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Booking']
-
+    //#swagger.description = "Booking theo bác sĩ"
     try {
       const {
         account_id,
@@ -80,9 +81,88 @@ module.exports = {
         note,
         service_type,
         arrival_date,
+        service_type_id,
       } = req.body;
 
-      let data = await BookingService.createBooking(req.body);
+      let available_arr = [];
+      let data = [];
+      if (service_type_id === "ST001") {
+        if (veterinarian_id) {
+          // khám sức khỏe theo bác sĩ
+          available_arr = await VeterinarianSlotDetailService.isAvailableVet(
+            time_id,
+            veterinarian_id
+          );
+          if (available_arr.length > 0) {
+            data = await BookingService.createBooking(req.body);
+          }
+        } else {
+          // khám sức khỏe theo ngày
+          available_arr = await VeterinarianSlotDetailService.isAvailableHC(
+            time_id,
+            service_type_id
+          );
+          if (available_arr.length > 0) {
+            data = await BookingService.createBooking(req.body);
+          }
+        }
+      } else {
+        // grooming, boarding theo ngày
+        available_arr = await VeterinarianSlotDetailService.isAvailable(
+          time_id,
+          service_type_id
+        );
+        if (available_arr.length > 0) {
+          data = await BookingService.createBooking(req.body);
+        }
+      }
+
+      console.log("____Create Booking Successful");
+
+      return res.status(200).json({
+        status: 200,
+        message: "Create Booking Successful!",
+        data: data,
+      });
+    } catch (err) {
+      console.log("____Create Booking Failed");
+      return res.status(400).json({
+        status: 400,
+        message: err,
+      });
+    }
+  },
+  async store_follow_date(req, res) {
+    // #swagger.tags = ['Booking']
+    //#swagger.description = "Booking theo ngày"
+    try {
+      const {
+        account_id,
+        time_id,
+        bird_id,
+        veterinarian_id,
+        symptom,
+        status,
+        // diagnosis,
+        // recommendations,
+
+        // booking_date,
+        estimate_time,
+        money_has_paid,
+        // checkin_time,
+        customer_name,
+        note,
+        service_type,
+        service_type_id,
+        arrival_date,
+      } = req.body;
+      let available_arr = await VeterinarianSlotDetailService.isAvailable(
+        time_id,
+        service_type_id
+      );
+      if (Array.isArray(available_arr) && available_arr.length > 0) {
+        let data = await BookingService.createBooking(req.body);
+      }
 
       console.log("____Create Booking Successful");
 
