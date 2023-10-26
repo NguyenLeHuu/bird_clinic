@@ -3331,17 +3331,17 @@
         "tags": [
           "VeterinarianSlotDetail"
         ],
-        "description": "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)",
+        "description": "Get all VeterinarianSlotDetail (truyen cả 3 hoặc không truyền)",
         "parameters": [
           {
-            "name": "time_slot_clinic_id",
+            "name": "veterinarian_id",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "veterinarian_id",
+            "name": "date",
             "in": "query",
             "schema": {
               "type": "string"
@@ -3473,6 +3473,288 @@
           "VeterinarianSlotDetail"
         ],
         "description": "Delete VeterinarianSlotDetail (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/time_slot_clinic/": {
+      "get": {
+        "tags": [
+          "TimeSlotClinic"
+        ],
+        "description": "Get all TimeSlotClinic ",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TimeSlotClinic"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "slot_clinic_id": {
+                    "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/time_slot_clinic/{id}": {
+      "get": {
+        "tags": [
+          "TimeSlotClinic"
+        ],
+        "description": "Get one TimeSlotClinic (give TimeSlotClinic_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TimeSlotClinic"
+        ],
+        "description": "Update a TimeSlotClinic (give TimeSlotClinic_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "slot_clinic_id": {
+                    "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TimeSlotClinic"
+        ],
+        "description": "Delete TimeSlotClinic (give TimeSlotClinic_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/slot_clinic/": {
+      "get": {
+        "tags": [
+          "SlotClinic"
+        ],
+        "description": "Get all SlotClinic ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SlotClinic"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  },
+                  "time": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/slot_clinic/{id}": {
+      "get": {
+        "tags": [
+          "SlotClinic"
+        ],
+        "description": "Get one SlotClinic (give SlotClinic_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SlotClinic"
+        ],
+        "description": "Update a SlotClinic (give SlotClinic_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "time": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SlotClinic"
+        ],
+        "description": "Delete SlotClinic (give SlotClinic_id)",
         "parameters": [
           {
             "name": "id",

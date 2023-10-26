@@ -25,6 +25,8 @@ const boardingRoute = require("./BoardingRoute");
 const chatRoute = require("./ChatRoute");
 const content_chatRoute = require("./ContentChatRoute");
 const cageRoute = require("./CageRoute");
+const time_slot_clinicRoute = require("./TimeSlotClinicRoute");
+const slot_clinicRoute = require("./SlotClinicRoute");
 
 // router.use("/reservation", reservationRoute);
 router.use("/booking", bookingRoute);
@@ -53,5 +55,8 @@ router.use("/customer", customerRoute);
 router.use("/bird", birdRoute);
 router.use("/vet", vetRoute);
 router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
+
+router.use("/time_slot_clinic", time_slot_clinicRoute);
+router.use("/slot_clinic", slot_clinicRoute);
 
 module.exports = router;

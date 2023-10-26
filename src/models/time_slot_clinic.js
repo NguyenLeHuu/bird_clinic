@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class TimeSlotClinic extends Model {
     static associate(models) {
       TimeSlotClinic.hasMany(models.veterinarian_slot_details, {
-        foreignKey: "time_slot_id",
+        foreignKey: "time_slot_clinic_id",
       });
       TimeSlotClinic.belongsTo(models.slot_clinics, {
         foreignKey: "slot_clinic_id",
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         primaryKey: true,
       },
-      slot_id: DataTypes.STRING,
+      slot_clinic_id: DataTypes.STRING,
       date: DataTypes.STRING,
     },
     {

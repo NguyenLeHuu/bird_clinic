@@ -58,7 +58,7 @@ let getOne = (id) => {
         include: [
           {
             model: db.veterinarian_slot_details,
-            attributes: ["date", "time_slot_clinic_id"],
+            attributes: ["date"],
           },
         ],
         group: "date",

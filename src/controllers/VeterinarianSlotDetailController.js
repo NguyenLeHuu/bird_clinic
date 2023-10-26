@@ -5,10 +5,10 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['VeterinarianSlotDetail']
-         #swagger.description = "Get all VeterinarianSlotDetail (status co' the truyen hoac khong)"
+         #swagger.description = "Get all VeterinarianSlotDetail (truyen cả 3 hoặc không truyền)"
         */
     try {
-      const { time_slot_clinic_id, veterinarian_id, status } = req.query;
+      const { veterinarian_id, date, status } = req.query;
       let data = await VeterinarianSlotDetailService.getAll(req.query);
 
       if (data != null) {
