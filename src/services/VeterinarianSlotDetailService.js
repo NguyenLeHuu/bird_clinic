@@ -224,6 +224,26 @@ let updateVeterinarianSlotDetail = (id, body_data) => {
     }
   });
 };
+let updateVeterinarianSlotDetailNoId = (body_data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.veterinarian_slot_details.update(
+        {
+          status: "un_available",
+        },
+        {
+          where: {
+            time_slot_clinic_id: body_data.time_id,
+            veterinarian_id: body_data.veterinarian_id,
+          },
+        }
+      );
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 let deleteVeterinarianSlotDetail = (id) => {
   return new Promise(async (resolve, reject) => {
@@ -308,7 +328,7 @@ let isAvailableVet = (time_slot_clinic_id, veterinarian_id) => {
   //check xem Bác sĩ có available tại cái slot...ngày... đó không
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.veterinarian_slot_details.findOne({
+      let data = await db.veterinarian_slot_details.findAll({
         //lấy ra tất cả vet thuộc service_type
         where: {
           time_slot_clinic_id: time_slot_clinic_id,
@@ -337,6 +357,7 @@ module.exports = {
   getOne: getOne,
   createVeterinarianSlotDetail: createVeterinarianSlotDetail,
   updateVeterinarianSlotDetail: updateVeterinarianSlotDetail,
+  updateVeterinarianSlotDetailNoId,
   deleteVeterinarianSlotDetail: deleteVeterinarianSlotDetail,
   isAvailable,
   isAvailableVet,

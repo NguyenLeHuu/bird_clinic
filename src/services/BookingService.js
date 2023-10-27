@@ -45,6 +45,7 @@ let getOne = (id) => {
 let createBooking = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
+      // console.log("______", data.veterinarian_id);
       const id = crypto.randomBytes(15).toString("hex");
       const date = utils.getCurDay();
 

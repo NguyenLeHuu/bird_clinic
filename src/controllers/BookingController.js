@@ -86,7 +86,9 @@ module.exports = {
 
       let available_arr = [];
       let data = [];
+      let flag = false;
       if (service_type_id === "ST001") {
+        // khám sức khỏe
         if (veterinarian_id) {
           // khám sức khỏe theo bác sĩ
           available_arr = await VeterinarianSlotDetailService.isAvailableVet(
@@ -94,6 +96,9 @@ module.exports = {
             veterinarian_id
           );
           if (available_arr.length > 0) {
+            await VeterinarianSlotDetailService.updateVeterinarianSlotDetailNoId(
+              req.body
+            ); //chuyển status -> unavailable
             data = await BookingService.createBooking(req.body);
           }
         } else {
@@ -102,8 +107,9 @@ module.exports = {
             time_id,
             service_type_id
           );
+
           if (available_arr.length > 0) {
-            data = await BookingService.createBooking(req.body);
+            flag = true;
           }
         }
       } else {
@@ -113,17 +119,31 @@ module.exports = {
           service_type_id
         );
         if (available_arr.length > 0) {
-          data = await BookingService.createBooking(req.body);
+          flag = true;
         }
       }
+      if (flag) {
+        // đặt theo ngày, không có vet_id
+        req.body.veterinarian_id = available_arr[0].veterinarian_id; //tự gán bác sĩ đầu tiên
+        await VeterinarianSlotDetailService.updateVeterinarianSlotDetailNoId(
+          req.body
+        ); //chuyển status -> unavailable
+        data = await BookingService.createBooking(req.body);
+      }
 
-      console.log("____Create Booking Successful");
-
-      return res.status(200).json({
-        status: 200,
-        message: "Create Booking Successful!",
-        data: data,
-      });
+      if (available_arr.length > 0) {
+        console.log("____Create Booking Successful");
+        return res.status(200).json({
+          status: 200,
+          message: "Create Booking Successful!",
+          data: data,
+        });
+      } else {
+        return res.status(400).json({
+          status: 400,
+          message: "un_available booking",
+        });
+      }
     } catch (err) {
       console.log("____Create Booking Failed");
       return res.status(400).json({
