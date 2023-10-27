@@ -68,6 +68,7 @@ module.exports = {
         veterinarian_id,
         booking_id,
         process_at,
+        checkin_time,
       } = req.body;
 
       //   const url = await Firebase.uploadImage(file);

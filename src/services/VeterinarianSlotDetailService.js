@@ -324,6 +324,44 @@ let isAvailableHC = (time_slot_clinic_id, service_type_id, service_id) => {
     }
   });
 };
+let isAvailableHCNoTime = (date, service_type_id, service_id) => {
+  //check available HC
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log(date + " ___ " + service_type_id + " ___ " + service_id);
+      let data1 = await db.veterinarian.findAll({
+        //lấy ra tất cả vet thuộc service_type
+        where: {
+          service_type_id: service_type_id,
+          status: "1",
+          service_id: service_id,
+        },
+        attributes: ["veterinarian_id"],
+      });
+
+      let data2 = await db.veterinarian_slot_details.findAll({
+        // lấy ra các vet hoạt động trong ngày...ca...(chưa định nghĩa ca)
+        where: {
+          date: date,
+          status: "available",
+        },
+        attributes: ["veterinarian_id"],
+        group: "veterinarian_id",
+      });
+
+      const intersection = getIntersection(data1, data2);
+      console.log("data1");
+      console.log(data1);
+      console.log("data2");
+      console.log(data2);
+      console.log("intersection");
+      console.log(intersection);
+      resolve(intersection);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 let isAvailableVet = (time_slot_clinic_id, veterinarian_id) => {
   //check slot của 1 thú y
   return new Promise(async (resolve, reject) => {
@@ -362,4 +400,5 @@ module.exports = {
   isAvailable,
   isAvailableVet,
   isAvailableHC,
+  isAvailableHCNoTime,
 };

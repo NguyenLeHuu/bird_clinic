@@ -43,6 +43,7 @@ let createService_Form_detail = (data) => {
         veterinarian_id: data.veterinarian_id,
         booking_id: data.booking_id,
         process_at: data.process_at,
+        checkin_time: data.checkin_time,
       });
       resolve(result);
     } catch (e) {
@@ -59,6 +60,7 @@ let updateService_Form_detail = (id, body_data) => {
           status: body_data.status,
           veterinarian_id: body_data.veterinarian_id,
           process_at: body_data.process_at,
+          checkin_time: body_data.checkin_time,
         },
         {
           where: {
