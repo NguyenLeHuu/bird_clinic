@@ -266,7 +266,7 @@ let deleteVeterinarianSlotDetail = (id) => {
 };
 
 let isAvailable = (time_slot_clinic_id, service_type_id) => {
-  //check xem slot ..ngày.. ()còn bác sĩ (bac sĩ gì) làm không, tức ktr xem phòng khám còn slot để booking cho boaring, grooming
+  //check available boaring, grooming
   return new Promise(async (resolve, reject) => {
     try {
       let data1 = await db.veterinarian.findAll({
@@ -294,8 +294,8 @@ let isAvailable = (time_slot_clinic_id, service_type_id) => {
     }
   });
 };
-let isAvailableHC = (time_slot_clinic_id, service_type_id) => {
-  //check xem slot ..ngày.. ()còn bác sĩ (bac sĩ gì) làm không, tức ktr xem phòng khám còn slot để booking HC
+let isAvailableHC = (time_slot_clinic_id, service_type_id, service_id) => {
+  //check available HC
   return new Promise(async (resolve, reject) => {
     try {
       let data1 = await db.veterinarian.findAll({
@@ -303,7 +303,7 @@ let isAvailableHC = (time_slot_clinic_id, service_type_id) => {
         where: {
           service_type_id: service_type_id,
           status: "1",
-          service_id: "S001",
+          service_id: service_id,
         },
         attributes: ["veterinarian_id"],
       });
@@ -325,7 +325,7 @@ let isAvailableHC = (time_slot_clinic_id, service_type_id) => {
   });
 };
 let isAvailableVet = (time_slot_clinic_id, veterinarian_id) => {
-  //check xem Bác sĩ có available tại cái slot...ngày... đó không
+  //check slot của 1 thú y
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.veterinarian_slot_details.findAll({

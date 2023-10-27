@@ -2408,7 +2408,7 @@
         "tags": [
           "ServicePackageService"
         ],
-        "description": "Get all ServicePackageService of service",
+        "description": "Get all ServicePackageService of service, không truyền hoặc truyền 1 trong 2",
         "parameters": [
           {
             "name": "size_id",

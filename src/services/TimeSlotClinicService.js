@@ -18,11 +18,23 @@ let getAll = (req) => {
             },
           ],
           // group:"date",
+          order: [[db.slot_clinics, "time", "ASC"]],
           raw: true,
           nest: true,
         });
       } else {
-        data = await db.time_slot_clinic.findAll();
+        data = await db.time_slot_clinic.findAll({
+          include: [
+            {
+              model: db.slot_clinics,
+              attributes: ["time"],
+            },
+          ],
+          // group:"date",
+          order: [[db.slot_clinics, "time", "ASC"]],
+          raw: true,
+          nest: true,
+        });
       }
       resolve(data);
     } catch (e) {

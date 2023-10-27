@@ -5,7 +5,7 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['ServicePackageService']
-         #swagger.description = "Get all ServicePackageService of service"
+         #swagger.description = "Get all ServicePackageService of service, không truyền hoặc truyền 1 trong 2"
         */
     try {
       const bird_size_id = req.query.size_id;
@@ -26,7 +26,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get ServicePackageService");
+      console.log("____Cannot get ServicePackageService", error);
     }
   },
 

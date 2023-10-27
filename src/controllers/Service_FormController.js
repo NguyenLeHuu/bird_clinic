@@ -1,6 +1,9 @@
 const Service_FormService = require("../services/Service_FormService");
 const Firebase = require("../services/Firebase");
 const Service_Form_detail = require("../services/Service_Form_detailService");
+const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
+const TimeSlotClinicService = require("../services/TimeSlotClinicService");
+const ServicePackageService = require("../services/ServicePackageService");
 
 module.exports = {
   async getAll(req, res) {
@@ -76,18 +79,50 @@ module.exports = {
         num_ser_must_do,
         num_ser_has_done,
 
+        // to_service_type_id,
         arr_service_pack,
       } = req.body;
 
       let data = await Service_FormService.createService_Form(req.body);
-      let temp = {};
+
       if (Array.isArray(arr_service_pack)) {
         arr_service_pack.forEach(async (item, index) => {
+          let temp = {};
+          let flag = false;
           // Thực hiện các thao tác với item ở đây
+          let service_package = await ServicePackageService.getOne(
+            item.service_package_id
+          );
+          let service_id = service_package.service_id;
+          const arr_slot = await TimeSlotClinicService.getAll(req.body); //mảng slot theo ngày cụ thể, thời gian tăng dần
+
+          let veterinarian_id;
+          let time_slot_clinic_id;
+
+          for (const slot of arr_slot) {
+            let available_arr_vetid;
+
+            available_arr_vetid =
+              await VeterinarianSlotDetailService.isAvailableHC(
+                slot.time_slot_clinic_id,
+                "ST001",
+                service_id
+              );
+
+            if (available_arr_vetid.length > 0) {
+              console.log(available_arr_vetid[0].veterinarian_id);
+              veterinarian_id = available_arr_vetid[0].veterinarian_id;
+              time_slot_clinic_id = slot.time_slot_clinic_id;
+              flag = true;
+              break; // Dừng vòng lặp nếu tìm thấy giá trị
+            }
+          }
+
           temp = {
             ...data.dataValues,
             service_package_id: item.service_package_id,
-            veterinarian_id: item.veterinarian_id,
+            veterinarian_id,
+            time_id: time_slot_clinic_id,
             note: item.note,
             status: "pending",
             booking_id,
@@ -96,14 +131,21 @@ module.exports = {
           // console.log(`Phần tử ${index}:`);
           // console.log(temp);
           // console.log("----------------------");
-          await Service_Form_detail.createService_Form_detail(temp);
+          if (flag) {
+            await Service_Form_detail.createService_Form_detail(temp);
+            await VeterinarianSlotDetailService.updateVeterinarianSlotDetailNoId(
+              temp
+            ); //chuyển status -> unavailable
+          } else {
+            console.log("hết làm được rồi");
+          }
         });
       }
 
       return res.status(200).json({
         status: 200,
         message: "Create Service_Form Successful!",
-        data: data,
+        // data: data,
       });
     } catch (err) {
       console.log("____Create Service_Form Failed", err);

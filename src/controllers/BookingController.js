@@ -105,7 +105,8 @@ module.exports = {
           // khám sức khỏe theo ngày
           available_arr = await VeterinarianSlotDetailService.isAvailableHC(
             time_id,
-            service_type_id
+            service_type_id,
+            "S001"
           );
 
           if (available_arr.length > 0) {
