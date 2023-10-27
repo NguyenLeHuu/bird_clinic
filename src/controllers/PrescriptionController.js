@@ -1,4 +1,5 @@
 const PrescriptionService = require("../services/PrescriptionService");
+const PrescriptionDetailService = require("../services/PrescriptionDetailService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
@@ -60,11 +61,24 @@ module.exports = {
     // #swagger.tags = ['Prescription']
 
     try {
-      const { booking_id, note, usage } = req.body;
-
-      // const url = await Firebase.uploadImage(file);
-      // let data = await PrescriptionService.createPrescription(req.body, url);
-      let data = await PrescriptionService.createPrescription(req.body);
+      const { booking_id, note, usage, arr_medicine } = req.body;
+      let data;
+      if (arr_medicine) {
+        if (Array.isArray(arr_medicine)) {
+          data = await PrescriptionService.createPrescription(req.body);
+          let temp = {
+            ...data.dataValues,
+            medicine_id: arr_medicine[0].medicine_id,
+            usage: arr_medicine[0].usage,
+            total_dose: arr_medicine[0].total_dose,
+            dose: arr_medicine[0].dose,
+            day: arr_medicine[0].day,
+          };
+          await PrescriptionDetailService.createPrescriptionDetail(temp);
+        }
+      } else {
+        data = await PrescriptionService.createPrescription(req.body);
+      }
 
       console.log("____Create Prescription Successful");
 

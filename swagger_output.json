@@ -1388,6 +1388,9 @@
                   },
                   "usage": {
                     "example": "any"
+                  },
+                  "arr_medicine": {
+                    "example": "any"
                   }
                 }
               }
