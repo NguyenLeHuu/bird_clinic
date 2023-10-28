@@ -51,7 +51,7 @@
         "tags": [
           "Booking"
         ],
-        "description": "Booking theo bác sĩ",
+        "description": "Booking HC thif moi truyen vet_id, con lai k truyen",
         "responses": {
           "200": {
             "description": "OK"

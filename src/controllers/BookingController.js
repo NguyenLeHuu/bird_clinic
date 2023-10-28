@@ -1,4 +1,5 @@
 const BookingService = require("../services/BookingService");
+const BoardingService = require("../services/BoardingService");
 const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
 const Firebase = require("../services/Firebase");
 
@@ -61,7 +62,7 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Booking']
-    //#swagger.description = "Booking theo bác sĩ"
+    //#swagger.description = "Booking HC thif moi truyen vet_id, con lai k truyen"
     try {
       const {
         account_id,
@@ -130,6 +131,13 @@ module.exports = {
           req.body
         ); //chuyển status -> unavailable
         data = await BookingService.createBooking(req.body);
+
+        if (service_type_id === "ST003") {
+          let temp = {
+            ...data.dataValues,
+          };
+          await BoardingService.createBoarding(temp);
+        }
       }
 
       if (available_arr.length > 0) {
