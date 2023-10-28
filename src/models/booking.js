@@ -2,7 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
-    static associate(models) {}
+    static associate(models) {
+      Booking.belongsTo(models.bird, {
+        foreignKey: "bird_id",
+      });
+    }
   }
   Booking.init(
     {

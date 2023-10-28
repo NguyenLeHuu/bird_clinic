@@ -2,7 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ServicePackage extends Model {
-    static associate(models) {}
+    static associate(models) {
+      ServicePackage.belongsTo(models.service, {
+        foreignKey: "service_id",
+      });
+    }
   }
   ServicePackage.init(
     {

@@ -2414,7 +2414,7 @@
         "tags": [
           "ServicePackageService"
         ],
-        "description": "Get all ServicePackageService of service, không truyền hoặc truyền 1 trong 2",
+        "description": "Get all ServicePackageService of service, truyeenf 1 trong 3 truong haoc ko truyen",
         "parameters": [
           {
             "name": "size_id",
@@ -2425,6 +2425,13 @@
           },
           {
             "name": "service_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service_type_id",
             "in": "query",
             "schema": {
               "type": "string"

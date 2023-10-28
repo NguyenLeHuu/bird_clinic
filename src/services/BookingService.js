@@ -18,7 +18,17 @@ let getAll = (req) => {
           whereClause["status"] = req.status;
         }
       }
-      data = await db.booking.findAll({ where: whereClause });
+      data = await db.booking.findAll({
+        where: whereClause,
+        include: [
+          {
+            model: db.bird,
+            attributes: ["name"],
+          },
+        ],
+        raw: true,
+        nest: true,
+      });
       resolve(data);
     } catch (e) {
       reject(e);
