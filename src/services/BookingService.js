@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op, col } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 const utils = require("./Utils");
@@ -36,16 +36,51 @@ let getAll = (req) => {
   });
 };
 
-let getOne = (id) => {
+let getOne = (id, req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.Booking.findByPk(id);
-      let data = await db.booking.findOne({
-        where: {
-          booking_id: id,
-        },
-      });
-      resolve(data);
+      let sp_id;
+
+      // const result = await db.booking.findOne({
+      //   where: {
+      //     booking_id: id,
+      //   },
+      //   attributes: ["veterinarian_id"],
+      // });
+
+      // const vet = await db.veterinarian.findOne({
+      //   where: {
+      //     veterinarian_id: result.veterinarian_id,
+      //   },
+      //   attributes: ["service_type_id"],
+      // });
+
+      // const service_type_id = vet.service_type_id;
+      if (req.service_type_id === "ST001") {
+        sp_id = "SP1";
+      }
+      if (req.service_type_id === "ST002") {
+        sp_id = "SP9";
+      }
+      if (req.service_type_id === "ST003") {
+        sp_id = "SP10";
+      }
+      // console.log(sp_id);
+      const [results, metadata] = await db.sequelize.query(
+        `
+        SELECT bookings.*, service_form_details.process_at
+        FROM bookings
+        LEFT JOIN service_form_details
+        ON bookings.booking_id = service_form_details.booking_id
+        WHERE bookings.booking_id = :id AND service_form_details.service_package_id = :spid
+      `,
+        {
+          replacements: { id: id, spid: sp_id },
+          type: db.sequelize.QueryTypes.SELECT,
+        }
+      );
+
+      resolve(results);
     } catch (e) {
       reject(e);
     }

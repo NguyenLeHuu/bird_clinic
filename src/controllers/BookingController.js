@@ -39,7 +39,8 @@ module.exports = {
         */
     try {
       const id = req.params.id;
-      let data = await BookingService.getOne(id);
+      const { service_type_id } = req.query;
+      let data = await BookingService.getOne(id, req.query);
 
       if (data != null) {
         return res.status(200).json({
@@ -55,7 +56,11 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Booking");
+      console.log("____Cannot get Booking", error);
+      return res.status(400).json({
+        status: 400,
+        message: "Booking not exist!",
+      });
       // throw error;
     }
   },

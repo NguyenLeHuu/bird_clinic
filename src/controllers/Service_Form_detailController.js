@@ -5,10 +5,11 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Service_Form_detail']
-         #swagger.description = "Get all Service_Form_detailService of service"
+         #swagger.description = "Tuyền theo [veterinarian_id], [booking_id,service_type_id], []"
         */
     try {
-      let data = await Service_Form_detailService.getAll();
+      const { veterinarian_id, booking_id, service_type_id } = req.query;
+      let data = await Service_Form_detailService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
@@ -24,7 +25,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Service_Form_detailService");
+      console.log("____Cannot get Service_Form_detailService", error);
     }
   },
 

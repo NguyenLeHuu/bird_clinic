@@ -126,6 +126,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "service_type_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -412,7 +419,30 @@
         "tags": [
           "Service_Form_detail"
         ],
-        "description": "Get all Service_Form_detailService of service",
+        "description": "Tuyền theo [veterinarian_id], [booking_id,service_type_id], []",
+        "parameters": [
+          {
+            "name": "veterinarian_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service_type_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

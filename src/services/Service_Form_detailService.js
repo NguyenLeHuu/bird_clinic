@@ -2,10 +2,31 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, service_form_detail_id) => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form_detail.findAll({});
+      let whereClause = {};
+      if (req.veterinarian_id) {
+        whereClause["veterinarian_id"] = req.veterinarian_id;
+      }
+      if (req.booking_id && req.service_type_id) {
+        let sp_id;
+        if (req.service_type_id === "ST001") {
+          sp_id = "SP1";
+        }
+        if (req.service_type_id === "ST002") {
+          sp_id = "SP9";
+        }
+        if (req.service_type_id === "ST003") {
+          sp_id = "SP10";
+        }
+        whereClause["booking_id"] = req.booking_id;
+        whereClause["service_package_id"] = sp_id;
+      }
+
+      let data = await db.service_form_detail.findAll({
+        where: whereClause,
+      });
       resolve(data);
     } catch (e) {
       reject(e);
