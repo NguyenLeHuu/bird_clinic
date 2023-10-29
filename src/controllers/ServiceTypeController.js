@@ -21,7 +21,7 @@ module.exports = {
         return res.status(400).json({
           status: 400,
           message: "Not Found!",
-          data: data,
+          // data: data,
         });
       }
     } catch (error) {
@@ -48,11 +48,11 @@ module.exports = {
         return res.status(400).json({
           status: 400,
           message: "ServiceType not exist!",
-          data: data,
+          // data: data,
         });
       }
     } catch (error) {
-      console.log("____Cannot get ServiceType");
+      console.log("____Cannot get ServiceType", error);
       // throw error;
     }
   },

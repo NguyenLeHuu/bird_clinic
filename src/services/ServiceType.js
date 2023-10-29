@@ -2,7 +2,7 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (id) => {
+let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.service_type.findAll({});
@@ -16,12 +16,13 @@ let getAll = (id) => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.Service.findByPk(id);
-      let data = await db.service_type.findOne({
+      let data = await db.service_type.findAll({
         where: {
           service_type_id: id,
-          // include: [{ model: ServiceType, attributes: ["name"] }],
         },
+        include: [{ model: db.service }],
+        raw: false,
+        nest: true,
       });
       resolve(data);
     } catch (e) {

@@ -8,8 +8,8 @@ module.exports = {
          #swagger.description = "Get all Service of service type"
         */
     try {
-      const id = req.params.id;
-      let data = await Service.getAll(id);
+      // const id = req.params.id;
+      let data = await Service.getAll();
 
       if (data != null) {
         return res.status(200).json({

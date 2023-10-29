@@ -2517,19 +2517,33 @@
         }
       }
     },
-    "/service/all/{id}": {
+    "/service/": {
       "get": {
         "tags": [
           "Service"
         ],
         "description": "Get all Service of service type",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Service"
+        ],
+        "description": "",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "singleFile",
+            "in": "formData",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "file"
             }
           }
         ],
@@ -2539,6 +2553,29 @@
           },
           "400": {
             "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_type_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "description": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -2639,55 +2676,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/service/": {
-      "post": {
-        "tags": [
-          "Service"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "service_type_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "description": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
           }
         }
       }
