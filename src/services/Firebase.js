@@ -1,5 +1,6 @@
 const admin = require("firebase-admin");
 const { v4: uuidv4 } = require("uuid");
+const qr = require("qrcode");
 
 const FCM = require("fcm-node");
 var serverKey =
@@ -42,6 +43,54 @@ const uploadImage = (image) => {
       );
     } catch (e) {
       console.log(e);
+      reject(e);
+    }
+  });
+};
+const gen_qr = (dataToEncode) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      qr.toBuffer(dataToEncode, async (err, buffer) => {
+        if (err) {
+          console.error("loi me roi:", err);
+          reject(e);
+        }
+
+        let a = await uploadImageUseBuffer(buffer);
+        console.log(a);
+        resolve(a);
+      });
+    } catch (error) {
+      console.log("____lỗi ở gen_Qr___");
+    }
+  });
+};
+
+const uploadImageUseBuffer = async (buffer) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const filename = `${uuidv4()}.png`; // Đổi định dạng tên file nếu cần
+      const file = bucket.file(filename);
+
+      const stream = file.createWriteStream({
+        metadata: {
+          contentType: "image/png", // Định dạng của hình ảnh (có thể thay đổi tùy ý)
+        },
+      });
+
+      stream.on("error", (e) => {
+        console.error("Lỗi khi tải hình ảnh lên Firebase: ", e);
+        reject(e);
+      });
+
+      stream.on("finish", async () => {
+        await file.makePublic();
+      });
+      const downloadURL = `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${filename}?alt=media`;
+      resolve(downloadURL);
+      stream.end(buffer);
+    } catch (e) {
+      console.error("Lỗi khi tải hình ảnh lên Firebase: ", e);
       reject(e);
     }
   });
@@ -200,6 +249,7 @@ const fcm_uicha_Topic = (contentBody) => {
 
 module.exports = {
   uploadImage,
+  uploadImageUseBuffer,
   sendNoti,
   setMsg,
   registerCustomerTopic,
@@ -208,4 +258,5 @@ module.exports = {
   fcm_customer_Topic,
   fcm_creator_Topic,
   fcm_uicha_Topic,
+  gen_qr,
 };

@@ -2,7 +2,7 @@ const express = require("express");
 
 let router = express();
 
-// const reservationRoute = require("./Reservation");
+const reservationRoute = require("./Reservation");
 const loginRoute = require("./LoginRoute");
 const accountRoute = require("./AccountRoute");
 const customerRoute = require("./CustomerRoute");
@@ -28,7 +28,7 @@ const cageRoute = require("./CageRoute");
 const time_slot_clinicRoute = require("./TimeSlotClinicRoute");
 const slot_clinicRoute = require("./SlotClinicRoute");
 
-// router.use("/reservation", reservationRoute);
+// router.use("/test", reservationRoute);
 router.use("/booking", bookingRoute);
 router.use("/service_Form", service_FormRoute);
 router.use("/service_Form_detail", service_Form_detailRoute);

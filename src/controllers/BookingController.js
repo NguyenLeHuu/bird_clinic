@@ -101,6 +101,21 @@ module.exports = {
               req.body
             ); //chuyển status -> unavailable
             data = await BookingService.createBooking(req.body);
+            //   let datatoqr = {
+            //     booking_id: data.dataValues.booking_id,
+            //     arrival_date: arrival_date,
+            //     customer_name: customer_name,
+            //     veterinarian_id: veterinarian_id,
+            //     service_type_id: service_type_id,
+            //   };
+            //   let dataToEncode = JSON.stringify(datatoqr);
+            //   let qr_code = await Firebase.gen_qr(dataToEncode);
+            //   let data_body = {
+            //     booking_id: data.dataValues.booking_id,
+            //     qr_code,
+            //   };
+
+            //   await BookingService.updateBooking(data_body.booking_id, data_body);
           }
         } else {
           // khám sức khỏe theo ngày
@@ -141,6 +156,22 @@ module.exports = {
       }
 
       if (available_arr.length > 0) {
+        let datatoqr = {
+          booking_id: data.dataValues.booking_id,
+          arrival_date: arrival_date,
+          customer_name: customer_name,
+          veterinarian_id: veterinarian_id,
+          service_type_id: service_type_id,
+        };
+        let dataToEncode = JSON.stringify(datatoqr);
+        let qr_code = await Firebase.gen_qr(dataToEncode);
+        let data_body = {
+          booking_id: data.dataValues.booking_id,
+          qr_code,
+        };
+
+        await BookingService.updateBooking(data_body.booking_id, data_body);
+
         console.log("____Create Booking Successful");
         return res.status(200).json({
           status: 200,
@@ -232,6 +263,7 @@ module.exports = {
         money_has_paid,
         // checkin_time,
         // customer_name,
+        qr_code,
         note,
         // service_type,
         arrival_date,

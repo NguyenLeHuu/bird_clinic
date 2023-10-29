@@ -193,6 +193,9 @@
                   "money_has_paid": {
                     "example": "any"
                   },
+                  "qr_code": {
+                    "example": "any"
+                  },
                   "note": {
                     "example": "any"
                   },
