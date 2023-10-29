@@ -2,14 +2,32 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.cage.findAll({
-        // where: {
-        //   [Op.or]: [{ bird_size_id: bird_size_id }, { cage_id: cage_id }],
-        // },
-      });
+      let data;
+      if (req.size && req.status) {
+        data = await db.cage.findAll({
+          where: {
+            [Op.and]: [{ status: req.status }, { size: req.size }],
+          },
+        });
+      } else if (!req.size && !req.status) {
+        data = await db.cage.findAll({});
+      } else {
+        if (!req.size) {
+          req.size = "%";
+        }
+        if (!req.status) {
+          req.status = "%";
+        }
+        data = await db.cage.findAll({
+          where: {
+            [Op.or]: [{ status: req.status }, { size: req.size }],
+          },
+        });
+      }
+
       resolve(data);
     } catch (e) {
       reject(e);
@@ -93,10 +111,62 @@ let deleteCage = (id) => {
   });
 };
 
+let schedule_cage = (start_date, end_date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const results1 = await db.sequelize.query(
+        `
+            SELECT
+      c.*,
+      b.act_arrival_date ,
+      b.act_departure_date,
+      b.arrival_date ,
+      b.departure_date
+           FROM cages c
+      LEFT JOIN boardings b ON c.boarding_id = b.boarding_id
+      WHERE c.status = 'not_empty';
+          `,
+        // WHERE c.status = 'un_available';
+        {
+          // replacements: { id: id, spid: sp_id },
+          type: db.sequelize.QueryTypes.SELECT,
+        }
+      );
+      let mark_start, mark_end;
+      const modifiedResults = results1.map((cage) => {
+        mark_start = cage.act_arrival_date
+          ? cage.act_arrival_date
+          : cage.arrival_date;
+        mark_end = cage.act_departure_date
+          ? cage.act_departure_date
+          : cage.departure_date;
+        if (mark_start <= start_date) {
+          mark_start = start_date;
+        }
+        if (mark_end >= end_date) {
+          mark_end = end_date;
+        }
+        const modifiedCage = {
+          ...cage, // Sao chép tất cả các trường từ cage
+          mark_start,
+          mark_end,
+        };
+
+        return modifiedCage;
+      });
+
+      resolve(modifiedResults);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getAll: getAll,
   getOne: getOne,
   createCage: createCage,
   updateCage: updateCage,
   deleteCage: deleteCage,
+  schedule_cage,
 };

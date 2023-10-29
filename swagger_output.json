@@ -2180,6 +2180,22 @@
           "Cage"
         ],
         "description": "Get all Cage ",
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2220,6 +2236,38 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/cage/schedule_cage": {
+      "get": {
+        "tags": [
+          "Cage"
+        ],
+        "description": "schedule_cage",
+        "parameters": [
+          {
+            "name": "start_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }

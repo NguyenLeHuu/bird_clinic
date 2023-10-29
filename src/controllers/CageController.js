@@ -8,9 +8,8 @@ module.exports = {
          #swagger.description = "Get all Cage  "
         */
     try {
-      // const type = req.query.type;
-      // const type_id = req.query.type_id;
-      let data = await CageService.getAll();
+      const { size, status } = req.query;
+      let data = await CageService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
@@ -26,7 +25,34 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Cage");
+      console.log("____Cannot get Cage", error);
+    }
+  },
+
+  async schedule_cage(req, res) {
+    /* 
+        #swagger.tags = ['Cage']
+         #swagger.description = "schedule_cage"
+        */
+    try {
+      const { start_date, end_date } = req.query;
+      let data = await CageService.schedule_cage(start_date, end_date);
+
+      if (data != null) {
+        return res.status(200).json({
+          status: 200,
+          message: "Get schedule_cage successful!",
+          data: data,
+        });
+      } else {
+        return res.status(400).json({
+          status: 400,
+          message: "Not Found!",
+          // data: data,
+        });
+      }
+    } catch (error) {
+      console.log("____Cannot get schedule_cage", error);
     }
   },
 
