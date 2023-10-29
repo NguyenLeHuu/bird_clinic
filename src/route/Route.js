@@ -9,6 +9,7 @@ const customerRoute = require("./CustomerRoute");
 const vetRoute = require("./VetRoute");
 const birdRoute = require("./BirdRoute");
 const serviceRoute = require("./ServiceRoute");
+const serviceTypeRoute = require("./ServiceTypeRoute");
 const servicePackageRoute = require("./ServicePackageRoute");
 const mediaRoute = require("./MediaRoute");
 const bookingRoute = require("./BookingRoute");
@@ -46,6 +47,7 @@ router.use("/chat", chatRoute);
 router.use("/content_chat", content_chatRoute);
 router.use("/cage", cageRoute);
 
+router.use("/serviceType", serviceTypeRoute);
 router.use("/service", serviceRoute);
 router.use("/servicePackage", servicePackageRoute);
 

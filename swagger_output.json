@@ -2369,6 +2369,154 @@
         }
       }
     },
+    "/serviceType/": {
+      "get": {
+        "tags": [
+          "ServiceType"
+        ],
+        "description": "Get all ServiceType of service type",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ServiceType"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "singleFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/serviceType/{id}": {
+      "get": {
+        "tags": [
+          "ServiceType"
+        ],
+        "description": "Get one ServiceType (give service_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ServiceType"
+        ],
+        "description": "Update a ServiceType (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ServiceType"
+        ],
+        "description": "Delete ServiceType (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/service/all/{id}": {
       "get": {
         "tags": [
@@ -2547,7 +2695,7 @@
     "/servicePackage/": {
       "get": {
         "tags": [
-          "ServicePackageService"
+          "ServicePackage"
         ],
         "description": "Get all ServicePackageService of service, truyeenf 1 trong 3 truong haoc ko truyen",
         "parameters": [
@@ -2584,7 +2732,7 @@
       },
       "post": {
         "tags": [
-          "ServicePackageService"
+          "ServicePackage"
         ],
         "description": "",
         "responses": {
@@ -2629,7 +2777,7 @@
     "/servicePackage/{id}": {
       "get": {
         "tags": [
-          "ServicePackageService"
+          "ServicePackage"
         ],
         "description": "Get one ServicePackageService (give service_package_id)",
         "parameters": [
@@ -2653,7 +2801,7 @@
       },
       "put": {
         "tags": [
-          "ServicePackageService"
+          "ServicePackage"
         ],
         "description": "Update a ServicePackageService (give veterinarian_id)",
         "parameters": [
@@ -2703,7 +2851,7 @@
       },
       "delete": {
         "tags": [
-          "ServicePackageService"
+          "ServicePackage"
         ],
         "description": "Delete ServicePackageService (give veterinarian_id)",
         "parameters": [
