@@ -142,7 +142,7 @@ module.exports = {
       return res.status(200).json({
         status: 200,
         message: "Create Service_Form Successful!",
-        // data: data,
+        data: data,
       });
     } catch (err) {
       console.log("____Create Service_Form Failed", err);
