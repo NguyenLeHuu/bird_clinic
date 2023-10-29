@@ -106,21 +106,6 @@ module.exports = {
               req.body
             ); //chuyển status -> unavailable
             data = await BookingService.createBooking(req.body);
-            //   let datatoqr = {
-            //     booking_id: data.dataValues.booking_id,
-            //     arrival_date: arrival_date,
-            //     customer_name: customer_name,
-            //     veterinarian_id: veterinarian_id,
-            //     service_type_id: service_type_id,
-            //   };
-            //   let dataToEncode = JSON.stringify(datatoqr);
-            //   let qr_code = await Firebase.gen_qr(dataToEncode);
-            //   let data_body = {
-            //     booking_id: data.dataValues.booking_id,
-            //     qr_code,
-            //   };
-
-            //   await BookingService.updateBooking(data_body.booking_id, data_body);
           }
         } else {
           // khám sức khỏe theo ngày
@@ -197,37 +182,23 @@ module.exports = {
       });
     }
   },
-  async store_follow_date(req, res) {
+  async store_re_exam(req, res) {
     // #swagger.tags = ['Booking']
-    //#swagger.description = "Booking theo ngày"
+    //#swagger.description = "Rebooking"
     try {
       const {
         account_id,
-        time_id,
         bird_id,
         veterinarian_id,
-        symptom,
         status,
-        // diagnosis,
-        // recommendations,
-
-        // booking_date,
-        estimate_time,
-        money_has_paid,
-        // checkin_time,
         customer_name,
         note,
         service_type,
         service_type_id,
         arrival_date,
       } = req.body;
-      let available_arr = await VeterinarianSlotDetailService.isAvailable(
-        time_id,
-        service_type_id
-      );
-      if (Array.isArray(available_arr) && available_arr.length > 0) {
-        let data = await BookingService.createBooking(req.body);
-      }
+
+      let data = await BookingService.createBooking(req.body);
 
       console.log("____Create Booking Successful");
 

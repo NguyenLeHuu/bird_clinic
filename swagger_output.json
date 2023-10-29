@@ -240,6 +240,60 @@
         }
       }
     },
+    "/booking/re_exam": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "description": "Rebooking",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "example": "any"
+                  },
+                  "bird_id": {
+                    "example": "any"
+                  },
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "customer_name": {
+                    "example": "any"
+                  },
+                  "note": {
+                    "example": "any"
+                  },
+                  "service_type": {
+                    "example": "any"
+                  },
+                  "service_type_id": {
+                    "example": "any"
+                  },
+                  "arrival_date": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/service_Form/": {
       "get": {
         "tags": [

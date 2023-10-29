@@ -15,4 +15,5 @@ route.delete("/:id", BookingController.delete);
 
 // route.post("/", multer.Multer.array("image"), BookingController.store);
 route.post("/", BookingController.store);
+route.post("/re_exam", BookingController.store_re_exam);
 module.exports = route;
