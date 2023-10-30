@@ -61,4 +61,5 @@ server.listen(port, () => {
 
 io.on("connection", function (socket) {
   console.log("Co nguoi ket noi");
+  io.sockets.emit("sever-send-data", "ok ban oi");
 });
