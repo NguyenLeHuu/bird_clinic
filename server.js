@@ -20,7 +20,7 @@ require("dotenv").config(); // get value from .env
 
 let app = express();
 app.use(cors({ origin: true }));
-
+app.disable("etag");
 // config app
 
 app.use(bodyParser.json());
