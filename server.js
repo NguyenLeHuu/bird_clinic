@@ -53,6 +53,12 @@ app.use((err, req, res, next) => {
 
 var server = http.createServer(app);
 
+var io = require("socket.io")(server);
+
 server.listen(port, () => {
   console.log(`Server start port http://localhost:${port}`);
+});
+
+io.on("connection", function (socket) {
+  console.log("Co nguoi ket noi");
 });
