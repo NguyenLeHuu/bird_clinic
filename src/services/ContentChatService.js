@@ -2,16 +2,20 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
+      if (!req.chat_id || !req.user1 || !req.user2) {
+        reject("Truyền đủ giùm cái");
+      }
       let data = await db.content_chat.findAll({
-        // where: {
-        //   [Op.or]: [
-        //     { bird_size_id: bird_size_id },
-        //     { content_chat_id: content_chat_id },
-        //   ],
-        // },
+        where: {
+          [Op.and]: [
+            { chat_id: req.chat_id },
+            { user1: req.user1 },
+            { user2: req.user2 },
+          ],
+        },
       });
       resolve(data);
     } catch (e) {

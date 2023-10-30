@@ -8,9 +8,9 @@ module.exports = {
          #swagger.description = "Get all ContentChat  "
         */
     try {
-      // const type = req.query.type;
-      // const type_id = req.query.type_id;
-      let data = await ContentChatService.getAll();
+      const { chat_id, user1, user2 } = req.query;
+
+      let data = await ContentChatService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
@@ -21,12 +21,16 @@ module.exports = {
       } else {
         return res.status(400).json({
           status: 400,
-          message: "Not Found!",
-          data: data,
+          message: "No data",
+          // data: data,
         });
       }
     } catch (error) {
-      console.log("____Cannot get ContentChat");
+      return res.status(400).json({
+        status: 400,
+        message: error,
+        // data: data,
+      });
     }
   },
 

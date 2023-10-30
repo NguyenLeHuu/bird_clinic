@@ -14,6 +14,8 @@ const swaggerUI = require("swagger-ui-express");
 
 const swaggerFile = require("./swagger_output.json");
 
+const { Server } = require("socket.io");
+
 // const paypal = require("paypal-rest-sdk");
 
 require("dotenv").config(); // get value from .env
@@ -53,13 +55,20 @@ app.use((err, req, res, next) => {
 
 var server = http.createServer(app);
 
-var io = require("socket.io")(server);
-
 server.listen(port, () => {
   console.log(`Server start port http://localhost:${port}`);
 });
+const io = new Server(server, {
+  cors: {
+    // origin: "http://localhost:3001",
+    // methods: ["GET", "POST"],
+  },
+});
 
 io.on("connection", function (socket) {
-  console.log("Co nguoi ket noi");
-  io.sockets.emit("sever-send-data", "ok ban oi");
+  // console.log(socket.id);
+  socket.on("client-sent-message", function (data) {
+    io.sockets.emit("server-send-data", data);
+  });
+  // console.log(io.sockets.adapter.rooms);
 });
