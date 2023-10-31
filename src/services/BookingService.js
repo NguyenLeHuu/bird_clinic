@@ -106,6 +106,7 @@ let createBooking = (data) => {
         note: data.note,
         service_type: data.service_type,
         arrival_date: data.arrival_date,
+        service_type_id: data.service_type_id,
       });
       resolve(result);
     } catch (e) {

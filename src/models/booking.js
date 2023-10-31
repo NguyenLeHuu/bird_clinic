@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       service_type: DataTypes.STRING,
       arrival_date: DataTypes.STRING,
       tracking: DataTypes.STRING,
+      service_type_id: DataTypes.STRING,
     },
     {
       sequelize,

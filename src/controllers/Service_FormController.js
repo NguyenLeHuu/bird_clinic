@@ -4,6 +4,7 @@ const Service_Form_detail = require("../services/Service_Form_detailService");
 const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
 const TimeSlotClinicService = require("../services/TimeSlotClinicService");
 const ServicePackageService = require("../services/ServicePackageService");
+const BookingService = require("../services/BookingService");
 const db = require("../models/index");
 
 module.exports = {
@@ -80,68 +81,101 @@ module.exports = {
         num_ser_must_do,
         num_ser_has_done,
 
-        // to_service_type_id,
+        // service_type_id,
         arr_service_pack,
       } = req.body;
 
       let data = await Service_FormService.createService_Form(req.body);
+      console.log(data);
+      let booking = await BookingService.getOne(booking_id, "");
 
       if (Array.isArray(arr_service_pack)) {
         arr_service_pack.forEach(async (item, index) => {
           let temp = {};
-          let flag = false;
+          // let flag = false;
           // Thực hiện các thao tác với item ở đây
           let service_package = await ServicePackageService.getOne(
             item.service_package_id
           );
           let service_id = service_package.service_id;
-
           let available_arr_vetid;
 
-          available_arr_vetid =
-            await VeterinarianSlotDetailService.isAvailableHCNoTime(
-              date,
-              "ST001",
-              service_id
-            );
+          // console.log("----------------");
+          // console.log(booking);
+          // console.log("----------------");
 
-          if (available_arr_vetid.length > 0) {
-            //kiểm tra ai rảnh nhất
-            let veterinarian_id;
-            let record_min = 0;
-            for (const vet_id_obj of available_arr_vetid) {
-              const { count } = await db.service_form_detail.findAndCountAll({
-                where: {
-                  veterinarian_id: vet_id_obj.veterinarian_id,
-                },
-              });
-              if (count <= record_min) {
-                record_min = count;
-                veterinarian_id = vet_id_obj.veterinarian_id;
+          switch (booking.service_type_id) {
+            case "ST001":
+              available_arr_vetid =
+                await VeterinarianSlotDetailService.isAvailableHCNoTime(
+                  date,
+                  "ST001",
+                  service_id
+                );
+              if (available_arr_vetid.length > 0) {
+                //kiểm tra ai rảnh nhất
+                let veterinarian_id;
+                let record_min = 0;
+                for (const vet_id_obj of available_arr_vetid) {
+                  const { count } =
+                    await db.service_form_detail.findAndCountAll({
+                      where: {
+                        veterinarian_id: vet_id_obj.veterinarian_id,
+                      },
+                    });
+                  if (count <= record_min) {
+                    record_min = count;
+                    veterinarian_id = vet_id_obj.veterinarian_id;
+                  }
+                }
+                temp = {
+                  ...data.dataValues,
+                  service_package_id: item.service_package_id,
+                  veterinarian_id,
+                  note: item.note,
+                  status: "pending",
+                  booking_id,
+                  process_at: 1,
+                };
+                // console.log(`Phần tử ${index}:`);
+                // console.log(temp);
+                // console.log("----------------------");
+                await Service_Form_detail.createService_Form_detail(temp);
+              } else {
+                console.log("không ai làm ngày này hết");
               }
-            }
-            temp = {
-              ...data.dataValues,
-              service_package_id: item.service_package_id,
-              veterinarian_id,
-              note: item.note,
-              status: "pending",
-              booking_id,
-              process_at: 1,
-            };
-            // console.log(`Phần tử ${index}:`);
-            // console.log(temp);
-            // console.log("----------------------");
-            await Service_Form_detail.createService_Form_detail(temp);
-          } else {
-            console.log("không ai làm ngày này hết");
+              break;
+
+            case "ST002":
+            case "ST003":
+              temp = {
+                ...data.dataValues,
+                service_package_id: item.service_package_id,
+                veterinarian_id: booking.veterinarian_id,
+                note: item.note,
+                status: "pending",
+                booking_id,
+                process_at: 1,
+              };
+              await Service_Form_detail.createService_Form_detail(temp);
+              break;
+            default:
+              return res.status(400).json({
+                status: 400,
+                message: "Truyền đúng dữ liệu đi",
+              });
           }
+        });
+      } else {
+        return res.status(400).json({
+          status: 400,
+          message: "Truyền mảng package vào",
         });
       }
 
       return res.status(200).json({
         status: 200,
-        message: "Create Service_Form Successful!",
+        message: "Create Service_Form + service_form_detail Successful!",
         data: data,
       });
     } catch (err) {
