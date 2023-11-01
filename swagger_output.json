@@ -706,10 +706,7 @@
                   "payment_method": {
                     "example": "any"
                   },
-                  "paypal_transaction_id": {
-                    "example": "any"
-                  },
-                  "status": {
+                  "transaction_id": {
                     "example": "any"
                   }
                 }
@@ -855,9 +852,6 @@
                   },
                   "price": {
                     "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
                   }
                 }
               }
@@ -927,9 +921,6 @@
                     "example": "any"
                   },
                   "price": {
-                    "example": "any"
-                  },
-                  "quantity": {
                     "example": "any"
                   }
                 }

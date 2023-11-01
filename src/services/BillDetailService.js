@@ -38,7 +38,7 @@ let createBillDetail = (data) => {
         bill_id: data.bill_id,
         service_package_id: data.service_package_id,
         price: data.price,
-        quantity: data.quantity,
+        // quantity: data.quantity,
       });
       resolve(result);
     } catch (e) {

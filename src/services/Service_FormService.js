@@ -16,10 +16,17 @@ let getAll = () => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.findOne({
+      let data = await db.service_form.findAll({
         where: {
           service_form_id: id,
         },
+        include: [
+          {
+            model: db.service_form_detail,
+          },
+        ],
+        raw: false,
+        nest: true,
       });
       resolve(data);
     } catch (e) {

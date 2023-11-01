@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       bill_id: DataTypes.STRING,
       service_package_id: DataTypes.STRING,
       price: DataTypes.STRING,
-      quantity: DataTypes.STRING,
+      // quantity: DataTypes.STRING,
     },
     {
       sequelize,

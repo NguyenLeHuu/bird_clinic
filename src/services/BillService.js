@@ -46,7 +46,7 @@ let createBill = (data) => {
         booking_id: data.booking_id,
         payment_method: data.payment_method,
         transaction_id: data.transaction_id,
-        status: data.status,
+        status: 1,
         // time_create: data.time_create,
       });
       resolve(result);

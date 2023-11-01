@@ -1,4 +1,7 @@
 const BillService = require("../services/BillService");
+const Service_FormService = require("../services/Service_FormService");
+const BillDetailService = require("../services/BillDetailService");
+const ServicePackageService = require("../services/ServicePackageService");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
@@ -67,12 +70,27 @@ module.exports = {
         service_form_id,
         booking_id,
         payment_method,
-        paypal_transaction_id,
-        status,
+        transaction_id,
+        // status,
         // time,
       } = req.body;
 
       let data = await BillService.createBill(req.body);
+
+      let service_form = await Service_FormService.getOne(service_form_id);
+      // console.log(service_form[0].dataValues.service_form_details);
+      let arr = service_form[0].dataValues.service_form_details;
+      arr.forEach(async (item, index) => {
+        let sp = await ServicePackageService.getOne(
+          item.dataValues.service_package_id
+        );
+        let temp = {
+          bill_id: data.dataValues.bill_id,
+          service_package_id: item.dataValues.service_package_id,
+          price: sp.price,
+        };
+        let billdetail = await BillDetailService.createBillDetail(temp);
+      });
 
       console.log("____Create Bill Successful");
 

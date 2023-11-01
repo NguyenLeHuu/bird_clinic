@@ -60,7 +60,7 @@ module.exports = {
     // #swagger.tags = ['BillDetail']
 
     try {
-      const { bill_id, service_package_id, price, quantity } = req.body;
+      const { bill_id, service_package_id, price } = req.body;
 
       let data = await BillDetailService.createBillDetail(req.body);
 
@@ -86,7 +86,7 @@ module.exports = {
          #swagger.description = "Update a bill_detail (give bill_detail_id)"
         */
     try {
-      const { bill_id, service_package_id, price, quantity } = req.body;
+      const { bill_id, service_package_id, price } = req.body;
 
       let data = await BillDetailService.updateBillDetail(id, req.body);
       console.log("____Update BillDetail Successful");
