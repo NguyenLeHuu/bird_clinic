@@ -1,11 +1,16 @@
 const promiseRouter = require("express-promise-router");
 const CageController = require("../controllers/CageController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/", CageController.getAll);
+route.get(
+  "/",
+  //   AuthMiddleware.isAuthenticated,
+  //   AuthMiddleware.isStaff,
+  CageController.getAll
+);
 route.get("/schedule_cage", CageController.schedule_cage);
 
 route.get("/:id", CageController.getOne);

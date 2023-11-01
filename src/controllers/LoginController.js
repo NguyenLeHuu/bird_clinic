@@ -1,7 +1,7 @@
 const db = require("../models/index");
 const CustomerService = require("../services/CustomerService");
 const VetService = require("../services/VetService");
-
+const jwt = require("jsonwebtoken");
 var refreshTokens = [];
 module.exports = {
   async checkUserInDB(req, res) {
@@ -22,6 +22,13 @@ module.exports = {
       });
       let data;
       if (account) {
+        const accessToken = jwt.sign(
+          { account_id: account.account_id },
+          process.env.ACCESS_TOKEN_SECRET,
+          {
+            expiresIn: "1000d",
+          }
+        );
         let role = account.role;
         switch (account.role) {
           case "customer":
@@ -51,7 +58,7 @@ module.exports = {
         // console.log(data);
         res.status(200).json({
           status: 200,
-          data: { role: role, data: data },
+          data: { role: role, data: data, accessToken },
         });
       } else {
         res.status(400).json({
