@@ -8,7 +8,8 @@ module.exports = {
          #swagger.description = "Tuyền theo [veterinarian_id], [booking_id,service_type_id], []"
         */
     try {
-      const { veterinarian_id, booking_id, service_type_id } = req.query;
+      const { veterinarian_id, arrival_date, booking_id, service_type_id } =
+        req.query;
       let data = await Service_Form_detailService.getAll(req.query);
 
       if (data != null) {

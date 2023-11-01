@@ -483,6 +483,13 @@
             }
           },
           {
+            "name": "arrival_date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "booking_id",
             "in": "query",
             "schema": {

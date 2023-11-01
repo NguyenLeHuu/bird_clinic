@@ -5,9 +5,29 @@ const crypto = require("crypto");
 let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
+      let data;
       let whereClause = {};
       if (req.veterinarian_id) {
         whereClause["veterinarian_id"] = req.veterinarian_id;
+      }
+      if (req.veterinarian_id && req.arrival_date) {
+        data = await db.sequelize.query(
+          `
+          SELECT sfd.*
+FROM service_form_details AS sfd
+JOIN bookings AS b ON sfd.booking_id = b.booking_id
+WHERE b.arrival_date = :arrival_date
+AND sfd.veterinarian_id = :veterinarian_id
+        `,
+          {
+            replacements: {
+              arrival_date: req.arrival_date,
+              veterinarian_id: req.veterinarian_id,
+            },
+            type: db.sequelize.QueryTypes.SELECT,
+          }
+        );
+        resolve(data);
       }
       if (req.booking_id && req.service_type_id) {
         let sp_id;
@@ -24,7 +44,7 @@ let getAll = (req) => {
         whereClause["service_package_id"] = sp_id;
       }
 
-      let data = await db.service_form_detail.findAll({
+      data = await db.service_form_detail.findAll({
         where: whereClause,
       });
       resolve(data);

@@ -20,22 +20,38 @@ module.exports = {
           password: password,
         },
       });
+      let data;
       if (account) {
         let role = account.role;
         switch (account.role) {
           case "customer":
-            account = await CustomerService.getOne(account.account_id);
+            data = await CustomerService.getOne(account.account_id);
             break;
-          case "doctor":
-            account = await VetService.getOne(account.account_id);
+          case "vet":
+            // data = await VetService.getOne(account.account_id);
+            data = await db.veterinarian.findOne({
+              where: {
+                veterinarian_id: account.account_id,
+              },
+              include: [
+                {
+                  model: db.account,
+                },
+              ],
+              raw: true,
+              nest: true,
+            });
+            break;
+          case "staff":
+            data = account;
             break;
           default:
             break;
         }
-        console.log(account);
+        // console.log(data);
         res.status(200).json({
           status: 200,
-          data: { role: role, account: account },
+          data: { role: role, data: data },
         });
       } else {
         res.status(400).json({
