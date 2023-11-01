@@ -38,6 +38,7 @@ let createMedicalRecord = (data) => {
         symptom: data.symptom,
         diagnose: data.diagnose,
         recommendations: data.recommendations,
+        service_form_detail_id: data.service_form_detail_id,
       });
       resolve(result);
     } catch (e) {

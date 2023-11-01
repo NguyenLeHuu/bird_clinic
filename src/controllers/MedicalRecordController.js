@@ -59,33 +59,19 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['MedicalRecord']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
-      const {
-        symptom,
-        diagnose,
-        recommendations,
-        type,
-        type_id,
-        is_before,
-        is_after,
-        type_service,
-      } = req.body;
+      const { symptom, diagnose, recommendations, service_form_detail_id } =
+        req.body;
 
       // const url = await Firebase.uploadImage(file);
       // let listImage = [];
 
-      req.files.forEach(async (file) => {
-        const url = await Firebase.uploadImage(file);
-        await MediaService.createMedia(req.body, url);
-        // listImage.push(url);
-      });
+      // req.files.forEach(async (file) => {
+      //   const url = await Firebase.uploadImage(file);
+      //   await MediaService.createMedia(req.body, url);
+      //   // listImage.push(url);
+      // });
       let data = await MedicalRecordService.createMedicalRecord(req.body);
 
       console.log("____Create MedicalRecord Successful");

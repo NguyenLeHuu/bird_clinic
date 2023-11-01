@@ -742,10 +742,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Bill"
-        ],
-        "description": "Update a bill (give bill_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -757,31 +754,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "payment_method": {
-                    "example": "any"
-                  },
-                  "transaction_id": {
-                    "example": "any"
-                  },
-                  "status": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
+          "default": {
+            "description": ""
           }
         }
       },
@@ -1130,16 +1104,6 @@
           "MedicalRecord"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1163,19 +1127,7 @@
                   "recommendations": {
                     "example": "any"
                   },
-                  "type": {
-                    "example": "any"
-                  },
-                  "type_id": {
-                    "example": "any"
-                  },
-                  "is_before": {
-                    "example": "any"
-                  },
-                  "is_after": {
-                    "example": "any"
-                  },
-                  "type_service": {
+                  "service_form_detail_id": {
                     "example": "any"
                   }
                 }

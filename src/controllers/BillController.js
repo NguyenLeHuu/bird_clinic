@@ -2,7 +2,10 @@ const BillService = require("../services/BillService");
 const Service_FormService = require("../services/Service_FormService");
 const BillDetailService = require("../services/BillDetailService");
 const ServicePackageService = require("../services/ServicePackageService");
+const BookingService = require("../services/BookingService");
 const Firebase = require("../services/Firebase");
+const db = require("../models/index");
+const CustomerService = require("../services/CustomerService");
 
 module.exports = {
   async getAll(req, res) {
@@ -75,9 +78,23 @@ module.exports = {
         // time,
       } = req.body;
 
-      let data = await BillService.createBill(req.body);
+      let data = await BillService.createBill(req.body); // tạo bill
 
-      let service_form = await Service_FormService.getOne(service_form_id);
+      let booking = await BookingService.getOne(booking_id, ""); //cập nhật total_spent, money_has_paid
+      await db.booking.update(
+        {
+          money_has_paid:
+            parseFloat(booking.money_has_paid) + parseFloat(total_price),
+        },
+        {
+          where: {
+            booking_id: booking_id,
+          },
+        }
+      );
+      await CustomerService.updateTotalSpent(booking.account_id, total_price);
+
+      let service_form = await Service_FormService.getOne(service_form_id); //tạo bill_detail
       // console.log(service_form[0].dataValues.service_form_details);
       let arr = service_form[0].dataValues.service_form_details;
       arr.forEach(async (item, index) => {
@@ -89,7 +106,7 @@ module.exports = {
           service_package_id: item.dataValues.service_package_id,
           price: sp.price,
         };
-        let billdetail = await BillDetailService.createBillDetail(temp);
+        await BillDetailService.createBillDetail(temp);
       });
 
       console.log("____Create Bill Successful");
@@ -100,7 +117,7 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Create Bill Failed");
+      console.log("____Create Bill Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,
