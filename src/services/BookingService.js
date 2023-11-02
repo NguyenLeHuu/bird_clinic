@@ -21,6 +21,14 @@ let getAll = (req) => {
             attributes: ["name"],
           },
         ],
+
+        // include: [
+        //   {
+        //     model: db.veterinarian,
+        //     attributes: [["name", "vetName"]],
+        //   },
+        // ],
+
         raw: true,
         nest: true,
       });

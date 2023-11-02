@@ -36,7 +36,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
           }
         );
       } else {
-        data = await TimeSlotClinicService.getAll();
+        data = await TimeSlotClinicService.getAll(req.query);
       }
       //       let data = await db.sequelize.query(
       //         `
