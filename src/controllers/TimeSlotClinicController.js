@@ -14,7 +14,7 @@ module.exports = {
       if (service_type_id && date) {
         data = await db.sequelize.query(
           `
-        SELECT ts.date, sc.time
+        SELECT ts.time_slot_clinic_id, sc.time
 FROM time_slot_clinics ts
 INNER JOIN slot_clinics sc ON ts.slot_clinic_id = sc.slot_clinic_id
 WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tìm kiếm
