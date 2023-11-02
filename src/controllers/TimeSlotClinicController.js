@@ -1,16 +1,63 @@
 const TimeSlotClinicService = require("../services/TimeSlotClinicService");
 const Firebase = require("../services/Firebase");
+const db = require("../models/index");
 
 module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['TimeSlotClinic']
-         #swagger.description = "Get all TimeSlotClinic  "
+         #swagger.description = "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó"
         */
     try {
-      const { date } = req.query;
-      let data = await TimeSlotClinicService.getAll(req.query);
+      const { date, service_type_id } = req.query;
+      let data;
+      if (service_type_id && date) {
+        data = await db.sequelize.query(
+          `
+        SELECT ts.date, sc.time
+FROM time_slot_clinics ts
+INNER JOIN slot_clinics sc ON ts.slot_clinic_id = sc.slot_clinic_id
+WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tìm kiếm
+  AND ts.time_slot_clinic_id IN (
+    SELECT vsd.time_slot_clinic_id
+    FROM veterinarian_slot_details vsd
+    INNER JOIN veterinarians v ON vsd.veterinarian_id = v.veterinarian_id
+    WHERE v.service_type_id = :stid -- Thay 'your_service_type_id' bằng giá trị service_type_id bạn đang tìm kiếm
+        AND vsd.status = 'available'
+  );
 
+      `,
+          {
+            replacements: {
+              date: date,
+              stid: service_type_id,
+            },
+            type: db.sequelize.QueryTypes.SELECT,
+          }
+        );
+      } else {
+        data = await TimeSlotClinicService.getAll();
+      }
+      //       let data = await db.sequelize.query(
+      //         `
+      //         SELECT ts.date, sc.time
+      // FROM time_slot_clinics ts
+      // INNER JOIN slot_clinics sc ON ts.slot_clinic_id = sc.slot_clinic_id
+      // LEFT JOIN veterinarian_slot_details vsd ON ts.time_slot_clinic_id = vsd.time_slot_clinic_id
+      // LEFT JOIN veterinarians v ON vsd.veterinarian_id = v.veterinarian_id
+      // WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tìm kiếm
+      //   AND v.service_type_id = :stid -- Thay 'your_service_type_id' bằng giá trị service_type_id bạn đang tìm kiếm
+      //   AND (vsd.status IS NULL OR vsd.status = 'available');
+
+      //       `,
+      //         {
+      //           replacements: {
+      //             date: date,
+      //             stid: service_type_id,
+      //           },
+      //           type: db.sequelize.QueryTypes.SELECT,
+      //         }
+      //       );
       if (data != null) {
         return res.status(200).json({
           status: 200,
@@ -26,6 +73,10 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get TimeSlotClinic", error);
+      return res.status(400).json({
+        status: 400,
+        message: error,
+      });
     }
   },
 

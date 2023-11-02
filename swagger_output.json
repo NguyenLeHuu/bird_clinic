@@ -3805,10 +3805,17 @@
         "tags": [
           "TimeSlotClinic"
         ],
-        "description": "Get all TimeSlotClinic ",
+        "description": "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó",
         "parameters": [
           {
             "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service_type_id",
             "in": "query",
             "schema": {
               "type": "string"
