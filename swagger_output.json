@@ -36,6 +36,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "account_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

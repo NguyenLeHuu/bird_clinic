@@ -10,7 +10,7 @@ module.exports = {
          #swagger.description = "Get all Booking"
         */
     try {
-      const { arrival_date, status } = req.query;
+      const { arrival_date, status, account_id } = req.query;
       let data = await BookingService.getAll(req.query);
 
       if (data != null) {

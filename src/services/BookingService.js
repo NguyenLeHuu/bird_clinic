@@ -7,17 +7,12 @@ let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = [];
-      let whereClause = {};
-      if (req.arrival_date && req.status) {
-        whereClause["arrival_date"] = req.arrival_date;
-        whereClause["status"] = req.status;
-      } else {
-        if (req.arrival_date) {
-          whereClause["arrival_date"] = req.arrival_date;
-        } else if (req.status) {
-          whereClause["status"] = req.status;
-        }
-      }
+      const whereClause = {};
+
+      if (req.arrival_date) whereClause.arrival_date = req.arrival_date;
+      if (req.status) whereClause.status = req.status;
+      if (req.account_id) whereClause.account_id = req.account_id;
+
       data = await db.booking.findAll({
         where: whereClause,
         include: [
