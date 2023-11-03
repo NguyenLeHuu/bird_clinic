@@ -60,8 +60,15 @@ module.exports = {
     // #swagger.tags = ['Prescription Detail']
 
     try {
-      const { prescription_id, medicine_id, usage, total_dose, dose, day } =
-        req.body;
+      const {
+        prescription_id,
+        medicine_id,
+        usage,
+        total_dose,
+        dose,
+        day,
+        note,
+      } = req.body;
 
       let data = await PrescriptionDetailService.createPrescriptionDetail(
         req.body

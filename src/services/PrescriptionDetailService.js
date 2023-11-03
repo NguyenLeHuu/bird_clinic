@@ -41,6 +41,7 @@ let createPrescriptionDetail = (data) => {
         total_dose: data.total_dose,
         dose: data.dose,
         day: data.day,
+        note: data.note,
         status: 1,
       });
       resolve(result);

@@ -36,9 +36,6 @@ let createPrescription = (data) => {
       const result = await db.prescription.create({
         prescription_id: id,
         booking_id: data.booking_id,
-        // time_created: data.time_created,
-        note: data.note,
-        usage: data.usage,
         status: "1",
       });
       resolve(result);

@@ -1456,12 +1456,6 @@
                   "booking_id": {
                     "example": "any"
                   },
-                  "note": {
-                    "example": "any"
-                  },
-                  "usage": {
-                    "example": "any"
-                  },
                   "arr_medicine": {
                     "example": "any"
                   }
@@ -1613,6 +1607,9 @@
                     "example": "any"
                   },
                   "day": {
+                    "example": "any"
+                  },
+                  "note": {
                     "example": "any"
                   }
                 }

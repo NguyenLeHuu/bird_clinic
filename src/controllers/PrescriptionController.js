@@ -61,7 +61,7 @@ module.exports = {
     // #swagger.tags = ['Prescription']
 
     try {
-      const { booking_id, note, usage, arr_medicine } = req.body;
+      const { booking_id, arr_medicine } = req.body;
       let data = await PrescriptionService.createPrescription(req.body);
       if (arr_medicine) {
         if (Array.isArray(arr_medicine)) {
@@ -73,6 +73,7 @@ module.exports = {
               total_dose: item.total_dose,
               dose: item.dose,
               day: item.day,
+              note: item.note,
             };
             await PrescriptionDetailService.createPrescriptionDetail(temp);
           });
