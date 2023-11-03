@@ -125,13 +125,39 @@ module.exports = {
     }
   },
 
-  async update(req, res) {
-    /* 
-        #swagger.tags = ['Bill']
-         #swagger.description = "Update a bill (give bill_id)"
-        */
+  // async update(req, res) {
+  //   //  #swagger.tags = ['Bill']
+  //   try {
+  //     const id = req.params["id"];
+
+  //     const {
+  //       payment_method,
+  //       transaction_id,
+  //       status,
+  //       // time_create,
+  //     } = req.body;
+
+  //     let data = await BillService.updateBill(id, req.body);
+  //     console.log("____Update Bill Successful");
+
+  //     return res.status(200).json({
+  //       status: 200,
+  //       message: "Update Bill Successful!",
+  //       data: data,
+  //     });
+  //   } catch (err) {
+  //     console.log("____Update Bill Failed");
+  //     return res.status(400).json({
+  //       status: 400,
+  //       message: err,
+  //     });
+  //   }
+  // },
+
+  async update1(req, res) {
+    //  #swagger.tags = ['Bill']
     try {
-      const id = req.params.id;
+      const id = req.params["id"];
 
       const {
         payment_method,

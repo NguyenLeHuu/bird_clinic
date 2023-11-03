@@ -293,6 +293,9 @@
                   },
                   "arrival_date": {
                     "example": "any"
+                  },
+                  "is_re_exam": {
+                    "example": "any"
                   }
                 }
               }
@@ -749,6 +752,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Bill"
+        ],
         "description": "",
         "parameters": [
           {
@@ -761,8 +767,31 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "payment_method": {
+                    "example": "any"
+                  },
+                  "transaction_id": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       },

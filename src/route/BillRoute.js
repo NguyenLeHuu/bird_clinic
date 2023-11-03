@@ -8,6 +8,7 @@ let route = promiseRouter();
 route.get("/", BillController.getAll);
 
 route.get("/:id", BillController.getOne);
+route.put("/:id", BillController.update1);
 
 // route.post("/", multer.Multer.array("image"), BillController.store);
 route.post(
@@ -16,7 +17,7 @@ route.post(
   BillController.store
 );
 
-route.put("/:id", BillController.update);
+// route.put("/:id", BillController.update);
 
 route.delete("/:id", BillController.delete);
 module.exports = route;

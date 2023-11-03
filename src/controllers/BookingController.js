@@ -196,6 +196,7 @@ module.exports = {
         service_type,
         service_type_id,
         arrival_date,
+        is_re_exam,
       } = req.body;
 
       let data = await BookingService.createBooking(req.body);

@@ -17,17 +17,14 @@ let getAll = (req) => {
         where: whereClause,
         include: [
           {
+            model: db.veterinarian,
+            attributes: [["name", "vetName"]],
+          },
+          {
             model: db.bird,
             attributes: ["name"],
           },
         ],
-
-        // include: [
-        //   {
-        //     model: db.veterinarian,
-        //     attributes: [["name", "vetName"]],
-        //   },
-        // ],
 
         raw: true,
         nest: true,
@@ -110,6 +107,7 @@ let createBooking = (data) => {
         service_type: data.service_type,
         arrival_date: data.arrival_date,
         service_type_id: data.service_type_id,
+        is_re_exam: data.is_re_exam,
       });
       resolve(result);
     } catch (e) {
