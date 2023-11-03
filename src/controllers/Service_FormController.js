@@ -106,12 +106,17 @@ module.exports = {
 
           switch (booking.service_type_id) {
             case "ST001":
-              available_arr_vetid =
-                await VeterinarianSlotDetailService.isAvailableHCNoTime(
-                  date,
-                  "ST001",
-                  service_id
-                );
+              if (service_id === "SP1") {
+                available_arr_vetid = booking.veterinarian_id;
+              } else {
+                available_arr_vetid =
+                  await VeterinarianSlotDetailService.isAvailableHCNoTime(
+                    date,
+                    "ST001",
+                    service_id
+                  );
+              }
+
               if (available_arr_vetid.length > 0) {
                 //kiểm tra ai rảnh nhất
                 let veterinarian_id;
