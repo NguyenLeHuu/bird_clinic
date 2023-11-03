@@ -18,7 +18,7 @@ let getAll = (req) => {
         include: [
           {
             model: db.veterinarian,
-            attributes: [["name", "vetName"]],
+            attributes: ["name"],
           },
           {
             model: db.bird,
