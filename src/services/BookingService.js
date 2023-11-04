@@ -23,6 +23,12 @@ let getAll = (req) => {
           {
             model: db.bird,
             attributes: ["name"],
+            include: [
+              {
+                model: db.customer,
+                attributes: ["phone"],
+              },
+            ],
           },
         ],
 
