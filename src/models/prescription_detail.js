@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       dose: DataTypes.STRING,
       day: DataTypes.STRING,
       status: DataTypes.STRING,
+      note: DataTypes.STRING,
     },
     {
       sequelize,
