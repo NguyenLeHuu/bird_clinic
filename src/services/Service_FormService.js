@@ -29,9 +29,9 @@ let getAll = (req) => {
             {
               model: db.service_form_detail,
               // attributes: [],
-              where: {
-                service_package_id: { [Op.ne]: "SP1" },
-              },
+              // where: {
+              //   service_package_id: { [Op.ne]: "SP1" },
+              // },
             },
           ],
           raw: false,
