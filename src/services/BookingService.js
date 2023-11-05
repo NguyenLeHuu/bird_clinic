@@ -53,6 +53,25 @@ let getOne = (id, req) => {
           where: {
             booking_id: id,
           },
+          include: [
+            {
+              model: db.veterinarian,
+              attributes: ["name"],
+            },
+            {
+              model: db.bird,
+              attributes: ["name"],
+              include: [
+                {
+                  model: db.customer,
+                  attributes: ["phone"],
+                },
+              ],
+            },
+          ],
+
+          raw: true,
+          nest: true,
         });
       } else {
         if (req.service_type_id === "ST001") {
