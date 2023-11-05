@@ -11,10 +11,11 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Service_Form']
-         #swagger.description = "Get all Service_Form of service"
+         #swagger.description = "Truyen booking_id se lay theo booking (không hiện sf gốc)"
         */
     try {
-      let data = await Service_FormService.getAll();
+      const { booking_id } = req.query;
+      let data = await Service_FormService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({

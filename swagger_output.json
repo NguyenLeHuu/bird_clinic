@@ -309,7 +309,16 @@
         "tags": [
           "Service_Form"
         ],
-        "description": "Get all Service_Form of service",
+        "description": "Truyen booking_id se lay theo booking (không hiện sf gốc)",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

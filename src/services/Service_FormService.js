@@ -2,10 +2,30 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.findAll({});
+      let data;
+      if (req.booking_id) {
+        data = await db.service_form.findAll({
+          where: {
+            booking_id: req.booking_id,
+          },
+          include: [
+            {
+              model: db.service_form_detail,
+              attributes: [],
+              where: {
+                service_package_id: { [Op.ne]: "SP1" },
+              },
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+      } else {
+        data = await db.service_form.findAll({});
+      }
       resolve(data);
     } catch (e) {
       reject(e);
