@@ -24,19 +24,7 @@ let getAll = (req) => {
           nest: true,
         });
       } else {
-        data = await db.service_form.findAll({
-          include: [
-            {
-              model: db.service_form_detail,
-              // attributes: [],
-              // where: {
-              //   service_package_id: { [Op.ne]: "SP1" },
-              // },
-            },
-          ],
-          raw: false,
-          nest: true,
-        });
+        data = await db.service_form.findAll({});
       }
       resolve(data);
     } catch (e) {
