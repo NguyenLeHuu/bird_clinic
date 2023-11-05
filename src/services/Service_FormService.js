@@ -24,7 +24,15 @@ let getAll = (req) => {
           nest: true,
         });
       } else {
-        data = await db.service_form.findAll({});
+        data = await db.service_form.findAll({
+          include: [
+            {
+              model: db.service_form_detail,
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
       }
       resolve(data);
     } catch (e) {
