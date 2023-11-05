@@ -14,7 +14,7 @@ let getAll = (req) => {
           include: [
             {
               model: db.service_form_detail,
-              attributes: [],
+              // attributes: [],
               where: {
                 service_package_id: { [Op.ne]: "SP1" },
               },
