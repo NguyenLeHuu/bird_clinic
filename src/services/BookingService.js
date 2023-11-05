@@ -158,7 +158,7 @@ let updateBooking = (id, body_data) => {
           booking_date: body_data.date,
           estimate_time: body_data.estimate_time,
           money_has_paid: body_data.money_has_paid,
-          // checkin_time,
+          checkin_time: body_data.checkin_time,
           // customer_name,
           qr_code: body_data.qr_code,
           note: body_data.note,

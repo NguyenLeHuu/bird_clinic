@@ -238,7 +238,7 @@ module.exports = {
         booking_date,
         estimate_time,
         money_has_paid,
-        // checkin_time,
+        checkin_time,
         // customer_name,
         qr_code,
         note,
