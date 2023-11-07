@@ -32,6 +32,10 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get ServicePackageService", error);
+      return res.status(400).json({
+        status: 400,
+        message: error,
+      });
     }
   },
 

@@ -70,5 +70,28 @@ io.on("connection", function (socket) {
   socket.on("client-sent-message", function (data) {
     io.sockets.emit("server-send-data", data);
   });
+
+  //login
+  //const loggedInUsers = [];
+  // socket.on('login', (data) => {
+  //   const user = { userid: data.userid, socket: socket };
+  //   loggedInUsers.push(user);
+  // });
+
+  // Gửi tin nhắn từ userid1 cho userid2
+  //client
+  //socket.emit('message', { from: 'userid1', to: 'userid2', content: 'Nội dung tin nhắn' });
+
+  //server
+  //socket.on('message', (data) => {
+  //lap vong for gui toi cac socket co userid
+  // io.to().emit('message', { from: 'userid1', to: 'userid2',})
+  //});
+
+  //client
+  //socket.on('message', (data) => {
+  //goi lai api
+  //});
+
   // console.log(io.sockets.adapter.rooms);
 });

@@ -25,6 +25,10 @@ module.exports = {
       }
     } catch (error) {
       console.log("____Cannot get bill_detail", error);
+      return res.status(400).json({
+        status: 400,
+        message: error,
+      });
     }
   },
 

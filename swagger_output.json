@@ -207,6 +207,9 @@
                   "money_has_paid": {
                     "example": "any"
                   },
+                  "checkin_time": {
+                    "example": "any"
+                  },
                   "qr_code": {
                     "example": "any"
                   },
