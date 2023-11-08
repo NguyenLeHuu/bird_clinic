@@ -6,9 +6,9 @@ let getAll = (type, type_id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.medias.findAll({
-        // where: {
-        //   [Op.and]: [{ type: type }, { type_id: type_id }],
-        // },
+        where: {
+          [Op.and]: [{ type: type }, { type_id: type_id }],
+        },
       });
       resolve(data);
     } catch (e) {
