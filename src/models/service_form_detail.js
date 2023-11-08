@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       Service_Form_detail.belongsTo(models.service_package, {
         foreignKey: "service_package_id",
       });
+      Service_Form_detail.belongsTo(models.veterinarian, {
+        foreignKey: "veterinarian_id",
+      });
     }
   }
   Service_Form_detail.init(

@@ -20,7 +20,7 @@ let getAll = (req) => {
               include: [
                 {
                   model: db.service_package,
-                  attributes: ["price"], // Chỉ định các trường bạn muốn bao gồm
+                  attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
                 },
               ],
               // raw: false,
@@ -38,7 +38,7 @@ let getAll = (req) => {
               include: [
                 {
                   model: db.service_package,
-                  attributes: ["price"], // Chỉ định các trường bạn muốn bao gồm
+                  attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
                 },
               ],
             },
@@ -64,6 +64,16 @@ let getOne = (id) => {
         include: [
           {
             model: db.service_form_detail,
+            include: [
+              {
+                model: db.service_package,
+                attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
+              },
+              {
+                model: db.veterinarian,
+                attributes: ["name"],
+              },
+            ],
           },
         ],
         raw: false,
