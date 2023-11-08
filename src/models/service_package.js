@@ -3,10 +3,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ServicePackage extends Model {
     static associate(models) {
-      ServicePackage.belongsTo(models.services, {
+      ServicePackage.belongsTo(models.service, {
         foreignKey: "service_id",
       });
-      ServicePackage.hasMany(models.service_form_details, {
+      ServicePackage.hasMany(models.service_form_detail, {
         foreignKey: "service_package_id",
       });
     }
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "service_packages",
+      modelName: "service_package",
       timestamps: false,
     }
   );

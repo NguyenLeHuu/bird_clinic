@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = (bird_size_id, chat_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.chats.findAll({
+      let data = await db.chat.findAll({
         // where: {
         //   [Op.or]: [{ bird_size_id: bird_size_id }, { chat_id: chat_id }],
         // },
@@ -21,7 +21,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Chat.findByPk(id);
-      let data = await db.chats.findOne({
+      let data = await db.chat.findOne({
         where: {
           chat_id: id,
           // include: [{ model: ChatType, attributes: ["name"] }],
@@ -38,7 +38,7 @@ let createChat = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.chats.create({
+      const result = await db.chat.create({
         chat_id: id,
         boarding_id: data.bird_size_id,
         bird_id: data.bird_id,
@@ -54,7 +54,7 @@ let createChat = (data) => {
 let updateChat = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let result = await db.chats.update(
+      let result = await db.chat.update(
         {
           status: data.status,
         },
@@ -74,7 +74,7 @@ let updateChat = (id, data) => {
 let deleteChat = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.chats.update(
+      let data = await db.chat.update(
         {
           status: 0,
         },

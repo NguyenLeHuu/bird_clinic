@@ -29,7 +29,7 @@ let getAll = (req) => {
         ],
         include: [
           {
-            model: db.time_slot_clinics,
+            model: db.time_slot_clinic,
             attributes: [],
             include: [
               {
@@ -142,7 +142,7 @@ let getOne = (id) => {
         ],
         include: [
           {
-            model: db.time_slot_clinics,
+            model: db.time_slot_clinic,
             attributes: ["date"],
             include: [
               {
@@ -269,7 +269,7 @@ let isAvailable = (time_slot_clinic_id, service_type_id) => {
   //check available boaring, grooming
   return new Promise(async (resolve, reject) => {
     try {
-      let data1 = await db.veterinarians.findAll({
+      let data1 = await db.veterinarian.findAll({
         //lấy ra tất cả vet thuộc service_type
         where: {
           service_type_id: service_type_id,
@@ -298,7 +298,7 @@ let isAvailableHC = (time_slot_clinic_id, service_type_id, service_id) => {
   //check available HC
   return new Promise(async (resolve, reject) => {
     try {
-      let data1 = await db.veterinarians.findAll({
+      let data1 = await db.veterinarian.findAll({
         //lấy ra tất cả vet thuộc service_type
         where: {
           service_type_id: service_type_id,
@@ -329,7 +329,7 @@ let isAvailableHCNoTime = (date, service_type_id, service_id) => {
   return new Promise(async (resolve, reject) => {
     try {
       console.log(date + " ___ " + service_type_id + " ___ " + service_id);
-      let data1 = await db.veterinarians.findAll({
+      let data1 = await db.veterinarian.findAll({
         //lấy ra tất cả vet thuộc service_type
         where: {
           service_type_id: service_type_id,

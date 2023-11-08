@@ -7,7 +7,7 @@ let getAll = (req) => {
     try {
       let data = [];
       if (req.date) {
-        data = await db.time_slot_clinics.findAll({
+        data = await db.time_slot_clinic.findAll({
           where: {
             date: req.date,
           },
@@ -23,7 +23,7 @@ let getAll = (req) => {
           nest: true,
         });
       } else {
-        data = await db.time_slot_clinics.findAll({
+        data = await db.time_slot_clinic.findAll({
           include: [
             {
               model: db.slot_clinics,
@@ -47,7 +47,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.TimeSlotClinic.findByPk(id);
-      let data = await db.time_slot_clinics.findOne({
+      let data = await db.time_slot_clinic.findOne({
         where: {
           time_slot_clinic_id: id,
           // include: [{ model: TimeSlotClinicType, attributes: ["name"] }],
@@ -64,7 +64,7 @@ let createTimeSlotClinic = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.time_slot_clinics.create({
+      const result = await db.time_slot_clinic.create({
         time_slot_clinic_id: id,
         slot_clinic_id: data.slot_clinic_id,
         date: data.date,
@@ -79,7 +79,7 @@ let createTimeSlotClinic = (data) => {
 let updateTimeSlotClinic = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let result = await db.time_slot_clinics.update(
+      let result = await db.time_slot_clinic.update(
         {
           slot_clinic_id: data.slot_clinic_id,
           date: data.date,
@@ -100,7 +100,7 @@ let updateTimeSlotClinic = (id, data) => {
 let deleteTimeSlotClinic = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.time_slot_clinics.update(
+      let data = await db.time_slot_clinic.update(
         {
           status: 0,
         },

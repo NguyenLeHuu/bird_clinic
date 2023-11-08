@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.customers.findAll();
+      let data = await db.customer.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Customer.findByPk(id);
-      let data = await db.customers.findOne({
+      let data = await db.customer.findOne({
         where: {
           customer_id: id,
         },
@@ -35,7 +35,7 @@ let createCustomer = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.customers.create({
+      const result = await db.customer.create({
         customer_id: id,
         account_id: data.account_id,
         email: data.email,
@@ -56,7 +56,7 @@ let createCustomer = (data, url) => {
 let updateCustomer = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.customers.update(
+      let data = await db.customer.update(
         {
           name: name,
           quantity: quantity,
@@ -81,7 +81,7 @@ let updateTotalSpent = (id, total_spent) => {
     try {
       let cus = await getOne(id);
 
-      let data = await db.customers.update(
+      let data = await db.customer.update(
         {
           total_spent: parseFloat(cus.total_spent) + parseFloat(total_spent),
         },
@@ -102,7 +102,7 @@ let updateTotalSpent = (id, total_spent) => {
       } else {
         rank = "Kim cương";
       }
-      await db.customers.update(
+      await db.customer.update(
         {
           membership: rank,
         },
@@ -123,7 +123,7 @@ let updateTotalSpent = (id, total_spent) => {
 let deleteCustomer = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.customers.update(
+      let data = await db.customer.update(
         {
           status: 0,
         },

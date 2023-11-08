@@ -23,7 +23,7 @@ const isAuthenticated = (req, res, next) => {
 const isManager = async (req, res, next) => {
   try {
     const account_id = req.account_id;
-    const manager = await db.accounts.findByPk(account_id);
+    const manager = await db.account.findByPk(account_id);
     if (manager) {
       next();
     } else {
@@ -37,7 +37,7 @@ const isManager = async (req, res, next) => {
 const isVet = async (req, res, next) => {
   try {
     const account_id = req.account_id;
-    const vet = await db.veterinarians.findByPk(account_id);
+    const vet = await db.veterinarian.findByPk(account_id);
     if (vet) {
       next();
     } else {
@@ -51,7 +51,7 @@ const isVet = async (req, res, next) => {
 const isCustomer = async (req, res, next) => {
   try {
     const account_id = req.account_id;
-    const customer = await db.customers.findByPk(account_id);
+    const customer = await db.customer.findByPk(account_id);
     if (customer) {
       next();
     } else {
@@ -65,7 +65,7 @@ const isCustomer = async (req, res, next) => {
 const isStaff = async (req, res, next) => {
   try {
     const account_id = req.account_id;
-    const account = await db.accounts.findByPk(account_id);
+    const account = await db.account.findByPk(account_id);
     if (account) {
       if (account.role === "staff") {
         next();
@@ -83,7 +83,7 @@ const isStaff = async (req, res, next) => {
 const isPersonOfClinic = async (req, res, next) => {
   try {
     const account_id = req.account_id;
-    const account = await db.accounts.findByPk(account_id);
+    const account = await db.account.findByPk(account_id);
     if (account) {
       if (account.role !== "customer") next();
     } else {

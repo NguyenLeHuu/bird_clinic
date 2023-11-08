@@ -7,16 +7,16 @@ let getAll = (req) => {
     try {
       let data = [];
       if (req.service_id) {
-        data = await db.veterinarians.findAll({
+        data = await db.veterinarian.findAll({
           where: {
             service_id: req.service_id,
           },
         });
       } else if (req.service_type_id) {
-        data = await db.veterinarians.findAll({
+        data = await db.veterinarian.findAll({
           include: [
             {
-              model: db.services,
+              model: db.service,
               attributes: [],
               where: {
                 service_type_id: req.service_type_id,
@@ -27,7 +27,7 @@ let getAll = (req) => {
           nest: true,
         });
       } else {
-        data = await db.veterinarians.findAll();
+        data = await db.veterinarian.findAll();
       }
 
       resolve(data);
@@ -41,7 +41,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Veterinarian.findByPk(id);
-      const data = await db.veterinarians.findOne({
+      const data = await db.veterinarian.findOne({
         where: {
           veterinarian_id: id,
         },
@@ -78,7 +78,7 @@ let createVeterinarian = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.veterinarians.create({
+      const result = await db.veterinarian.create({
         veterinarian_id: id,
         account_id: data.account_id,
         specialized: data.specialized,
@@ -97,7 +97,7 @@ let createVeterinarian = (data, url) => {
 let updateVeterinarian = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.veterinarians.update(
+      let data = await db.veterinarian.update(
         {
           specialized: body_data.specializedme,
           status: body_data.status,
@@ -118,7 +118,7 @@ let updateVeterinarian = (id, body_data) => {
 let deleteVeterinarian = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.veterinarians.update(
+      let data = await db.veterinarian.update(
         {
           status: 0,
         },

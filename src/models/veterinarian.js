@@ -3,15 +3,15 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Veterinarian extends Model {
     static associate(models) {
-      Veterinarian.belongsTo(models.services, { foreignKey: "service_id" });
-      Veterinarian.belongsTo(models.accounts, { foreignKey: "account_id" });
+      Veterinarian.belongsTo(models.service, { foreignKey: "service_id" });
+      Veterinarian.belongsTo(models.account, { foreignKey: "account_id" });
       Veterinarian.hasMany(models.veterinarian_slot_details, {
         foreignKey: "veterinarian_id",
       });
-      Veterinarian.hasMany(models.bookings, {
+      Veterinarian.hasMany(models.booking, {
         foreignKey: "veterinarian_id",
       });
-      Veterinarian.hasMany(models.service_form_details, {
+      Veterinarian.hasMany(models.service_form_detail, {
         foreignKey: "veterinarian_id",
       });
     }
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "veterinarians",
+      modelName: "veterinarian",
       timestamps: false,
     }
   );

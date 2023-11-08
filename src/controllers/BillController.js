@@ -85,7 +85,7 @@ module.exports = {
       let data = await BillService.createBill(req.body); // tạo bill
 
       let booking = await BookingService.getOne(booking_id, ""); //cập nhật total_spent, money_has_paid
-      await db.bookings.update(
+      await db.booking.update(
         {
           money_has_paid:
             parseFloat(booking.money_has_paid) + parseFloat(total_price),

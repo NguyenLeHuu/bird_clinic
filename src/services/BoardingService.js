@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boardings.findAll({
+      let data = await db.boarding.findAll({
         // where: {
         //   [Op.or]: [
         //     { bird_size_id: bird_size_id },
@@ -24,7 +24,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Boarding.findByPk(id);
-      let data = await db.boardings.findOne({
+      let data = await db.boarding.findOne({
         where: {
           boarding_id: id,
           // include: [{ model: BoardingType, attributes: ["name"] }],
@@ -41,7 +41,7 @@ let createBoarding = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.boardings.create({
+      const result = await db.boarding.create({
         boarding_id: id,
         booking_id: data.booking_id,
         arrival_date: data.arrival_date,
@@ -59,7 +59,7 @@ let createBoarding = (data) => {
 let updateBoarding = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let result = await db.boardings.update(
+      let result = await db.boarding.update(
         {
           arrival_date: data.arrival_date,
           departure_date: data.departure_date,
@@ -83,7 +83,7 @@ let updateBoarding = (id, data) => {
 let deleteBoarding = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boardings.update(
+      let data = await db.boarding.update(
         {
           status: 0,
         },

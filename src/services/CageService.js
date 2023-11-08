@@ -7,13 +7,13 @@ let getAll = (req) => {
     try {
       let data;
       if (req.size && req.status) {
-        data = await db.cages.findAll({
+        data = await db.cage.findAll({
           where: {
             [Op.and]: [{ status: req.status }, { size: req.size }],
           },
         });
       } else if (!req.size && !req.status) {
-        data = await db.cages.findAll({});
+        data = await db.cage.findAll({});
       } else {
         if (!req.size) {
           req.size = "%";
@@ -21,7 +21,7 @@ let getAll = (req) => {
         if (!req.status) {
           req.status = "%";
         }
-        data = await db.cages.findAll({
+        data = await db.cage.findAll({
           where: {
             [Op.or]: [{ status: req.status }, { size: req.size }],
           },
@@ -39,7 +39,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Cage.findByPk(id);
-      let data = await db.cages.findOne({
+      let data = await db.cage.findOne({
         where: {
           cage_id: id,
           // include: [{ model: CageType, attributes: ["name"] }],
@@ -56,7 +56,7 @@ let createCage = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       // const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.cages.create({
+      const result = await db.cage.create({
         boarding_id: data.boarding_id,
         bird_id: data.bird_id,
         status: "available",
@@ -72,7 +72,7 @@ let createCage = (data) => {
 let updateCage = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let result = await db.cages.update(
+      let result = await db.cage.update(
         {
           boarding_id: data.boarding_id,
           bird_id: data.bird_id,
@@ -94,7 +94,7 @@ let updateCage = (id, data) => {
 let deleteCage = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.cages.update(
+      let data = await db.cage.update(
         {
           status: 0,
         },

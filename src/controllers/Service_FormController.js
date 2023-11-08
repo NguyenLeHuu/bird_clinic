@@ -128,7 +128,7 @@ module.exports = {
                 let record_min = 0;
                 for (const vet_id_obj of available_arr_vetid) {
                   const { count } =
-                    await db.service_form_details.findAndCountAll({
+                    await db.service_form_detail.findAndCountAll({
                       where: {
                         veterinarian_id: vet_id_obj.veterinarian_id,
                       },

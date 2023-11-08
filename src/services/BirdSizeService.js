@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bird_sizes.findAll({
+      let data = await db.bird_size.findAll({
         // where: {
         //   [Op.and]: [{ type: type }, { type_id: type_id }],
         // },
@@ -21,7 +21,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Media.findByPk(id);
-      let data = await db.bird_sizes.findOne({
+      let data = await db.bird_size.findOne({
         where: {
           bird_size_id: id,
         },
@@ -53,7 +53,7 @@ let createBirdSize = (req) => {
 let updateBirdSize = (id, req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bird_sizes.update(
+      let data = await db.bird_size.update(
         {
           size: req.size,
           breeds: req.breeds,
@@ -74,7 +74,7 @@ let updateBirdSize = (id, req) => {
 let deleteBirdSize = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bird_sizes.update(
+      let data = await db.bird_size.update(
         {
           status: 0,
         },
