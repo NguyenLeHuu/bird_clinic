@@ -8,7 +8,7 @@ let getAll = (req) => {
       if (!req.chat_id || !req.user1 || !req.user2) {
         reject("Truyền đủ giùm cái");
       }
-      let data = await db.content_chat.findAll({
+      let data = await db.content_chas.findAll({
         where: {
           [Op.and]: [
             { chat_id: req.chat_id },
@@ -28,7 +28,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.ContentChat.findByPk(id);
-      let data = await db.content_chat.findOne({
+      let data = await db.content_chats.findOne({
         where: {
           content_chat_id: id,
           // include: [{ model: ContentChatType, attributes: ["name"] }],
@@ -45,7 +45,7 @@ let createContentChat = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       // const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.content_chat.create({
+      const result = await db.content_chats.create({
         // content_chat_id: id,
         user1: data.user1,
         user2: data.user2,
@@ -64,7 +64,7 @@ let createContentChat = (data) => {
 let updateContentChat = (id, data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let result = await db.content_chat.update(
+      let result = await db.content_chats.update(
         {
           status: data.status,
         },
@@ -84,7 +84,7 @@ let updateContentChat = (id, data) => {
 let deleteContentChat = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.content_chat.update(
+      let data = await db.content_chats.update(
         {
           status: 0,
         },

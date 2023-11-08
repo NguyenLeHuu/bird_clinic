@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill_detail.findAll({});
+      let data = await db.bill_details.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.BillDetail.findByPk(id);
-      let data = await db.bill_detail.findOne({
+      let data = await db.bill_details.findOne({
         where: {
           bill_detail_id: id,
         },
@@ -33,7 +33,7 @@ let createBillDetail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.bill_detail.create({
+      const result = await db.bill_details.create({
         bill_detail_id: id,
         bill_id: data.bill_id,
         service_package_id: data.service_package_id,
@@ -50,7 +50,7 @@ let createBillDetail = (data) => {
 let updateBillDetail = (id, data_body) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill_detail.update(
+      let data = await db.bill_details.update(
         {
           // bill_id: data_body.bill_id,
           // service_package_id: data_body.service_package_id,
@@ -73,7 +73,7 @@ let updateBillDetail = (id, data_body) => {
 let deleteBillDetail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill_detail.update(
+      let data = await db.bill_details.update(
         {
           status: 0,
         },

@@ -3,10 +3,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Bird extends Model {
     static associate(models) {
-      Bird.belongsTo(models.customer, {
+      Bird.belongsTo(models.customers, {
         foreignKey: "customer_id",
       });
-      Bird.hasMany(models.booking, {
+      Bird.hasMany(models.bookings, {
         foreignKey: "bird_id",
       });
     }
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "bird",
+      modelName: "birds",
       timestamps: false,
     }
   );

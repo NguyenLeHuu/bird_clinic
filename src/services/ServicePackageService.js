@@ -7,12 +7,12 @@ let getAll = (bird_size_id, service_id, service_type_id) => {
     try {
       let data;
       if (!bird_size_id && !service_id && !service_type_id) {
-        data = await db.service_package.findAll({});
+        data = await db.service_packages.findAll({});
       } else if (service_type_id && !bird_size_id && !service_id) {
-        data = await db.service_package.findAll({
+        data = await db.service_packages.findAll({
           include: [
             {
-              model: db.service,
+              model: db.services,
               where: {
                 service_type_id: service_type_id,
               },
@@ -29,7 +29,7 @@ let getAll = (bird_size_id, service_id, service_type_id) => {
         if (!service_id) {
           service_id = "";
         }
-        data = await db.service_package.findAll({
+        data = await db.service_packages.findAll({
           where: {
             [Op.or]: [
               { bird_size_id: bird_size_id },
@@ -50,7 +50,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.ServicePackage.findByPk(id);
-      let data = await db.service_package.findOne({
+      let data = await db.service_packages.findOne({
         where: {
           service_package_id: id,
           // include: [{ model: ServicePackageType, attributes: ["name"] }],
@@ -67,7 +67,7 @@ let createServicePackage = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service_package.create({
+      const result = await db.service_packages.create({
         service_package_id: id,
         bird_size_id: data.bird_size_id,
         service_id: data.service_id,
@@ -86,7 +86,7 @@ let createServicePackage = (data, url) => {
 let updateServicePackage = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_package.update(
+      let data = await db.service_packages.update(
         {
           name: name,
           quantity: quantity,
@@ -109,7 +109,7 @@ let updateServicePackage = (id, name, quantity, price, mainimg, detail) => {
 let deleteServicePackage = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_package.update(
+      let data = await db.service_packages.update(
         {
           status: 0,
         },

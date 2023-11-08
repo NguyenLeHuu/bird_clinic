@@ -14,7 +14,7 @@ module.exports = {
       const { phone, password } = req.query;
       //   const password = req.params["password"];
       console.log("__checkUserInDB");
-      let account = await db.account.findOne({
+      let account = await db.accounts.findOne({
         where: {
           phone: phone,
           password: password,
@@ -36,13 +36,13 @@ module.exports = {
             break;
           case "vet":
             // data = await VetService.getOne(account.account_id);
-            data = await db.veterinarian.findOne({
+            data = await db.veterinarians.findOne({
               where: {
                 veterinarian_id: account.account_id,
               },
               include: [
                 {
-                  model: db.account,
+                  model: db.accounts,
                 },
               ],
               raw: true,

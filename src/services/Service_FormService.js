@@ -7,19 +7,19 @@ let getAll = (req) => {
     try {
       let data;
       if (req.booking_id) {
-        data = await db.service_form.findAll({
+        data = await db.service_forms.findAll({
           where: {
             booking_id: req.booking_id,
           },
           include: [
             {
-              model: db.service_form_detail,
+              model: db.service_form_details,
               where: {
                 service_package_id: { [Op.ne]: "SP1" },
               },
               include: [
                 {
-                  model: db.service_package,
+                  model: db.service_packages,
                   attributes: ["price"], // Chỉ định các trường bạn muốn bao gồm
                 },
               ],
@@ -31,13 +31,13 @@ let getAll = (req) => {
           nest: true,
         });
       } else {
-        data = await db.service_form.findAll({
+        data = await db.service_forms.findAll({
           include: [
             {
-              model: db.service_form_detail,
+              model: db.service_form_details,
               include: [
                 {
-                  model: db.service_package,
+                  model: db.service_packages,
                   attributes: ["price"], // Chỉ định các trường bạn muốn bao gồm
                 },
               ],
@@ -57,13 +57,13 @@ let getAll = (req) => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.findOne({
+      let data = await db.service_forms.findOne({
         where: {
           service_form_id: id,
         },
         include: [
           {
-            model: db.service_form_detail,
+            model: db.service_form_details,
           },
         ],
         raw: false,
@@ -80,7 +80,7 @@ let createService_Form = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service_form.create({
+      const result = await db.service_forms.create({
         service_form_id: id,
         bird_id: data.bird_id,
         booking_id: data.booking_id,
@@ -103,7 +103,7 @@ let createService_Form = (data) => {
 let updateService_Form = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.update(
+      let data = await db.service_forms.update(
         {
           status: body_data.status,
           date: body_data.date,
@@ -127,7 +127,7 @@ let updateService_Form = (id, body_data) => {
 let deleteService_Form = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.update(
+      let data = await db.service_forms.update(
         {
           status: 0,
         },

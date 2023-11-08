@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription_detail.findAll();
+      let data = await db.prescription_details.findAll();
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.PrescriptionDetail.findByPk(id);
-      let data = await db.prescription_detail.findOne({
+      let data = await db.prescription_details.findOne({
         where: {
           prescription_detail_id: id,
         },
@@ -33,7 +33,7 @@ let createPrescriptionDetail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.prescription_detail.create({
+      const result = await db.prescription_details.create({
         prescription_detail_id: id,
         prescription_id: data.prescription_id,
         medicine_id: data.medicine_id,
@@ -54,7 +54,7 @@ let createPrescriptionDetail = (data) => {
 let updatePrescriptionDetail = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription_detail.update(
+      let data = await db.prescription_details.update(
         {
           medicine_id: body_data.medicine_id,
           usage: body_data.usage,
@@ -78,7 +78,7 @@ let updatePrescriptionDetail = (id, body_data) => {
 let deletePrescriptionDetail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription_detail.update(
+      let data = await db.prescription_details.update(
         {
           status: 0,
         },

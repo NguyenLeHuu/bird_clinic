@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medicine.findAll({});
+      let data = await db.medicines.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Medicine.findByPk(id);
-      let data = await db.medicine.findOne({
+      let data = await db.medicines.findOne({
         where: {
           medicine_id: id,
         },
@@ -33,7 +33,7 @@ let createMedicine = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.medicine.create({
+      const result = await db.medicines.create({
         medicine_id: id,
         name: data.name,
         unit: data.unit,
@@ -52,7 +52,7 @@ let createMedicine = (data) => {
 let updateMedicine = (id, data_body) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medicine.update(
+      let data = await db.medicines.update(
         {
           name: data_body.name,
           unit: data_body.unit,
@@ -76,7 +76,7 @@ let updateMedicine = (id, data_body) => {
 let deleteMedicine = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medicine.update(
+      let data = await db.medicines.update(
         {
           status: 0,
         },

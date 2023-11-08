@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "bill",
+      modelName: "bills",
       timestamps: false,
     }
   );

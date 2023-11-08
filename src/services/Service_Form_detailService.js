@@ -44,7 +44,7 @@ AND sfd.veterinarian_id = :veterinarian_id
         whereClause["service_package_id"] = sp_id;
       }
 
-      data = await db.service_form_detail.findAll({
+      data = await db.service_form_details.findAll({
         where: whereClause,
       });
       resolve(data);
@@ -58,7 +58,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Service_Form_detail.findByPk(id);
-      let data = await db.service_form_detail.findOne({
+      let data = await db.service_form_details.findOne({
         where: {
           service_form_detail_id: id,
           // include: [{ model: Service_Form_detailType, attributes: ["name"] }],
@@ -75,7 +75,7 @@ let createService_Form_detail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service_form_detail.create({
+      const result = await db.service_form_details.create({
         service_form_detail_id: id,
         service_package_id: data.service_package_id,
         service_form_id: data.service_form_id,
@@ -96,7 +96,7 @@ let createService_Form_detail = (data) => {
 let updateService_Form_detail = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form_detail.update(
+      let data = await db.service_form_details.update(
         {
           status: body_data.status,
           veterinarian_id: body_data.veterinarian_id,
@@ -119,7 +119,7 @@ let updateService_Form_detail = (id, body_data) => {
 let deleteService_Form_detail = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form_detail.update(
+      let data = await db.service_form_details.update(
         {
           status: 0,
         },

@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ServiceType extends Model {
     static associate(models) {
-      ServiceType.hasMany(models.service, { foreignKey: "service_type_id" });
+      ServiceType.hasMany(models.services, { foreignKey: "service_type_id" });
     }
   }
   ServiceType.init(
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "service_type",
+      modelName: "service_types",
       timestamps: false,
     }
   );

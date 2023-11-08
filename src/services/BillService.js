@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill.findAll({
+      let data = await db.bills.findAll({
         // where: {
         //   bill_id: id,
         // },
@@ -22,7 +22,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Bill.findByPk(id);
-      let data = await db.bill.findOne({
+      let data = await db.bills.findOne({
         where: {
           bill_id: id,
         },
@@ -38,7 +38,7 @@ let createBill = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.bill.create({
+      const result = await db.bills.create({
         bill_id: id,
         title: data.title,
         total_price: data.total_price,
@@ -59,7 +59,7 @@ let createBill = (data) => {
 let updateBill = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill.update(
+      let data = await db.bills.update(
         {
           payment_method: body_data.payment_method,
           transaction_id: body_data.transaction_id,
@@ -83,7 +83,7 @@ let updateBill = (id, body_data) => {
 let deleteBill = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill.update(
+      let data = await db.bills.update(
         {
           status: 0,
         },

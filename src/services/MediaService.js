@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = (type, type_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.media.findAll({
+      let data = await db.medias.findAll({
         where: {
           [Op.and]: [{ type: type }, { type_id: type_id }],
         },
@@ -21,7 +21,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Media.findByPk(id);
-      let data = await db.media.findOne({
+      let data = await db.medias.findOne({
         where: {
           media_id: id,
         },
@@ -58,7 +58,7 @@ let createMedia = (data, url) => {
 let updateMedia = (id, url) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.media.update(
+      let data = await db.medias.update(
         {
           link: url,
         },
@@ -78,7 +78,7 @@ let updateMedia = (id, url) => {
 let deleteMedia = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.media.update(
+      let data = await db.medias.update(
         {
           status: 0,
         },

@@ -13,19 +13,19 @@ let getAll = (req) => {
       if (req.status) whereClause.status = req.status;
       if (req.account_id) whereClause.account_id = req.account_id;
 
-      data = await db.booking.findAll({
+      data = await db.bookings.findAll({
         where: whereClause,
         include: [
           {
-            model: db.veterinarian,
+            model: db.veterinarians,
             attributes: ["name"],
           },
           {
-            model: db.bird,
+            model: db.birds,
             attributes: ["name"],
             include: [
               {
-                model: db.customer,
+                model: db.customers,
                 attributes: ["phone"],
               },
             ],
@@ -49,21 +49,21 @@ let getOne = (id, req) => {
 
       let result;
       if (!req.service_type_id) {
-        result = await db.booking.findOne({
+        result = await db.bookings.findOne({
           where: {
             booking_id: id,
           },
           include: [
             {
-              model: db.veterinarian,
+              model: db.veterinarians,
               attributes: ["name", "image"],
             },
             {
-              model: db.bird,
+              model: db.birds,
               attributes: ["name"],
               include: [
                 {
-                  model: db.customer,
+                  model: db.customers,
                   attributes: ["phone"],
                 },
               ],
@@ -112,7 +112,7 @@ let createBooking = (data) => {
       const id = crypto.randomBytes(15).toString("hex");
       const date = utils.getCurDay();
 
-      const result = await db.booking.create({
+      const result = await db.bookings.create({
         booking_id: id,
         account_id: data.account_id,
         time_id: data.time_id,
@@ -144,7 +144,7 @@ let createBooking = (data) => {
 let updateBooking = (id, body_data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.booking.update(
+      let data = await db.bookings.update(
         {
           // account_id,
           time_id: body_data.time_id,
@@ -182,7 +182,7 @@ let updateBooking = (id, body_data) => {
 let deleteBooking = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.booking.update(
+      let data = await db.bookings.update(
         {
           status: 0,
         },

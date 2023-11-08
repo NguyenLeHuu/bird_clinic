@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service.findAll({});
+      let data = await db.services.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -17,7 +17,7 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Service.findByPk(id);
-      let data = await db.service.findOne({
+      let data = await db.services.findOne({
         where: {
           service_id: id,
           include: [{ model: ServiceType, attributes: ["name"] }],
@@ -34,7 +34,7 @@ let createService = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service.create({
+      const result = await db.services.create({
         service_id: id,
         service_type_id: data.service_type_id,
         name: data.name,
@@ -52,7 +52,7 @@ let createService = (data, url) => {
 let updateService = (id, name, quantity, price, mainimg, detail) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service.update(
+      let data = await db.services.update(
         {
           name: name,
           quantity: quantity,
@@ -75,7 +75,7 @@ let updateService = (id, name, quantity, price, mainimg, detail) => {
 let deleteService = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service.update(
+      let data = await db.services.update(
         {
           status: 0,
         },

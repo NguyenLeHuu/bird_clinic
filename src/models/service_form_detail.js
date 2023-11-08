@@ -3,10 +3,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Service_Form_detail extends Model {
     static associate(models) {
-      Service_Form_detail.belongsTo(models.service_form, {
+      Service_Form_detail.belongsTo(models.service_forms, {
         foreignKey: "service_form_id",
       });
-      Service_Form_detail.belongsTo(models.service_package, {
+      Service_Form_detail.belongsTo(models.service_packages, {
         foreignKey: "service_package_id",
       });
     }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "service_form_detail",
+      modelName: "service_form_details",
       timestamps: false,
     }
   );

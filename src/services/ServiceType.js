@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_type.findAll({});
+      let data = await db.service_types.findAll({});
       resolve(data);
     } catch (e) {
       reject(e);
@@ -16,11 +16,11 @@ let getAll = () => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_type.findAll({
+      let data = await db.service_types.findAll({
         where: {
           service_type_id: id,
         },
-        include: [{ model: db.service }],
+        include: [{ model: db.services }],
         raw: false,
         nest: true,
       });
@@ -35,7 +35,7 @@ let createServiceType = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.service_type.create({
+      const result = await db.service_types.create({
         service_type_id: id,
         name: data.name,
         status: 1,
@@ -51,7 +51,7 @@ let createServiceType = (data, url) => {
 let updateServiceType = (id, req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_type.update(
+      let data = await db.service_types.update(
         {
           name: req.body.name,
           status: req.status,
@@ -72,7 +72,7 @@ let updateServiceType = (id, req) => {
 let deleteServiceType = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_type.update(
+      let data = await db.service_types.update(
         {
           status: 0,
         },
