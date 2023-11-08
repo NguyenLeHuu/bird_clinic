@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       qr_code: DataTypes.STRING,
       num_ser_must_do: DataTypes.STRING,
       num_ser_has_done: DataTypes.STRING,
+      time_create: DataTypes.STRING,
     },
     {
       sequelize,
