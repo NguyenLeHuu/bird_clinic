@@ -37,7 +37,8 @@ let createMedia = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.media.create({
+
+      const result = await db.medias.create({
         media_id: id,
         type: data.type,
         type_id: data.type_id,

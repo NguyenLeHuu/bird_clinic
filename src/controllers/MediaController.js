@@ -72,8 +72,12 @@ module.exports = {
         } */
     try {
       const { type, type_id, is_before, is_after, type_service } = req.body;
+      let url;
 
-      const url = await Firebase.uploadImage(file);
+      if (req.file) {
+        url = await Firebase.uploadImage(req.file);
+      }
+
       let data = await MediaService.createMedia(req.body, url);
 
       console.log("____Create Media Successful");
@@ -84,7 +88,7 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Create Media Failed");
+      console.log("____Create Media Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,
