@@ -5,17 +5,10 @@ const crypto = require("crypto");
 let getAll = (type, type_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-<<<<<<< HEAD
       let data = await db.medias.findAll({
         // where: {
         //   [Op.and]: [{ type: type }, { type_id: type_id }],
         // },
-=======
-      let data = await db.media.findAll({
-        where: {
-          [Op.and]: [{ type: type }, { type_id: type_id }],
-        },
->>>>>>> parent of 26317b4 (them s vao db....)
       });
       resolve(data);
     } catch (e) {
