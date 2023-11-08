@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       ServicePackage.belongsTo(models.service, {
         foreignKey: "service_id",
       });
+      ServicePackage.hasMany(models.service_form_detail, {
+        foreignKey: "service_package_id",
+      });
     }
   }
   ServicePackage.init(

@@ -14,10 +14,17 @@ let getAll = (req) => {
           include: [
             {
               model: db.service_form_detail,
-              // attributes: [],
               where: {
                 service_package_id: { [Op.ne]: "SP1" },
               },
+              include: [
+                {
+                  model: db.service_package,
+                  attributes: ["price"], // Chỉ định các trường bạn muốn bao gồm
+                },
+              ],
+              // raw: false,
+              // nest: true,
             },
           ],
           raw: false,
@@ -28,6 +35,12 @@ let getAll = (req) => {
           include: [
             {
               model: db.service_form_detail,
+              include: [
+                {
+                  model: db.service_package,
+                  attributes: ["price"], // Chỉ định các trường bạn muốn bao gồm
+                },
+              ],
             },
           ],
           raw: false,
@@ -44,7 +57,7 @@ let getAll = (req) => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.findAll({
+      let data = await db.service_form.findOne({
         where: {
           service_form_id: id,
         },

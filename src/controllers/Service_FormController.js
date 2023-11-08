@@ -153,6 +153,10 @@ module.exports = {
                 await Service_Form_detail.createService_Form_detail(temp);
               } else {
                 console.log("không ai làm ngày này hết");
+                return res.status(400).json({
+                  status: 400,
+                  message: "Loi taoj sfd",
+                });
               }
               break;
 
