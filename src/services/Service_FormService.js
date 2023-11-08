@@ -57,7 +57,7 @@ let getAll = (req) => {
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.service_form.findOne({
+      let data = await db.service_form.findAll({
         where: {
           service_form_id: id,
         },

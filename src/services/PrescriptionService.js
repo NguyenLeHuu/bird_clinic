@@ -5,7 +5,7 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescriptions.findAll({
+      let data = await db.prescription.findAll({
         attributes: ["prescription_id", "booking_id", "time_created", "status"],
       });
 
