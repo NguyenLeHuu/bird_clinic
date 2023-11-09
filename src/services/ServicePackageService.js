@@ -22,6 +22,23 @@ let getAll = (bird_size_id, service_id, service_type_id) => {
           raw: true,
           nest: true,
         });
+      } else if (service_type_id && bird_size_id && !service_id) {
+        data = await db.service_package.findAll({
+          where: {
+            bird_size_id: bird_size_id,
+          },
+          include: [
+            {
+              model: db.service,
+              where: {
+                service_type_id: service_type_id,
+              },
+              attributes: ["service_type_id"],
+            },
+          ],
+          raw: true,
+          nest: true,
+        });
       } else {
         if (!bird_size_id) {
           bird_size_id = "";
