@@ -2,13 +2,13 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = (bird_size_id, service_id, service_type_id) => {
+let getAll = (bird_size_id, service_type_id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data;
-      if (!bird_size_id && !service_id && !service_type_id) {
+      if (!bird_size_id && !service_type_id) {
         data = await db.service_package.findAll({});
-      } else if (service_type_id && !bird_size_id && !service_id) {
+      } else if (service_type_id && !bird_size_id) {
         data = await db.service_package.findAll({
           include: [
             {
@@ -22,7 +22,7 @@ let getAll = (bird_size_id, service_id, service_type_id) => {
           raw: true,
           nest: true,
         });
-      } else if (service_type_id && bird_size_id && !service_id) {
+      } else if (service_type_id && bird_size_id) {
         data = await db.service_package.findAll({
           where: {
             bird_size_id: bird_size_id,
@@ -39,19 +39,10 @@ let getAll = (bird_size_id, service_id, service_type_id) => {
           raw: true,
           nest: true,
         });
-      } else {
-        if (!bird_size_id) {
-          bird_size_id = "";
-        }
-        if (!service_id) {
-          service_id = "";
-        }
+      } else if (!service_type_id && bird_size_id) {
         data = await db.service_package.findAll({
           where: {
-            [Op.or]: [
-              { bird_size_id: bird_size_id },
-              { service_id: service_id },
-            ],
+            bird_size_id: bird_size_id,
           },
         });
       }

@@ -5,15 +5,13 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['ServicePackage']
-         #swagger.description = "Get all ServicePackageService of service, truyeenf 1 trong 3 truong haoc ko truyen"
+         #swagger.description = "Get all ServicePackageService of service"
         */
     try {
       const bird_size_id = req.query.size_id;
-      const service_id = req.query.service_id;
       const service_type_id = req.query.service_type_id;
       let data = await ServicePackageService.getAll(
         bird_size_id,
-        service_id,
         service_type_id
       );
 

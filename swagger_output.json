@@ -2703,17 +2703,10 @@
         "tags": [
           "ServicePackage"
         ],
-        "description": "Get all ServicePackageService of service, truyeenf 1 trong 3 truong haoc ko truyen",
+        "description": "Get all ServicePackageService of service",
         "parameters": [
           {
             "name": "size_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "service_id",
             "in": "query",
             "schema": {
               "type": "string"
