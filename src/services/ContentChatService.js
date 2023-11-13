@@ -49,6 +49,7 @@ let createContentChat = (data, url) => {
             user1: data.user1,
             user2: data.user2,
             message: data.message,
+            type: data.type,
             chat_id: data.chat_id,
             status: 1,
           })
@@ -56,6 +57,7 @@ let createContentChat = (data, url) => {
             user1: data.user1,
             user2: data.user2,
             message: data.message,
+            type: data.type,
             img_link: url,
             chat_id: data.chat_id,
             status: 1,
