@@ -21,7 +21,7 @@ const { Server } = require("socket.io");
 require("dotenv").config(); // get value from .env
 
 let app = express();
-app.use(cors({ origin: true }));
+app.use(cors());
 app.disable("etag");
 // config app
 
@@ -58,12 +58,15 @@ var server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server start port http://localhost:${port}`);
 });
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
+const io = new Server(
+  server
+  //   , {
+  //   cors: {
+  //     origin: "http://localhost:3000",
+  //     methods: ["GET", "POST"],
+  //   },
+  // }
+);
 
 const loggedInUsers = [];
 io.on("connection", function (socket) {
