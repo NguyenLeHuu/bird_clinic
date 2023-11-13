@@ -58,15 +58,12 @@ var server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server start port http://localhost:${port}`);
 });
-const io = new Server(
-  server
-  //   , {
-  //   cors: {
-  //     origin: "http://localhost:3000",
-  //     methods: ["GET", "POST"],
-  //   },
-  // }
-);
+const io = new Server(server, {
+  cors: {
+    //     origin: "http://localhost:3000",
+    //     methods: ["GET", "POST"],
+  },
+});
 
 const loggedInUsers = [];
 io.on("connection", function (socket) {
