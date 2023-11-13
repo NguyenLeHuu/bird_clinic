@@ -65,33 +65,35 @@ const io = new Server(server, {
   },
 });
 
+const loggedInUsers = [];
 io.on("connection", function (socket) {
   // console.log(socket.id);
-  socket.on("client-sent-message", function (data) {
-    io.sockets.emit("server-send-data", data);
-  });
 
   //login
-  //const loggedInUsers = [];
-  // socket.on('login', (data) => {
-  //   const user = { userid: data.userid, socket: socket };
-  //   loggedInUsers.push(user);
-  // });
+  socket.on("login", (data) => {
+    const user = { account_id: data?.account_id, socket_id: socket.id };
+    const foundElement = loggedInUsers.find(
+      (element) =>
+        element.account_id === user.account_id &&
+        element.socket_id === user.socket_id
+    );
+    if (!foundElement) {
+      loggedInUsers.push(user);
+    }
+    console.log(loggedInUsers);
+  });
 
-  // Gửi tin nhắn từ userid1 cho userid2
-  //client
-  //socket.emit('message', { from: 'userid1', to: 'userid2', content: 'Nội dung tin nhắn' });
-
-  //server
-  //socket.on('message', (data) => {
-  //lap vong for gui toi cac socket co userid
-  // io.to().emit('message', { from: 'userid1', to: 'userid2',})
-  //});
-
-  //client
-  //socket.on('message', (data) => {
-  //goi lai api
-  //});
+  //chat
+  socket.on("client-sent-message", (data) => {
+    for (const value of loggedInUsers) {
+      if (value.account_id === data.user2) {
+        io.to(value.socket_id).emit("server-send-data", data); //gửi tới 1 thằng
+        //io.sockets.emit("server-send-data", data); tắt cả socket
+        //socket.broadcast.emit("server-send-data", data); tắt cả trừ th gửi
+        //socket.emit("server-send-data", data); gửi tới bản thân
+      }
+    }
+  });
 
   // console.log(io.sockets.adapter.rooms);
 });
