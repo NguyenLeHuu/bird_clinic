@@ -69,7 +69,42 @@ module.exports = {
       const { user1, user2, message, type, chat_id } = req.body;
 
       // const url = await Firebase.uploadImage(file);
-      let data = await ContentChatService.createContentChat(req.body);
+      let data = await ContentChatService.createContentChat(req.body, null);
+
+      console.log("____Create ContentChat Successful");
+
+      return res.status(200).json({
+        status: 200,
+        message: "Create ContentChat Successful!",
+        data: data,
+      });
+    } catch (err) {
+      console.log("____Create ContentChat Failed");
+      return res.status(400).json({
+        status: 400,
+        message: err,
+      });
+    }
+  },
+
+  async storeWithImage(req, res) {
+    // #swagger.tags = ['ContentChat']
+    /*
+         #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['singleFile'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+        } */
+    try {
+      const { user1, user2, message, type, chat_id } = req.body;
+
+      let url;
+
+      if (req.file) {
+        url = await Firebase.uploadImage(req.file);
+      }
+      let data = await ContentChatService.createContentChat(req.body, url);
 
       console.log("____Create ContentChat Successful");
 

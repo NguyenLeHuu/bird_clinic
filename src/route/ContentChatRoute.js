@@ -11,6 +11,11 @@ route.get("/:id", ContentChatController.getOne);
 
 // route.post("/", multer.Multer.array("image"), ContentChatController.store);
 route.post("/", ContentChatController.store);
+route.post(
+  "/img",
+  multer.Multer.single("image"),
+  ContentChatController.storeWithImage
+);
 
 route.put("/:id", ContentChatController.update);
 

@@ -41,19 +41,25 @@ let getOne = (id) => {
   });
 };
 
-let createContentChat = (data) => {
+let createContentChat = (data, url) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.content_chat.create({
-        // content_chat_id: id,
-        user1: data.user1,
-        user2: data.user2,
-        message: data.message,
-        type: data.type,
-        chat_id: data.chat_id,
-        status: 1,
-      });
+      const result = url
+        ? await db.content_chat.create({
+            user1: data.user1,
+            user2: data.user2,
+            message: data.message,
+            chat_id: data.chat_id,
+            status: 1,
+          })
+        : await db.content_chat.create({
+            user1: data.user1,
+            user2: data.user2,
+            message: data.message,
+            img_link: url,
+            chat_id: data.chat_id,
+            status: 1,
+          });
       resolve(result);
     } catch (e) {
       reject(e);
