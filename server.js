@@ -21,7 +21,7 @@ const { Server } = require("socket.io");
 require("dotenv").config(); // get value from .env
 
 let app = express();
-app.use(cors());
+app.use(cors({ origin: true }));
 app.disable("etag");
 // config app
 
