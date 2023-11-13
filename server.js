@@ -90,9 +90,9 @@ io.on("connection", function (socket) {
         io.to(value.socket_id).emit("server-send-data", data); //gửi tới 1 thằng
         //io.sockets.emit("server-send-data", data); tắt cả socket
         //socket.broadcast.emit("server-send-data", data); tắt cả trừ th gửi
-        socket.emit("server-send-data", data);
       }
     }
+    socket.emit("server-send-data", data);
   });
 
   // console.log(io.sockets.adapter.rooms);
