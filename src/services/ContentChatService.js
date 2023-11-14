@@ -42,9 +42,10 @@ let getOne = (id) => {
 };
 
 let createContentChat = (data, url) => {
+  console.log("qua day co hinh", url);
   return new Promise(async (resolve, reject) => {
     try {
-      const result = url
+      const result = !url
         ? await db.content_chat.create({
             user1: data.user1,
             user2: data.user2,

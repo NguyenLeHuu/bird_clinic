@@ -103,7 +103,9 @@ module.exports = {
 
       if (req.file) {
         url = await Firebase.uploadImage(req.file);
+        console.log(" cos hinhf", url);
       }
+
       let data = await ContentChatService.createContentChat(req.body, url);
 
       console.log("____Create ContentChat Successful");
