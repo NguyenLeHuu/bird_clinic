@@ -85,15 +85,15 @@ io.on("connection", function (socket) {
 
   //chat
   socket.on("client-sent-message", (data) => {
-    // io.sockets.emit("server-send-data", data);
-    socket.emit("server-send-data_seft", data);
-    for (const value of loggedInUsers) {
-      if (value.account_id === data.user2) {
-        // io.to(value.socket_id).emit("server-send-data", data); //gửi tới 1 thằng
-        //io.sockets.emit("server-send-data", data); tắt cả socket
-        //socket.broadcast.emit("server-send-data", data); tắt cả trừ th gửi
-      }
-    }
+    io.sockets.emit("server-send-data", data);
+    // socket.emit("server-send-data_seft", data);
+    // for (const value of loggedInUsers) {
+    //   if (value.account_id === data.user2) {
+    //     // io.to(value.socket_id).emit("server-send-data", data); //gửi tới 1 thằng
+    //     //io.sockets.emit("server-send-data", data); tắt cả socket
+    //     //socket.broadcast.emit("server-send-data", data); tắt cả trừ th gửi
+    //   }
+    // }
   });
 
   // console.log(io.sockets.adapter.rooms);
