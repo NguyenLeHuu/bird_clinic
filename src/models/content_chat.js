@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       chat_id: DataTypes.STRING,
       status: DataTypes.STRING,
+      img_link: DataTypes.STRING,
     },
     {
       sequelize,
