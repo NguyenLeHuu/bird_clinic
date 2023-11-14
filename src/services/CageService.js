@@ -1,4 +1,5 @@
-const { Op, where } = require("sequelize");
+const { Op, where, col } = require("sequelize");
+
 const db = require("../models/index");
 const crypto = require("crypto");
 
@@ -39,12 +40,21 @@ let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       // let data = await db.Cage.findByPk(id);
-      let data = await db.cage.findOne({
-        where: {
-          cage_id: id,
-          // include: [{ model: CageType, attributes: ["name"] }],
-        },
-      });
+      let data = await db.sequelize.query(
+        `
+        SELECT c.*, b.customer_id
+FROM cages c
+LEFT JOIN birds b ON c.bird_id = b.bird_id
+WHERE c.cage_id = :cage_id;
+
+      `,
+        {
+          replacements: {
+            cage_id: id,
+          },
+          type: db.sequelize.QueryTypes.SELECT,
+        }
+      );
       resolve(data);
     } catch (e) {
       reject(e);
