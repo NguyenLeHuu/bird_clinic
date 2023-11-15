@@ -37,13 +37,13 @@ const initializeSocket = (io) => {
     //quýet check-in : bên app bảo gửi tới
     socket.on("scan-check-in", (data) => {
       //trong data bắt buộc có booking_id
-      //mặc định 1 staff làm công việc check-in có account "staff_check_in"
+      //mặc định 1 staff làm công việc check-in có account "staff"
       for (const value of loggedInUsers) {
         if (
-          value.account_id === "staff_check_in" &&
+          value.account_id === "staff" &&
           io.of("/").sockets.has(value.socket_id)
         ) {
-          io.to(value.socket_id).emit("server-scan-check-in", data); //gửi tới màn hình máy tính của staff_check_in
+          io.to(value.socket_id).emit("server-scan-check-in", data); //gửi tới màn hình máy tính của staff
 
           //bên phía long: bắt sự kiện -> data.booking_id -> hiện popup để có thể gán bác sĩ, check-in...
         }
