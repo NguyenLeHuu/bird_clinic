@@ -4,12 +4,14 @@ const qr = require("qrcode");
 
 const FCM = require("fcm-node");
 var serverKey =
-  "AAAA8JPK4Do:APA91bGkM_iAGjUQRQNsOez0GScPQ2trWwe6hGxRMoulcHeN2sGG95P8am0upUbmaGst9cyjaAg19z05rpIWwSy_D_N6mBBgrx2gTtRgIw11J0oRDv7havimtyHEi5kx6fL-gpaTv8my";
+  // "AAAA8JPK4Do:APA91bGkM_iAGjUQRQNsOez0GScPQ2trWwe6hGxRMoulcHeN2sGG95P8am0upUbmaGst9cyjaAg19z05rpIWwSy_D_N6mBBgrx2gTtRgIw11J0oRDv7havimtyHEi5kx6fL-gpaTv8my";
+  "AAAA7LqdmJY:APA91bFo9Thjb0kCmcN8I8S29QBpaA9KHfJ37JOxMD-FHVzenM5c2PvHetMC_Xs86iCzEI-dQAcmeDjagbxD195-7_lsBN2Oc43pzhrbG-TQBrlTMzKd1BFKoSHSwuHKIK2X81gaNiIh";
 var fcm = new FCM(serverKey);
 
 const serviceAccount = require("../config/firebase-sdk.json");
 
-const BUCKET = "bsc-symtem.appspot.com";
+// const BUCKET = "bsc-symtem.appspot.com";
+const BUCKET = "fir-auth-uicha.appspot.com";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
