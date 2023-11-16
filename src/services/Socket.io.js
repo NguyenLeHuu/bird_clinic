@@ -67,6 +67,17 @@ const initializeSocket = (io) => {
       }
     });
 
+    socket.on("start-exam", (data) => {
+      for (const value of loggedInUsers) {
+        if (io.of("/").sockets.has(value.socket_id)) {
+          //t1: gửi tới khách hàng
+          if (value.account_id === data.customer_id) {
+            io.to(value.socket_id).emit("server-start-exam", data);
+          }
+        }
+      }
+    });
+
     //thanh toán tiền
     socket.on("complete-payment", (data) => {
       for (const value of loggedInUsers) {
