@@ -78,6 +78,19 @@ const initializeSocket = (io) => {
       }
     });
 
+    //lúc tạo phiếu
+    socket.on("create-service-form", (data) => {
+      for (const value of loggedInUsers) {
+        if (io.of("/").sockets.has(value.socket_id)) {
+          //t1: gửi tới khách hàng
+          if (value.account_id === data.customer_id) {
+            io.to(value.socket_id).emit("server-create-service-form", data);
+            //bên phía bảo: bắt sự kiện render lại
+          }
+        }
+      }
+    });
+
     //thanh toán tiền
     socket.on("complete-payment", (data) => {
       for (const value of loggedInUsers) {
@@ -100,7 +113,7 @@ const initializeSocket = (io) => {
       }
     });
 
-    //done 1 cái sfd -theo dõi tiến trình
+    //theo dõi tiến trình
     socket.on("sfd-status-change", (data) => {
       for (const value of loggedInUsers) {
         if (io.of("/").sockets.has(value.socket_id)) {
