@@ -2,7 +2,14 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Boarding extends Model {
-    static associate(models) {}
+    static associate(models) {
+      // Boarding.belongsTo(models.account, {
+      //   foreignKey: "account_id",
+      // });
+      Boarding.hasMany(models.chat, {
+        foreignKey: "boarding_id",
+      });
+    }
   }
   Boarding.init(
     {

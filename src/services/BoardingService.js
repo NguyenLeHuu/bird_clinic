@@ -27,8 +27,10 @@ let getOne = (id) => {
       let data = await db.boarding.findOne({
         where: {
           boarding_id: id,
-          // include: [{ model: BoardingType, attributes: ["name"] }],
         },
+        include: [{ model: db.chat, attributes: ["chat_id"] }],
+        raw: true,
+        nest: true,
       });
       resolve(data);
     } catch (e) {
