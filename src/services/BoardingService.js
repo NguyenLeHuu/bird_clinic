@@ -28,7 +28,7 @@ let getOne = (id) => {
         where: {
           boarding_id: id,
         },
-        include: [{ model: db.chat, attributes: ["chat_id"] }],
+        include: [{ model: db.chat, attributes: ["chat_id", "customer_id"] }],
         raw: true,
         nest: true,
       });
