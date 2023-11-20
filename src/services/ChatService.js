@@ -40,7 +40,7 @@ let createChat = (data) => {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.chat.create({
         chat_id: id,
-        boarding_id: data.bird_size_id,
+        boarding_id: data.boarding_id,
         bird_id: data.bird_id,
         customer_id: data.customer_id,
       });

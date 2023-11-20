@@ -109,6 +109,9 @@
                   "arrival_date": {
                     "example": "any"
                   },
+                  "departure_date": {
+                    "example": "any"
+                  },
                   "service_type_id": {
                     "example": "any"
                   }

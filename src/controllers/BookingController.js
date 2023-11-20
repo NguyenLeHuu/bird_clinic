@@ -1,5 +1,6 @@
 const BookingService = require("../services/BookingService");
 const BoardingService = require("../services/BoardingService");
+const ChatService = require("../services/ChatService");
 const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
 const Firebase = require("../services/Firebase");
 
@@ -89,6 +90,7 @@ module.exports = {
         note,
         service_type,
         arrival_date,
+        departure_date,
         service_type_id,
       } = req.body;
 
@@ -142,8 +144,12 @@ module.exports = {
         if (service_type_id === "ST003") {
           let temp = {
             ...data.dataValues,
+            departure_date,
           };
-          await BoardingService.createBoarding(temp);
+          let boarding = await BoardingService.createBoarding(temp);
+
+          temp = { ...boarding.dataValues, customer_id: account_id };
+          await ChatService.createChat(temp);
         }
       }
 
