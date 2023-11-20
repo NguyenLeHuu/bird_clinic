@@ -82,7 +82,7 @@ module.exports = {
         ISO_microchip,
         weight,
         color,
-        breed,
+        breed_id,
         status,
         size,
       } = req.body;
@@ -124,7 +124,7 @@ module.exports = {
       const ISO_microchip = req.body.ISO_microchip;
       const weight = req.body.weight;
       const color = req.body.color;
-      const breed = req.body.breed;
+      const breed_id = req.body.breed_id;
       const status = req.body.status;
       // const image = req.body.image;
       const size = req.body.size;
@@ -138,7 +138,7 @@ module.exports = {
         ISO_microchip,
         weight,
         color,
-        breed,
+        breed_id,
         status,
         // image,
         size
