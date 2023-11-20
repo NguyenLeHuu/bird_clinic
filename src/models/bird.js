@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       Bird.belongsTo(models.customer, {
         foreignKey: "customer_id",
       });
+      Bird.belongsTo(models.bird_breed, {
+        foreignKey: "breed_id",
+      });
       Bird.hasMany(models.booking, {
         foreignKey: "bird_id",
       });
@@ -24,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       ISO_microchip: DataTypes.STRING,
       weight: DataTypes.STRING,
       color: DataTypes.STRING,
-      breed: DataTypes.STRING,
+      breed_id: DataTypes.STRING,
       status: DataTypes.STRING,
       image: DataTypes.STRING,
       // size: DataTypes.STRING,

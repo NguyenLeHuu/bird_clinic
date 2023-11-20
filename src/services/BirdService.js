@@ -9,6 +9,14 @@ let getAll = (id) => {
         where: {
           customer_id: id,
         },
+        include: [
+          {
+            model: db.bird_breed,
+            attributes: ["breed"],
+          },
+        ],
+        raw: true,
+        nest: true,
       });
       resolve(data);
     } catch (e) {
@@ -25,6 +33,14 @@ let getOne = (id) => {
         where: {
           bird_id: id,
         },
+        include: [
+          {
+            model: db.bird_breed,
+            attributes: ["breed"],
+          },
+        ],
+        raw: true,
+        nest: true,
       });
       resolve(data);
     } catch (e) {

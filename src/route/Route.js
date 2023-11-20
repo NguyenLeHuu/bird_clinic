@@ -9,6 +9,7 @@ const customerRoute = require("./CustomerRoute");
 const vetRoute = require("./VetRoute");
 const birdRoute = require("./BirdRoute");
 const birdSizeRoute = require("./BirdSizeRoute");
+const birdBreedRoute = require("./BirdBreedRoute");
 const serviceRoute = require("./ServiceRoute");
 const serviceTypeRoute = require("./ServiceTypeRoute");
 const servicePackageRoute = require("./ServicePackageRoute");
@@ -57,6 +58,7 @@ router.use("/account", accountRoute);
 router.use("/customer", customerRoute);
 router.use("/bird", birdRoute);
 router.use("/bird_size", birdSizeRoute);
+router.use("/bird_breed", birdBreedRoute);
 router.use("/vet", vetRoute);
 router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
 
