@@ -13,6 +13,12 @@ let getAll = (id) => {
           {
             model: db.bird_breed,
             attributes: ["breed"],
+            include: [
+              {
+                model: db.bird_size,
+                attributes: ["size"],
+              },
+            ],
           },
         ],
         raw: true,
@@ -37,6 +43,12 @@ let getOne = (id) => {
           {
             model: db.bird_breed,
             attributes: ["breed"],
+            include: [
+              {
+                model: db.bird_size,
+                attributes: ["size"],
+              },
+            ],
           },
         ],
         raw: true,

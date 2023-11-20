@@ -2,7 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class BirdSize extends Model {
-    static associate(models) {}
+    static associate(models) {
+      BirdSize.hasMany(models.bird_breed, {
+        foreignKey: "bird_size_id",
+      });
+    }
   }
   BirdSize.init(
     {

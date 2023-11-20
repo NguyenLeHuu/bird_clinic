@@ -3,9 +3,9 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class BirdBreed extends Model {
     static associate(models) {
-      // BirdBreed.belongsTo(models.customer, {
-      //   foreignKey: "customer_id",
-      // });
+      BirdBreed.belongsTo(models.bird_size, {
+        foreignKey: "bird_size_id",
+      });
       // BirdBreed.hasMany(models.booking, {
       //   foreignKey: "bird_id",
       // });
