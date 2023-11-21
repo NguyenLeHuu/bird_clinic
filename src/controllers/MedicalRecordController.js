@@ -6,10 +6,11 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['MedicalRecord']
-         #swagger.description = "Get all MedicalRecord  "
+         #swagger.description = "Get all MedicalRecord"
         */
     try {
-      let data = await MedicalRecordService.getAll();
+      const { service_form_detail_id } = req.query;
+      let data = await MedicalRecordService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
