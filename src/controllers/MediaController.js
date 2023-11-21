@@ -77,17 +77,15 @@ module.exports = {
       //   url = await Firebase.uploadImage(req.file);
       // }
       const listImage = [];
-      req.files.forEach(async (file) => {
+      const uploadPromises = req.files.map(async (file) => {
         const url = await Firebase.uploadImage(file);
 
         listImage.push(url);
-        console.log("url", url);
-        console.log(listImage);
       });
-
-      setTimeout(async () => {
-        await MediaService.createMedia(req.body, listImage);
-      }, 1000);
+      await Promise.all(uploadPromises);
+      // setTimeout(async () => {
+      await MediaService.createMedia(req.body, listImage);
+      // }, 1000);
 
       console.log("____Create Media Successful");
 
