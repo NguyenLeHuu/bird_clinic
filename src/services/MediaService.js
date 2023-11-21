@@ -43,6 +43,8 @@ let createMedia = (data, listImage) => {
   return new Promise(async (resolve, reject) => {
     try {
       let result;
+      console.log("image list");
+      console.log(listImage);
       if (listImage.length > 1) {
         for (const item of listImage) {
           const id = crypto.randomBytes(15).toString("hex");
