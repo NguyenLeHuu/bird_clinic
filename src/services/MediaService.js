@@ -5,11 +5,17 @@ const crypto = require("crypto");
 let getAll = (type, type_id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.medias.findAll({
-        // where: {
-        //   [Op.and]: [{ type: type }, { type_id: type_id }],
-        // },
-      });
+      let data = await db.sequelize.query(
+        `
+            SELECT * FROM medias WHERE type=:type AND type_id = :type_id
+      
+          `,
+        // WHERE c.status = 'un_available';
+        {
+          replacements: { type: type, type_id: type_id },
+          type: db.sequelize.QueryTypes.SELECT,
+        }
+      );
       resolve(data);
     } catch (e) {
       reject(e);

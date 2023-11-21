@@ -5,7 +5,7 @@ const isAuthenticated = (req, res, next) => {
   //#swagger.autoHeaders=false
   try {
     const authorizationHeader = req.headers["authorization"];
-    console.log("____Token lay tu client " + authorizationHeader);
+    // console.log("____Token lay tu client " + authorizationHeader);
     const accessToken = authorizationHeader.split(" ")[1];
     const decodeJwt = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     //set account_id to req object
