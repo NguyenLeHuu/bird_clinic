@@ -79,17 +79,21 @@ module.exports = {
       const listImage = [];
       req.files.forEach(async (file) => {
         const url = await Firebase.uploadImage(file);
+
         listImage.push(url);
+        console.log("url", url);
+        console.log(listImage);
       });
 
-      let data = await MediaService.createMedia(req.body, listImage);
+      setTimeout(async () => {
+        await MediaService.createMedia(req.body, listImage);
+      }, 1000);
 
       console.log("____Create Media Successful");
 
       return res.status(200).json({
         status: 200,
         message: "Create Media Successful!",
-        data: data,
       });
     } catch (err) {
       console.log("____Create Media Failed", err);
