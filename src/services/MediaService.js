@@ -39,22 +39,39 @@ let getOne = (id) => {
   });
 };
 
-let createMedia = (data, url) => {
+let createMedia = (data, listImage) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
-
-      const result = await db.medias.create({
-        media_id: id,
-        type: data.type,
-        type_id: data.type_id,
-        link: url,
-        is_before: data.is_before,
-        is_after: data.is_after,
-        type_service: data.type_service,
-        status: 1,
-      });
-      resolve(result);
+      let result;
+      if (listImage.length > 1) {
+        for (const item of listImage) {
+          const id = crypto.randomBytes(15).toString("hex");
+          result = await db.medias.create({
+            media_id: id,
+            type: data.type,
+            type_id: data.type_id,
+            link: item,
+            is_before: data.is_before,
+            is_after: data.is_after,
+            type_service: data.type_service,
+            status: 1,
+          });
+        }
+        resolve("thanh cong");
+      } else {
+        const id = crypto.randomBytes(15).toString("hex");
+        result = await db.medias.create({
+          media_id: id,
+          type: data.type,
+          type_id: data.type_id,
+          link: listImage[0],
+          is_before: data.is_before,
+          is_after: data.is_after,
+          type_service: data.type_service,
+          status: 1,
+        });
+        resolve(result);
+      }
     } catch (e) {
       reject(e);
     }

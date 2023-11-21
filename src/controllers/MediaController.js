@@ -72,13 +72,17 @@ module.exports = {
         } */
     try {
       const { type, type_id, is_before, is_after, type_service } = req.body;
-      let url;
+      // let url;
+      // if (req.file) {
+      //   url = await Firebase.uploadImage(req.file);
+      // }
+      const listImage = [];
+      req.files.forEach(async (file) => {
+        const url = await Firebase.uploadImage(file);
+        listImage.push(url);
+      });
 
-      if (req.file) {
-        url = await Firebase.uploadImage(req.file);
-      }
-
-      let data = await MediaService.createMedia(req.body, url);
+      let data = await MediaService.createMedia(req.body, listImage);
 
       console.log("____Create Media Successful");
 
