@@ -22,7 +22,8 @@ route.get(
 // route.post("/", multer.Multer.array("image"), Service_Form_detailController.store);
 route.post(
   "/",
-  // multer.Multer.single("image"),AuthMiddleware.isAuthenticated,
+  // multer.Multer.single("image"),
+  AuthMiddleware.isAuthenticated,
   AuthMiddleware.userOfSystem,
   Service_Form_detailController.store
 );
