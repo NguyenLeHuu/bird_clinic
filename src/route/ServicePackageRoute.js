@@ -1,18 +1,43 @@
 const promiseRouter = require("express-promise-router");
 const ServicePackageController = require("../controllers/ServicePackageController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/", ServicePackageController.getAll);
+route.get(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  ServicePackageController.getAll
+);
 
-route.get("/:id", ServicePackageController.getOne);
+route.get(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  ServicePackageController.getOne
+);
 
 // route.post("/", multer.Multer.array("image"), ServicePackageController.store);
-route.post("/", multer.Multer.single("image"), ServicePackageController.store);
+route.post(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  ServicePackageController.store
+);
 
-route.put("/:id", ServicePackageController.update);
+route.put(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  ServicePackageController.update
+);
 
-route.delete("/:id", ServicePackageController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  ServicePackageController.delete
+);
 module.exports = route;

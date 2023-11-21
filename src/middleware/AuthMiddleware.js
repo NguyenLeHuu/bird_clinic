@@ -23,9 +23,13 @@ const isAuthenticated = (req, res, next) => {
 const isManager = async (req, res, next) => {
   try {
     const account_id = req.account_id;
-    const manager = await db.account.findByPk(account_id);
-    if (manager) {
-      next();
+    const account = await db.account.findByPk(account_id);
+    if (account) {
+      if (account.role === "manager") {
+        next();
+      } else {
+        return res.status(401).send("Authentication not valid");
+      }
     } else {
       return res.status(401).send("Authorize is not valid");
     }
@@ -94,6 +98,20 @@ const isPersonOfClinic = async (req, res, next) => {
   }
 };
 
+const userOfSystem = async (req, res, next) => {
+  try {
+    const account_id = req.account_id;
+    const account = await db.account.findByPk(account_id);
+    if (account) {
+      next();
+    } else {
+      return res.status(401).send("Authentication not valid");
+    }
+  } catch (error) {
+    return res.status(401).send("Authentication not valid");
+  }
+};
+
 module.exports = {
   isAuthenticated,
   isManager,
@@ -101,4 +119,5 @@ module.exports = {
   isStaff,
   isCustomer,
   isPersonOfClinic,
+  userOfSystem,
 };

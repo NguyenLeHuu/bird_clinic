@@ -1,22 +1,43 @@
 const promiseRouter = require("express-promise-router");
 const Service_FormController = require("../controllers/Service_FormController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/", Service_FormController.getAll);
+route.get(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  Service_FormController.getAll
+);
 
-route.get("/:id", Service_FormController.getOne);
+route.get(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  Service_FormController.getOne
+);
 
 // route.post("/", multer.Multer.array("image"), Service_FormController.store);
 route.post(
   "/",
-  // multer.Multer.single("image"),
+  // multer.Multer.single("image"),AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
   Service_FormController.store
 );
 
-route.put("/:id", Service_FormController.update);
+route.put(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  Service_FormController.update
+);
 
-route.delete("/:id", Service_FormController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  Service_FormController.delete
+);
 module.exports = route;

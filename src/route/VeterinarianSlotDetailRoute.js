@@ -1,22 +1,49 @@
 const promiseRouter = require("express-promise-router");
 const VeterinarianSlotDetailController = require("../controllers/VeterinarianSlotDetailController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/", VeterinarianSlotDetailController.getAll);
+route.get(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  VeterinarianSlotDetailController.getAll
+);
 
-route.get("/:id", VeterinarianSlotDetailController.getOne);
+route.get(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  VeterinarianSlotDetailController.getOne
+);
 route.get(
   "/available/:time_slot_clinic_id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
   VeterinarianSlotDetailController.is_booking_available
 );
 
 // route.post("/", multer.Multer.array("image"), VeterinarianSlotDetailController.store);
-route.post("/", VeterinarianSlotDetailController.store);
+route.post(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  VeterinarianSlotDetailController.store
+);
 
-route.put("/:id", VeterinarianSlotDetailController.update);
+route.put(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isPersonOfClinic,
+  VeterinarianSlotDetailController.update
+);
 
-route.delete("/:id", VeterinarianSlotDetailController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  VeterinarianSlotDetailController.delete
+);
 module.exports = route;

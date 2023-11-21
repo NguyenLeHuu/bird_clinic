@@ -1,6 +1,6 @@
 const promiseRouter = require("express-promise-router");
 const CustomerController = require("../controllers/CustomerController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
@@ -14,5 +14,10 @@ route.post("/", multer.Multer.single("image"), CustomerController.store);
 
 route.put("/:id", CustomerController.update);
 
-route.delete("/:id", CustomerController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  CustomerController.delete
+);
 module.exports = route;

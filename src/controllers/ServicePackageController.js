@@ -80,9 +80,7 @@ module.exports = {
 
       //   const url = await Firebase.uploadImage(file);
       //   let data = await ServicePackageService.createServicePackageService(req.body, url);
-      let data = await ServicePackageService.createServicePackageService(
-        req.body
-      );
+      let data = await ServicePackageService.createServicePackage(req.body);
 
       console.log("____Create ServicePackageService Successful");
 
@@ -113,7 +111,7 @@ module.exports = {
       const mainimg = req.body.mainimg;
       const detail = req.body.detail;
 
-      let data = await ServicePackageService.updateServicePackageService(
+      let data = await ServicePackageService.updateServicePackage(
         id,
         name,
         quantity,
@@ -145,7 +143,7 @@ module.exports = {
     try {
       const id = req.params["id"];
 
-      let data = await ServicePackageService.deleteServicePackageService(id);
+      let data = await ServicePackageService.deleteServicePackage(id);
       console.log("____Delete ServicePackageService Successful");
 
       return res.status(200).json({

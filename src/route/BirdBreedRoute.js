@@ -1,22 +1,47 @@
 const promiseRouter = require("express-promise-router");
 const BirdBreedController = require("../controllers/BirdBreedController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/", BirdBreedController.getAll);
+route.get(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  BirdBreedController.getAll
+);
 
-route.get("/:id", BirdBreedController.getOne);
+route.get(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  BirdBreedController.getOne
+);
 
-route.post("/", BirdBreedController.store);
+route.post(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  BirdBreedController.store
+);
 // route.post(
 //   "/create",
 //   multer.Multer.single("image"),
 //   BirdBreedController.store
 // );
 
-route.put("/:id", BirdBreedController.update);
+route.put(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  BirdBreedController.update
+);
 
-route.delete("/:id", BirdBreedController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  BirdBreedController.delete
+);
 module.exports = route;

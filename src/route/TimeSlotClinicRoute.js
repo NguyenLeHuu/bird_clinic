@@ -1,18 +1,43 @@
 const promiseRouter = require("express-promise-router");
 const TimeSlotClinicController = require("../controllers/TimeSlotClinicController");
-// const AuthMiddleware = require("../middleware/AuthMiddleware");
+const AuthMiddleware = require("../middleware/AuthMiddleware");
 const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
 
-route.get("/", TimeSlotClinicController.getAll);
+route.get(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  TimeSlotClinicController.getAll
+);
 
-route.get("/:id", TimeSlotClinicController.getOne);
+route.get(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  TimeSlotClinicController.getOne
+);
 
 // route.post("/", multer.Multer.array("image"), TimeSlotClinicController.store);
-route.post("/", TimeSlotClinicController.store);
+route.post(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  TimeSlotClinicController.store
+);
 
-route.put("/:id", TimeSlotClinicController.update);
+route.put(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  TimeSlotClinicController.update
+);
 
-route.delete("/:id", TimeSlotClinicController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  TimeSlotClinicController.delete
+);
 module.exports = route;

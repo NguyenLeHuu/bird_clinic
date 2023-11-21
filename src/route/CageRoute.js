@@ -7,18 +7,43 @@ let route = promiseRouter();
 
 route.get(
   "/",
-  //   AuthMiddleware.isAuthenticated,
-  //   AuthMiddleware.isStaff,
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
   CageController.getAll
 );
-route.get("/schedule_cage", CageController.schedule_cage);
+route.get(
+  "/schedule_cage",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  CageController.schedule_cage
+);
 
-route.get("/:id", CageController.getOne);
+route.get(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  CageController.getOne
+);
 
 // route.post("/", multer.Multer.array("image"), CageController.store);
-route.post("/", CageController.store);
+route.post(
+  "/",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  CageController.store
+);
 
-route.put("/:id", CageController.update);
+route.put(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  CageController.update
+);
 
-route.delete("/:id", CageController.delete);
+route.delete(
+  "/:id",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
+  CageController.delete
+);
 module.exports = route;
