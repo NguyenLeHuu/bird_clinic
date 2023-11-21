@@ -56,7 +56,7 @@ let getOne = (id, req) => {
           include: [
             {
               model: db.veterinarian,
-              attributes: ["name", "image"],
+              attributes: ["name", "image", "service_id", "service_type_id"],
             },
             {
               model: db.bird,
