@@ -84,7 +84,6 @@ module.exports = {
         color,
         breed_id,
         status,
-        size,
       } = req.body;
       let image =
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy_QPLISHeW6nHqBiEzRi7iMSlDv35C8cj1Q&usqp=CAU";

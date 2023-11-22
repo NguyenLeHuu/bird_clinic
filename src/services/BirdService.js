@@ -77,7 +77,6 @@ let createBird = (data, url) => {
         breed_id: data.breed_id,
         status: 1,
         image: url,
-        size: data.size,
       });
       resolve(result);
     } catch (e) {

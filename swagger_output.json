@@ -3780,9 +3780,6 @@
                   },
                   "status": {
                     "example": "any"
-                  },
-                  "size": {
-                    "example": "any"
                   }
                 }
               }
