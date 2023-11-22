@@ -2,12 +2,32 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.prescription.findAll({
-        attributes: ["prescription_id", "booking_id", "time_created", "status"],
-      });
+      let data;
+      if (req.booking_id) {
+        data = await db.prescription.findOne({
+          where: {
+            booking_id: req.booking_id,
+          },
+          attributes: [
+            "prescription_id",
+            "booking_id",
+            "time_created",
+            "status",
+          ],
+        });
+      } else {
+        data = await db.prescription.findAll({
+          attributes: [
+            "prescription_id",
+            "booking_id",
+            "time_created",
+            "status",
+          ],
+        });
+      }
 
       resolve(data);
     } catch (e) {

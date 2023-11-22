@@ -1581,6 +1581,15 @@
           "Prescription"
         ],
         "description": "Get all Prescription",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

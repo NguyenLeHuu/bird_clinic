@@ -9,7 +9,8 @@ module.exports = {
          #swagger.description = "Get all Prescription"
         */
     try {
-      let data = await PrescriptionService.getAll();
+      const { booking_id } = req.query;
+      let data = await PrescriptionService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({
