@@ -109,7 +109,7 @@ let createBooking = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       // console.log("______", data.veterinarian_id);
-      const id = crypto.randomBytes(15).toString("hex");
+      const id = `BCS_${crypto.randomBytes(4).toString("hex")}`;
       const date = utils.getCurDay();
 
       const result = await db.booking.create({

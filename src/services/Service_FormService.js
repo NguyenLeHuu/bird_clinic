@@ -95,7 +95,8 @@ let getOne = (id) => {
 let createService_Form = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
+      // const id = crypto.randomBytes(15).toString("hex");
+      const id = `SF_${crypto.randomBytes(4).toString("hex")}`;
       const result = await db.service_form.create({
         service_form_id: id,
         bird_id: data.bird_id,
