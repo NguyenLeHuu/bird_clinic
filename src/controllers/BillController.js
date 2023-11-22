@@ -14,9 +14,8 @@ module.exports = {
          #swagger.description = "Get all Bill"
         */
     try {
-      // const id = req.params.id;
-      // let data = await BillService.getAll(id);
-      let data = await BillService.getAll();
+      const { booking_id } = req.query;
+      let data = await BillService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({

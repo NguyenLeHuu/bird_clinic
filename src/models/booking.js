@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       Booking.belongsTo(models.veterinarian, {
         foreignKey: "veterinarian_id",
       });
+      Booking.hasMany(models.service_form, {
+        foreignKey: "booking_id",
+      });
     }
   }
   Booking.init(

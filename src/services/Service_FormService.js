@@ -13,6 +13,10 @@ let getAll = (req) => {
           },
           include: [
             {
+              model: db.booking,
+              attributes: ["customer_name"],
+            },
+            {
               model: db.service_form_detail,
               where: {
                 service_package_id: { [Op.ne]: "SP1" },
@@ -23,8 +27,6 @@ let getAll = (req) => {
                   attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
                 },
               ],
-              // raw: false,
-              // nest: true,
             },
           ],
           raw: false,
@@ -33,6 +35,10 @@ let getAll = (req) => {
       } else {
         data = await db.service_form.findAll({
           include: [
+            {
+              model: db.booking,
+              attributes: ["customer_name"],
+            },
             {
               model: db.service_form_detail,
               include: [

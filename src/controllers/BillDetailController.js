@@ -8,7 +8,8 @@ module.exports = {
          #swagger.description = "Get all BillDetail "
         */
     try {
-      let data = await BillDetailService.getAll();
+      const { booking_id } = req.query;
+      let data = await BillDetailService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({

@@ -2,11 +2,34 @@ const { Op } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.bill_detail.findAll({});
-      resolve(data);
+      let result;
+      if (req.booking_id) {
+        let data = await db.bill.findAll({
+          where: { booking_id: req.booking_id },
+          include: [
+            {
+              model: db.bill_detail,
+              include: [
+                {
+                  model: db.service_package,
+                  attributes: ["package_name"],
+                },
+              ],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+
+        result = [].concat(...data.map((item) => item.dataValues.bill_details));
+        console.log(result);
+      } else {
+        result = await db.bill_detail.findAll({});
+      }
+      resolve(result);
     } catch (e) {
       reject(e);
     }

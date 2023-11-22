@@ -736,6 +736,15 @@
           "Bill"
         ],
         "description": "Get all Bill",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -904,6 +913,15 @@
           "BillDetail"
         ],
         "description": "Get all BillDetail ",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

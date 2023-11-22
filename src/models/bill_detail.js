@@ -2,7 +2,17 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class BillDetail extends Model {
-    static associate(models) {}
+    static associate(models) {
+      BillDetail.belongsTo(models.bill, {
+        foreignKey: "bill_id",
+      });
+      BillDetail.belongsTo(models.service_package, {
+        foreignKey: "service_package_id",
+      });
+      // Bird.hasMany(models.booking, {
+      //   foreignKey: "bird_id",
+      // });
+    }
   }
   BillDetail.init(
     {
