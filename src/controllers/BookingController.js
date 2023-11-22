@@ -3,6 +3,7 @@ const BoardingService = require("../services/BoardingService");
 const ChatService = require("../services/ChatService");
 const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
 const Firebase = require("../services/Firebase");
+const db = require("../models/index");
 
 module.exports = {
   async getAll(req, res) {
@@ -142,6 +143,7 @@ module.exports = {
         data = await BookingService.createBooking(req.body);
 
         if (service_type_id === "ST003") {
+          //boarding
           let temp = {
             ...data.dataValues,
             departure_date,
@@ -149,7 +151,23 @@ module.exports = {
           let boarding = await BoardingService.createBoarding(temp);
 
           temp = { ...boarding.dataValues, customer_id: account_id };
-          await ChatService.createChat(temp);
+          let chat = await ChatService.createChat(temp);
+          await db.content_chat.create({
+            user1: "clinic",
+            user2: account_id,
+            message: "Cảm ơn bạn đã sử dụng dịch vụ bên chúng tui !",
+            type: "sent",
+            chat_id: chat.dataValues.chat_id,
+            status: 1,
+          });
+          await db.content_chat.create({
+            user1: account_id,
+            user2: "clinic",
+            message: "Cảm ơn bạn đã sử dụng dịch vụ bên chúng tui!",
+            type: "receive",
+            chat_id: chat.dataValues.chat_id,
+            status: 1,
+          });
         }
       }
 
