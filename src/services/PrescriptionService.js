@@ -20,6 +20,12 @@ let getAll = (req) => {
           include: [
             {
               model: db.prescription_detail,
+              include: [
+                {
+                  model: db.medicine,
+                  attributes: ["name", "unit"],
+                },
+              ],
             },
           ],
           raw: false,

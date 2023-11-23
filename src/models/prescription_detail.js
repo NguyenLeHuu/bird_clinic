@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       PrescriptionDetail.belongsTo(models.prescription, {
         foreignKey: "prescription_id",
       });
+      PrescriptionDetail.belongsTo(models.medicine, {
+        foreignKey: "medicine_id",
+      });
     }
   }
   PrescriptionDetail.init(
