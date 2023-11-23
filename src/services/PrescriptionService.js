@@ -17,6 +17,13 @@ let getAll = (req) => {
             "time_created",
             "status",
           ],
+          include: [
+            {
+              model: db.prescription_detail,
+            },
+          ],
+          raw: false,
+          nest: true,
         });
       } else {
         data = await db.prescription.findAll({
@@ -44,6 +51,7 @@ let getOne = (id) => {
         where: {
           prescription_id: id,
         },
+        attributes: ["prescription_id", "booking_id", "time_created", "status"],
       });
       resolve(data);
     } catch (e) {

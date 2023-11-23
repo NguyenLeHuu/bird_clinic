@@ -2,7 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Prescription extends Model {
-    static associate(models) {}
+    static associate(models) {
+      Prescription.hasMany(models.prescription_detail, {
+        foreignKey: "prescription_id",
+      });
+    }
   }
   Prescription.init(
     {

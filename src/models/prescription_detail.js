@@ -2,7 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class PrescriptionDetail extends Model {
-    static associate(models) {}
+    static associate(models) {
+      PrescriptionDetail.belongsTo(models.prescription, {
+        foreignKey: "prescription_id",
+      });
+    }
   }
   PrescriptionDetail.init(
     {

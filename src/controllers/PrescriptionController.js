@@ -26,7 +26,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Prescription");
+      console.log("____Cannot get Prescription", error);
       return res.status(400).json({
         status: 400,
         message: error,
@@ -57,8 +57,12 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Prescription");
+      console.log("____Cannot get Prescription", error);
       // throw error;
+      return res.status(400).json({
+        status: 400,
+        message: error,
+      });
     }
   },
 
