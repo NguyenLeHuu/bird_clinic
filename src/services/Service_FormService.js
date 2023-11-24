@@ -29,6 +29,7 @@ let getAll = (req) => {
               ],
             },
           ],
+          order: [["time_create", "DESC"]],
           raw: false,
           nest: true,
         });
@@ -49,6 +50,7 @@ let getAll = (req) => {
               ],
             },
           ],
+          order: [["time_create", "ASC"]],
           raw: false,
           nest: true,
         });
