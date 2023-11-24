@@ -1919,7 +1919,7 @@
         "tags": [
           "Boarding"
         ],
-        "description": "Get all Boarding ",
+        "description": "Get all Boarding",
         "parameters": [
           {
             "name": "booking_id",
@@ -2058,6 +2058,9 @@
                     "example": "any"
                   },
                   "act_departure_date": {
+                    "example": "any"
+                  },
+                  "cage_id": {
                     "example": "any"
                   }
                 }

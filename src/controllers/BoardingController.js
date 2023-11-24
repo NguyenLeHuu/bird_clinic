@@ -5,7 +5,7 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['Boarding']
-         #swagger.description = "Get all Boarding  "
+         #swagger.description = "Get all Boarding"
         */
     try {
       const { booking_id } = req.query;
@@ -25,7 +25,7 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.log("____Cannot get Boarding");
+      console.log("____Cannot get Boarding", error);
       return res.status(400).json({
         status: 400,
         message: error,
@@ -104,6 +104,7 @@ module.exports = {
         room_type,
         act_arrival_date,
         act_departure_date,
+        cage_id,
       } = req.body;
 
       let data = await BoardingService.updateBoarding(id, req.body);
@@ -115,7 +116,7 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Update Boarding Failed");
+      console.log("____Update Boarding Failed", err);
       return res.status(400).json({
         status: 400,
         message: err,

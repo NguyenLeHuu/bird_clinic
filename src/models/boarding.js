@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       bird_id: DataTypes.STRING,
       act_arrival_date: DataTypes.STRING,
       act_departure_date: DataTypes.STRING,
+      cage_id: DataTypes.STRING,
     },
     {
       sequelize,
