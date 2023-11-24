@@ -350,12 +350,12 @@ let isAvailableHCNoTime = (date, service_type_id, service_id) => {
       });
 
       const intersection = getIntersection(data1, data2);
-      console.log("data1");
-      console.log(data1);
-      console.log("data2");
-      console.log(data2);
-      console.log("intersection");
-      console.log(intersection);
+      // console.log("data1");
+      // console.log(data1);
+      // console.log("data2");
+      // console.log(data2);
+      // console.log("intersection");
+      // console.log(intersection);
       resolve(intersection);
     } catch (e) {
       reject(e);
@@ -384,10 +384,14 @@ let isAvailableVet = (time_slot_clinic_id, veterinarian_id) => {
 };
 
 function getIntersection(arr1, arr2) {
-  const intersection = arr1.filter((item1) =>
-    arr2.some((item2) => item1.veterinarian_id === item2.veterinarian_id)
-  );
-  return intersection;
+  try {
+    const intersection = arr1.filter((item1) =>
+      arr2.some((item2) => item1.veterinarian_id === item2.veterinarian_id)
+    );
+    return intersection;
+  } catch (error) {
+    console.log("lỗi ở hàm hợp 2 mảng");
+  }
 }
 
 module.exports = {

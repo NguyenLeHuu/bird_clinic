@@ -74,7 +74,8 @@ let getOne = (id) => {
 let createService_Form_detail = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
+      // const id = crypto.randomBytes(15).toString("hex");
+      const id = `SFD_${crypto.randomBytes(5).toString("hex").toUpperCase()}`;
       const result = await db.service_form_detail.create({
         service_form_detail_id: id,
         service_package_id: data.service_package_id,

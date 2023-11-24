@@ -6,7 +6,7 @@ const TimeSlotClinicService = require("../services/TimeSlotClinicService");
 const ServicePackageService = require("../services/ServicePackageService");
 const BookingService = require("../services/BookingService");
 const db = require("../models/index");
-
+const { Op, where } = require("sequelize");
 module.exports = {
   async getAll(req, res) {
     /* 
@@ -95,53 +95,24 @@ module.exports = {
       } = req.body;
 
       let data = await Service_FormService.createService_Form(req.body);
-      console.log(data);
       let booking = await BookingService.getOne(booking_id, "");
 
       if (Array.isArray(arr_service_pack)) {
         arr_service_pack.forEach(async (item, index) => {
           let temp = {};
-          // let flag = false;
-          // Thực hiện các thao tác với item ở đây
+
           let service_package = await ServicePackageService.getOne(
             item.service_package_id
           );
-          let service_id = service_package.service_id;
-          let available_arr_vetid;
 
-          // console.log("----------------");
-          // console.log(booking);
-          // console.log("----------------");
+          let service_id = service_package.service_id;
+          let available_arr_vetid = [];
 
           switch (booking.service_type_id) {
             case "ST001":
-              if (service_id === "SP1") {
-                available_arr_vetid = booking.veterinarian_id;
-              } else {
-                available_arr_vetid =
-                  await VeterinarianSlotDetailService.isAvailableHCNoTime(
-                    date,
-                    "ST001",
-                    service_id
-                  );
-              }
-
-              if (available_arr_vetid.length > 0) {
-                //kiểm tra ai rảnh nhất
-                let veterinarian_id;
-                let record_min = 0;
-                for (const vet_id_obj of available_arr_vetid) {
-                  const { count } =
-                    await db.service_form_detail.findAndCountAll({
-                      where: {
-                        veterinarian_id: vet_id_obj.veterinarian_id,
-                      },
-                    });
-                  if (count <= record_min) {
-                    record_min = count;
-                    veterinarian_id = vet_id_obj.veterinarian_id;
-                  }
-                }
+              if (item.service_package_id === "SP1") {
+                console.log("chạy zô sp1");
+                let veterinarian_id = booking.veterinarian_id;
                 temp = {
                   ...data.dataValues,
                   service_package_id: item.service_package_id,
@@ -151,17 +122,69 @@ module.exports = {
                   booking_id,
                   process_at: 1,
                 };
-                // console.log(`Phần tử ${index}:`);
-                // console.log(temp);
-                // console.log("----------------------");
+
                 await Service_Form_detail.createService_Form_detail(temp);
               } else {
-                console.log("không ai làm ngày này hết");
-                return res.status(400).json({
-                  status: 400,
-                  message: "Loi taoj sfd",
-                });
+                console.log("chạy zô khác sp1");
+                let veterinarian_id;
+                available_arr_vetid =
+                  await VeterinarianSlotDetailService.isAvailableHCNoTime(
+                    date,
+                    "ST001",
+                    service_id
+                  );
+
+                if (available_arr_vetid.length > 0) {
+                  // Tạo mảng các Promises
+                  let record_min;
+                  const promises = available_arr_vetid.map(
+                    async (vet_id_obj) => {
+                      const { count } =
+                        await db.service_form_detail.findAndCountAll({
+                          where: {
+                            veterinarian_id: vet_id_obj.veterinarian_id,
+                            status: { [Op.notIn]: ["done", "cancelled"] },
+                          },
+                        });
+                      record_min = count;
+
+                      console.log(
+                        `count ${count} doctor ${vet_id_obj.veterinarian_id}`
+                      );
+                      if (count <= record_min) {
+                        record_min = count;
+                        veterinarian_id = vet_id_obj.veterinarian_id;
+                        console.log(`doctor ${vet_id_obj.veterinarian_id}`);
+                      }
+                    }
+                  );
+
+                  await Promise.all(promises);
+
+                  temp = {
+                    ...data.dataValues,
+                    service_package_id: item.service_package_id,
+                    veterinarian_id,
+                    note: item.note,
+                    status: "pending",
+                    booking_id,
+                    process_at: 1,
+                  };
+                  console.log(
+                    "veterinarian_id nguoi duoc chon: ",
+                    veterinarian_id
+                  );
+
+                  await Service_Form_detail.createService_Form_detail(temp);
+                } else {
+                  console.log("không ai làm ngày này hết");
+                  return res.status(400).json({
+                    status: 400,
+                    message: "Loi taoj sfd",
+                  });
+                }
               }
+
               break;
 
             case "ST002":
@@ -204,101 +227,6 @@ module.exports = {
       });
     }
   },
-  // async store(req, res) {
-  //   /*
-  //       #swagger.tags = ['Service_Form']
-  //        #swagger.description = "arr_service_pack optional truyền mảng"
-  //       */
-
-  //   try {
-  //     const {
-  //       bird_id,
-  //       booking_id,
-  //       reason_referral,
-  //       status,
-  //       date,
-  //       veterinarian_referral,
-  //       total_price,
-  //       qr_code,
-  //       num_ser_must_do,
-  //       num_ser_has_done,
-
-  //       // to_service_type_id,
-  //       arr_service_pack,
-  //     } = req.body;
-
-  //     let data = await Service_FormService.createService_Form(req.body);
-
-  //     if (Array.isArray(arr_service_pack)) {
-  //       arr_service_pack.forEach(async (item, index) => {
-  //         let temp = {};
-  //         let flag = false;
-  //         // Thực hiện các thao tác với item ở đây
-  //         let service_package = await ServicePackageService.getOne(
-  //           item.service_package_id
-  //         );
-  //         let service_id = service_package.service_id;
-  //         const arr_slot = await TimeSlotClinicService.getAll(req.body); //mảng slot theo ngày cụ thể, thời gian tăng dần
-
-  //         let veterinarian_id;
-  //         let time_slot_clinic_id;
-
-  //         for (const slot of arr_slot) {
-  //           let available_arr_vetid;
-
-  //           available_arr_vetid =
-  //             await VeterinarianSlotDetailService.isAvailableHC(
-  //               slot.time_slot_clinic_id,
-  //               "ST001",
-  //               service_id
-  //             );
-
-  //           if (available_arr_vetid.length > 0) {
-  //             console.log(available_arr_vetid[0].veterinarian_id);
-  //             veterinarian_id = available_arr_vetid[0].veterinarian_id;
-  //             time_slot_clinic_id = slot.time_slot_clinic_id;
-  //             flag = true;
-  //             break; // Dừng vòng lặp nếu tìm thấy giá trị
-  //           }
-  //         }
-
-  //         temp = {
-  //           ...data.dataValues,
-  //           service_package_id: item.service_package_id,
-  //           veterinarian_id,
-  //           time_id: time_slot_clinic_id,
-  //           note: item.note,
-  //           status: "pending",
-  //           booking_id,
-  //           process_at: 1,
-  //         };
-  //         // console.log(`Phần tử ${index}:`);
-  //         // console.log(temp);
-  //         // console.log("----------------------");
-  //         if (flag) {
-  //           await Service_Form_detail.createService_Form_detail(temp);
-  //           await VeterinarianSlotDetailService.updateVeterinarianSlotDetailNoId(
-  //             temp
-  //           ); //chuyển status -> unavailable
-  //         } else {
-  //           console.log("hết làm được rồi");
-  //         }
-  //       });
-  //     }
-
-  //     return res.status(200).json({
-  //       status: 200,
-  //       message: "Create Service_Form Successful!",
-  //       // data: data,
-  //     });
-  //   } catch (err) {
-  //     console.log("____Create Service_Form Failed", err);
-  //     return res.status(400).json({
-  //       status: 400,
-  //       message: err,
-  //     });
-  //   }
-  // },
 
   async update(req, res) {
     /* 
