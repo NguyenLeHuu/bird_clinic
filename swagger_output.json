@@ -1920,6 +1920,15 @@
           "Boarding"
         ],
         "description": "Get all Boarding ",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

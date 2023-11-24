@@ -2,17 +2,20 @@ const { Op, where } = require("sequelize");
 const db = require("../models/index");
 const crypto = require("crypto");
 
-let getAll = () => {
+let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.boarding.findAll({
-        // where: {
-        //   [Op.or]: [
-        //     { bird_size_id: bird_size_id },
-        //     { boarding_id: boarding_id },
-        //   ],
-        // },
-      });
+      let data;
+      if (req.booking_id) {
+        data = await db.boarding.findAll({
+          where: {
+            booking_id: req.booking_id,
+          },
+        });
+      } else {
+        data = await db.boarding.findAll({});
+      }
+
       resolve(data);
     } catch (e) {
       reject(e);

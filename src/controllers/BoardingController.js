@@ -8,9 +8,8 @@ module.exports = {
          #swagger.description = "Get all Boarding  "
         */
     try {
-      // const type = req.query.type;
-      // const type_id = req.query.type_id;
-      let data = await BoardingService.getAll();
+      const { booking_id } = req.query;
+      let data = await BoardingService.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({

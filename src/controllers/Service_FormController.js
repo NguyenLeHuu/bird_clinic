@@ -136,7 +136,7 @@ module.exports = {
 
                 if (available_arr_vetid.length > 0) {
                   // Tạo mảng các Promises
-                  let record_min;
+                  let record_min = 100; //trường hợp sfd trong 1 ngày vượt quá 1k sẽ ko đáp ứng
                   const promises = available_arr_vetid.map(
                     async (vet_id_obj) => {
                       const { count } =
@@ -146,7 +146,6 @@ module.exports = {
                             status: { [Op.notIn]: ["done", "cancelled"] },
                           },
                         });
-                      record_min = count;
 
                       console.log(
                         `count ${count} doctor ${vet_id_obj.veterinarian_id}`

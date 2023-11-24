@@ -60,7 +60,7 @@ let getOne = (id, req) => {
             },
             {
               model: db.bird,
-              attributes: ["name"],
+              attributes: ["name", "image"],
               include: [
                 {
                   model: db.customer,
