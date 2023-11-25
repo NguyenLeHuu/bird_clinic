@@ -8,10 +8,13 @@ let getAll = (req) => {
       let data;
       if (req.booking_id) {
         data = await db.sequelize.query(
-          `SELECT boardings.*, bird_sizes.size
-          FROM boardings
-          JOIN cages ON boardings.cage_id = cages.cage_id JOIN bird_sizes ON cages.size = bird_sizes.bird_size_id
-          WHERE boardings.booking_id = :booking_id;
+          `
+          SELECT boardings.*, bird_sizes.size, chats.chat_id, chats.customer_id
+FROM boardings
+JOIN cages ON boardings.cage_id = cages.cage_id
+JOIN bird_sizes ON cages.size = bird_sizes.bird_size_id
+JOIN chats ON boardings.boarding_id = chats.boarding_id
+WHERE boardings.booking_id = :booking_id;
           `,
           {
             replacements: { booking_id: req.booking_id },
