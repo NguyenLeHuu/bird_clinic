@@ -34,7 +34,7 @@ route.post(
 route.put(
   "/:id",
   AuthMiddleware.isAuthenticated,
-  AuthMiddleware.isManager,
+  AuthMiddleware.userOfSystem,
   BirdBreedController.update
 );
 
