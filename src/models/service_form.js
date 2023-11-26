@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "service_form",
-      timestamps: true,
+      timestamps: false,
     }
   );
   return Service_Form;
