@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       gender: DataTypes.STRING,
       hatching_date: DataTypes.STRING,
       ISO_microchip: DataTypes.STRING,
-      weight: DataTypes.STRING,
+      // weight: DataTypes.STRING,
       color: DataTypes.STRING,
       breed_id: DataTypes.STRING,
       status: DataTypes.STRING,

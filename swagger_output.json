@@ -3687,9 +3687,6 @@
                   "ISO_microchip": {
                     "example": "any"
                   },
-                  "weight": {
-                    "example": "any"
-                  },
                   "color": {
                     "example": "any"
                   },
@@ -3779,9 +3776,6 @@
                     "example": "any"
                   },
                   "ISO_microchip": {
-                    "example": "any"
-                  },
-                  "weight": {
                     "example": "any"
                   },
                   "color": {

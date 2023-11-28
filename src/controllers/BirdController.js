@@ -80,7 +80,7 @@ module.exports = {
         gender,
         hatching_date,
         ISO_microchip,
-        weight,
+        // weight,
         color,
         breed_id,
         status,
@@ -121,7 +121,7 @@ module.exports = {
       const gender = req.body.gender;
       const hatching_date = req.body.hatching_date;
       const ISO_microchip = req.body.ISO_microchip;
-      const weight = req.body.weight;
+      // const weight = req.body.weight;
       const color = req.body.color;
       const breed_id = req.body.breed_id;
       const status = req.body.status;
@@ -135,7 +135,7 @@ module.exports = {
         gender,
         hatching_date,
         ISO_microchip,
-        weight,
+        // weight,
         color,
         breed_id,
         status,
