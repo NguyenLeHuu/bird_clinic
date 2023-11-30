@@ -41,7 +41,8 @@ let getOne = (id) => {
 let createBill = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
+      // const id = crypto.randomBytes(15).toString("hex");
+      const id = `HD_${crypto.randomBytes(4).toString("hex").toUpperCase()}`;
       const result = await db.bill.create({
         bill_id: id,
         title: data.title,
