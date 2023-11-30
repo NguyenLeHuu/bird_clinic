@@ -13,6 +13,13 @@ route.get(
 );
 
 route.get(
+  "/boarding",
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.userOfSystem,
+  Service_FormController.getAllForBoarding
+);
+
+route.get(
   "/:id",
   AuthMiddleware.isAuthenticated,
   AuthMiddleware.userOfSystem,

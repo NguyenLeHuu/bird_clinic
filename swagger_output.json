@@ -417,6 +417,34 @@
         }
       }
     },
+    "/service_Form/boarding": {
+      "get": {
+        "tags": [
+          "Service_Form"
+        ],
+        "description": "Truyen booking_id se lay theo booking (không hiện sf gốc)",
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/service_Form/{id}": {
       "get": {
         "tags": [

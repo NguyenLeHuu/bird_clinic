@@ -14,7 +14,7 @@ let getAll = (req) => {
           include: [
             {
               model: db.booking,
-              attributes: ["customer_name"],
+              attributes: ["customer_name", "service_type_id"],
             },
             {
               model: db.service_form_detail,
@@ -38,7 +38,10 @@ let getAll = (req) => {
           include: [
             {
               model: db.booking,
-              attributes: ["customer_name"],
+              attributes: ["customer_name", "service_type_id"],
+              where: {
+                service_type_id: { [Op.ne]: "ST003" },
+              },
             },
             {
               model: db.service_form_detail,
@@ -50,7 +53,67 @@ let getAll = (req) => {
               ],
             },
           ],
-          order: [["time_create", "ASC"]],
+          order: [["time_create", "DESC"]],
+          raw: false,
+          nest: true,
+        });
+      }
+      resolve(data);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let getAllForBoarding = (req) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data;
+      if (req.booking_id) {
+        data = await db.service_form.findAll({
+          where: {
+            booking_id: req.booking_id,
+          },
+          include: [
+            {
+              model: db.booking,
+              attributes: ["customer_name", "service_type_id"],
+            },
+            {
+              model: db.service_form_detail,
+              include: [
+                {
+                  model: db.service_package,
+                  attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
+                },
+              ],
+            },
+          ],
+          order: [["time_create", "DESC"]],
+          raw: false,
+          nest: true,
+        });
+      } else {
+        data = await db.service_form.findAll({
+          include: [
+            {
+              model: db.booking,
+              attributes: ["customer_name", "service_type_id"],
+              where: {
+                service_type_id: "ST003",
+              },
+            },
+            {
+              model: db.service_form_detail,
+              include: [
+                {
+                  model: db.service_package,
+                  attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
+                },
+              ],
+            },
+          ],
+          order: [["time_create", "DESC"]],
           raw: false,
           nest: true,
         });
@@ -165,6 +228,7 @@ let deleteService_Form = (id) => {
 
 module.exports = {
   getAll: getAll,
+  getAllForBoarding,
   getOne: getOne,
   createService_Form: createService_Form,
   updateService_Form: updateService_Form,

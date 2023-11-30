@@ -97,20 +97,20 @@ module.exports = {
       );
       await CustomerService.updateTotalSpent(booking.account_id, total_price);
 
-      // let service_form = await Service_FormService.getOne(service_form_id); //tạo bill_detail
-      // // console.log(service_form[0].dataValues.service_form_details);
-      // let arr = service_form[0].dataValues.service_form_details;
-      // arr.forEach(async (item, index) => {
-      //   let sp = await ServicePackageService.getOne(
-      //     item.dataValues.service_package_id
-      //   );
-      //   let temp = {
-      //     bill_id: data.dataValues.bill_id,
-      //     service_package_id: item.dataValues.service_package_id,
-      //     price: sp.price,
-      //   };
-      //   await BillDetailService.createBillDetail(temp);
-      // });
+      let service_form = await Service_FormService.getOne(service_form_id); //tạo bill_detail
+      // console.log(service_form[0].dataValues.service_form_details);
+      let arr = service_form[0].dataValues.service_form_details;
+      arr.forEach(async (item, index) => {
+        let sp = await ServicePackageService.getOne(
+          item.dataValues.service_package_id
+        );
+        let temp = {
+          bill_id: data.dataValues.bill_id,
+          service_package_id: item.dataValues.service_package_id,
+          price: sp.price,
+        };
+        await BillDetailService.createBillDetail(temp);
+      });
 
       console.log("____Create Bill Successful");
 

@@ -39,6 +39,37 @@ module.exports = {
     }
   },
 
+  async getAllForBoarding(req, res) {
+    /* 
+        #swagger.tags = ['Service_Form']
+         #swagger.description = "Truyen booking_id se lay theo booking (không hiện sf gốc)"
+        */
+    try {
+      const { booking_id } = req.query;
+      let data = await Service_FormService.getAllForBoarding(req.query);
+
+      if (data != null) {
+        return res.status(200).json({
+          status: 200,
+          message: "Get Service_Form successful!",
+          data: data,
+        });
+      } else {
+        return res.status(400).json({
+          status: 400,
+          message: "Not Found!",
+          data: data,
+        });
+      }
+    } catch (error) {
+      console.log("____Cannot get Service_Form", error);
+      return res.status(400).json({
+        status: 400,
+        message: error,
+      });
+    }
+  },
+
   async getOne(req, res) {
     /* 
         #swagger.tags = ['Service_Form']
