@@ -14,7 +14,7 @@ module.exports = {
          #swagger.description = "Truyen booking_id se lay theo booking (không hiện sf gốc)"
         */
     try {
-      const { booking_id } = req.query;
+      const { booking_id, date } = req.query;
       let data = await Service_FormService.getAll(req.query);
 
       if (data != null) {

@@ -34,6 +34,34 @@ let getAll = (req) => {
           raw: false,
           nest: true,
         });
+      } else if (req.date) {
+        data = await db.service_form.findAll({
+          where: {
+            date: req.date,
+          },
+          include: [
+            {
+              model: db.booking,
+              attributes: ["customer_name", "service_type_id"],
+            },
+            {
+              model: db.service_form_detail,
+              // where: {
+              //   service_package_id: { [Op.ne]: "SP1" },
+              //   status: { [Op.ne]: "0" },
+              // },
+              include: [
+                {
+                  model: db.service_package,
+                  attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
+                },
+              ],
+            },
+          ],
+          order: [["time_create", "DESC"]],
+          raw: false,
+          nest: true,
+        });
       } else {
         data = await db.service_form.findAll({
           include: [
