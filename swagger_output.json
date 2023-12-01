@@ -2994,19 +2994,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "service_type_id": {
+                    "example": "any"
+                  },
                   "name": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "description": {
                     "example": "any"
                   },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
+                  "status": {
                     "example": "any"
                   }
                 }
@@ -4214,7 +4211,13 @@
                   "status": {
                     "example": "any"
                   },
-                  "image": {
+                  "service_id": {
+                    "example": "any"
+                  },
+                  "service_name": {
+                    "example": "any"
+                  },
+                  "service_type_id": {
                     "example": "any"
                   }
                 }

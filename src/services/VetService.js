@@ -72,7 +72,7 @@ let getOne = (id) => {
   });
 };
 
-let createVeterinarian = (data, url) => {
+let createVeterinarian = (data, image) => {
   // let createVeterinarian = (data, image) => {
 
   return new Promise(async (resolve, reject) => {
@@ -84,7 +84,10 @@ let createVeterinarian = (data, url) => {
         specialized: data.specialized,
         name: data.name,
         status: 1,
-        image: url,
+        image: image,
+        service_id: data.service_id,
+        service_name: data.service_name,
+        service_type_id: data.service_type_id,
       });
 
       resolve(result);
@@ -99,7 +102,7 @@ let updateVeterinarian = (id, body_data) => {
     try {
       let data = await db.veterinarian.update(
         {
-          specialized: body_data.specializedme,
+          specialized: body_data.specialized,
           status: body_data.status,
         },
         {

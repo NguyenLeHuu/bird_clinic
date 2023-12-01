@@ -100,20 +100,8 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
-
-      let data = await Service.updateService(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      const { service_type_id, name, description, status } = req.body;
+      let data = await Service.updateService(id, req.body);
       console.log("____Update Service Successful");
 
       return res.status(200).json({

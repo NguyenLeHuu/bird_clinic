@@ -71,10 +71,22 @@ module.exports = {
               required: 'true',
         } */
     try {
-      const { account_id, specialized, name, status, image } = req.body;
+      const {
+        account_id,
+        specialized,
+        name,
+        status,
+        service_id,
+        service_name,
+        service_type_id,
+      } = req.body;
 
-      const url = await Firebase.uploadImage(file);
-      let data = await VetService.createVeterinarian(req.body, url);
+      let image =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy_QPLISHeW6nHqBiEzRi7iMSlDv35C8cj1Q&usqp=CAU";
+      if (req.file) {
+        image = await Firebase.uploadImage(req.file);
+      }
+      let data = await VetService.createVeterinarian(req.body, image);
 
       console.log("____Create Vet Successful");
 

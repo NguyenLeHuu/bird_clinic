@@ -48,15 +48,16 @@ let createAccount = (data) => {
   });
 };
 
-let updateAccount = (id, name, quantity, price, mainimg, detail) => {
+let updateAccount = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.account.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          email: req.email,
+          password: req.password,
+          phone: req.phone,
+          role: req.role,
+          status: req.status,
         },
         {
           where: {

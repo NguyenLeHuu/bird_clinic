@@ -49,19 +49,19 @@ let createService = (data, url) => {
   });
 };
 
-let updateService = (id, name, quantity, price, mainimg, detail) => {
+let updateService = (id, req) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.service.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          detail: detail,
+          service_type_id: req.service_type_id,
+          name: req.name,
+          description: req.description,
+          status: req.status,
         },
         {
           where: {
-            account_id: id,
+            service_id: id,
           },
         }
       );

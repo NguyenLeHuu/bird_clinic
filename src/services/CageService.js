@@ -69,7 +69,7 @@ let createCage = (data) => {
       const result = await db.cage.create({
         boarding_id: data.boarding_id,
         bird_id: data.bird_id,
-        status: "available",
+        status: "empty",
         size: data.size,
       });
       resolve(result);
