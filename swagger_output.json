@@ -4549,6 +4549,35 @@
         }
       }
     },
+    "/veterinarianSlotDetail/with-file": {
+      "post": {
+        "tags": [
+          "VeterinarianSlotDetail"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "excelFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/time_slot_clinic/": {
       "get": {
         "tags": [
@@ -4714,6 +4743,35 @@
           },
           "401": {
             "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/time_slot_clinic/with-file": {
+      "post": {
+        "tags": [
+          "TimeSlotClinic"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "excelFile",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "type": "file"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

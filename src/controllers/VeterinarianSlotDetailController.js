@@ -1,6 +1,8 @@
 const VeterinarianSlotDetailService = require("../services/VeterinarianSlotDetailService");
 const Firebase = require("../services/Firebase");
-
+const { parse } = require("csv-parse");
+const db = require("../models/index");
+const streamifier = require("streamifier");
 module.exports = {
   async getAll(req, res) {
     /* 
@@ -86,6 +88,83 @@ module.exports = {
         status: 400,
         message: err,
       });
+    }
+  },
+
+  async storeWithFile(req, res) {
+    // #swagger.tags = ['VeterinarianSlotDetail']
+
+    /*
+         #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['excelFile'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+        } */
+    try {
+      const fileBuffer = req.file.buffer;
+      let results = [];
+      const stream = streamifier.createReadStream(fileBuffer);
+
+      stream
+        .pipe(
+          parse({
+            comment: "#",
+            columns: true,
+          })
+        )
+        .on("data", (data) => {
+          results.push(data);
+        })
+        .on("error", (err) => {
+          console.log(err);
+          res.status(500).json({ message: "Lỗi khi xử lý file" });
+        })
+        .on("end", async () => {
+          console.log(`${results.length} records`);
+          // console.log(results);
+          const transformedResults = results.map((row) => {
+            if (row.time_slot_clinic_id === "") {
+              return {
+                ...row,
+                time_slot_clinic_id: null,
+              };
+            }
+            return row;
+          });
+
+          const dbFields = [
+            "veterinarian_slot_detail_id",
+            "time_slot_clinic_id",
+            "veterinarian_id",
+            "status",
+            "date",
+          ];
+
+          const cleanedResults = transformedResults.map((row) => {
+            const cleanedRow = {};
+            dbFields.forEach((field) => {
+              cleanedRow[field] = row[field];
+            });
+            return cleanedRow;
+          });
+          console.log(cleanedResults);
+          try {
+            await db.veterinarian_slot_details.bulkCreate(cleanedResults, {
+              fields: dbFields,
+            });
+
+            res.status(200).json({ message: "Import thành công" });
+          } catch (error) {
+            console.log(error);
+            if (!res.headersSent) {
+              res.status(404).json({ message: "Lỗi them dữ liệu", error });
+            }
+          }
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Lỗi khi xử lý file", error });
     }
   },
 

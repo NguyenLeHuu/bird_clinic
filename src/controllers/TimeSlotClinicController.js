@@ -1,7 +1,8 @@
 const TimeSlotClinicService = require("../services/TimeSlotClinicService");
 const Firebase = require("../services/Firebase");
 const db = require("../models/index");
-
+const { parse } = require("csv-parse");
+const streamifier = require("streamifier");
 module.exports = {
   async getAll(req, res) {
     /* 
@@ -130,6 +131,57 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
         status: 400,
         message: err,
       });
+    }
+  },
+  async storeWithFile(req, res) {
+    // #swagger.tags = ['TimeSlotClinic']
+
+    /*
+         #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['excelFile'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+        } */
+    try {
+      const fileBuffer = req.file.buffer;
+      const results = [];
+      const stream = streamifier.createReadStream(fileBuffer);
+
+      stream
+        .pipe(
+          parse({
+            comment: "#",
+            columns: true,
+          })
+        )
+        .on("data", (data) => {
+          results.push(data);
+        })
+        .on("error", (err) => {
+          console.log(err);
+          res.status(500).json({ message: "Lỗi khi xử lý file" });
+        })
+        .on("end", async () => {
+          console.log(`${results.length} records`);
+
+          try {
+            await db.time_slot_clinic.bulkCreate(results, {
+              fields: ["time_slot_clinic_id", "slot_clinic_id", "date"],
+            });
+
+            res
+              .status(200)
+              .json({ message: "Import thành công", data: results.length });
+          } catch (error) {
+            if (!res.headersSent) {
+              res.status(404).json({ message: "Lỗi them dữ liệu", error });
+            }
+          }
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Lỗi khi xử lý file" });
     }
   },
 

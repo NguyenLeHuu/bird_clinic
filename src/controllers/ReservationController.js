@@ -8,33 +8,62 @@ const CustomerService = require("../services/CustomerService");
 const Firebase = require("../services/Firebase");
 const db = require("../models/index");
 
+// const multer = require("multer");
+const { parse } = require("csv-parse");
+const streamifier = require("streamifier");
+
 module.exports = {
   async test(req, res) {
     /* 
         #swagger.tags = ['TEST']
          #swagger.description = "TEST"
         */
+    /*
+         #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['excelFile'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+        } */
     try {
-      let datatoqr = {
-        name: "Le Huu",
-        email: "lehuu@gmail.com",
-      };
+      const fileBuffer = req.file.buffer;
+      const results = [];
+      const stream = streamifier.createReadStream(fileBuffer);
 
-      let dataToEncode = JSON.stringify(datatoqr);
+      stream
+        .pipe(
+          parse({
+            comment: "#",
+            columns: true,
+          })
+        )
+        .on("data", (data) => {
+          results.push(data);
+        })
+        .on("error", (err) => {
+          console.log(err);
+          res.status(500).json({ message: "Lỗi khi xử lý file" });
+        })
+        .on("end", async () => {
+          console.log(`${results.length} records`);
 
-      let url = await Firebase.gen_qr(dataToEncode);
+          try {
+            await db.time_slot_clinic.bulkCreate(results, {
+              fields: ["time_slot_clinic_id", "slot_clinic_id", "date"],
+            });
 
-      return res.status(200).json({
-        status: 200,
-        message: "test Successful!",
-        data: url,
-      });
-    } catch (err) {
-      console.log("____test Failed");
-      return res.status(400).json({
-        status: 400,
-        message: err,
-      });
+            res
+              .status(200)
+              .json({ message: "Import thành công", data: results.length });
+          } catch (error) {
+            if (!res.headersSent) {
+              res.status(404).json({ message: "Lỗi them dữ liệu", error });
+            }
+          }
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Lỗi khi xử lý file" });
     }
   },
   // async store(req, res) {

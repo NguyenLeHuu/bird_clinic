@@ -1,11 +1,11 @@
 const promiseRouter = require("express-promise-router");
 const ReservationController = require("../controllers/ReservationController");
 // const AuthMiddleware = require("../middleware/AuthMiddleware");
-const multer = require("../middleware/GetImgMiddleware");
-
+// const multer = require("../middleware/GetImgMiddleware");
 let route = promiseRouter();
-
-route.get("/", ReservationController.test);
+const multer = require("multer");
+const upload = multer();
+route.post("/", upload.single("excelFile"), ReservationController.test);
 // route.get("/all", ReservationController.getAll);
 
 // route.get("/:id", ReservationController.getOne);

@@ -1,10 +1,10 @@
 const promiseRouter = require("express-promise-router");
 const VeterinarianSlotDetailController = require("../controllers/VeterinarianSlotDetailController");
 const AuthMiddleware = require("../middleware/AuthMiddleware");
-const multer = require("../middleware/GetImgMiddleware");
 
 let route = promiseRouter();
-
+const multer = require("multer");
+const upload = multer();
 route.get(
   "/",
   AuthMiddleware.isAuthenticated,
@@ -31,6 +31,14 @@ route.post(
   AuthMiddleware.isAuthenticated,
   AuthMiddleware.isManager,
   VeterinarianSlotDetailController.store
+);
+
+route.post(
+  "/with-file",
+  // AuthMiddleware.isAuthenticated,
+  // AuthMiddleware.isManager,
+  upload.single("excelFile"),
+  VeterinarianSlotDetailController.storeWithFile
 );
 
 route.put(
