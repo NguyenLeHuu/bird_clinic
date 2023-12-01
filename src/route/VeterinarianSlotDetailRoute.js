@@ -35,8 +35,8 @@ route.post(
 
 route.post(
   "/with-file",
-  // AuthMiddleware.isAuthenticated,
-  // AuthMiddleware.isManager,
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
   upload.single("excelFile"),
   VeterinarianSlotDetailController.storeWithFile
 );
