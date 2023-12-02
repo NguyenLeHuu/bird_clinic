@@ -118,7 +118,7 @@ module.exports = {
         })
         .on("error", (err) => {
           console.log(err);
-          res.status(500).json({ message: "Lỗi khi xử lý file" });
+          res.status(500).json({ status: 500, message: "Lỗi khi xử lý file" });
         })
         .on("end", async () => {
           console.log(`${results.length} records`);
@@ -154,19 +154,23 @@ module.exports = {
               fields: dbFields,
             });
 
-            return res.status(200).json({ message: "Import thành công" });
+            return res
+              .status(200)
+              .json({ status: 200, message: "Import thành công" });
           } catch (error) {
             console.log(error);
             if (!res.headersSent) {
               return res
                 .status(404)
-                .json({ message: "Lỗi them dữ liệu", error });
+                .json({ status: 404, message: "Lỗi them dữ liệu", error });
             }
           }
         });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Lỗi khi xử lý file", error });
+      return res
+        .status(500)
+        .json({ status: 500, message: "Lỗi khi xử lý file", error });
     }
   },
 
