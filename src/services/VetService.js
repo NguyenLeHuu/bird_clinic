@@ -28,10 +28,16 @@ let getAll = (req) => {
         });
       } else {
         data = await db.veterinarian.findAll({
-          include: {
-            model: db.account,
-            attributes: ["status"],
-          },
+          include: [
+            {
+              model: db.account,
+              attributes: ["status"],
+            },
+            {
+              model: db.service,
+              attributes: ["name"],
+            },
+          ],
           raw: false,
           nest: true,
         });
