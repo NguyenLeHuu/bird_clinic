@@ -65,7 +65,7 @@ module.exports = {
     // #swagger.tags = ['Vet']
     /*
          #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
+          #swagger.parameters['image'] = {
               in: 'formData',
               type: 'file',
               required: 'true',
@@ -82,7 +82,7 @@ module.exports = {
       } = req.body;
 
       let image =
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy_QPLISHeW6nHqBiEzRi7iMSlDv35C8cj1Q&usqp=CAU";
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJVSkk9RpoHe2r2kYU3n-LVUcPTh1vb0a32A&usqp=CAU";
       if (req.file) {
         image = await Firebase.uploadImage(req.file);
       }

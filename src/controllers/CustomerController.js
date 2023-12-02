@@ -64,16 +64,18 @@ module.exports = {
     // #swagger.tags = ['Customer']
     /*
          #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
+          #swagger.parameters['image'] = {
               in: 'formData',
               type: 'file',
               required: 'true',
         } */
     try {
-      const { account_id, email, address, name, status, phone, image } =
-        req.body;
-
-      const url = await Firebase.uploadImage(req.file);
+      const { account_id, email, address, name, status, phone } = req.body;
+      let url =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJVSkk9RpoHe2r2kYU3n-LVUcPTh1vb0a32A&usqp=CAU";
+      if (req.file) {
+        url = await Firebase.uploadImage(req.file);
+      }
       let data = await CustomerService.createCustomer(req.body, url);
 
       console.log("____Create Customer Successful");
