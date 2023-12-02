@@ -7,8 +7,8 @@ let route = promiseRouter();
 
 route.get(
   "/",
-  // AuthMiddleware.isAuthenticated,
-  // AuthMiddleware.isManager,
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
   ConfigController.getAll
 );
 
@@ -28,8 +28,8 @@ route.get(
 
 route.put(
   "/",
-  // AuthMiddleware.isAuthenticated,
-  // AuthMiddleware.isManager,
+  AuthMiddleware.isAuthenticated,
+  AuthMiddleware.isManager,
   ConfigController.update
 );
 
