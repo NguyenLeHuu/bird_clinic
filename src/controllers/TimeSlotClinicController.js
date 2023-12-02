@@ -174,7 +174,11 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
 
             res
               .status(200)
-              .json({ message: "Import thành công", data: results.length });
+              .json({
+                status: 200,
+                message: "Import thành công",
+                data: results.length,
+              });
           } catch (error) {
             if (!res.headersSent) {
               return res
