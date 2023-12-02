@@ -30,6 +30,7 @@ const content_chatRoute = require("./ContentChatRoute");
 const cageRoute = require("./CageRoute");
 const time_slot_clinicRoute = require("./TimeSlotClinicRoute");
 const slot_clinicRoute = require("./SlotClinicRoute");
+const configRoute = require("./ConfigRoute");
 
 // router.use("/test", reservationRoute);
 router.use("/booking", bookingRoute);
@@ -64,5 +65,6 @@ router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
 
 router.use("/time_slot_clinic", time_slot_clinicRoute);
 router.use("/slot_clinic", slot_clinicRoute);
+router.use("/config", configRoute);
 
 module.exports = router;
