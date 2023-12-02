@@ -3462,7 +3462,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "singleFile",
+            "name": "image",
             "in": "formData",
             "required": true,
             "schema": {
@@ -3500,9 +3500,6 @@
                     "example": "any"
                   },
                   "phone": {
-                    "example": "any"
-                  },
-                  "image": {
                     "example": "any"
                   }
                 }
@@ -4177,7 +4174,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "singleFile",
+            "name": "image",
             "in": "formData",
             "required": true,
             "schema": {
@@ -4568,6 +4565,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"

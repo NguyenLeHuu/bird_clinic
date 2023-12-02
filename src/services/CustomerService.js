@@ -5,7 +5,14 @@ const crypto = require("crypto");
 let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.customer.findAll();
+      let data = await db.customer.findAll({
+        include: {
+          model: db.account,
+          attributes: ["status"],
+        },
+        raw: false,
+        nest: true,
+      });
       resolve(data);
     } catch (e) {
       reject(e);
@@ -44,6 +51,8 @@ let createCustomer = (data, url) => {
         status: 1,
         phone: data.phone,
         image: url,
+        total_spent: 0,
+        membership: "",
       });
 
       resolve(result);

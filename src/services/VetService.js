@@ -27,7 +27,14 @@ let getAll = (req) => {
           nest: true,
         });
       } else {
-        data = await db.veterinarian.findAll();
+        data = await db.veterinarian.findAll({
+          include: {
+            model: db.account,
+            attributes: ["status"],
+          },
+          raw: false,
+          nest: true,
+        });
       }
 
       resolve(data);
