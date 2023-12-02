@@ -160,7 +160,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
         })
         .on("error", (err) => {
           console.log(err);
-          res.status(500).json({ message: "Lỗi khi xử lý file" });
+          return res.status(500).json({ message: "Lỗi khi xử lý file" });
         })
         .on("end", async () => {
           console.log(`${results.length} records`);
@@ -175,13 +175,15 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
               .json({ message: "Import thành công", data: results.length });
           } catch (error) {
             if (!res.headersSent) {
-              res.status(404).json({ message: "Lỗi them dữ liệu", error });
+              return res
+                .status(404)
+                .json({ message: "Lỗi them dữ liệu", error });
             }
           }
         });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Lỗi khi xử lý file" });
+      return res.status(500).json({ message: "Lỗi khi xử lý file" });
     }
   },
 

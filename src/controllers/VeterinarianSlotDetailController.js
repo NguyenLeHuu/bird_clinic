@@ -154,17 +154,19 @@ module.exports = {
               fields: dbFields,
             });
 
-            res.status(200).json({ message: "Import thành công" });
+            return res.status(200).json({ message: "Import thành công" });
           } catch (error) {
             console.log(error);
             if (!res.headersSent) {
-              res.status(404).json({ message: "Lỗi them dữ liệu", error });
+              return res
+                .status(404)
+                .json({ message: "Lỗi them dữ liệu", error });
             }
           }
         });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Lỗi khi xử lý file", error });
+      return res.status(500).json({ message: "Lỗi khi xử lý file", error });
     }
   },
 
