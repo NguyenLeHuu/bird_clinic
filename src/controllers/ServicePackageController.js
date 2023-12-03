@@ -109,7 +109,7 @@ module.exports = {
       const quantity = req.body.quantity;
       const price = req.body.price;
       const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
+      const description = req.body.description;
 
       let data = await ServicePackageService.updateServicePackage(
         id,
@@ -117,7 +117,7 @@ module.exports = {
         quantity,
         price,
         mainimg,
-        detail
+        description
       );
       console.log("____Update ServicePackageService Successful");
 

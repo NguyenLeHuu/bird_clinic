@@ -91,7 +91,14 @@ let createServicePackage = (data, url) => {
   });
 };
 
-let updateServicePackage = (id, name, quantity, price, mainimg, detail) => {
+let updateServicePackage = (
+  id,
+  name,
+  quantity,
+  price,
+  mainimg,
+  description
+) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.service_package.update(
@@ -99,7 +106,7 @@ let updateServicePackage = (id, name, quantity, price, mainimg, detail) => {
           name: name,
           quantity: quantity,
           price: price,
-          detail: detail,
+          description: description,
         },
         {
           where: {
