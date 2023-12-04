@@ -18,10 +18,7 @@ let getAll = (req) => {
             },
             {
               model: db.service_form_detail,
-              // where: {
-              //   service_package_id: { [Op.ne]: "SP1" },
-              //   status: { [Op.ne]: "0" },
-              // },
+
               include: [
                 {
                   model: db.service_package,
@@ -46,10 +43,7 @@ let getAll = (req) => {
             },
             {
               model: db.service_form_detail,
-              // where: {
-              //   service_package_id: { [Op.ne]: "SP1" },
-              //   status: { [Op.ne]: "0" },
-              // },
+
               include: [
                 {
                   model: db.service_package,
@@ -74,9 +68,7 @@ let getAll = (req) => {
             },
             {
               model: db.service_form_detail,
-              // where: {
-              //   status: { [Op.ne]: "0" },
-              // },
+
               include: [
                 {
                   model: db.service_package,
@@ -113,9 +105,7 @@ let getAllForBoarding = (req) => {
             },
             {
               model: db.service_form_detail,
-              // where: {
-              //   status: { [Op.ne]: "0" },
-              // },
+
               include: [
                 {
                   model: db.service_package,
@@ -140,9 +130,7 @@ let getAllForBoarding = (req) => {
             },
             {
               model: db.service_form_detail,
-              // where: {
-              //   status: { [Op.ne]: "0" },
-              // },
+
               include: [
                 {
                   model: db.service_package,

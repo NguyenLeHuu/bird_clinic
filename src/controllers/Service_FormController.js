@@ -142,7 +142,6 @@ module.exports = {
           switch (booking.service_type_id) {
             case "ST001":
               if (item.service_package_id === "SP1") {
-                console.log("chạy zô sp1");
                 let veterinarian_id = booking.veterinarian_id;
                 temp = {
                   ...data.dataValues,
@@ -156,7 +155,6 @@ module.exports = {
 
                 await Service_Form_detail.createService_Form_detail(temp);
               } else {
-                console.log("chạy zô khác sp1");
                 let veterinarian_id;
                 available_arr_vetid =
                   await VeterinarianSlotDetailService.isAvailableHCNoTime(

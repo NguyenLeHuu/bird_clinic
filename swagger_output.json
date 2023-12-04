@@ -3193,7 +3193,7 @@
                   "mainimg": {
                     "example": "any"
                   },
-                  "detail": {
+                  "description": {
                     "example": "any"
                   }
                 }
@@ -4938,6 +4938,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       },
@@ -4968,6 +4971,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }

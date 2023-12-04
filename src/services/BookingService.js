@@ -77,12 +77,12 @@ let getOne = (id, req) => {
         if (req.service_type_id === "ST001") {
           sp_id = "SP1";
         }
-        if (req.service_type_id === "ST002") {
-          sp_id = "SP9";
-        }
-        if (req.service_type_id === "ST003") {
-          sp_id = "SP10";
-        }
+        // if (req.service_type_id === "ST002") {
+        //   sp_id = "SP9";
+        // }
+        // if (req.service_type_id === "ST003") {
+        //   sp_id = "SP10";
+        // }
         result = await db.sequelize.query(
           `
           SELECT bookings.*, service_form_details.process_at
