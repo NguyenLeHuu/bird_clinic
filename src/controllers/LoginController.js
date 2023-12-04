@@ -57,7 +57,7 @@ module.exports = {
                   "is_primary",
                   [
                     db.sequelize.literal(
-                      "(SELECT `service_id` FROM `vet_service_catalogs` WHERE `vet_service_catalogs`.`veterinarian_id` = `veterinarian`.`veterinarian_id`)"
+                      "(SELECT GROUP_CONCAT(`service_id`) FROM `vet_service_catalogs` WHERE `vet_service_catalogs`.`veterinarian_id` = `veterinarian`.`veterinarian_id`)"
                     ),
                     "service_id",
                   ],
