@@ -46,6 +46,22 @@ module.exports = {
                 where: {
                   veterinarian_id: account.account_id,
                 },
+                attributes: [
+                  "veterinarian_id",
+                  "account_id",
+                  "specialized",
+                  "name",
+                  "status",
+                  "image",
+                  "service_type_id",
+                  "is_primary",
+                  [
+                    db.sequelize.literal(
+                      "(SELECT `service_id` FROM `vet_service_catalogs` WHERE `vet_service_catalogs`.`veterinarian_id` = `veterinarian`.`veterinarian_id`)"
+                    ),
+                    "service_id",
+                  ],
+                ],
                 include: [
                   {
                     model: db.account,
