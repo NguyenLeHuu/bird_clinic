@@ -58,18 +58,10 @@ module.exports = {
 
   async store(req, res) {
     // #swagger.tags = ['Account']
-    /*
-         #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
-              in: 'formData',
-              type: 'file',
-              required: 'true',
-        } */
+
     try {
       const { email, password, phone, role, status } = req.body;
 
-      // const url = await Firebase.uploadImage(file);
-      // let data = await AccountService.createAccount(req.body, url);
       let data = await AccountService.createAccount(req.body);
 
       console.log("____Create Account Successful");

@@ -20,7 +20,7 @@ route.get(
 );
 
 // route.post("/", multer.Multer.array("image"), AccountController.store);
-route.post("/", multer.Multer.single("image"), AccountController.store);
+route.post("/", AccountController.store);
 
 route.put(
   "/:id",
