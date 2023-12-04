@@ -88,17 +88,20 @@ module.exports = {
         image = await Firebase.uploadImage(req.file);
       }
       let data;
-      if (Array.isArray(arr_service_id)) {
-        arr_service_id.forEach(async (item, index) => {
+      console.log(arr_service_id);
+      const arr_update = JSON.parse(arr_service_id);
+      if (Array.isArray(arr_update)) {
+        data = await VetService.createVeterinarian(req.body, image);
+        arr_update.forEach(async (item, index) => {
           let temp = {
-            veterinarian_id: account_id,
+            veterinarian_id: item.veterinarian_id,
             service_id: item.service_id,
             veterinarian_name: item.veterinarian_name,
             service_name: item.service_name,
           };
+          console.log("item", item);
           await VetServiceCatalog.create(temp);
         });
-        data = await VetService.createVeterinarian(req.body, image);
       } else {
         return res.status(400).json({
           status: 400,
@@ -114,10 +117,9 @@ module.exports = {
         data: data,
       });
     } catch (err) {
-      console.log("____Create Vet Failed");
+      console.log("____Create Vet Failed", err);
       return res.status(400).json({
         status: 400,
-        message: err,
       });
     }
   },

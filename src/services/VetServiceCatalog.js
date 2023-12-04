@@ -40,14 +40,20 @@ let create = (data) => {
 
   return new Promise(async (resolve, reject) => {
     try {
+      console.log("dâtt", data);
+      let result;
       const id = crypto.randomBytes(15).toString("hex");
-      const result = await db.vet_service_catalogs.create({
-        vet_service_catalog_id: id,
-        veterinarian_id: data.veterinarian_id,
-        service_id: data.service_id,
-        veterinarian_name: data.veterinarian_name,
-        service_name: data.service_name,
-      });
+      try {
+        result = await db.vet_service_catalogs.create({
+          vet_service_catalog_id: id,
+          veterinarian_id: data.veterinarian_id,
+          service_id: data.service_id,
+          veterinarian_name: data.veterinarian_name,
+          service_name: data.service_name,
+        });
+      } catch (error) {
+        console.error("Error in Sequelize query:", error);
+      }
 
       resolve(result);
     } catch (e) {
