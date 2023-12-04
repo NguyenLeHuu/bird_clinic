@@ -69,7 +69,7 @@ module.exports = {
           #swagger.parameters['image'] = {
               in: 'formData',
               type: 'file',
-              required: 'false',
+              required: 'true',
         } */
     try {
       const {
@@ -87,6 +87,7 @@ module.exports = {
       if (req.file) {
         image = await Firebase.uploadImage(req.file);
       }
+      let data;
       if (Array.isArray(arr_service_id)) {
         arr_service_id.forEach(async (item, index) => {
           let temp = {
@@ -97,8 +98,13 @@ module.exports = {
           };
           await VetServiceCatalog.create(temp);
         });
+        data = await VetService.createVeterinarian(req.body, image);
+      } else {
+        return res.status(400).json({
+          status: 400,
+          message: "truyen mang zo",
+        });
       }
-      let data = await VetService.createVeterinarian(req.body, image);
 
       console.log("____Create Vet Successful");
 
