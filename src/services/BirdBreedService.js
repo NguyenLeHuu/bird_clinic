@@ -39,7 +39,7 @@ let createBirdBreed = (req) => {
       const id = crypto.randomBytes(15).toString("hex");
 
       const result = await db.bird_breed.create({
-        bird_breed_id: id,
+        breed_id: id,
         bird_size_id: req.bird_size_id,
         breed: req.breed,
       });
