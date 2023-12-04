@@ -4216,6 +4216,9 @@
                   },
                   "service_type_id": {
                     "example": "any"
+                  },
+                  "is_primary": {
+                    "example": "any"
                   }
                 }
               }

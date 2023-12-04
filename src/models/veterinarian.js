@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       service_id: DataTypes.STRING,
       service_name: DataTypes.STRING,
       service_type_id: DataTypes.STRING,
+      is_primary: DataTypes.STRING,
     },
     {
       sequelize,

@@ -101,6 +101,7 @@ let createVeterinarian = (data, image) => {
         service_id: data.service_id,
         service_name: data.service_name,
         service_type_id: data.service_type_id,
+        is_primary: data.is_primary,
       });
 
       resolve(result);
