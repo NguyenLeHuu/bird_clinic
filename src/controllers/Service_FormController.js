@@ -10,8 +10,8 @@ const { Op, where } = require("sequelize");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Service_Form']
-         #swagger.description = "Truyen booking_id se lay theo booking (không hiện sf gốc)"
+        #swagger.tags = ['service_form']
+        
         */
     try {
       const { booking_id, date } = req.query;
@@ -41,8 +41,8 @@ module.exports = {
 
   async getAllForBoarding(req, res) {
     /* 
-        #swagger.tags = ['Service_Form']
-         #swagger.description = "Truyen booking_id se lay theo booking (không hiện sf gốc)"
+        #swagger.tags = ['service_form']
+         
         */
     try {
       const { booking_id } = req.query;
@@ -72,7 +72,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Service_Form']
+        #swagger.tags = ['service_form']
          #swagger.description = "Get one Service_Form (give service_form_id)"
         */
     try {
@@ -104,7 +104,7 @@ module.exports = {
 
   async store(req, res) {
     /* 
-        #swagger.tags = ['Service_Form']
+        #swagger.tags = ['service_form']
          #swagger.description = "arr_service_pack optional truyền mảng"
         */
 
@@ -261,7 +261,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['Service_Form']
+        #swagger.tags = ['service_form']
          #swagger.description = "Update a Service_Form"
         */
     try {
@@ -290,7 +290,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Service_Form']
+        #swagger.tags = ['service_form']
          #swagger.description = "Delete Service_Form (give veterinarian_id)"
         */
     try {

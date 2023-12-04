@@ -31,7 +31,7 @@ module.exports = {
   // async getOne(req, res) {
   //   /*
   //       #swagger.tags = ['config']
-  //        #swagger.description = "Get one config (give vet_id)"
+  //
   //       */
   //   try {
   //     const id = req.params.id;

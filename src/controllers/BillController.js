@@ -10,8 +10,8 @@ const CustomerService = require("../services/CustomerService");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Bill']
-         #swagger.description = "Get all Bill"
+        #swagger.tags = ['bill']
+        
         */
     try {
       const { booking_id } = req.query;
@@ -41,8 +41,8 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Bill']
-         #swagger.description = "Get one Bill (give bill_id)"
+        #swagger.tags = ['bill']
+        
         */
     try {
       const id = req.params.id;
@@ -67,7 +67,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Bill']
+    // #swagger.tags = ['bill']
 
     try {
       const {
@@ -129,7 +129,7 @@ module.exports = {
   },
 
   // async update(req, res) {
-  //   //  #swagger.tags = ['Bill']
+  //   //  #swagger.tags = ['bill']
   //   try {
   //     const id = req.params["id"];
 
@@ -158,7 +158,7 @@ module.exports = {
   // },
 
   async update1(req, res) {
-    //  #swagger.tags = ['Bill']
+    //  #swagger.tags = ['bill']
     try {
       const id = req.params["id"];
 
@@ -188,8 +188,8 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Bill']
-         #swagger.description = "Delete bill (give bill_id)"
+        #swagger.tags = ['bill']
+         
         */
     try {
       const id = req.params["id"];

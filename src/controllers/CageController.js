@@ -4,7 +4,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Cage']
+        #swagger.tags = ['cage']
          #swagger.description = "Get all Cage  "
         */
     try {
@@ -35,7 +35,7 @@ module.exports = {
 
   async schedule_cage(req, res) {
     /* 
-        #swagger.tags = ['Cage']
+        #swagger.tags = ['cage']
          #swagger.description = "schedule_cage"
         */
     try {
@@ -62,7 +62,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Cage']
+        #swagger.tags = ['cage']
          #swagger.description = "Get one Cage (give Cage_id)"
         */
     try {
@@ -93,7 +93,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Cage']
+    // #swagger.tags = ['cage']
 
     try {
       const { boarding_id, bird_id, size } = req.body;
@@ -119,7 +119,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['Cage']
+        #swagger.tags = ['cage']
          #swagger.description = "Update a Cage (give Cage_id)"
         */
     try {
@@ -145,7 +145,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Cage']
+        #swagger.tags = ['cage']
          #swagger.description = "Delete Cage (give Cage_id)"
         */
     try {

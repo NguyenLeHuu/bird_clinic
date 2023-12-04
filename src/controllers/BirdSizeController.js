@@ -4,7 +4,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['BirdSize']
+        #swagger.tags = ['bird_size']
         
         */
     try {
@@ -35,7 +35,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['BirdSize']
+        #swagger.tags = ['bird_size']
          #swagger.description = "Get one BirdSize (give BirdSize_id)"
         */
     try {
@@ -62,7 +62,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['BirdSize']
+    // #swagger.tags = ['bird_size']
     /*
          #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['singleFile'] = {
@@ -92,7 +92,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    // #swagger.tags = ['BirdSize']
+    // #swagger.tags = ['bird_size']
 
     try {
       const id = req.params["id"];
@@ -117,7 +117,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['BirdSize']
+        #swagger.tags = ['bird_size']
          #swagger.description = "Delete BirdSize (give BirdSize_id)"
         */
     try {

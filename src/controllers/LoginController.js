@@ -6,7 +6,7 @@ var refreshTokens = [];
 module.exports = {
   async checkUserInDB(req, res) {
     /* 
-        #swagger.tags = ['Login']
+        #swagger.tags = ['login']
          #swagger.description = "return information of account if it exist in DB"
         */
 

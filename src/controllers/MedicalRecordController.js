@@ -5,7 +5,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['MedicalRecord']
+        #swagger.tags = ['medical_record']
          #swagger.description = "Get all MedicalRecord"
         */
     try {
@@ -32,7 +32,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['MedicalRecord']
+        #swagger.tags = ['medical_record']
          #swagger.description = "Get one MedicalRecord (give MedicalRecord_id)"
         */
     try {
@@ -63,7 +63,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['MedicalRecord']
+    // #swagger.tags = ['medical_record']
 
     try {
       const { symptom, diagnose, recommendations, service_form_detail_id } =
@@ -96,7 +96,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    //   #swagger.tags = ['MedicalRecord']
+    //   #swagger.tags = ['medical_record']
     /*
          #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['singleFile'] = {
@@ -127,7 +127,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['MedicalRecord']
+        #swagger.tags = ['medical_record']
          #swagger.description = "Delete MedicalRecord (give MedicalRecord_id)"
         */
     try {

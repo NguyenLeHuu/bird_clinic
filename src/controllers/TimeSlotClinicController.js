@@ -6,7 +6,7 @@ const streamifier = require("streamifier");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['TimeSlotClinic']
+        #swagger.tags = ['time_slot_clinic']
          #swagger.description = "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó"
         */
     try {
@@ -83,7 +83,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['TimeSlotClinic']
+        #swagger.tags = ['time_slot_clinic']
          #swagger.description = "Get one TimeSlotClinic (give TimeSlotClinic_id)"
         */
     try {
@@ -110,7 +110,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
   },
 
   async store(req, res) {
-    // #swagger.tags = ['TimeSlotClinic']
+    // #swagger.tags = ['time_slot_clinic']
 
     try {
       const { slot_clinic_id, date } = req.body;
@@ -134,7 +134,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
     }
   },
   async storeWithFile(req, res) {
-    // #swagger.tags = ['TimeSlotClinic']
+    // #swagger.tags = ['time_slot_clinic']
 
     /*
          #swagger.consumes = ['multipart/form-data']  
@@ -172,13 +172,11 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
               fields: ["time_slot_clinic_id", "slot_clinic_id", "date"],
             });
 
-            res
-              .status(200)
-              .json({
-                status: 200,
-                message: "Import thành công",
-                data: results.length,
-              });
+            res.status(200).json({
+              status: 200,
+              message: "Import thành công",
+              data: results.length,
+            });
           } catch (error) {
             if (!res.headersSent) {
               return res
@@ -197,7 +195,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['TimeSlotClinic']
+        #swagger.tags = ['time_slot_clinic']
          #swagger.description = "Update a TimeSlotClinic (give TimeSlotClinic_id)"
         */
     try {
@@ -223,7 +221,7 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['TimeSlotClinic']
+        #swagger.tags = ['time_slot_clinic']
          #swagger.description = "Delete TimeSlotClinic (give TimeSlotClinic_id)"
         */
     try {

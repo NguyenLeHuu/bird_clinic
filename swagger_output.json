@@ -19,7 +19,7 @@
     "/booking/": {
       "get": {
         "tags": [
-          "Booking"
+          "booking"
         ],
         "description": "Get all Booking",
         "parameters": [
@@ -59,7 +59,7 @@
       },
       "post": {
         "tags": [
-          "Booking"
+          "booking"
         ],
         "description": "Booking HC thif moi truyen vet_id, con lai k truyen",
         "responses": {
@@ -131,7 +131,7 @@
     "/booking/{id}": {
       "get": {
         "tags": [
-          "Booking"
+          "booking"
         ],
         "description": "Get one Booking (give booking_id)",
         "parameters": [
@@ -165,7 +165,7 @@
       },
       "put": {
         "tags": [
-          "Booking"
+          "booking"
         ],
         "description": "Update a Booking (give booking_id)",
         "parameters": [
@@ -242,7 +242,7 @@
       },
       "delete": {
         "tags": [
-          "Booking"
+          "booking"
         ],
         "description": "Delete Booking (give booking_id)",
         "parameters": [
@@ -271,7 +271,7 @@
     "/booking/re_exam": {
       "post": {
         "tags": [
-          "Booking"
+          "booking"
         ],
         "description": "Rebooking",
         "responses": {
@@ -331,9 +331,9 @@
     "/service_Form/": {
       "get": {
         "tags": [
-          "Service_Form"
+          "service_form"
         ],
-        "description": "Truyen booking_id se lay theo booking (không hiện sf gốc)",
+        "description": "",
         "parameters": [
           {
             "name": "booking_id",
@@ -364,7 +364,7 @@
       },
       "post": {
         "tags": [
-          "Service_Form"
+          "service_form"
         ],
         "description": "arr_service_pack optional truyền mảng",
         "responses": {
@@ -427,9 +427,9 @@
     "/service_Form/boarding": {
       "get": {
         "tags": [
-          "Service_Form"
+          "service_form"
         ],
-        "description": "Truyen booking_id se lay theo booking (không hiện sf gốc)",
+        "description": "",
         "parameters": [
           {
             "name": "booking_id",
@@ -455,7 +455,7 @@
     "/service_Form/{id}": {
       "get": {
         "tags": [
-          "Service_Form"
+          "service_form"
         ],
         "description": "Get one Service_Form (give service_form_id)",
         "parameters": [
@@ -482,7 +482,7 @@
       },
       "put": {
         "tags": [
-          "Service_Form"
+          "service_form"
         ],
         "description": "Update a Service_Form",
         "parameters": [
@@ -535,7 +535,7 @@
       },
       "delete": {
         "tags": [
-          "Service_Form"
+          "service_form"
         ],
         "description": "Delete Service_Form (give veterinarian_id)",
         "parameters": [
@@ -564,7 +564,7 @@
     "/service_Form_detail/": {
       "get": {
         "tags": [
-          "Service_Form_detail"
+          "service_form_detail"
         ],
         "description": "Tuyền theo [veterinarian_id], [booking_id,service_type_id], []",
         "parameters": [
@@ -611,7 +611,7 @@
       },
       "post": {
         "tags": [
-          "Service_Form_detail"
+          "service_form_detail"
         ],
         "description": "",
         "responses": {
@@ -668,7 +668,7 @@
     "/service_Form_detail/{id}": {
       "get": {
         "tags": [
-          "Service_Form_detail"
+          "service_form_detail"
         ],
         "description": "Get one Service_Form_detailService (give service_package_id)",
         "parameters": [
@@ -695,7 +695,7 @@
       },
       "put": {
         "tags": [
-          "Service_Form_detail"
+          "service_form_detail"
         ],
         "description": "Update a Service_Form_detailService (give veterinarian_id)",
         "parameters": [
@@ -745,7 +745,7 @@
       },
       "delete": {
         "tags": [
-          "Service_Form_detail"
+          "service_form_detail"
         ],
         "description": "Delete Service_Form_detailService (give veterinarian_id)",
         "parameters": [
@@ -774,9 +774,9 @@
     "/bill/": {
       "get": {
         "tags": [
-          "Bill"
+          "bill"
         ],
-        "description": "Get all Bill",
+        "description": "",
         "parameters": [
           {
             "name": "booking_id",
@@ -800,7 +800,7 @@
       },
       "post": {
         "tags": [
-          "Bill"
+          "bill"
         ],
         "description": "",
         "responses": {
@@ -848,9 +848,9 @@
     "/bill/{id}": {
       "get": {
         "tags": [
-          "Bill"
+          "bill"
         ],
-        "description": "Get one Bill (give bill_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -875,7 +875,7 @@
       },
       "put": {
         "tags": [
-          "Bill"
+          "bill"
         ],
         "description": "",
         "parameters": [
@@ -922,174 +922,9 @@
       },
       "delete": {
         "tags": [
-          "Bill"
-        ],
-        "description": "Delete bill (give bill_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/billDetail/": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get all BillDetail ",
-        "parameters": [
-          {
-            "name": "booking_id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "BillDetail"
+          "bill"
         ],
         "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bill_id": {
-                    "example": "any"
-                  },
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/billDetail/{id}": {
-      "get": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Get one BillDetail (give bill_detail_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Update a bill_detail (give bill_detail_id)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "bill_id": {
-                    "example": "any"
-                  },
-                  "service_package_id": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "BillDetail"
-        ],
-        "description": "Delete bill_detail (give bill_detail_id)",
         "parameters": [
           {
             "name": "id",
@@ -1116,7 +951,7 @@
     "/medicine/": {
       "get": {
         "tags": [
-          "Medicine"
+          "medicine"
         ],
         "description": "Get all Medicine ",
         "responses": {
@@ -1133,7 +968,7 @@
       },
       "post": {
         "tags": [
-          "Medicine"
+          "medicine"
         ],
         "description": "",
         "responses": {
@@ -1178,7 +1013,7 @@
     "/medicine/{id}": {
       "get": {
         "tags": [
-          "Medicine"
+          "medicine"
         ],
         "description": "Get one Medicine (give Medicine_id)",
         "parameters": [
@@ -1205,7 +1040,7 @@
       },
       "put": {
         "tags": [
-          "Medicine"
+          "medicine"
         ],
         "description": "",
         "parameters": [
@@ -1258,7 +1093,7 @@
       },
       "delete": {
         "tags": [
-          "Medicine"
+          "medicine"
         ],
         "description": "Delete Medicine (give Medicine_id)",
         "parameters": [
@@ -1287,7 +1122,7 @@
     "/medicalRecord/": {
       "get": {
         "tags": [
-          "MedicalRecord"
+          "medical_record"
         ],
         "description": "Get all MedicalRecord",
         "parameters": [
@@ -1313,7 +1148,7 @@
       },
       "post": {
         "tags": [
-          "MedicalRecord"
+          "medical_record"
         ],
         "description": "",
         "responses": {
@@ -1352,7 +1187,7 @@
     "/medicalRecord/{id}": {
       "get": {
         "tags": [
-          "MedicalRecord"
+          "medical_record"
         ],
         "description": "Get one MedicalRecord (give MedicalRecord_id)",
         "parameters": [
@@ -1379,7 +1214,7 @@
       },
       "put": {
         "tags": [
-          "MedicalRecord"
+          "medical_record"
         ],
         "description": "",
         "parameters": [
@@ -1414,7 +1249,7 @@
       },
       "delete": {
         "tags": [
-          "MedicalRecord"
+          "medical_record"
         ],
         "description": "Delete MedicalRecord (give MedicalRecord_id)",
         "parameters": [
@@ -1443,7 +1278,7 @@
     "/media/": {
       "get": {
         "tags": [
-          "Media"
+          "media"
         ],
         "description": "",
         "parameters": [
@@ -1476,7 +1311,7 @@
       },
       "post": {
         "tags": [
-          "Media"
+          "media"
         ],
         "description": "",
         "parameters": [
@@ -1528,7 +1363,7 @@
     "/media/{id}": {
       "get": {
         "tags": [
-          "Media"
+          "media"
         ],
         "description": "Get one Media (give Media_id)",
         "parameters": [
@@ -1555,7 +1390,7 @@
       },
       "put": {
         "tags": [
-          "Media"
+          "media"
         ],
         "description": "",
         "parameters": [
@@ -1590,7 +1425,7 @@
       },
       "delete": {
         "tags": [
-          "Media"
+          "media"
         ],
         "description": "Delete Media (give Media_id)",
         "parameters": [
@@ -1619,7 +1454,7 @@
     "/prescription/": {
       "get": {
         "tags": [
-          "Prescription"
+          "prescription"
         ],
         "description": "Get all Prescription",
         "parameters": [
@@ -1645,7 +1480,7 @@
       },
       "post": {
         "tags": [
-          "Prescription"
+          "prescription"
         ],
         "description": "",
         "responses": {
@@ -1681,7 +1516,7 @@
     "/prescription/{id}": {
       "get": {
         "tags": [
-          "Prescription"
+          "prescription"
         ],
         "description": "Get one Prescription (give prescription_id)",
         "parameters": [
@@ -1708,7 +1543,7 @@
       },
       "put": {
         "tags": [
-          "Prescription"
+          "prescription"
         ],
         "description": "Update a Prescription (give veterinarian_id)",
         "parameters": [
@@ -1752,7 +1587,7 @@
       },
       "delete": {
         "tags": [
-          "Prescription"
+          "prescription"
         ],
         "description": "Delete Prescription (give veterinarian_id)",
         "parameters": [
@@ -1781,7 +1616,7 @@
     "/prescriptionDetail/": {
       "get": {
         "tags": [
-          "Prescription Detail"
+          "prescription_detail"
         ],
         "description": "Get all PrescriptionDetail",
         "responses": {
@@ -1798,7 +1633,7 @@
       },
       "post": {
         "tags": [
-          "Prescription Detail"
+          "prescription_detail"
         ],
         "description": "",
         "responses": {
@@ -1849,7 +1684,7 @@
     "/prescriptionDetail/{id}": {
       "get": {
         "tags": [
-          "Prescription Detail"
+          "prescription_detail"
         ],
         "description": "Get one PrescriptionDetail",
         "parameters": [
@@ -1876,7 +1711,7 @@
       },
       "put": {
         "tags": [
-          "Prescription Detail"
+          "prescription_detail"
         ],
         "description": "Update a PrescriptionDetail",
         "parameters": [
@@ -1929,7 +1764,7 @@
       },
       "delete": {
         "tags": [
-          "Prescription Detail"
+          "prescription_detail"
         ],
         "description": "Delete Prescription (give veterinarian_id)",
         "parameters": [
@@ -1958,7 +1793,7 @@
     "/boarding/": {
       "get": {
         "tags": [
-          "Boarding"
+          "boarding"
         ],
         "description": "Get all Boarding",
         "parameters": [
@@ -1984,7 +1819,7 @@
       },
       "post": {
         "tags": [
-          "Boarding"
+          "boarding"
         ],
         "description": "",
         "responses": {
@@ -2029,7 +1864,7 @@
     "/boarding/{id}": {
       "get": {
         "tags": [
-          "Boarding"
+          "boarding"
         ],
         "description": "Get one Boarding (give Boarding_id)",
         "parameters": [
@@ -2056,7 +1891,7 @@
       },
       "put": {
         "tags": [
-          "Boarding"
+          "boarding"
         ],
         "description": "Update a Boarding (give Boarding_id)",
         "parameters": [
@@ -2112,7 +1947,7 @@
       },
       "delete": {
         "tags": [
-          "Boarding"
+          "boarding"
         ],
         "description": "Delete Boarding (give Boarding_id)",
         "parameters": [
@@ -2141,7 +1976,7 @@
     "/chat/": {
       "get": {
         "tags": [
-          "Chat"
+          "chat"
         ],
         "description": "Get all Chat ",
         "responses": {
@@ -2158,7 +1993,7 @@
       },
       "post": {
         "tags": [
-          "Chat"
+          "chat"
         ],
         "description": "",
         "responses": {
@@ -2194,7 +2029,7 @@
     "/chat/{id}": {
       "get": {
         "tags": [
-          "Chat"
+          "chat"
         ],
         "description": "Get one Chat (give Chat_id)",
         "parameters": [
@@ -2218,7 +2053,7 @@
       },
       "put": {
         "tags": [
-          "Chat"
+          "chat"
         ],
         "description": "Update a Chat (give Chat_id)",
         "parameters": [
@@ -2256,7 +2091,7 @@
       },
       "delete": {
         "tags": [
-          "Chat"
+          "chat"
         ],
         "description": "Delete Chat (give Chat_id)",
         "parameters": [
@@ -2285,7 +2120,7 @@
     "/content_chat/": {
       "get": {
         "tags": [
-          "ContentChat"
+          "content_chat"
         ],
         "description": "Get all ContentChat ",
         "parameters": [
@@ -2322,7 +2157,7 @@
       },
       "post": {
         "tags": [
-          "ContentChat"
+          "content_chat"
         ],
         "description": "",
         "responses": {
@@ -2364,7 +2199,7 @@
     "/content_chat/{id}": {
       "get": {
         "tags": [
-          "ContentChat"
+          "content_chat"
         ],
         "description": "Get one ContentChat (give ContentChat_id)",
         "parameters": [
@@ -2388,7 +2223,7 @@
       },
       "put": {
         "tags": [
-          "ContentChat"
+          "content_chat"
         ],
         "description": "Update a ContentChat (give ContentChat_id)",
         "parameters": [
@@ -2426,7 +2261,7 @@
       },
       "delete": {
         "tags": [
-          "ContentChat"
+          "content_chat"
         ],
         "description": "Delete ContentChat (give ContentChat_id)",
         "parameters": [
@@ -2452,7 +2287,7 @@
     "/content_chat/img": {
       "post": {
         "tags": [
-          "ContentChat"
+          "content_chat"
         ],
         "description": "",
         "parameters": [
@@ -2504,7 +2339,7 @@
     "/cage/": {
       "get": {
         "tags": [
-          "Cage"
+          "cage"
         ],
         "description": "Get all Cage ",
         "parameters": [
@@ -2537,7 +2372,7 @@
       },
       "post": {
         "tags": [
-          "Cage"
+          "cage"
         ],
         "description": "",
         "responses": {
@@ -2576,7 +2411,7 @@
     "/cage/schedule_cage": {
       "get": {
         "tags": [
-          "Cage"
+          "cage"
         ],
         "description": "schedule_cage",
         "parameters": [
@@ -2611,7 +2446,7 @@
     "/cage/{id}": {
       "get": {
         "tags": [
-          "Cage"
+          "cage"
         ],
         "description": "Get one Cage (give Cage_id)",
         "parameters": [
@@ -2638,7 +2473,7 @@
       },
       "put": {
         "tags": [
-          "Cage"
+          "cage"
         ],
         "description": "Update a Cage (give Cage_id)",
         "parameters": [
@@ -2688,7 +2523,7 @@
       },
       "delete": {
         "tags": [
-          "Cage"
+          "cage"
         ],
         "description": "Delete Cage (give Cage_id)",
         "parameters": [
@@ -2717,7 +2552,7 @@
     "/serviceType/": {
       "get": {
         "tags": [
-          "ServiceType"
+          "service_type"
         ],
         "description": "Get all ServiceType of service type",
         "responses": {
@@ -2734,7 +2569,7 @@
       },
       "post": {
         "tags": [
-          "ServiceType"
+          "service_type"
         ],
         "description": "",
         "parameters": [
@@ -2777,7 +2612,7 @@
     "/serviceType/{id}": {
       "get": {
         "tags": [
-          "ServiceType"
+          "service_type"
         ],
         "description": "Get one ServiceType (give service_id)",
         "parameters": [
@@ -2804,7 +2639,7 @@
       },
       "put": {
         "tags": [
-          "ServiceType"
+          "service_type"
         ],
         "description": "Update a ServiceType (give veterinarian_id)",
         "parameters": [
@@ -2848,7 +2683,7 @@
       },
       "delete": {
         "tags": [
-          "ServiceType"
+          "service_type"
         ],
         "description": "Delete ServiceType (give veterinarian_id)",
         "parameters": [
@@ -2877,7 +2712,7 @@
     "/service/": {
       "get": {
         "tags": [
-          "Service"
+          "service"
         ],
         "description": "Get all Service of service type",
         "responses": {
@@ -2894,7 +2729,7 @@
       },
       "post": {
         "tags": [
-          "Service"
+          "service"
         ],
         "description": "",
         "parameters": [
@@ -2943,7 +2778,7 @@
     "/service/{id}": {
       "get": {
         "tags": [
-          "Service"
+          "service"
         ],
         "description": "Get one Service (give service_id)",
         "parameters": [
@@ -2970,7 +2805,7 @@
       },
       "put": {
         "tags": [
-          "Service"
+          "service"
         ],
         "description": "Update a Service (give veterinarian_id)",
         "parameters": [
@@ -3020,7 +2855,7 @@
       },
       "delete": {
         "tags": [
-          "Service"
+          "service"
         ],
         "description": "Delete Service (give veterinarian_id)",
         "parameters": [
@@ -3049,7 +2884,7 @@
     "/servicePackage/": {
       "get": {
         "tags": [
-          "ServicePackage"
+          "service_package"
         ],
         "description": "Get all ServicePackageService of service",
         "parameters": [
@@ -3082,7 +2917,7 @@
       },
       "post": {
         "tags": [
-          "ServicePackage"
+          "service_package"
         ],
         "description": "",
         "responses": {
@@ -3130,7 +2965,7 @@
     "/servicePackage/{id}": {
       "get": {
         "tags": [
-          "ServicePackage"
+          "service_package"
         ],
         "description": "Get one ServicePackageService (give service_package_id)",
         "parameters": [
@@ -3157,7 +2992,7 @@
       },
       "put": {
         "tags": [
-          "ServicePackage"
+          "service_package"
         ],
         "description": "Update a ServicePackageService (give veterinarian_id)",
         "parameters": [
@@ -3210,7 +3045,7 @@
       },
       "delete": {
         "tags": [
-          "ServicePackage"
+          "service_package"
         ],
         "description": "Delete ServicePackageService (give veterinarian_id)",
         "parameters": [
@@ -3239,7 +3074,7 @@
     "/login/": {
       "post": {
         "tags": [
-          "Login"
+          "login"
         ],
         "description": "return information of account if it exist in DB",
         "parameters": [
@@ -3271,9 +3106,9 @@
     "/account/": {
       "get": {
         "tags": [
-          "Account"
+          "account"
         ],
-        "description": "Get all Account",
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -3288,7 +3123,7 @@
       },
       "post": {
         "tags": [
-          "Account"
+          "account"
         ],
         "description": "",
         "responses": {
@@ -3330,9 +3165,9 @@
     "/account/{id}": {
       "get": {
         "tags": [
-          "Account"
+          "account"
         ],
-        "description": "Get one Account (give vet_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -3357,9 +3192,9 @@
       },
       "put": {
         "tags": [
-          "Account"
+          "account"
         ],
-        "description": "Update a Account (give veterinarian_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -3410,9 +3245,9 @@
       },
       "delete": {
         "tags": [
-          "Account"
+          "account"
         ],
-        "description": "Delete Account (give veterinarian_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -3439,7 +3274,7 @@
     "/customer/": {
       "get": {
         "tags": [
-          "Customer"
+          "customer"
         ],
         "description": "Get all Customer of 1 customer (give customerid)",
         "responses": {
@@ -3453,7 +3288,7 @@
       },
       "post": {
         "tags": [
-          "Customer"
+          "customer"
         ],
         "description": "",
         "parameters": [
@@ -3508,7 +3343,7 @@
     "/customer/{id}": {
       "get": {
         "tags": [
-          "Customer"
+          "customer"
         ],
         "description": "Get one Customer (give Customer_id)",
         "parameters": [
@@ -3532,7 +3367,7 @@
       },
       "put": {
         "tags": [
-          "Customer"
+          "customer"
         ],
         "description": "Update a Customer (give Customer_id)",
         "parameters": [
@@ -3582,7 +3417,7 @@
       },
       "delete": {
         "tags": [
-          "Customer"
+          "customer"
         ],
         "description": "Delete Customer (give Customer_id)",
         "parameters": [
@@ -3611,7 +3446,7 @@
     "/bird/all/{id}": {
       "get": {
         "tags": [
-          "Bird"
+          "bird"
         ],
         "description": "Get all Bird of 1 customer (give customerid)",
         "parameters": [
@@ -3640,7 +3475,7 @@
     "/bird/{id}": {
       "get": {
         "tags": [
-          "Bird"
+          "bird"
         ],
         "description": "Get one Bird (give bird_id)",
         "parameters": [
@@ -3667,7 +3502,7 @@
       },
       "put": {
         "tags": [
-          "Bird"
+          "bird"
         ],
         "description": "Update a bird (give bird_id)",
         "parameters": [
@@ -3732,7 +3567,7 @@
       },
       "delete": {
         "tags": [
-          "Bird"
+          "bird"
         ],
         "description": "Delete bird (give bird_id)",
         "parameters": [
@@ -3761,7 +3596,7 @@
     "/bird/": {
       "post": {
         "tags": [
-          "Bird"
+          "bird"
         ],
         "description": "",
         "parameters": [
@@ -3822,7 +3657,7 @@
     "/bird_size/": {
       "get": {
         "tags": [
-          "BirdSize"
+          "bird_size"
         ],
         "description": "",
         "responses": {
@@ -3836,7 +3671,7 @@
       },
       "post": {
         "tags": [
-          "BirdSize"
+          "bird_size"
         ],
         "description": "",
         "parameters": [
@@ -3882,7 +3717,7 @@
     "/bird_size/{id}": {
       "get": {
         "tags": [
-          "BirdSize"
+          "bird_size"
         ],
         "description": "Get one BirdSize (give BirdSize_id)",
         "parameters": [
@@ -3906,7 +3741,7 @@
       },
       "put": {
         "tags": [
-          "BirdSize"
+          "bird_size"
         ],
         "description": "",
         "parameters": [
@@ -3950,7 +3785,7 @@
       },
       "delete": {
         "tags": [
-          "BirdSize"
+          "bird_size"
         ],
         "description": "Delete BirdSize (give BirdSize_id)",
         "parameters": [
@@ -3979,7 +3814,7 @@
     "/bird_breed/": {
       "get": {
         "tags": [
-          "BirdBreed"
+          "bird_breed"
         ],
         "description": "",
         "responses": {
@@ -3996,7 +3831,7 @@
       },
       "post": {
         "tags": [
-          "BirdBreed"
+          "bird_breed"
         ],
         "description": "",
         "responses": {
@@ -4032,9 +3867,9 @@
     "/bird_breed/{id}": {
       "get": {
         "tags": [
-          "BirdBreed"
+          "bird_breed"
         ],
-        "description": "Get one BirdBreed (give BirdBreed_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -4059,7 +3894,7 @@
       },
       "put": {
         "tags": [
-          "BirdBreed"
+          "bird_breed"
         ],
         "description": "",
         "parameters": [
@@ -4103,9 +3938,9 @@
       },
       "delete": {
         "tags": [
-          "BirdBreed"
+          "bird_breed"
         ],
-        "description": "Delete BirdBreed (give BirdBreed_id)",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -4132,7 +3967,7 @@
     "/vet/": {
       "get": {
         "tags": [
-          "Vet"
+          "veterinarian"
         ],
         "description": "Get all Vet",
         "parameters": [
@@ -4165,7 +4000,7 @@
       },
       "post": {
         "tags": [
-          "Vet"
+          "veterinarian"
         ],
         "description": "",
         "parameters": [
@@ -4223,7 +4058,7 @@
     "/vet/{id}": {
       "get": {
         "tags": [
-          "Vet"
+          "veterinarian"
         ],
         "description": "Get one Vet (give vet_id)",
         "parameters": [
@@ -4247,7 +4082,7 @@
       },
       "put": {
         "tags": [
-          "Vet"
+          "veterinarian"
         ],
         "description": "Update a Vet (give veterinarian_id)",
         "parameters": [
@@ -4291,7 +4126,7 @@
       },
       "delete": {
         "tags": [
-          "Vet"
+          "veterinarian"
         ],
         "description": "Delete Vet (give veterinarian_id)",
         "parameters": [
@@ -4320,7 +4155,7 @@
     "/vet-service-catalog/": {
       "get": {
         "tags": [
-          "VetServiceCatalog"
+          "vet_service_catalog"
         ],
         "description": "Get all VetServiceCatalog",
         "parameters": [
@@ -4346,7 +4181,7 @@
       },
       "post": {
         "tags": [
-          "VetServiceCatalog"
+          "vet_service_catalog"
         ],
         "description": "",
         "responses": {
@@ -4385,7 +4220,7 @@
     "/vet-service-catalog/{id}": {
       "get": {
         "tags": [
-          "VetServiceCatalog"
+          "vet_service_catalog"
         ],
         "description": "Get one VetServiceCatalog (give vet_id)",
         "parameters": [
@@ -4409,7 +4244,7 @@
       },
       "put": {
         "tags": [
-          "VetServiceCatalog"
+          "vet_service_catalog"
         ],
         "description": "Update a VetServiceCatalog (give veterinarian_id)",
         "parameters": [
@@ -4459,7 +4294,7 @@
       },
       "delete": {
         "tags": [
-          "VetServiceCatalog"
+          "vet_service_catalog"
         ],
         "description": "Delete VetServiceCatalog (give veterinarian_id)",
         "parameters": [
@@ -4488,7 +4323,7 @@
     "/veterinarianSlotDetail/": {
       "get": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "Get all VeterinarianSlotDetail (truyen cả 3 cái sau, truyền cái đầu với cái cuối)",
         "parameters": [
@@ -4535,7 +4370,7 @@
       },
       "post": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "",
         "responses": {
@@ -4574,7 +4409,7 @@
     "/veterinarianSlotDetail/{id}": {
       "get": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "Get one VeterinarianSlotDetail",
         "parameters": [
@@ -4601,7 +4436,7 @@
       },
       "put": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "Update a VeterinarianSlotDetail (give veterinarian_id)",
         "parameters": [
@@ -4648,7 +4483,7 @@
       },
       "delete": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "Delete VeterinarianSlotDetail (give veterinarian_id)",
         "parameters": [
@@ -4677,7 +4512,7 @@
     "/veterinarianSlotDetail/available/{time_slot_clinic_id}": {
       "get": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "check xem đặt có khả dụng k",
         "parameters": [
@@ -4713,7 +4548,7 @@
     "/veterinarianSlotDetail/with-file": {
       "post": {
         "tags": [
-          "VeterinarianSlotDetail"
+          "veterinarian_slot_detail"
         ],
         "description": "",
         "parameters": [
@@ -4745,7 +4580,7 @@
     "/time_slot_clinic/": {
       "get": {
         "tags": [
-          "TimeSlotClinic"
+          "time_slot_clinic"
         ],
         "description": "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó",
         "parameters": [
@@ -4778,7 +4613,7 @@
       },
       "post": {
         "tags": [
-          "TimeSlotClinic"
+          "time_slot_clinic"
         ],
         "description": "",
         "responses": {
@@ -4814,7 +4649,7 @@
     "/time_slot_clinic/{id}": {
       "get": {
         "tags": [
-          "TimeSlotClinic"
+          "time_slot_clinic"
         ],
         "description": "Get one TimeSlotClinic (give TimeSlotClinic_id)",
         "parameters": [
@@ -4841,7 +4676,7 @@
       },
       "put": {
         "tags": [
-          "TimeSlotClinic"
+          "time_slot_clinic"
         ],
         "description": "Update a TimeSlotClinic (give TimeSlotClinic_id)",
         "parameters": [
@@ -4885,7 +4720,7 @@
       },
       "delete": {
         "tags": [
-          "TimeSlotClinic"
+          "time_slot_clinic"
         ],
         "description": "Delete TimeSlotClinic (give TimeSlotClinic_id)",
         "parameters": [
@@ -4914,7 +4749,7 @@
     "/time_slot_clinic/with-file": {
       "post": {
         "tags": [
-          "TimeSlotClinic"
+          "time_slot_clinic"
         ],
         "description": "",
         "parameters": [
@@ -4943,7 +4778,7 @@
     "/slot_clinic/": {
       "get": {
         "tags": [
-          "SlotClinic"
+          "slot_clinic"
         ],
         "description": "Get all SlotClinic ",
         "responses": {
@@ -4960,7 +4795,7 @@
       },
       "post": {
         "tags": [
-          "SlotClinic"
+          "slot_clinic"
         ],
         "description": "",
         "responses": {
@@ -4996,7 +4831,7 @@
     "/slot_clinic/{id}": {
       "get": {
         "tags": [
-          "SlotClinic"
+          "slot_clinic"
         ],
         "description": "Get one SlotClinic (give SlotClinic_id)",
         "parameters": [
@@ -5023,7 +4858,7 @@
       },
       "put": {
         "tags": [
-          "SlotClinic"
+          "slot_clinic"
         ],
         "description": "Update a SlotClinic (give SlotClinic_id)",
         "parameters": [
@@ -5064,7 +4899,7 @@
       },
       "delete": {
         "tags": [
-          "SlotClinic"
+          "slot_clinic"
         ],
         "description": "Delete SlotClinic (give SlotClinic_id)",
         "parameters": [

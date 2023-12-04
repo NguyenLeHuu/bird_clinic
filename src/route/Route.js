@@ -38,7 +38,7 @@ router.use("/booking", bookingRoute);
 router.use("/service_Form", service_FormRoute);
 router.use("/service_Form_detail", service_Form_detailRoute);
 router.use("/bill", billRoute);
-router.use("/billDetail", billDetailRoute);
+// router.use("/billDetail", billDetailRoute);
 
 router.use("/medicine", medicineRoute);
 router.use("/medicalRecord", medicalRecordRoute);

@@ -4,7 +4,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['ServicePackage']
+        #swagger.tags = ['service_package']
          #swagger.description = "Get all ServicePackageService of service"
         */
     try {
@@ -39,7 +39,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['ServicePackage']
+        #swagger.tags = ['service_package']
          #swagger.description = "Get one ServicePackageService (give service_package_id)"
         */
     try {
@@ -66,7 +66,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['ServicePackage']
+    // #swagger.tags = ['service_package']
 
     try {
       const {
@@ -100,7 +100,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['ServicePackage']
+        #swagger.tags = ['service_package']
          #swagger.description = "Update a ServicePackageService (give veterinarian_id)"
         */
     try {
@@ -137,7 +137,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['ServicePackage']
+        #swagger.tags = ['service_package']
          #swagger.description = "Delete ServicePackageService (give veterinarian_id)"
         */
     try {

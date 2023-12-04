@@ -4,7 +4,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['ContentChat']
+        #swagger.tags = ['content_chat']
          #swagger.description = "Get all ContentChat  "
         */
     try {
@@ -36,7 +36,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['ContentChat']
+        #swagger.tags = ['content_chat']
          #swagger.description = "Get one ContentChat (give ContentChat_id)"
         */
     try {
@@ -63,7 +63,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['ContentChat']
+    // #swagger.tags = ['content_chat']
 
     try {
       const { user1, user2, message, type, chat_id } = req.body;
@@ -88,7 +88,7 @@ module.exports = {
   },
 
   async storeWithImage(req, res) {
-    // #swagger.tags = ['ContentChat']
+    // #swagger.tags = ['content_chat']
     /*
          #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['singleFile'] = {
@@ -126,7 +126,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['ContentChat']
+        #swagger.tags = ['content_chat']
          #swagger.description = "Update a ContentChat (give ContentChat_id)"
         */
     try {
@@ -152,7 +152,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['ContentChat']
+        #swagger.tags = ['content_chat']
          #swagger.description = "Delete ContentChat (give ContentChat_id)"
         */
     try {

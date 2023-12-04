@@ -4,7 +4,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Media']
+        #swagger.tags = ['media']
         
         */
     try {
@@ -35,7 +35,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Media']
+        #swagger.tags = ['media']
          #swagger.description = "Get one Media (give Media_id)"
         */
     try {
@@ -62,7 +62,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Media']
+    // #swagger.tags = ['media']
     /*
          #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['singleFile'] = {
@@ -103,7 +103,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    // #swagger.tags = ['Media']
+    // #swagger.tags = ['media']
     /*
          #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['singleFile'] = {
@@ -134,7 +134,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Media']
+        #swagger.tags = ['media']
          #swagger.description = "Delete Media (give Media_id)"
         */
     try {

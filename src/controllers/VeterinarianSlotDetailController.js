@@ -6,7 +6,7 @@ const streamifier = require("streamifier");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['VeterinarianSlotDetail']
+        #swagger.tags = ['veterinarian_slot_detail']
          #swagger.description = "Get all VeterinarianSlotDetail (truyen cả 3 cái sau, truyền cái đầu với cái cuối)"
         */
     try {
@@ -37,7 +37,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['VeterinarianSlotDetail']
+        #swagger.tags = ['veterinarian_slot_detail']
          #swagger.description = "Get one VeterinarianSlotDetail"
         */
     try {
@@ -63,7 +63,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['VeterinarianSlotDetail']
+    // #swagger.tags = ['veterinarian_slot_detail']
 
     try {
       const { time_slot_clinic_id, veterinarian_id, status } = req.body;
@@ -92,7 +92,7 @@ module.exports = {
   },
 
   async storeWithFile(req, res) {
-    // #swagger.tags = ['VeterinarianSlotDetail']
+    // #swagger.tags = ['veterinarian_slot_detail']
 
     /*
          #swagger.consumes = ['multipart/form-data']  
@@ -176,7 +176,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['VeterinarianSlotDetail']
+        #swagger.tags = ['veterinarian_slot_detail']
          #swagger.description = "Update a VeterinarianSlotDetail (give veterinarian_id)"
         */
     try {
@@ -206,7 +206,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['VeterinarianSlotDetail']
+        #swagger.tags = ['veterinarian_slot_detail']
          #swagger.description = "Delete VeterinarianSlotDetail (give veterinarian_id)"
         */
     try {
@@ -232,7 +232,7 @@ module.exports = {
 
   async is_booking_available(req, res) {
     /* 
-        #swagger.tags = ['VeterinarianSlotDetail']
+        #swagger.tags = ['veterinarian_slot_detail']
          #swagger.description = "check xem đặt có khả dụng k"
         */
     try {

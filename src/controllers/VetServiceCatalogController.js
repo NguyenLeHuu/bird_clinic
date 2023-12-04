@@ -4,7 +4,7 @@ const Firebase = require("../services/Firebase");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['VetServiceCatalog']
+        #swagger.tags = ['vet_service_catalog']
          #swagger.description = "Get all VetServiceCatalog"
         */
     try {
@@ -35,7 +35,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['VetServiceCatalog']
+        #swagger.tags = ['vet_service_catalog']
          #swagger.description = "Get one VetServiceCatalog (give vet_id)"
         */
     try {
@@ -62,7 +62,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['VetServiceCatalog']
+    // #swagger.tags = ['vet_service_catalog']
 
     try {
       const { veterinarian_id, service_id, veterinarian_name, service_name } =
@@ -91,7 +91,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['VetServiceCatalog']
+        #swagger.tags = ['vet_service_catalog']
          #swagger.description = "Update a VetServiceCatalog (give veterinarian_id)"
         */
     try {
@@ -118,7 +118,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['VetServiceCatalog']
+        #swagger.tags = ['vet_service_catalog']
          #swagger.description = "Delete VetServiceCatalog (give veterinarian_id)"
         */
     try {

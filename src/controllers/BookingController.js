@@ -8,7 +8,7 @@ const db = require("../models/index");
 module.exports = {
   async getAll(req, res) {
     /* 
-        #swagger.tags = ['Booking']
+        #swagger.tags = ['booking']
          #swagger.description = "Get all Booking"
         */
     try {
@@ -38,7 +38,7 @@ module.exports = {
 
   async getOne(req, res) {
     /* 
-        #swagger.tags = ['Booking']
+        #swagger.tags = ['booking']
          #swagger.description = "Get one Booking (give booking_id)"
         */
     try {
@@ -70,7 +70,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    // #swagger.tags = ['Booking']
+    // #swagger.tags = ['booking']
     //#swagger.description = "Booking HC thif moi truyen vet_id, con lai k truyen"
     try {
       const {
@@ -209,7 +209,7 @@ module.exports = {
     }
   },
   async store_re_exam(req, res) {
-    // #swagger.tags = ['Booking']
+    // #swagger.tags = ['booking']
     //#swagger.description = "Rebooking"
     try {
       const {
@@ -245,7 +245,7 @@ module.exports = {
 
   async update(req, res) {
     /* 
-        #swagger.tags = ['Booking']
+        #swagger.tags = ['booking']
          #swagger.description = "Update a Booking (give booking_id)"
         */
     try {
@@ -291,7 +291,7 @@ module.exports = {
 
   async delete(req, res) {
     /* 
-        #swagger.tags = ['Booking']
+        #swagger.tags = ['booking']
          #swagger.description = "Delete Booking (give booking_id)"
         */
     try {
