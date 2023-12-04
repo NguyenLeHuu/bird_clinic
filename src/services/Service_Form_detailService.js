@@ -86,6 +86,7 @@ let createService_Form_detail = (data) => {
         booking_id: data.booking_id,
         process_at: data.process_at,
         checkin_time: data.checkin_time,
+        price: data.price,
       });
       resolve(result);
     } catch (e) {
@@ -103,6 +104,7 @@ let updateService_Form_detail = (id, body_data) => {
           veterinarian_id: body_data.veterinarian_id,
           process_at: body_data.process_at,
           checkin_time: body_data.checkin_time,
+          price: body_data.price,
         },
         {
           where: {

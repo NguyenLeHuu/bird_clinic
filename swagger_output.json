@@ -654,6 +654,9 @@
                   },
                   "checkin_time": {
                     "example": "any"
+                  },
+                  "price": {
+                    "example": "any"
                   }
                 }
               }
@@ -729,6 +732,9 @@
                     "example": "any"
                   },
                   "process_at": {
+                    "example": "any"
+                  },
+                  "price": {
                     "example": "any"
                   }
                 }

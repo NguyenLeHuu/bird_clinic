@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       process_at: DataTypes.STRING,
       booking_id: DataTypes.STRING,
       checkin_time: DataTypes.STRING,
+      price: DataTypes.STRING,
     },
     {
       sequelize,

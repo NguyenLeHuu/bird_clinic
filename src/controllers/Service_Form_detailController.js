@@ -75,6 +75,7 @@ module.exports = {
         booking_id,
         process_at,
         checkin_time,
+        price,
       } = req.body;
 
       //   const url = await Firebase.uploadImage(file);
@@ -106,7 +107,7 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const { status, veterinarian_id, process_at } = req.body;
+      const { status, veterinarian_id, process_at, price } = req.body;
 
       let data = await Service_Form_detailService.updateService_Form_detail(
         id,

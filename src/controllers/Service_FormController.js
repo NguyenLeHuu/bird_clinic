@@ -151,6 +151,7 @@ module.exports = {
                   status: "pending",
                   booking_id,
                   process_at: 1,
+                  price: service_package.price,
                 };
 
                 await Service_Form_detail.createService_Form_detail(temp);
@@ -197,6 +198,7 @@ module.exports = {
                     status: "pending",
                     booking_id,
                     process_at: 1,
+                    price: service_package.price,
                   };
                   console.log(
                     "veterinarian_id nguoi duoc chon: ",
@@ -225,6 +227,7 @@ module.exports = {
                 status: "pending",
                 booking_id,
                 process_at: 1,
+                price: service_package.price,
               };
               await Service_Form_detail.createService_Form_detail(temp);
               break;

@@ -39,7 +39,7 @@ let createAccount = (data) => {
         password: data.password,
         phone: data.phone,
         role: data.role,
-        status: 1,
+        status: data.status,
       });
       resolve(result);
     } catch (e) {
