@@ -5,7 +5,12 @@ const crypto = require("crypto");
 let getAll = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.vet_service_catalogs.findAll();
+      let data = await db.vet_service_catalogs.findAll({
+        where: {
+          veterinarian_id: req.veterinarian_id,
+        },
+        attributes: ["service_id", "service_name"],
+      });
 
       resolve(data);
     } catch (e) {

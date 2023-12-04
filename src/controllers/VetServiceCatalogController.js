@@ -8,8 +8,8 @@ module.exports = {
          #swagger.description = "Get all VetServiceCatalog"
         */
     try {
-      // const { service_id, service_type_id } = req.query;
-      let data = await VetServiceCatalog.getAll();
+      const { veterinarian_id } = req.query;
+      let data = await VetServiceCatalog.getAll(req.query);
 
       if (data != null) {
         return res.status(200).json({

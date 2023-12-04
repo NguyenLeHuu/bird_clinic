@@ -8,23 +8,23 @@ let getAll = (req) => {
       let data = [];
       if (req.service_id) {
         data = await db.veterinarian.findAll({
-          where: {
-            service_id: req.service_id,
-          },
-        });
-      } else if (req.service_type_id) {
-        data = await db.veterinarian.findAll({
           include: [
             {
-              model: db.service,
-              attributes: [],
+              model: db.vet_service_catalogs,
+              attributes: ["service_id"],
               where: {
-                service_type_id: req.service_type_id,
+                service_id: req.service_id,
               },
             },
           ],
-          raw: true,
+          raw: false,
           nest: true,
+        });
+      } else if (req.service_type_id) {
+        data = await db.veterinarian.findAll({
+          where: {
+            service_type_id: req.service_type_id,
+          },
         });
       } else {
         data = await db.veterinarian.findAll({
@@ -34,8 +34,8 @@ let getAll = (req) => {
               attributes: ["status"],
             },
             {
-              model: db.service,
-              attributes: ["name"],
+              model: db.vet_service_catalogs,
+              attributes: ["service_name"],
             },
           ],
           raw: false,
@@ -65,8 +65,6 @@ let getOne = (id) => {
           "name",
           "status",
           "image",
-          "service_id",
-          "service_name",
         ],
         include: [
           {
@@ -98,8 +96,6 @@ let createVeterinarian = (data, image) => {
         name: data.name,
         status: data.status,
         image: image,
-        // service_id: data.service_id,
-        // service_name: data.service_name,
         service_type_id: data.service_type_id,
         is_primary: data.is_primary,
       });

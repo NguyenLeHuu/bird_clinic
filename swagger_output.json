@@ -4201,9 +4201,6 @@
                   "arr_service_id": {
                     "example": "any"
                   },
-                  "service_name": {
-                    "example": "any"
-                  },
                   "service_type_id": {
                     "example": "any"
                   },
@@ -4320,6 +4317,15 @@
           "VetServiceCatalog"
         ],
         "description": "Get all VetServiceCatalog",
+        "parameters": [
+          {
+            "name": "veterinarian_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

@@ -78,7 +78,6 @@ module.exports = {
         name,
         status,
         arr_service_id,
-        service_name,
         service_type_id,
         is_primary,
       } = req.body;
