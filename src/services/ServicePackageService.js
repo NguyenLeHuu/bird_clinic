@@ -82,7 +82,7 @@ let createServicePackage = (data, url) => {
         price: data.price,
         description: data.description,
         package_name: data.package_name,
-        status: 1,
+        status: data.status,
       });
       resolve(result);
     } catch (e) {
