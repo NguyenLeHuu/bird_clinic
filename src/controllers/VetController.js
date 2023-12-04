@@ -69,7 +69,7 @@ module.exports = {
           #swagger.parameters['image'] = {
               in: 'formData',
               type: 'file',
-              required: 'true',
+              required: 'false',
         } */
     try {
       const {
