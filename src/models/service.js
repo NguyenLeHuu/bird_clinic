@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "service_type_id",
       });
       Service.hasMany(models.service_package, { foreignKey: "service_id" });
+      Service.hasMany(models.vet_service_catalogs, {
+        foreignKey: "service_id",
+      });
     }
   }
   Service.init(

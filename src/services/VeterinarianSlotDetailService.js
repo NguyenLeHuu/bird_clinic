@@ -303,9 +303,19 @@ let isAvailableHC = (time_slot_clinic_id, service_type_id, service_id) => {
         where: {
           service_type_id: service_type_id,
           status: "1",
-          service_id: service_id,
+          // service_id: service_id,
         },
         attributes: ["veterinarian_id"],
+        include: [
+          {
+            model: db.vet_service_catalogs,
+            where: {
+              service_id: service_id,
+            },
+          },
+        ],
+        raw: false,
+        nest: true,
       });
 
       let data2 = await db.veterinarian_slot_details.findAll({
@@ -329,14 +339,25 @@ let isAvailableHCNoTime = (date, service_type_id, service_id) => {
   return new Promise(async (resolve, reject) => {
     try {
       console.log(date + " ___ " + service_type_id + " ___ " + service_id);
+
       let data1 = await db.veterinarian.findAll({
         //lấy ra tất cả vet thuộc service_type
         where: {
           service_type_id: service_type_id,
           status: "1",
-          service_id: service_id,
+          // service_id: service_id,
         },
         attributes: ["veterinarian_id"],
+        include: [
+          {
+            model: db.vet_service_catalogs,
+            where: {
+              service_id: service_id,
+            },
+          },
+        ],
+        raw: false,
+        nest: true,
       });
 
       let data2 = await db.veterinarian_slot_details.findAll({
@@ -348,14 +369,13 @@ let isAvailableHCNoTime = (date, service_type_id, service_id) => {
         attributes: ["veterinarian_id"],
         group: "veterinarian_id",
       });
-
       const intersection = getIntersection(data1, data2);
-      // console.log("data1");
-      // console.log(data1);
-      // console.log("data2");
-      // console.log(data2);
-      // console.log("intersection");
-      // console.log(intersection);
+      console.log("data1");
+      console.log(data1);
+      console.log("data2");
+      console.log(data2);
+      console.log("intersection");
+      console.log(intersection);
       resolve(intersection);
     } catch (e) {
       reject(e);

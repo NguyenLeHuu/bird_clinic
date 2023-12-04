@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Veterinarian.hasMany(models.service_form_detail, {
         foreignKey: "veterinarian_id",
       });
+      Veterinarian.hasMany(models.vet_service_catalogs, {
+        foreignKey: "veterinarian_id",
+      });
     }
   }
   Veterinarian.init(
