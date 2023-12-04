@@ -56,8 +56,19 @@ let getOne = (id, req) => {
           include: [
             {
               model: db.veterinarian,
-              attributes: ["name", "image", "service_type_id"],
+              attributes: [
+                "name",
+                "image",
+                "service_type_id",
+                [
+                  db.sequelize.literal(
+                    "(SELECT `service_id` FROM `vet_service_catalogs` WHERE `vet_service_catalogs`.`veterinarian_id` = `veterinarian`.`veterinarian_id` LIMIT 1)"
+                  ),
+                  "service_id",
+                ],
+              ],
             },
+
             {
               model: db.bird,
               attributes: ["name", "image"],
