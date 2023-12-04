@@ -90,9 +90,9 @@ let createVeterinarian = (data, image) => {
 
   return new Promise(async (resolve, reject) => {
     try {
-      const id = crypto.randomBytes(15).toString("hex");
+      // const id = crypto.randomBytes(15).toString("hex");
       const result = await db.veterinarian.create({
-        veterinarian_id: id,
+        veterinarian_id: data.account_id,
         account_id: data.account_id,
         specialized: data.specialized,
         name: data.name,
