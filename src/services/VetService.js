@@ -96,10 +96,10 @@ let createVeterinarian = (data, image) => {
         account_id: data.account_id,
         specialized: data.specialized,
         name: data.name,
-        status: 1,
+        status: data.status,
         image: image,
-        service_id: data.service_id,
-        service_name: data.service_name,
+        // service_id: data.service_id,
+        // service_name: data.service_name,
         service_type_id: data.service_type_id,
         is_primary: data.is_primary,
       });

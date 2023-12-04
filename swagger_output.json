@@ -3285,16 +3285,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "singleFile",
-            "in": "formData",
-            "required": true,
-            "schema": {
-              "type": "file"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -4208,7 +4198,7 @@
                   "status": {
                     "example": "any"
                   },
-                  "service_id": {
+                  "arr_service_id": {
                     "example": "any"
                   },
                   "service_name": {
@@ -4301,6 +4291,165 @@
           "Vet"
         ],
         "description": "Delete Vet (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/vet-service-catalog/": {
+      "get": {
+        "tags": [
+          "VetServiceCatalog"
+        ],
+        "description": "Get all VetServiceCatalog",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "VetServiceCatalog"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "service_id": {
+                    "example": "any"
+                  },
+                  "veterinarian_name": {
+                    "example": "any"
+                  },
+                  "service_name": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vet-service-catalog/{id}": {
+      "get": {
+        "tags": [
+          "VetServiceCatalog"
+        ],
+        "description": "Get one VetServiceCatalog (give vet_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "VetServiceCatalog"
+        ],
+        "description": "Update a VetServiceCatalog (give veterinarian_id)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "veterinarian_id": {
+                    "example": "any"
+                  },
+                  "service_id": {
+                    "example": "any"
+                  },
+                  "veterinarian_name": {
+                    "example": "any"
+                  },
+                  "service_name": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "VetServiceCatalog"
+        ],
+        "description": "Delete VetServiceCatalog (give veterinarian_id)",
         "parameters": [
           {
             "name": "id",

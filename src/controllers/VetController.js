@@ -1,4 +1,5 @@
 const VetService = require("../services/VetService");
+const VetServiceCatalog = require("../services/VetServiceCatalog");
 const Firebase = require("../services/Firebase");
 
 module.exports = {
@@ -76,7 +77,7 @@ module.exports = {
         specialized,
         name,
         status,
-        service_id,
+        arr_service_id,
         service_name,
         service_type_id,
         is_primary,
@@ -86,6 +87,17 @@ module.exports = {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJVSkk9RpoHe2r2kYU3n-LVUcPTh1vb0a32A&usqp=CAU";
       if (req.file) {
         image = await Firebase.uploadImage(req.file);
+      }
+      if (Array.isArray(arr_service_id)) {
+        arr_service_id.forEach(async (item, index) => {
+          let temp = {
+            veterinarian_id: account_id,
+            service_id: item.service_id,
+            veterinarian_name: item.veterinarian_name,
+            service_name: item.service_name,
+          };
+          await VetServiceCatalog.create(temp);
+        });
       }
       let data = await VetService.createVeterinarian(req.body, image);
 

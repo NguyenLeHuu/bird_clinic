@@ -33,7 +33,7 @@ let getOne = (id) => {
   });
 };
 
-let createBirdSize = (req) => {
+let createBirdBreed = (req) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
@@ -50,7 +50,7 @@ let createBirdSize = (req) => {
   });
 };
 
-let updateBirdSize = (id, req) => {
+let updateBirdBreed = (id, req) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.bird_breed.update(
@@ -71,7 +71,7 @@ let updateBirdSize = (id, req) => {
   });
 };
 
-let deleteBirdSize = (id) => {
+let deleteBirdBreed = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.bird_breed.update(
@@ -94,7 +94,7 @@ let deleteBirdSize = (id) => {
 module.exports = {
   getAll: getAll,
   getOne: getOne,
-  createBirdSize,
-  updateBirdSize,
-  deleteBirdSize,
+  createBirdBreed,
+  updateBirdBreed,
+  deleteBirdBreed,
 };
