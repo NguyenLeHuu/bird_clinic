@@ -13,6 +13,10 @@ let getAll = (req) => {
         whereClause["date"] = req.date;
         whereClause["status"] = req.status;
       }
+      if (req.veterinarian_id && req.date) {
+        whereClause["veterinarian_id"] = req.veterinarian_id;
+        whereClause["date"] = req.date;
+      }
       if (req.time_slot_clinic_id && req.status) {
         whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
         whereClause["status"] = req.status;
@@ -50,81 +54,6 @@ let getAll = (req) => {
     }
   });
 };
-
-// let getAll = (req) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       let data = [];
-//       let whereClause = {};
-
-//       if (req.veterinarian_id && !req.time_slot_clinic_id) {
-//         if (req.status) {
-//           whereClause["veterinarian_id"] = req.veterinarian_id;
-//           whereClause["status"] = req.status;
-//         } else {
-//           whereClause["veterinarian_id"] = req.veterinarian_id;
-//         }
-//       }
-//       if (req.time_slot_clinic_id && !req.veterinarian_id) {
-//         if (req.status) {
-//           whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
-//           whereClause["status"] = req.status;
-//         } else {
-//           whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
-//         }
-//       }
-
-//       if (!req.veterinarian_id && !req.time_slot_clinic_id) {
-//         if (req.status) {
-//           whereClause["status"] = req.status;
-//         }
-//       }
-//       if (req.veterinarian_id && req.time_slot_clinic_id) {
-//         if (req.status) {
-//           whereClause["veterinarian_id"] = req.veterinarian_id;
-//           whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
-//           whereClause["status"] = req.status;
-//         } else {
-//           whereClause["veterinarian_id"] = req.veterinarian_id;
-//           whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
-//         }
-//       }
-
-//       data = await db.veterinarian_slot_details.findAll({
-//         where: whereClause,
-//         attributes: [
-//           "veterinarian_slot_detail_id",
-//           "time_slot_clinic_id",
-//           "veterinarian_id",
-//           "status",
-//         ],
-//         include: [
-//           {
-//             model: db.veterinarian,
-//             attributes: ["name"],
-//           },
-//           {
-//             model: db.time_slot_clinic,
-//             attributes: ["date"],
-//             include: [
-//               {
-//                 model: db.slot_clinics,
-//                 attributes: ["time"],
-//               },
-//             ],
-//           },
-//         ],
-
-//         raw: true,
-//         nest: true,
-//       });
-
-//       resolve(data);
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
 
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
