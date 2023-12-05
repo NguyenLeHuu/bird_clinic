@@ -66,7 +66,7 @@ module.exports = {
     // #swagger.tags = ['slot_clinic']
 
     try {
-      const { id, time } = req.body;
+      const { time } = req.body;
 
       // const url = await Firebase.uploadImage(file);
       let data = await SlotClinicService.createSlotClinic(req.body);

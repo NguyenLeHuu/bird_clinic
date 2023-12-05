@@ -37,9 +37,9 @@ let getOne = (id) => {
 let createSlotClinic = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // const id = crypto.randomBytes(15).toString("hex");
+      const id = crypto.randomBytes(15).toString("hex");
       const result = await db.slot_clinics.create({
-        slot_clinic_id: data.id,
+        slot_clinic_id: id,
         time: data.time,
       });
       resolve(result);

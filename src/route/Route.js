@@ -35,38 +35,38 @@ const configRoute = require("./ConfigRoute");
 
 // router.use("/test", reservationRoute);
 router.use("/booking", bookingRoute);
-router.use("/service_Form", service_FormRoute);
-router.use("/service_Form_detail", service_Form_detailRoute);
+router.use("/service-form", service_FormRoute);
+router.use("/service-form-detail", service_Form_detailRoute);
 router.use("/bill", billRoute);
 // router.use("/billDetail", billDetailRoute);
 
 router.use("/medicine", medicineRoute);
-router.use("/medicalRecord", medicalRecordRoute);
+router.use("/medical-record", medicalRecordRoute);
 router.use("/media", mediaRoute);
 router.use("/prescription", prescriptionRoute);
-router.use("/prescriptionDetail", prescriptionDetailRoute);
+router.use("/prescription-detail", prescriptionDetailRoute);
 
 router.use("/boarding", boardingRoute);
 router.use("/chat", chatRoute);
-router.use("/content_chat", content_chatRoute);
+router.use("/content-chat", content_chatRoute);
 router.use("/cage", cageRoute);
 
-router.use("/serviceType", serviceTypeRoute);
+router.use("/service-type", serviceTypeRoute);
 router.use("/service", serviceRoute);
-router.use("/servicePackage", servicePackageRoute);
+router.use("/service-package", servicePackageRoute);
 
 router.use("/login", loginRoute);
 router.use("/account", accountRoute);
 router.use("/customer", customerRoute);
 router.use("/bird", birdRoute);
-router.use("/bird_size", birdSizeRoute);
-router.use("/bird_breed", birdBreedRoute);
+router.use("/bird-size", birdSizeRoute);
+router.use("/bird-breed", birdBreedRoute);
 router.use("/vet", vetRoute);
 router.use("/vet-service-catalog", vetServiceCatalogRoute);
-router.use("/veterinarianSlotDetail", veterinarianSlotDetailRoute);
+router.use("/veterinarian-slot-detail", veterinarianSlotDetailRoute);
 
-router.use("/time_slot_clinic", time_slot_clinicRoute);
-router.use("/slot_clinic", slot_clinicRoute);
+router.use("/time-slot-clinic", time_slot_clinicRoute);
+router.use("/slot-clinic", slot_clinicRoute);
 router.use("/config", configRoute);
 
 module.exports = router;

@@ -328,7 +328,7 @@
         }
       }
     },
-    "/service_Form/": {
+    "/service-form/": {
       "get": {
         "tags": [
           "service_form"
@@ -424,7 +424,7 @@
         }
       }
     },
-    "/service_Form/boarding": {
+    "/service-form/boarding": {
       "get": {
         "tags": [
           "service_form"
@@ -452,7 +452,7 @@
         }
       }
     },
-    "/service_Form/{id}": {
+    "/service-form/{id}": {
       "get": {
         "tags": [
           "service_form"
@@ -561,7 +561,7 @@
         }
       }
     },
-    "/service_Form_detail/": {
+    "/service-form-detail/": {
       "get": {
         "tags": [
           "service_form_detail"
@@ -665,7 +665,7 @@
         }
       }
     },
-    "/service_Form_detail/{id}": {
+    "/service-form-detail/{id}": {
       "get": {
         "tags": [
           "service_form_detail"
@@ -1119,7 +1119,7 @@
         }
       }
     },
-    "/medicalRecord/": {
+    "/medical-record/": {
       "get": {
         "tags": [
           "medical_record"
@@ -1184,7 +1184,7 @@
         }
       }
     },
-    "/medicalRecord/{id}": {
+    "/medical-record/{id}": {
       "get": {
         "tags": [
           "medical_record"
@@ -1613,7 +1613,7 @@
         }
       }
     },
-    "/prescriptionDetail/": {
+    "/prescription-detail/": {
       "get": {
         "tags": [
           "prescription_detail"
@@ -1681,7 +1681,7 @@
         }
       }
     },
-    "/prescriptionDetail/{id}": {
+    "/prescription-detail/{id}": {
       "get": {
         "tags": [
           "prescription_detail"
@@ -2117,7 +2117,7 @@
         }
       }
     },
-    "/content_chat/": {
+    "/content-chat/": {
       "get": {
         "tags": [
           "content_chat"
@@ -2196,7 +2196,7 @@
         }
       }
     },
-    "/content_chat/{id}": {
+    "/content-chat/{id}": {
       "get": {
         "tags": [
           "content_chat"
@@ -2284,7 +2284,7 @@
         }
       }
     },
-    "/content_chat/img": {
+    "/content-chat/img": {
       "post": {
         "tags": [
           "content_chat"
@@ -2549,7 +2549,7 @@
         }
       }
     },
-    "/serviceType/": {
+    "/service-type/": {
       "get": {
         "tags": [
           "service_type"
@@ -2609,7 +2609,7 @@
         }
       }
     },
-    "/serviceType/{id}": {
+    "/service-type/{id}": {
       "get": {
         "tags": [
           "service_type"
@@ -2881,7 +2881,7 @@
         }
       }
     },
-    "/servicePackage/": {
+    "/service-package/": {
       "get": {
         "tags": [
           "service_package"
@@ -2962,7 +2962,7 @@
         }
       }
     },
-    "/servicePackage/{id}": {
+    "/service-package/{id}": {
       "get": {
         "tags": [
           "service_package"
@@ -3654,7 +3654,7 @@
         }
       }
     },
-    "/bird_size/": {
+    "/bird-size/": {
       "get": {
         "tags": [
           "bird_size"
@@ -3714,7 +3714,7 @@
         }
       }
     },
-    "/bird_size/{id}": {
+    "/bird-size/{id}": {
       "get": {
         "tags": [
           "bird_size"
@@ -3811,7 +3811,7 @@
         }
       }
     },
-    "/bird_breed/": {
+    "/bird-breed/": {
       "get": {
         "tags": [
           "bird_breed"
@@ -3864,7 +3864,7 @@
         }
       }
     },
-    "/bird_breed/{id}": {
+    "/bird-breed/{id}": {
       "get": {
         "tags": [
           "bird_breed"
@@ -4320,7 +4320,7 @@
         }
       }
     },
-    "/veterinarianSlotDetail/": {
+    "/veterinarian-slot-detail/": {
       "get": {
         "tags": [
           "veterinarian_slot_detail"
@@ -4406,7 +4406,7 @@
         }
       }
     },
-    "/veterinarianSlotDetail/{id}": {
+    "/veterinarian-slot-detail/{id}": {
       "get": {
         "tags": [
           "veterinarian_slot_detail"
@@ -4509,7 +4509,7 @@
         }
       }
     },
-    "/veterinarianSlotDetail/available/{time_slot_clinic_id}": {
+    "/veterinarian-slot-detail/available/{time_slot_clinic_id}": {
       "get": {
         "tags": [
           "veterinarian_slot_detail"
@@ -4545,7 +4545,7 @@
         }
       }
     },
-    "/veterinarianSlotDetail/with-file": {
+    "/veterinarian-slot-detail/with-file": {
       "post": {
         "tags": [
           "veterinarian_slot_detail"
@@ -4577,7 +4577,7 @@
         }
       }
     },
-    "/time_slot_clinic/": {
+    "/time-slot-clinic/": {
       "get": {
         "tags": [
           "time_slot_clinic"
@@ -4646,7 +4646,7 @@
         }
       }
     },
-    "/time_slot_clinic/{id}": {
+    "/time-slot-clinic/{id}": {
       "get": {
         "tags": [
           "time_slot_clinic"
@@ -4746,7 +4746,7 @@
         }
       }
     },
-    "/time_slot_clinic/with-file": {
+    "/time-slot-clinic/with-file": {
       "post": {
         "tags": [
           "time_slot_clinic"
@@ -4775,7 +4775,7 @@
         }
       }
     },
-    "/slot_clinic/": {
+    "/slot-clinic/": {
       "get": {
         "tags": [
           "slot_clinic"
@@ -4828,7 +4828,7 @@
         }
       }
     },
-    "/slot_clinic/{id}": {
+    "/slot-clinic/{id}": {
       "get": {
         "tags": [
           "slot_clinic"

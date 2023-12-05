@@ -13,9 +13,11 @@ let getAll = (req) => {
       if (req.veterinarian_id && req.arrival_date) {
         data = await db.sequelize.query(
           `
-          SELECT sfd.*
+          SELECT sfd.*, birds.name as bird_name, c.name as customer_name, c.phone
 FROM service_form_details AS sfd
 JOIN bookings AS b ON sfd.booking_id = b.booking_id
+JOIN birds ON b.bird_id = birds.bird_id
+JOIN customers AS c ON birds.customer_id = c.customer_id
 WHERE b.arrival_date = :arrival_date
 AND sfd.veterinarian_id = :veterinarian_id
         `,
@@ -34,12 +36,7 @@ AND sfd.veterinarian_id = :veterinarian_id
         if (req.service_type_id === "ST001") {
           sp_id = "SP1";
         }
-        // if (req.service_type_id === "ST002") {
-        //   sp_id = "SP9";
-        // }
-        // if (req.service_type_id === "ST003") {
-        //   sp_id = "SP10";
-        // }
+
         whereClause["booking_id"] = req.booking_id;
         whereClause["service_package_id"] = sp_id;
       }
