@@ -12,7 +12,7 @@ route.get(
   CageController.getAll
 );
 route.get(
-  "/schedule_cage",
+  "/schedule-cage",
   AuthMiddleware.isAuthenticated,
   AuthMiddleware.userOfSystem,
   CageController.schedule_cage

@@ -41,7 +41,7 @@ route.post(
   BookingController.store
 );
 route.post(
-  "/re_exam",
+  "/re-exam",
   AuthMiddleware.isAuthenticated,
   AuthMiddleware.userOfSystem,
   BookingController.store_re_exam
