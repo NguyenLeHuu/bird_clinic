@@ -26,6 +26,21 @@ let getAll = (req) => {
             service_type_id: req.service_type_id,
           },
         });
+      } else if (req.date) {
+        data = await db.veterinarian_slot_details.findAll({
+          where: {
+            date: req.date,
+          },
+          attributes: ["veterinarian_id"],
+          include: [
+            {
+              model: db.veterinarian,
+            },
+          ],
+          raw: false,
+          nest: true,
+          group: "veterinarian_id",
+        });
       } else {
         data = await db.veterinarian.findAll({
           include: [

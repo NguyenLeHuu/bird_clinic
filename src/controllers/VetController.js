@@ -9,7 +9,7 @@ module.exports = {
          #swagger.description = "Get all Vet"
         */
     try {
-      const { service_id, service_type_id } = req.query;
+      const { service_id, service_type_id, date } = req.query;
       let data = await VetService.getAll(req.query);
 
       if (data != null) {
