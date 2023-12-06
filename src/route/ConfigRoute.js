@@ -8,7 +8,7 @@ let route = promiseRouter();
 route.get(
   "/",
   AuthMiddleware.isAuthenticated,
-  AuthMiddleware.isManager,
+  AuthMiddleware.userOfSystem,
   ConfigController.getAll
 );
 
