@@ -28,7 +28,7 @@ let getOne = (id) => {
       // let data = await db.Media.findByPk(id);
       let data = await db.bird_breed.findOne({
         where: {
-          bird_breed_id: id,
+          breed_id: id,
         },
       });
       resolve(data);
@@ -65,7 +65,7 @@ let updateBirdBreed = (id, req) => {
         },
         {
           where: {
-            bird_breed_id: id,
+            breed_id: id,
           },
         }
       );
@@ -85,7 +85,7 @@ let deleteBirdBreed = (id) => {
         },
         {
           where: {
-            bird_breed_id: id,
+            breed_id: id,
           },
         }
       );
