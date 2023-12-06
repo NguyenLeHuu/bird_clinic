@@ -119,11 +119,10 @@ let createVeterinarianSlotDetail = (data) => {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.veterinarian_slot_details.create({
         veterinarian_slot_detail_id: id,
-        booking_id: data.booking_id,
-        time_created: data.time_created,
-        note: data.note,
-        usage: data.usage,
+        time_slot_clinic_id: data.time_slot_clinic_id,
+        veterinarian_id: data.veterinarian_id,
         status: data.status,
+        date: data.date,
       });
       resolve(result);
     } catch (e) {

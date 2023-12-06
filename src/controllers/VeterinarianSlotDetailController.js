@@ -66,7 +66,7 @@ module.exports = {
     // #swagger.tags = ['veterinarian_slot_detail']
 
     try {
-      const { time_slot_clinic_id, veterinarian_id, status } = req.body;
+      const { time_slot_clinic_id, veterinarian_id, status, date } = req.body;
 
       // const url = await Firebase.uploadImage(file);
       // let data = await VeterinarianSlotDetailService.createVeterinarianSlotDetail(req.body, url);

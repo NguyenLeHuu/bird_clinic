@@ -4405,6 +4405,9 @@
                   },
                   "status": {
                     "example": "any"
+                  },
+                  "date": {
+                    "example": "any"
                   }
                 }
               }
