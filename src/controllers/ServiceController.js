@@ -65,17 +65,19 @@ module.exports = {
     // #swagger.tags = ['service']
     /*
          #swagger.consumes = ['multipart/form-data']  
-          #swagger.parameters['singleFile'] = {
+          #swagger.parameters['image'] = {
               in: 'formData',
               type: 'file',
               required: 'true',
         } */
     try {
       const { service_type_id, name, description, status } = req.body;
-
-      const url = await Firebase.uploadImage(file);
-      let data = await Service.createService(req.body, url);
-      //   let data = await Service.createService(req.body);
+      let image =
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD6eAt9MQh34xLtvsYSXlW2MUi0S0BrIRAAYqF95P4wtH_o40vJ0MloinFD6V6pjP_if0&usqp=CAU";
+      if (req.file) {
+        image = await Firebase.uploadImage(req.file);
+      }
+      let data = await Service.createService(req.body, image);
 
       console.log("____Create Service Successful");
 

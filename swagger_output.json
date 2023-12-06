@@ -2734,7 +2734,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "singleFile",
+            "name": "image",
             "in": "formData",
             "required": true,
             "schema": {
@@ -3022,19 +3022,22 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
+                  "bird_size_id": {
                     "example": "any"
                   },
-                  "quantity": {
+                  "service_id": {
                     "example": "any"
                   },
                   "price": {
                     "example": "any"
                   },
-                  "mainimg": {
+                  "description": {
                     "example": "any"
                   },
-                  "description": {
+                  "package_name": {
+                    "example": "any"
+                  },
+                  "status": {
                     "example": "any"
                   }
                 }

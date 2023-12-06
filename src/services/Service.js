@@ -30,7 +30,7 @@ let getOne = (id) => {
   });
 };
 
-let createService = (data, url) => {
+let createService = (data, image) => {
   return new Promise(async (resolve, reject) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
@@ -39,8 +39,8 @@ let createService = (data, url) => {
         service_type_id: data.service_type_id,
         name: data.name,
         description: data.description,
-        status: 1,
-        image: url,
+        status: data.status,
+        image: image,
       });
       resolve(result);
     } catch (e) {

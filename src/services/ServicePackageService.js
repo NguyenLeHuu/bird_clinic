@@ -91,22 +91,17 @@ let createServicePackage = (data, url) => {
   });
 };
 
-let updateServicePackage = (
-  id,
-  name,
-  quantity,
-  price,
-  mainimg,
-  description
-) => {
+let updateServicePackage = (id, req) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.service_package.update(
         {
-          name: name,
-          quantity: quantity,
-          price: price,
-          description: description,
+          bird_size_id: req.bird_size_id,
+          service_id: req.service_id,
+          price: req.price,
+          description: req.description,
+          package_name: req.package_name,
+          status: req.status,
         },
         {
           where: {

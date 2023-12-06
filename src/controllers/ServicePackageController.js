@@ -105,20 +105,16 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const description = req.body.description;
-
-      let data = await ServicePackageService.updateServicePackage(
-        id,
-        name,
-        quantity,
+      const {
+        bird_size_id,
+        service_id,
         price,
-        mainimg,
-        description
-      );
+        description,
+        package_name,
+        status,
+      } = req.body;
+
+      let data = await ServicePackageService.updateServicePackage(id, req.body);
       console.log("____Update ServicePackageService Successful");
 
       return res.status(200).json({
