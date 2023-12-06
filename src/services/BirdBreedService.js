@@ -6,9 +6,14 @@ let getAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.bird_breed.findAll({
-        // where: {
-        //   [Op.and]: [{ type: type }, { type_id: type_id }],
-        // },
+        include: [
+          {
+            model: db.bird_size,
+            attributes: ["size"],
+          },
+        ],
+        raw: false,
+        nest: true,
       });
       resolve(data);
     } catch (e) {
