@@ -26,6 +26,10 @@ let getAll = (req) => {
                 },
               ],
             },
+            {
+              model: db.bill,
+              attributes: ["payment_method"],
+            },
           ],
           order: [["time_create", "DESC"]],
           raw: false,
@@ -50,6 +54,10 @@ let getAll = (req) => {
                   attributes: ["price", "package_name"], // Chỉ định các trường bạn muốn bao gồm
                 },
               ],
+            },
+            {
+              model: db.bill,
+              attributes: ["payment_method"],
             },
           ],
           order: [["time_create", "DESC"]],
@@ -171,6 +179,10 @@ let getOne = (id) => {
                 attributes: ["name"],
               },
             ],
+          },
+          {
+            model: db.bill,
+            attributes: ["payment_method"],
           },
         ],
         raw: false,
