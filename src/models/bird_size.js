@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       BirdSize.hasMany(models.bird_breed, {
         foreignKey: "bird_size_id",
       });
+      BirdSize.hasMany(models.cage, {
+        foreignKey: "bird_size_id",
+      });
     }
   }
   BirdSize.init(

@@ -9,12 +9,31 @@ let getAll = (req) => {
       let data;
       if (req.size && req.status) {
         data = await db.cage.findAll({
+          attributes: ["cage_id", "boarding_id", "bird_id", "status", "size"],
           where: {
             [Op.and]: [{ status: req.status }, { size: req.size }],
           },
+          include: [
+            {
+              model: db.bird_size,
+              attributes: ["size"],
+            },
+          ],
+          raw: false,
+          nest: true,
         });
       } else if (!req.size && !req.status) {
-        data = await db.cage.findAll({});
+        data = await db.cage.findAll({
+          attributes: ["cage_id", "boarding_id", "bird_id", "status", "size"],
+          include: [
+            {
+              model: db.bird_size,
+              attributes: ["size"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
       } else {
         if (!req.size) {
           req.size = "%";
@@ -23,9 +42,18 @@ let getAll = (req) => {
           req.status = "%";
         }
         data = await db.cage.findAll({
+          attributes: ["cage_id", "boarding_id", "bird_id", "status", "size"],
           where: {
             [Op.or]: [{ status: req.status }, { size: req.size }],
           },
+          include: [
+            {
+              model: db.bird_size,
+              attributes: ["size"],
+            },
+          ],
+          raw: false,
+          nest: true,
         });
       }
 

@@ -2,7 +2,11 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Cage extends Model {
-    static associate(models) {}
+    static associate(models) {
+      Cage.belongsTo(models.bird_size, {
+        foreignKey: "size",
+      });
+    }
   }
   Cage.init(
     {
