@@ -40,6 +40,7 @@ let createAccount = (data) => {
         phone: data.phone,
         role: data.role,
         status: data.status,
+        name: data.name,
       });
       resolve(result);
     } catch (e) {
@@ -58,6 +59,7 @@ let updateAccount = (req) => {
           phone: req.phone,
           role: req.role,
           status: req.status,
+          name: req.name,
         },
         {
           where: {

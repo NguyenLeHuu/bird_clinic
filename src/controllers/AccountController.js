@@ -60,7 +60,7 @@ module.exports = {
     // #swagger.tags = ['account']
 
     try {
-      const { email, password, phone, role, status } = req.body;
+      const { email, password, phone, role, status, name } = req.body;
 
       let data = await AccountService.createAccount(req.body);
 
@@ -87,20 +87,9 @@ module.exports = {
         */
     try {
       const id = req.params["id"];
-      const name = req.body.name;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const mainimg = req.body.mainimg;
-      const detail = req.body.detail;
 
-      let data = await AccountService.updateAccount(
-        id,
-        name,
-        quantity,
-        price,
-        mainimg,
-        detail
-      );
+      const { email, password, phone, role, status, name } = req.body;
+      let data = await AccountService.updateAccount(id, req.body);
       console.log("____Update Account Successful");
 
       return res.status(200).json({
