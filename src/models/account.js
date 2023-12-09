@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       role: DataTypes.STRING,
       status: DataTypes.STRING,
+      name: DataTypes.STRING,
     },
     {
       sequelize,
