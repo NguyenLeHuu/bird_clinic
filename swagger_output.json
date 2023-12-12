@@ -3157,6 +3157,9 @@
                   },
                   "status": {
                     "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
                   }
                 }
               }
@@ -3225,19 +3228,22 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "phone": {
+                    "example": "any"
+                  },
+                  "role": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
                   "name": {
-                    "example": "any"
-                  },
-                  "quantity": {
-                    "example": "any"
-                  },
-                  "price": {
-                    "example": "any"
-                  },
-                  "mainimg": {
-                    "example": "any"
-                  },
-                  "detail": {
                     "example": "any"
                   }
                 }

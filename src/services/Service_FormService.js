@@ -73,6 +73,18 @@ let getAll = (req) => {
               where: {
                 service_type_id: { [Op.ne]: "ST003" },
               },
+              include: [
+                {
+                  model: db.bird,
+                  attributes: ["name"],
+                  include: [
+                    {
+                      model: db.customer,
+                      attributes: ["name", "phone"],
+                    },
+                  ],
+                },
+              ],
             },
             {
               model: db.service_form_detail,

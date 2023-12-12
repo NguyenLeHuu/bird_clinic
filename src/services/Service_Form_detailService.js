@@ -7,8 +7,25 @@ let getAll = (req) => {
     try {
       let data;
       let whereClause = {};
-      if (req.veterinarian_id) {
-        whereClause["veterinarian_id"] = req.veterinarian_id;
+      if (req.veterinarian_id && !req.arrival_date) {
+        // whereClause["veterinarian_id"] = req.veterinarian_id;
+        data = await db.sequelize.query(
+          `
+          SELECT sfd.*, birds.name as bird_name, c.name as customer_name, c.phone
+FROM service_form_details AS sfd
+JOIN bookings AS b ON sfd.booking_id = b.booking_id
+JOIN birds ON b.bird_id = birds.bird_id
+JOIN customers AS c ON birds.customer_id = c.customer_id
+WHERE sfd.veterinarian_id = :veterinarian_id
+        `,
+          {
+            replacements: {
+              veterinarian_id: req.veterinarian_id,
+            },
+            type: db.sequelize.QueryTypes.SELECT,
+          }
+        );
+        resolve(data);
       }
       if (req.veterinarian_id && req.arrival_date) {
         data = await db.sequelize.query(
