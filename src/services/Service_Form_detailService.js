@@ -71,13 +71,22 @@ AND sfd.veterinarian_id = :veterinarian_id
 let getOne = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
-      // let data = await db.Service_Form_detail.findByPk(id);
-      let data = await db.service_form_detail.findOne({
-        where: {
-          service_form_detail_id: id,
-          // include: [{ model: Service_Form_detailType, attributes: ["name"] }],
-        },
-      });
+      let data = await db.sequelize.query(
+        `
+        SELECT sfd.*, birds.name as bird_name, c.name as customer_name, c.phone
+FROM service_form_details AS sfd
+JOIN bookings AS b ON sfd.booking_id = b.booking_id
+JOIN birds ON b.bird_id = birds.bird_id
+JOIN customers AS c ON birds.customer_id = c.customer_id
+WHERE sfd.service_form_detail_id = :service_form_detail_id
+      `,
+        {
+          replacements: {
+            service_form_detail_id: id,
+          },
+          type: db.sequelize.QueryTypes.SELECT,
+        }
+      );
       resolve(data);
     } catch (e) {
       reject(e);
