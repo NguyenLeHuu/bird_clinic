@@ -96,12 +96,15 @@ let getOne = (id, req) => {
         // }
         result = await db.sequelize.query(
           `
-          SELECT bookings.*, service_form_details.process_at
-          FROM bookings
-          LEFT JOIN service_form_details
-          ON bookings.booking_id = service_form_details.booking_id
-          WHERE bookings.booking_id = :id AND service_form_details.service_package_id = :spid
-        `,
+            SELECT bookings.*, service_form_details.process_at, customers.phone AS customer_phone
+            FROM bookings
+            LEFT JOIN customers
+            ON bookings.account_id = customers.customer_id
+            LEFT JOIN service_form_details
+            ON bookings.booking_id = service_form_details.booking_id
+            WHERE bookings.booking_id = :id AND service_form_details.service_package_id = :spid
+          `,
+
           {
             replacements: { id: id, spid: sp_id },
             type: db.sequelize.QueryTypes.SELECT,
