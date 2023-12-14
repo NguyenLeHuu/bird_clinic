@@ -3327,6 +3327,9 @@
                   "account_id": {
                     "example": "any"
                   },
+                  "customer_id": {
+                    "example": "any"
+                  },
                   "email": {
                     "example": "any"
                   },

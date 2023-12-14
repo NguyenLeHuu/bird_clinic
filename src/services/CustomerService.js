@@ -43,7 +43,7 @@ let createCustomer = (data, url) => {
     try {
       const id = crypto.randomBytes(15).toString("hex");
       const result = await db.customer.create({
-        customer_id: id,
+        customer_id: data.account_id,
         account_id: data.account_id,
         email: data.email,
         address: data.address,
