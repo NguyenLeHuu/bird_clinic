@@ -3327,9 +3327,6 @@
                   "account_id": {
                     "example": "any"
                   },
-                  "customer_id": {
-                    "example": "any"
-                  },
                   "email": {
                     "example": "any"
                   },
@@ -4604,7 +4601,7 @@
         "tags": [
           "time_slot_clinic"
         ],
-        "description": "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó",
+        "description": "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó, truyèn mỗi ST sẽ lấy các ngày làm st đó của phòng khám",
         "parameters": [
           {
             "name": "date",

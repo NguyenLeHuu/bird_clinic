@@ -7,7 +7,7 @@ module.exports = {
   async getAll(req, res) {
     /* 
         #swagger.tags = ['time_slot_clinic']
-         #swagger.description = "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó"
+         #swagger.description = "lấy ra các mốc (slot) khả dụng trong ngày nào đó của dịch vụ lớn nào đó, truyèn mỗi ST sẽ lấy các ngày làm st đó của phòng khám"
         */
     try {
       const { date, service_type_id } = req.query;
@@ -31,6 +31,25 @@ WHERE ts.date = :date -- Thay 'your_date' bằng giá trị date bạn đang tì
           {
             replacements: {
               date: date,
+              stid: service_type_id,
+            },
+            type: db.sequelize.QueryTypes.SELECT,
+          }
+        );
+      } else if (service_type_id && !date) {
+        data = await db.sequelize.query(
+          `
+    SELECT vsd.date
+    FROM veterinarian_slot_details vsd
+    INNER JOIN veterinarians v ON vsd.veterinarian_id = v.veterinarian_id
+    WHERE v.service_type_id = :stid 
+        AND vsd.status = 'available'
+    GROUP BY vsd.date
+  ;
+
+      `,
+          {
+            replacements: {
               stid: service_type_id,
             },
             type: db.sequelize.QueryTypes.SELECT,
