@@ -21,6 +21,10 @@ let getAll = (req) => {
         whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
         whereClause["status"] = req.status;
       }
+      if (req.veterinarian_id && req.time_slot_clinic_id) {
+        whereClause["veterinarian_id"] = req.veterinarian_id;
+        whereClause["time_slot_clinic_id"] = req.time_slot_clinic_id;
+      }
 
       data = await db.veterinarian_slot_details.findAll({
         where: whereClause,
