@@ -30,6 +30,10 @@ let getAll = (req) => {
               },
             ],
           },
+          {
+            model: db.boarding,
+            attributes: ["cage_id"],
+          },
         ],
 
         raw: true,
