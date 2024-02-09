@@ -1,7 +1,2 @@
 Swagger-autogen: [32m Success  [0m
-(node:6196) [SEQUELIZE0002] DeprecationWarning: The logging-option should be either a function or false. Default: console.log
-(Use `node --trace-deprecation ...` to show where the warning was created)
-Server start port http://localhost:3000
-Executing (default): SELECT 1+1 AS result
-Connection has been established successfully.
 ^C
